@@ -1,6 +1,6 @@
-package src.autotam.dao;
+package api.autotam.dao;
 
-import src.autotam.model.Usuario;
+import api.autotam.model.Usuario;
 
 import java.util.List;
 

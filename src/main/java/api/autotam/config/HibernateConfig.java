@@ -1,4 +1,4 @@
-package src.autotam.config;
+package api.autotam.config;
 
 import javax.sql.DataSource;
 
@@ -9,21 +9,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.env.Environment;
-import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import src.autotam.dao.UsuarioDAO;
-import src.autotam.dao.UsuarioDAOImpl;
-import src.autotam.service.UsuarioService;
-import src.autotam.service.UsuarioServiceImpl;
+import api.autotam.service.UsuarioService;
+import api.autotam.service.UsuarioServiceImpl;
 
 import java.io.IOException;
 import java.util.Properties;
 
 @Configuration
-@ComponentScan("src.autotam")
+@ComponentScan("api.autotam")
 /** Important **/
 @EnableTransactionManagement
 public class HibernateConfig {
@@ -58,7 +54,7 @@ public class HibernateConfig {
         LocalSessionFactoryBean factoryBean = new LocalSessionFactoryBean();
         factoryBean.setDataSource(getDataSource());
         factoryBean
-                .setPackagesToScan(new String[] { "src.autotam.model" });
+                .setPackagesToScan(new String[] { "api.autotam.model" });
         factoryBean.setHibernateProperties(getHibernateProperties());
 
        try {

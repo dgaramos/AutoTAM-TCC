@@ -1,6 +1,6 @@
-package src.autotam.service;
+package api.autotam.service;
 
-import src.autotam.model.Usuario;
+import api.autotam.model.Usuario;
 
 import java.util.List;
 

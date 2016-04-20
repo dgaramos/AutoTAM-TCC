@@ -1,12 +1,12 @@
-package src.autotam;
+package api.autotam;
 
 
 //hibernate test imports
 //import java.util.List;
 //import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-//import src.autotam.config.AppConfig;
-//import src.autotam.model.Usuario;
-//import src.autotam.service.UsuarioService;
+//import api.autotam.config.AppConfig;
+//import api.autotam.model.Usuario;
+//import api.autotam.service.UsuarioService;
 
 //REST test imports
 

@@ -1,11 +1,11 @@
-package src.autotam.service;
+package api.autotam.service;
 
 import javax.transaction.Transactional;
 
-import src.autotam.dao.UsuarioDAO;
+import api.autotam.dao.UsuarioDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import src.autotam.model.Usuario;
+import api.autotam.model.Usuario;
 
 import java.util.List;
 
