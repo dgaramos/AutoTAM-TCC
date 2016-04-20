@@ -1,4 +1,4 @@
-package src.autotam.dao;
+package api.autotam.dao;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

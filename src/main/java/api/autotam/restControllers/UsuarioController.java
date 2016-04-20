@@ -1,4 +1,4 @@
-package src.autotam.restControllers;
+package api.autotam.restControllers;
 
 
 import org.springframework.http.HttpHeaders;
@@ -7,15 +7,15 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
-import src.autotam.model.Usuario;
-import src.autotam.service.UsuarioService;
+import api.autotam.model.Usuario;
+import api.autotam.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /*import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import src.autotam.model.Usuario;
+import api.autotam.model.Usuario;
 */
 import java.util.List;
 

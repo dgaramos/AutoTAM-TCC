@@ -19,6 +19,8 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="autotam-api-tcc_main" target="1.8" />
+      <module name="autotam-api-tcc_test" target="1.8" />
       <module name="autotam-tcc_main" target="1.8" />
       <module name="autotam-tcc_test" target="1.8" />
       <module name="src-tcc_main" target="1.5" />

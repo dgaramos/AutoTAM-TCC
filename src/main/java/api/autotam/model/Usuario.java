@@ -1,4 +1,4 @@
-package src.autotam.model;
+package api.autotam.model;
 
 
 
