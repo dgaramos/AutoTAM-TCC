@@ -4,7 +4,9 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public abstract class AbstractDAO {
+
+
+public abstract class AbstractDAO{
 
     @Autowired
     private SessionFactory sessionFactory;
@@ -20,4 +22,7 @@ public abstract class AbstractDAO {
     public void delete(Object entity) {
         getSession().delete(entity);
     }
+
+
+
 }
