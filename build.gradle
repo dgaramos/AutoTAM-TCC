@@ -38,9 +38,15 @@ dependencies {
     //compile 'mysql:mysql-connector-java:5.1.31'
     compile 'commons-dbcp:commons-dbcp:1.4'
 
+    compile("org.springframework.boot:spring-boot-starter-security")
 
 
     testCompile'junit:junit'
+}
+
+
+configurations {
+    runtimeOnly
 }
 
 
