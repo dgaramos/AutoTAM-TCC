@@ -51,7 +51,7 @@ heroku {
     apiKey = '135473f5-3090-4372-b38c-e59e84f2a8e3'
 
     //set this on first run if you don't want a generated name
-    //appName = 'some-unique-app-name'
+    appName = 'autotam-tcc'
 
     //set this if you are not happy with the default gradlew buildpack
     //buildpack = 'http://somebuildpack
