@@ -1,56 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="100a1176-abd5-4a80-ba5c-82ecf3ee224f" name="Default" comment="Deploy">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__mysql_mysql_connector_java_5_1_31.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/src/autotam/Bootstrap.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/src/autotam/config/AppConfig.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/src/autotam/config/CORSFilter.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/src/autotam/config/HibernateConfig.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/src/autotam/config/WebAppInit.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/src/autotam/config/WebConfig.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/src/autotam/dao/AbstractDAO.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/src/autotam/dao/UsuarioDAO.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/src/autotam/dao/UsuarioDAOImpl.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/src/autotam/model/Usuario.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/src/autotam/restControllers/UsuarioController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/src/autotam/service/UsuarioService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/src/autotam/service/UsuarioServiceImpl.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/hibernate/api/autotam/Bootstrap.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/hibernate/api/autotam/config/AppConfig.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/hibernate/api/autotam/config/HibernateConfig.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/hibernate/api/autotam/dao/AbstractDAO.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/hibernate/api/autotam/dao/UsuarioDAO.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/hibernate/api/autotam/dao/UsuarioDAOImpl.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/hibernate/api/autotam/model/Usuario.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/hibernate/api/autotam/restControllers/UsuarioController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/hibernate/api/autotam/service/UsuarioService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/hibernate/api/autotam/service/UsuarioServiceImpl.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/hibernate/autotam/modelo/usuario/Usuario.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/hibernate/autotam/modelo/usuario/UsuarioDAO.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/hibernate/autotam/rest/UsuarioController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/hibernate/autotam/util/UsuarioService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/hibernate/autotam/util/UsuarioServiceImpl.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/hibernate/src/autotam/Bootstrap.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/hibernate/src/autotam/conexao/AppConfig.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/hibernate/src/autotam/config/AppConfig.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/hibernate/src/autotam/config/WebAppInit.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/hibernate/src/autotam/config/WebConfig.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/hibernate/src/autotam/dao/UsuarioDAO.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/hibernate/src/autotam/dao/UsuarioDAOImpl.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/hibernate/src/autotam/model/Usuario.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/hibernate/src/autotam/modelo/usuario/Usuario.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/hibernate/src/autotam/modelo/usuario/UsuarioDAO.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/hibernate/src/autotam/modelo/usuario/UsuarioDAOImpl.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/hibernate/src/autotam/restControllers/UsuarioController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/hibernate/src/autotam/service/UsuarioService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/hibernate/src/autotam/service/UsuarioServiceImpl.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/hibernate/src/autotam/util/UsuarioService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/hibernate/src/autotam/util/UsuarioServiceImpl.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    <list default="true" id="100a1176-abd5-4a80-ba5c-82ecf3ee224f" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/hibernate.properties" afterPath="$PROJECT_DIR$/src/main/resources/hibernate.properties" />
     </list>
     <ignored path="autotam-tcc.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -92,11 +44,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="true">
+      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="500">
-              <caret line="51" column="38" selection-start-line="51" selection-start-column="38" selection-end-line="51" selection-end-column="38" />
+            <state relative-caret-position="381">
+              <caret line="44" column="0" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="hibernate.properties" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/hibernate.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="4" column="42" selection-start-line="4" selection-start-column="42" selection-end-line="4" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -132,7 +94,7 @@
       </list>
     </option>
     <option name="ROOT_SYNC" value="SYNC" />
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/src/main" />
   </component>
   <component name="GradleLocalSettings">
     <option name="availableProjects">
@@ -516,7 +478,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/src/autotam/conexao/dao.properties" />
         <option value="$PROJECT_DIR$/src/main/java/src/autotam/conexao/DaoConfig.java" />
         <option value="$PROJECT_DIR$/src/main/java/src/autotam/controle/UsuarioController.java" />
         <option value="$PROJECT_DIR$/src/main/java/src/autotam/rest/WebAppInit.java" />
@@ -567,6 +528,7 @@
         <option value="$PROJECT_DIR$/src/main/java/api/autotam/config/HibernateConfig.java" />
         <option value="$PROJECT_DIR$/.idea/workspace.xml" />
         <option value="$PROJECT_DIR$/build.gradle" />
+        <option value="$PROJECT_DIR$/src/main/resources/hibernate.properties" />
       </list>
     </option>
   </component>
@@ -689,6 +651,28 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="main" />
               <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="autotam-tcc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="autotam-tcc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -1315,7 +1299,7 @@
       <workItem from="1461198404684" duration="14271000" />
       <workItem from="1461260033119" duration="17602000" />
       <workItem from="1461303518731" duration="203000" />
-      <workItem from="1461303738939" duration="6749000" />
+      <workItem from="1461303738939" duration="7575000" />
     </task>
     <task id="LOCAL-00001" summary="Package name change">
       <created>1461179105065</created>
@@ -1436,7 +1420,14 @@
       <option name="project" value="LOCAL" />
       <updated>1461310202549</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Deploy">
+      <created>1461311302500</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1461311302500</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1445,7 +1436,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="112885000" />
+    <option name="totallyTimeSpent" value="113711000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1458,7 +1449,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-2" width="1378" height="780" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3137558" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1466,10 +1457,10 @@
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22720248" sideWeight="0.5091047" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Application Servers" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32921174" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32921174" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928678" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22565688" sideWeight="0.4908953" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32921174" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22565688" sideWeight="0.4908953" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32921174" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25811437" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1724,14 +1715,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/hibernate.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="18" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/api/autotam/Bootstrap.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-527">
@@ -1840,8 +1823,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
-          <caret line="51" column="38" selection-start-line="51" selection-start-column="38" selection-end-line="51" selection-end-column="38" />
+        <state relative-caret-position="381">
+          <caret line="44" column="0" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/hibernate.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="42" selection-start-line="4" selection-start-column="42" selection-end-line="4" selection-end-column="42" />
           <folding />
         </state>
       </provider>
