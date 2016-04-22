@@ -47,3 +47,7 @@ dependencies {
 task stage {
     dependsOn build
 }
+
+springBoot {
+    mainClass = "api.autotam.Bootstrap"
+}
