@@ -21,32 +21,15 @@ import java.util.List;
 
 
 @RestController
+@RequestMapping("/usuario")
 public class UsuarioController {
-
-
-/*
-   @RequestMapping( value = "/teste/", method = RequestMethod.GET)
-    public Usuario teste(@RequestParam(value = "id", defaultValue="1")Integer id,
-                         @RequestParam(value="nome", defaultValue="João") String nome,
-                         @RequestParam(value="email", defaultValue="joao@joao.com") String email,
-                         @RequestParam(value="senha", defaultValue="1l0v3p3n15") String senha) {
-        Usuario u = new Usuario();
-
-        u.setIdUsuario(id);
-        u.setNome(nome);
-        u.setEmail(email);
-        u.setSenha(senha);
-
-        return u;
-    }*/
-
 
      @Autowired
     private UsuarioService service; //Service which will do all data retrieval/manipulation work
 
 
    //-------------------Retrieve All Usuarios--------------------------------------------------------
-    @RequestMapping(value = "/usuario/", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List<Usuario>> listAllUsuarios() {
         List<Usuario> usuarios = service.findAllUsuarios();
         if(usuarios.isEmpty()){
@@ -57,46 +40,51 @@ public class UsuarioController {
 
     //-------------------Retrieve Single Usuario--------------------------------------------------------
 
-    @RequestMapping(value = "/usuario/{email:}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Usuario> getUser(@PathVariable("email") String email) {
-        System.out.println("Fetching User with email " + email);
-        Usuario usuario = service.findByEmail(email);
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Usuario> getUser(@PathVariable("id") Integer id) {
+        System.out.println("Fetching User with email " + id);
+        Usuario usuario = service.findById(id);
         if (usuario == null) {
-            System.out.println("User with email " + email + " not found");
-            return new ResponseEntity<Usuario>(HttpStatus.NOT_FOUND);
+            System.out.println("User with id " + id + " not found");
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<Usuario>(usuario, HttpStatus.OK);
+        return new ResponseEntity<>(usuario, HttpStatus.OK);
     }
 
     //-------------------Create a Usuario--------------------------------------------------------
 
-    @RequestMapping(value = "/usuario/", method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Void> createUser(@RequestBody Usuario usuario, UriComponentsBuilder ucBuilder) {
         System.out.println("Creating User " + usuario.getNome());
 
         if (service.isUsuarioExist(usuario)) {
+            System.out.println("A User with id " + usuario.getIdUsuario() + " already exist");
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
+
+        if (service.findByEmail(usuario.getEmail()) != null) {
             System.out.println("A User with e-mail " + usuario.getEmail() + " already exist");
-            return new ResponseEntity<Void>(HttpStatus.CONFLICT);
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
 
         service.saveUsuario(usuario);
 
         HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(ucBuilder.path("/user/{id}").buildAndExpand(usuario.getIdUsuario()).toUri());
-        return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
+        headers.setLocation(ucBuilder.path("/{email}").buildAndExpand(usuario.getEmail()).toUri());
+        return new ResponseEntity<>(headers, HttpStatus.CREATED);
     }
 
     //------------------- Update a User --------------------------------------------------------
 
-    @RequestMapping(value = "/usuario/{email:}", method = RequestMethod.PUT)
-    public ResponseEntity<Usuario> updateUser(@PathVariable("email") String email, @RequestBody Usuario usuario) {
-        System.out.println("Updating User " + email);
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<Usuario> updateUser(@PathVariable("id") Integer idUsuario, @RequestBody Usuario usuario) {
+        System.out.println("Updating User " + idUsuario);
 
-        Usuario currentUsuario = service.findByEmail(email);
+        Usuario currentUsuario = service.findById(usuario.getIdUsuario());
 
         if (currentUsuario==null) {
-            System.out.println("User with email " + email + " not found");
-            return new ResponseEntity<Usuario>(HttpStatus.NOT_FOUND);
+            System.out.println("User with id " + idUsuario + " not found");
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
         currentUsuario.setNome(usuario.getNome());
@@ -104,23 +92,23 @@ public class UsuarioController {
         currentUsuario.setSenha(usuario.getSenha());
 
         service.updateUsuario(currentUsuario);
-        return new ResponseEntity<Usuario>(currentUsuario, HttpStatus.OK);
+        return new ResponseEntity<>(currentUsuario, HttpStatus.OK);
     }
 
 //------------------- Delete a User --------------------------------------------------------
 
-    @RequestMapping(value = "/usuario/{email}", method = RequestMethod.DELETE)
-    public ResponseEntity<Usuario> deleteUser(@PathVariable("email") String email) {
-        System.out.println("Fetching & Deleting User with email " + email);
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<Usuario> deleteUser(@PathVariable("id") Integer id) {
+        System.out.println("Fetching & Deleting User with id " + id);
 
-        Usuario user = service.findByEmail(email);
+        Usuario user = service.findById(id);
         if (user == null) {
-            System.out.println("Unable to delete. User with email " + email + " not found");
-            return new ResponseEntity<Usuario>(HttpStatus.NOT_FOUND);
+            System.out.println("Unable to delete. User with id " + id + " not found");
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
-        service.deleteUsuarioByEmail("email");
-        return new ResponseEntity<Usuario>(HttpStatus.NO_CONTENT);
+        service.deleteUsuarioByEmail(user);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
 }

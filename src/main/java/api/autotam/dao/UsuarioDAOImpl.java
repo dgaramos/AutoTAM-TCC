@@ -26,12 +26,16 @@ public class UsuarioDAOImpl extends AbstractDAO implements UsuarioDAO {
         return (List<Usuario>) criteria.list();
     }
 
-    public void deleteUsuarioByEmail(String email) {
-        Query query = getSession().createSQLQuery("delete from Usuario where email = :email");
-        query.setString("email", email);
-        query.executeUpdate();
+    public void deleteUsuarioByEmail(Usuario usuario) {
+        delete(usuario);
     }
 
+
+    public Usuario findById(Integer id){
+        Criteria criteria = getSession().createCriteria(Usuario.class);
+        criteria.add(Restrictions.eq("id",id));
+        return (Usuario) criteria.uniqueResult();
+    }
 
     public Usuario findByEmail(String email){
         Criteria criteria = getSession().createCriteria(Usuario.class);

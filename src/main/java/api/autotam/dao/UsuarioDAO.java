@@ -13,9 +13,11 @@ public interface UsuarioDAO {
 
     List<Usuario> findAllUsuarios();
 
-    void deleteUsuarioByEmail(String email);
+    void deleteUsuarioByEmail(Usuario usuario);
 
-    Usuario findByEmail(String email);
+    Usuario findById(Integer id);
+
+    Usuario findByEmail(String Email);
 
     void updateUsuario(Usuario usuario);
 }

@@ -25,8 +25,12 @@ public class UsuarioServiceImpl implements UsuarioService {
         return dao.findAllUsuarios();
     }
 
-    public void deleteUsuarioByEmail(String email) {
-        dao.deleteUsuarioByEmail(email);
+    public void deleteUsuarioByEmail(Usuario usuario) {
+        dao.deleteUsuarioByEmail(usuario);
+    }
+
+    public Usuario findById(Integer id) {
+        return dao.findById(id);
     }
 
     public Usuario findByEmail(String email) {
@@ -38,7 +42,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     public boolean isUsuarioExist(Usuario usuario) {
-        return findByEmail(usuario.getEmail())!=null;
+        return findById(usuario.getIdUsuario())!=null;
     }
 
 }
