@@ -2,23 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="100a1176-abd5-4a80-ba5c-82ecf3ee224f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__postgresql_postgresql_9_1_901_1_jdbc4.xml" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__mysql_mysql_connector_java_5_1_31.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/api/autotam/config/HibernateConfig.class" afterPath="$PROJECT_DIR$/build/classes/main/api/autotam/config/HibernateConfig.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/gradle.xml" afterPath="$PROJECT_DIR$/.idea/gradle.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules/autotam-tcc_main.iml" afterPath="$PROJECT_DIR$/.idea/modules/autotam-tcc_main.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules/autotam-tcc_test.iml" afterPath="$PROJECT_DIR$/.idea/modules/autotam-tcc_test.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.gradle" afterPath="$PROJECT_DIR$/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/resources/main/public/index.html" afterPath="$PROJECT_DIR$/build/resources/main/public/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/api/autotam/config/HibernateConfig.java" afterPath="$PROJECT_DIR$/src/main/java/api/autotam/config/HibernateConfig.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/public/css/style.css" afterPath="$PROJECT_DIR$/src/main/resources/public/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/public/index.html" afterPath="$PROJECT_DIR$/src/main/resources/public/index.html" />
     </list>
     <ignored path="autotam-tcc.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -774,7 +761,7 @@
       <recent name="autotam.util" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.AutoTAM-API">
+  <component name="RunManager" selected="Heroku Deployment.autotam-tcc">
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
       <module name="" />
       <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
@@ -1262,7 +1249,7 @@
       <workItem from="1461198404684" duration="14271000" />
       <workItem from="1461260033119" duration="17602000" />
       <workItem from="1461303518731" duration="203000" />
-      <workItem from="1461303738939" duration="1478000" />
+      <workItem from="1461303738939" duration="1784000" />
     </task>
     <task id="LOCAL-00001" summary="Package name change">
       <created>1461179105065</created>
@@ -1292,7 +1279,14 @@
       <option name="project" value="LOCAL" />
       <updated>1461291575993</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Deploy">
+      <created>1461305359268</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1461305359268</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1301,7 +1295,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="107614000" />
+    <option name="totallyTimeSpent" value="107920000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1397,7 +1391,8 @@
     <MESSAGE value="index.html" />
     <MESSAGE value="Inserindo, Atualizando e Removendo Usuarios" />
     <MESSAGE value="Inclusão do CSS no frontend" />
-    <option name="LAST_COMMIT_MESSAGE" value="Inclusão do CSS no frontend" />
+    <MESSAGE value="Deploy" />
+    <option name="LAST_COMMIT_MESSAGE" value="Deploy" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
