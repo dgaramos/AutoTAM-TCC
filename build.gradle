@@ -1,9 +1,11 @@
 buildscript {
     repositories {
         mavenCentral()
+        maven { url 'http://dl.bintray.com/vermeulen-mp/gradle-plugins' }
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:1.3.3.RELEASE")
+        classpath "org.gradle.api.plugins:gradle-heroku:0.9.6"
     }
 }
 
@@ -11,6 +13,7 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'spring-boot'
+apply plugin: 'heroku'
 
 jar {
     baseName = 'gs-rest-service'
@@ -43,3 +46,13 @@ dependencies {
     testCompile'junit:junit'
 }
 
+heroku {
+    //get this from heroku
+    apiKey = '135473f5-3090-4372-b38c-e59e84f2a8e3'
+
+    //set this on first run if you don't want a generated name
+    //appName = 'some-unique-app-name'
+
+    //set this if you are not happy with the default gradlew buildpack
+    //buildpack = 'http://somebuildpack
+}
