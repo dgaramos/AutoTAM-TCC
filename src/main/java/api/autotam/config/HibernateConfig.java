@@ -37,9 +37,14 @@ public class HibernateConfig {
 
         BasicDataSource dataSource = new BasicDataSource();
         try {
-            dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+           /* mySQL connection code
+           dataSource.setDriverClassName("com.mysql.jdbc.Driver");
             dataSource.setUrl("jdbc:mysql://localhost:3306/autotam");
             dataSource.setUsername("root");
+            dataSource.setPassword("root");*/
+            dataSource.setDriverClassName("org.postgresql.Driver");
+            dataSource.setUrl("jdbc:postgresql://localhost:5432/autotam");
+            dataSource.setUsername("postgres");
             dataSource.setPassword("root");
         }catch (Exception e){
             System.out.println("Não conectou!");
@@ -69,7 +74,9 @@ public class HibernateConfig {
 
     private Properties getHibernateProperties() {
         Properties properties = new Properties();
-        properties.put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
+        //mySQL database dialect
+        //properties.put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
+        properties.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
         properties.put("hibernate.show_sql", "true");
         properties.put("hibernate.format_sql", "true");
         properties.put("current_session_context_class", "thread");

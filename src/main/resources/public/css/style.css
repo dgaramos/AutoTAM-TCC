@@ -23,8 +23,9 @@ body, .form-control{
 
 
 .generic-container {
-    width:80%;
-    margin-left: 20px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
     margin-top: 20px;
     margin-bottom: 20px;
     padding: 20px;
@@ -36,12 +37,6 @@ body, .form-control{
 
 .custom-width {
     width: 80px !important;
-}
-
-#container{
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 #search{
@@ -66,4 +61,9 @@ body, .form-control{
 }
 .email.ng-dirty.ng-invalid-email {
     background-color: yellow;
+}
+
+.formField{
+    padding-left: 28px !important;
+    padding-right:10px !important;
 }
