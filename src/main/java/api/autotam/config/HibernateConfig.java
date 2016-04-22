@@ -38,10 +38,10 @@ public class HibernateConfig {
         BasicDataSource dataSource = new BasicDataSource();
         try {
            /* mySQL connection code
-           dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-            dataSource.setUrl("jdbc:mysql://localhost:3306/autotam");
-            dataSource.setUsername("root");
-            dataSource.setPassword("root");*/
+            dataSource.setDriverClassName(env.getProperty("jdbc.driverClassName"));
+            dataSource.setUrl(env.getProperty("jdbc.databaseurl"));
+            dataSource.setUsername(env.getProperty("jdbc.username"));
+            dataSource.setPassword(env.getProperty("jdbc.password"));*/
             dataSource.setDriverClassName(env.getProperty("jdbc.driverClassName"));
             dataSource.setUrl(env.getProperty("jdbc.databaseurl"));
             dataSource.setUsername(env.getProperty("jdbc.username"));
