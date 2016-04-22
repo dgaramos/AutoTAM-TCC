@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -21,16 +23,14 @@ import java.util.Properties;
 @Configuration
 @ComponentScan("api.autotam")
 /** Important **/
+@PropertySource("classpath:hibernate.properties")
 @EnableTransactionManagement
 public class HibernateConfig {
 
-    //@Autowired
-    //Environment env;
+    @Autowired
+    Environment env;
 
-   // @Bean
-  //  public HibernateTemplate hibernateTemplate() {
-  //      return new HibernateTemplate(getSessionFactory());
-  //  }
+
 
     @Bean(name = "dataSource")
     public DataSource getDataSource() {
@@ -42,10 +42,10 @@ public class HibernateConfig {
             dataSource.setUrl("jdbc:mysql://localhost:3306/autotam");
             dataSource.setUsername("root");
             dataSource.setPassword("root");*/
-            dataSource.setDriverClassName("org.postgresql.Driver");
-            dataSource.setUrl("jdbc:postgresql://localhost:5432/autotam");
-            dataSource.setUsername("postgres");
-            dataSource.setPassword("root");
+            dataSource.setDriverClassName(env.getProperty("jdbc.driverClassName"));
+            dataSource.setUrl(env.getProperty("jdbc.databaseurl"));
+            dataSource.setUsername(env.getProperty("jdbc.username"));
+            dataSource.setPassword(env.getProperty("jdbc.password"));
         }catch (Exception e){
             System.out.println("Não conectou!");
             e.printStackTrace();
@@ -76,7 +76,7 @@ public class HibernateConfig {
         Properties properties = new Properties();
         //mySQL database dialect
         //properties.put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
-        properties.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
+        properties.put("hibernate.dialect", env.getProperty("jdbc.dialect"));
         properties.put("hibernate.show_sql", "true");
         properties.put("hibernate.format_sql", "true");
         properties.put("current_session_context_class", "thread");
