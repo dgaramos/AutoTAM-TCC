@@ -1,6 +1,6 @@
 'use strict';
 
-App.controller('UsuarioController', ['$scope', 'UsuarioService', function($scope, UsuarioService) {
+myApp.controller('UsuarioController', ['$scope', 'UsuarioService', function($scope, UsuarioService) {
     var self = this;
     self.usuario={idUsuario:null,nome:'',email:'',senha:''};
     self.usuarios=[];

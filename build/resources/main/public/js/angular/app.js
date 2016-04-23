@@ -1,3 +1,2 @@
 'use strict';
-
-var App = angular.module('myApp',[]);
+var myApp = angular.module('clientAutoTAM', ['ngRoute']);

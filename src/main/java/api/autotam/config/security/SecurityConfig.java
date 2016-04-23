@@ -24,7 +24,7 @@ public class SecurityConfig {
 @Configuration
 class WebSecurityConfiguration extends GlobalAuthenticationConfigurerAdapter {
 
-    @Autowired
+    /*@Autowired
     UsuarioService usuarioService;
 
     @Override
@@ -60,6 +60,6 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().anyRequest().fullyAuthenticated().and().
                 httpBasic().and().
                 csrf().disable();
-    }
+    }*/
 
 }

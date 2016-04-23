@@ -37,11 +37,6 @@ public class HibernateConfig {
 
         BasicDataSource dataSource = new BasicDataSource();
         try {
-           /* mySQL connection code
-            dataSource.setDriverClassName(env.getProperty("jdbc.driverClassName"));
-            dataSource.setUrl(env.getProperty("jdbc.databaseurl"));
-            dataSource.setUsername(env.getProperty("jdbc.username"));
-            dataSource.setPassword(env.getProperty("jdbc.password"));*/
             dataSource.setDriverClassName(env.getProperty("jdbc.driverClassName"));
             dataSource.setUrl(env.getProperty("jdbc.databaseurl"));
             dataSource.setUsername(env.getProperty("jdbc.username"));
@@ -74,8 +69,6 @@ public class HibernateConfig {
 
     private Properties getHibernateProperties() {
         Properties properties = new Properties();
-        //mySQL database dialect
-        //properties.put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
         properties.put("hibernate.dialect", env.getProperty("jdbc.dialect"));
         properties.put("hibernate.show_sql", "true");
         properties.put("hibernate.format_sql", "true");

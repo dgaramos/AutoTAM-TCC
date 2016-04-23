@@ -26,15 +26,20 @@ body, .form-control{
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 20px;
-    margin-bottom: 20px;
     padding: 20px;
     background-color: #EAE7E7;
     border: 1px solid #ddd;
     border-radius: 4px;
-    box-shadow: 0 0 30px black;
 }
 
+.menu-container{
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #EAE7E7;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
 .custom-width {
     width: 80px !important;
 }
@@ -66,4 +71,8 @@ body, .form-control{
 .formField{
     padding-left: 28px !important;
     padding-right:10px !important;
+}
+
+[ng\:cloak], [ng-cloak], .ng-cloak {
+    display: none !important;
 }
