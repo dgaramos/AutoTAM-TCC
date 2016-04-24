@@ -1,15 +1,16 @@
 
-    <div class="alert alert-danger" ng-show="error">
+    <div class="alert alert-danger" ng-show="ctrl.error">
         Houve um erro ao logar, por favor, tente novamente
     </div>
-    <form role="form" ng-submit="login()">
+    <form role="form" ng-submit="ctrl.login()">
         <div class="form-group">
-            <label for="email">E-mail:</label> <input type="text"
-                                                           class="form-control" id="email" name="email" ng-model="credentials.email"/>
+            <label for="username">E-mail:</label> <input type="text"
+                                                           class="form-control" id="username" name="username" ng-model="ctrl.credentials.username" />
         </div>
         <div class="form-group">
-            <label for="senha">Senha:</label> <input type="password"
-                                                           class="form-control" id="senha" name="senha" ng-model="credentials.senha"/>
+            <label for="password">Senha:</label> <input type="password"
+                                                           class="form-control" id="password" name="password" ng-model="ctrl.credentials.password" />
         </div>
-        <button type="submit" class="btn btn-primary">Entrar!</button>
+        <button type="submit" class="btn btn-primary"  >Entrar!</button>
     </form>
+</div>

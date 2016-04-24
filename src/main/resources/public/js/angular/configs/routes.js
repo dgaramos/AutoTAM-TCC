@@ -1,16 +1,21 @@
 'use strict';
-myApp.config(['$routeProvider',
-    function($routeProvider) {
+myApp.config(function ($routeProvider, $httpProvider){
         $routeProvider.
-        when('/Login', {
-            templateUrl: 'login.html'
-        }).
         when('/ListarUsuarios', {
-            templateUrl: 'listausuarios.html',
-            controller: 'UsuarioController'
+          templateUrl: 'listausuarios.html',
+          controller: 'UsuarioController'
+          
+        }).
+        when('/Login', {
+          templateUrl: 'login.html',
+          controller: 'LoginController',
+            controllerAs: 'ctrl'
+
         }).
         otherwise({
             redirectTo: '/Login'
         });
-    }])
+
+      $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+    })
 
