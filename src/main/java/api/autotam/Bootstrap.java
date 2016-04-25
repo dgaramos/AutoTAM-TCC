@@ -55,6 +55,8 @@ public class Bootstrap {
             http.httpBasic().and().authorizeRequests()
                     .antMatchers("/index.html", "/listausuarios.html", "/login.html", "/").permitAll().anyRequest()
                     .authenticated().and()
+                    .formLogin()
+                    .loginPage("/login.html").and()
                     .logout().and().csrf()
                     .csrfTokenRepository(csrfTokenRepository()).and()
                     .addFilterAfter(csrfHeaderFilter(), CsrfFilter.class);

@@ -40,6 +40,20 @@ body, .form-control{
     border: 1px solid #ddd;
     border-radius: 4px;
 }
+
+.loginForm-container{
+    max-width: 250px;
+    padding:20px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30%;
+    margin-bottom: 32%;
+    background-color: #FFFFFF;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 1px 1px 50px 5px #8F8F8F;
+
+}
 .custom-width {
     width: 80px !important;
 }
