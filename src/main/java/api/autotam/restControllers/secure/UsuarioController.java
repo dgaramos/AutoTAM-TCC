@@ -19,7 +19,12 @@ import api.autotam.model.Usuario;
 */
 import java.util.List;
 
-
+/**
+ * Essa classe trata de buscar os dados dos usuarios para que eles sejam entregues como JSON
+ * nas requisições
+ *
+ * Created by Danilo on 9/4/2016.
+ */
 @RestController
 @RequestMapping("/usuario")
 public class UsuarioController {

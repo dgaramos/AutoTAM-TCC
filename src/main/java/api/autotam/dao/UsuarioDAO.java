@@ -5,6 +5,7 @@ import api.autotam.model.Usuario;
 import java.util.List;
 
 /**
+ * Interface para criação de DAO de usuario
  * Created by Danilo on 4/17/2016.
  */
 public interface UsuarioDAO {
@@ -17,7 +18,7 @@ public interface UsuarioDAO {
 
     Usuario findById(Integer id);
 
-    Usuario findByEmail(String Email);
+    Usuario findByEmail(String email);
 
     void updateUsuario(Usuario usuario);
 }

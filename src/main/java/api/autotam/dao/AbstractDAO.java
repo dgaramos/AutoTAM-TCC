@@ -4,7 +4,10 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-
+/**
+ * DAO abstrato com a base para todos os DAOS
+ * Created by Danilo on 9/4/2016.
+ */
 
 public abstract class AbstractDAO{
 

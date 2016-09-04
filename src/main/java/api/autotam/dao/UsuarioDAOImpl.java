@@ -10,6 +10,7 @@ import java.util.List;
 
 
 /**
+ * Implementação da interface UsuarioDAO para buscar os dados do usuario no banco
  * Created by Danilo on 4/17/2016.
  */
 
@@ -42,6 +43,7 @@ public class UsuarioDAOImpl extends AbstractDAO implements UsuarioDAO {
         criteria.add(Restrictions.eq("email",email));
         return (Usuario) criteria.uniqueResult();
     }
+
 
     public void updateUsuario(Usuario usuario){
         getSession().update(usuario);

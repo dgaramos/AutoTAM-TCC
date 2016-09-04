@@ -9,7 +9,12 @@ import api.autotam.model.Usuario;
 
 import java.util.List;
 
-
+/**
+ * Essa classe implementa a interface UsuarioService, ela serve para encapsular as regras de negócio
+ * em uma camada separada da busca de dados.
+ *
+ * Created by Danilo on 9/4/2016.
+ */
 @Service("usuarioService")
 @Transactional
 public class UsuarioServiceImpl implements UsuarioService {

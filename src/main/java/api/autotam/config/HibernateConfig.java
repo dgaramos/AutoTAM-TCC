@@ -20,9 +20,13 @@ import api.autotam.service.UsuarioServiceImpl;
 import java.io.IOException;
 import java.util.Properties;
 
+/**
+ * Essa classe gerencia a conexão com o banco de dados e ORM em relação aos modelos
+ * Created by Danilo on 9/4/2016.
+ */
+
 @Configuration
 @ComponentScan("api.autotam")
-/** Important **/
 @PropertySource("classpath:hibernate.properties")
 @EnableTransactionManagement
 public class HibernateConfig {
