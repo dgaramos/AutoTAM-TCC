@@ -1,8 +1,6 @@
 'use strict';
 
-myApp.controller('LoginController',
-
-  function($rootScope, $http, $location, $route) {
+myApp.controller('LoginController', function($rootScope, $http, $location, $route) {
 
     var self = this;
 

@@ -22,7 +22,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .httpBasic().and()
                 .authorizeRequests()
-                .antMatchers("/index.html", "/home.html", "/login.html", "/","/components/**" ).permitAll()
+                .antMatchers("/index.html", "/login.html","/listausuarios.html", "/","/components/**" ).permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .logout()

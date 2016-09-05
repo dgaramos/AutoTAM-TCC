@@ -1,6 +1,6 @@
 'use strict';
 
-myApp.controller('UsuarioController', ['$scope', 'UsuarioService', function($scope, UsuarioService) {
+myApp.controller('UsuarioController', function($scope, UsuarioService) {
     var self = this;
     self.usuario={idUsuario:null,nome:'',email:'',senha:''};
     self.usuarios=[];
@@ -84,4 +84,4 @@ myApp.controller('UsuarioController', ['$scope', 'UsuarioService', function($sco
         $scope.myForm.$setPristine(); //reset Form
     };
 
-}]);
+});

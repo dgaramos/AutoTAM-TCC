@@ -1,5 +1,10 @@
-
-    <div class="alert alert-danger" ng-show="ctrl.error">
+<div ng-show="authenticated">
+    <div class="alert alert-danger animate-show">
+        <p>Você já está logado, para efetuar o log out, clique em Sair na barra de navegação acima</p>
+    </div>
+</div>
+<div ng-show="!authenticated">
+    <div class="alert alert-danger animate-show" ng-show="ctrl.error">
         Houve um erro ao logar, por favor, tente novamente
     </div>
     <div class="loginForm-container">
@@ -15,4 +20,4 @@
             <button type="submit" class="btn btn-primary"  >Entrar!</button>
         </form>
     </div>
-
+</div>

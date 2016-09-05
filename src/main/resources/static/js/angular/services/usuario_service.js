@@ -1,6 +1,6 @@
 'use strict';
 
-myApp.factory('UsuarioService', ['$http', '$q', function($http, $q){
+myApp.factory('UsuarioService', function($http, $q){
 
     return {
 
@@ -58,4 +58,4 @@ myApp.factory('UsuarioService', ['$http', '$q', function($http, $q){
 
     };
 
-}]);
+});

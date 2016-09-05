@@ -4,7 +4,7 @@ myApp.config(function ($routeProvider, $httpProvider){
         when('/ListarUsuarios', {
           templateUrl: 'listausuarios.html',
           controller: 'UsuarioController'
-          
+
         }).
         when('/Login', {
           templateUrl: 'login.html',
@@ -18,4 +18,3 @@ myApp.config(function ($routeProvider, $httpProvider){
 
       $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
     })
-

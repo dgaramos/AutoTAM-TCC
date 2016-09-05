@@ -16,8 +16,8 @@
 <body ng-app="clientAutoTAM" ng-cloak class="ng-cloak">
     <div class="menu-container" ng-controller="LoginController as LoginCtrl">
             <ul class="nav nav-pills" role="tablist">
-                <li class="active" ng-show="authenticated"><a>Lista de Usuários </a></li>
-                <li class="active" ng-show="!authenticated"><a> Login </a></li>
+                <li class="active" ng-show="authenticated"><a href="#/ListarUsuarios">Lista de Usuários </a></li>
+                <li class="active" ng-show="!authenticated"><a href="#/Login" > Login </a></li>
                 <li  ng-show="authenticated"><a href="" ng-click="LoginCtrl.logout()"> Sair </a></li>
             </ul>
     </div>
