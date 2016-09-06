@@ -1,21 +1,26 @@
 <div ng-show="authenticated">
+    <div class="menu-container" ng-controller="LoginController as LoginCtrl">
+        <ul class="nav nav-pills" role="tablist">
+            <li class="active pull-right"><a href="" ng-click="LoginCtrl.logout()">Sair</a></li>
+        </ul>
+    </div>
     <div class="alert alert-danger animate-show">
         <p>Você já está logado, para efetuar o log out, clique em Sair na barra de navegação acima</p>
     </div>
 </div>
 <div ng-show="!authenticated">
-    <div class="alert alert-danger animate-show" ng-show="ctrl.error">
+    <div class="alert alert-danger animate-show" ng-show="LoginCtrl.error">
         Houve um erro ao logar, por favor, tente novamente
     </div>
     <div class="loginForm-container">
-        <form role="form" ng-submit="ctrl.login()">
+        <form role="form" ng-submit="LoginCtrl.login()">
             <div class="form-group">
                 <label for="username">E-mail:</label> <input type="text"
-                                                               class="form-control" id="username" name="username" ng-model="ctrl.credentials.username" />
+                                                               class="form-control" id="username" name="username" ng-model="LoginCtrl.credentials.username" />
             </div>
             <div class="form-group">
                 <label for="password">Senha:</label> <input type="password"
-                                                               class="form-control" id="password" name="password" ng-model="ctrl.credentials.password" />
+                                                               class="form-control" id="password" name="password" ng-model="LoginCtrl.credentials.password" />
             </div>
             <button type="submit" class="btn btn-primary"  >Entrar!</button>
         </form>

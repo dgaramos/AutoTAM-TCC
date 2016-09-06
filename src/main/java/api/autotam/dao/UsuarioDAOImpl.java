@@ -27,7 +27,7 @@ public class UsuarioDAOImpl extends AbstractDAO implements UsuarioDAO {
         return (List<Usuario>) criteria.list();
     }
 
-    public void deleteUsuarioByEmail(Usuario usuario) {
+    public void deleteUsuario(Usuario usuario) {
         delete(usuario);
     }
 

@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Lista de Usuários</title>
+    <title>AutoTAM</title>
     <script src="components/angular/angular.js"></script>
     <script src="components/angular-route/angular-route.js"></script>
     <script src="components/angular-cookies/angular-cookies.js" type="text/javascript"></script>
@@ -14,13 +14,6 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body ng-app="clientAutoTAM" ng-cloak class="ng-cloak">
-    <div class="menu-container" ng-controller="LoginController as LoginCtrl">
-            <ul class="nav nav-pills" role="tablist">
-                <li class="active" ng-show="authenticated"><a href="#/ListarUsuarios">Lista de Usuários </a></li>
-                <li class="active" ng-show="!authenticated"><a href="#/Login" > Login </a></li>
-                <li  ng-show="authenticated"><a href="" ng-click="LoginCtrl.logout()"> Sair </a></li>
-            </ul>
-    </div>
     <div class="generic-container" ng-view ></div>
 
 </body>

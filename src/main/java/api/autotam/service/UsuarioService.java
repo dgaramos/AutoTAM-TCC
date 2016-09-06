@@ -14,7 +14,7 @@ public interface UsuarioService {
 
     List<Usuario> findAllUsuarios();
 
-    void deleteUsuarioByEmail(Usuario usuario);
+    void deleteUsuario(Usuario usuario);
 
     Usuario findById(Integer id);
 

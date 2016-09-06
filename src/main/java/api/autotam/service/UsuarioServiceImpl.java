@@ -30,8 +30,8 @@ public class UsuarioServiceImpl implements UsuarioService {
         return dao.findAllUsuarios();
     }
 
-    public void deleteUsuarioByEmail(Usuario usuario) {
-        dao.deleteUsuarioByEmail(usuario);
+    public void deleteUsuario(Usuario usuario) {
+        dao.deleteUsuario(usuario);
     }
 
     public Usuario findById(Integer id) {

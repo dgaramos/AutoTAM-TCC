@@ -3,13 +3,14 @@ myApp.config(function ($routeProvider, $httpProvider){
         $routeProvider.
         when('/ListarUsuarios', {
           templateUrl: 'listausuarios.html',
-          controller: 'UsuarioController'
+          controller: 'UsuarioController',
+            controllerAs:'UsuarioCtrl'
 
         }).
         when('/Login', {
           templateUrl: 'login.html',
           controller: 'LoginController',
-            controllerAs: 'ctrl'
+            controllerAs: 'LoginCtrl'
 
         }).
         otherwise({

@@ -46,11 +46,24 @@ public class UsuarioController {
     //-------------------Retrieve Single Usuario--------------------------------------------------------
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Usuario> getUser(@PathVariable("id") Integer id) {
-        System.out.println("Fetching User with email " + id);
+    public ResponseEntity<Usuario> getUserById(@PathVariable("id") Integer id) {
+        System.out.println("Fetching User with id " + id);
         Usuario usuario = service.findById(id);
         if (usuario == null) {
             System.out.println("User with id " + id + " not found");
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(usuario, HttpStatus.OK);
+    }
+
+    //-------------------Retrieve Single Usuario via Email   --------------------------------------------------------
+
+    @RequestMapping(value = "byEmail/{email:.+}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Usuario> getUserByEmail(@PathVariable("email") String email) {
+        System.out.println("Fetching User with username" + email);
+        Usuario usuario = service.findByEmail(email);
+        if (usuario == null) {
+            System.out.println("User with username " + email + " not found");
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(usuario, HttpStatus.OK);
@@ -68,14 +81,14 @@ public class UsuarioController {
         }
 
         if (service.findByEmail(usuario.getEmail()) != null) {
-            System.out.println("A User with e-mail " + usuario.getEmail() + " already exist");
+            System.out.println("A User with username " + usuario.getEmail() + " already exist");
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
 
         service.saveUsuario(usuario);
 
         HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(ucBuilder.path("/{email}").buildAndExpand(usuario.getEmail()).toUri());
+        headers.setLocation(ucBuilder.path("/{email:.+}").buildAndExpand(usuario.getEmail()).toUri());
         return new ResponseEntity<>(headers, HttpStatus.CREATED);
     }
 
@@ -112,7 +125,7 @@ public class UsuarioController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
-        service.deleteUsuarioByEmail(user);
+        service.deleteUsuario(user);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 

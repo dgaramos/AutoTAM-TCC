@@ -20,6 +20,7 @@ public class Bootstrap {
 
     @RequestMapping("/userLogin")
     public Principal user(Principal user) {
+
         return user;
     }
 

@@ -1,14 +1,21 @@
 <div ng-show="authenticated">
-    <div ng-controller="UsuarioController as ctrl">
+    <div class="menu-container" ng-controller="LoginController as LoginCtrl">
+        <ul class="nav nav-pills" role="tablist">
+            <li class="active pull-right"><a href="" ng-click="LoginCtrl.logout()">Sair</a></li>
+            <li class="active pull-right"> <a href="">Olá {{LoginCtrl.loggedUsuario.nome}}</a></li>
+
+        </ul>
+    </div>
+    <div ng-controller="UsuarioController as UsuarioCtrl">
         <div class="panel panel-default">
             <div class="panel-heading"><span class="lead">Formulário de registro de Usuario </span></div>
             <div class="formcontainer">
-                <form ng-submit="ctrl.submit()" name="myForm" class="form-horizontal">
-                    <input type="hidden" ng-model="ctrl.usuario.idUsuario" />
+                <form ng-submit="UsuarioCtrl.submit()" name="myForm" class="form-horizontal">
+                    <input type="hidden" ng-model="UsuarioCtrl.usuario.idUsuario" />
                     <div class="row">
                         <div class="form-group input-group col-md-12 formField" id="formField4">
                             <span class="input-group-addon" id="basic-addon1">Nome</span>
-                            <input type="text" ng-model="ctrl.usuario.nome" id="unome" class="nome form-control input-sm" placeholder="Coloque seu nome" aria-describedby="basic-addon1" required ng-minlength="3"/>
+                            <input type="text" ng-model="UsuarioCtrl.usuario.nome" id="unome" class="nome form-control input-sm" placeholder="Coloque seu nome" aria-describedby="basic-addon1" required ng-minlength="3"/>
                             <div class="has-error" ng-show="myForm.$dirty">
                                 <span ng-show="myForm.unome.$error.required">Esse campo é obrigatorio</span>
                                 <span ng-show="myForm.unome.$error.minlength">O nome deve possuir 3 caracteres ou mais</span>
@@ -21,7 +28,7 @@
                     <div class="row">
                         <div class="form-group input-group col-md-12 formField" id="formField2">
                             <span class="input-group-addon" id="basic-addon2">Email</span>
-                            <input type="email" ng-model="ctrl.usuario.email" id="email" class="email form-control input-sm" placeholder="Coloque seu Email" aria-describedby="basic-addon2" required/>
+                            <input type="email" ng-model="UsuarioCtrl.usuario.email" id="email" class="email form-control input-sm" placeholder="Coloque seu Email" aria-describedby="basic-addon2" required/>
                             <div class="has-error" ng-show="myForm.$dirty">
                                 <span ng-show="myForm.email.$error.required">Esse campo é obrigatorio</span>
                                 <span ng-show="myForm.email.$invalid">Email inválido </span>
@@ -32,15 +39,15 @@
                     <div class="row">
                         <div class="form-group input-group col-md-12 formField" id="formField3">
                             <span class="input-group-addon" id="basic-addon3">Senha</span>
-                            <input type="text" ng-model="ctrl.usuario.senha" id="senha" class="form-control input-sm" placeholder="Coloque sua senha" aria-describedby="basic-addon3"  required/>
+                            <input type="text" ng-model="UsuarioCtrl.usuario.senha" id="senha" class="form-control input-sm" placeholder="Coloque sua senha" aria-describedby="basic-addon3"  required/>
                         </div>
                     </div>
 
 
                     <div class="row">
                         <div class="form-actions floatRight">
-                            <input type="submit"  value="{{!ctrl.usuario.idUsuario ? 'Adicionar' : 'Atualizar'}}" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid">
-                            <button type="button" ng-click="ctrl.reset()" class="btn btn-warning btn-sm" ng-disabled="myForm.$pristine">Zerar Formulario</button>
+                            <input type="submit"  value="{{!UsuarioCtrl.usuario.idUsuario ? 'Adicionar' : 'Atualizar'}}" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid">
+                            <button type="button" ng-click="UsuarioCtrl.reset()" class="btn btn-warning btn-sm" ng-disabled="myForm.$pristine">Zerar Formulario</button>
                         </div>
                     </div>
                 </form>
@@ -68,13 +75,13 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="u in ctrl.usuarios | filter: search">
+                    <tr ng-repeat="u in UsuarioCtrl.usuarios | filter: search">
                         <td><span ng-bind="u.idUsuario"></span></td>
                         <td><span ng-bind="u.nome"></span></td>
                         <td><span ng-bind="u.email"></span></td>
                         <td><span ng-bind="u.senha"></span></td>
                         <td>
-                            <button type="button" ng-click="ctrl.edit(u.idUsuario)" class="btn btn-success custom-width">Editar</button>  <button type="button" ng-click="ctrl.remove(u.idUsuario)" class="btn btn-danger custom-width">Excluir</button>
+                            <button type="button" ng-click="UsuarioCtrl.edit(u.idUsuario)" class="btn btn-success custom-width">Editar</button>  <button type="button" ng-click="UsuarioCtrl.remove(u.idUsuario)" class="btn btn-danger custom-width">Excluir</button>
                         </td>
                     </tr>
                     </tbody>
@@ -84,6 +91,12 @@
     </div>
 </div>
 <div ng-show="!authenticated">
+    <div class="menu-container" ng-controller="LoginController as LoginCtrl">
+        <ul class="nav nav-pills" role="tablist">
+            <li class="active"><a href="#/Login" > Login </a></li>
+
+        </ul>
+    </div>
     <div class="alert alert-danger animate-show">
         <p>Faça login para visualizar os usuarios</p>
     </div>

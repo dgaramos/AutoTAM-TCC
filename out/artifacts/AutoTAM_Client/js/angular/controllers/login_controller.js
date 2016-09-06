@@ -1,6 +1,6 @@
 'use strict';
 
-myApp.controller('LoginController',
+autoTAM.controller('LoginController',
 
   function($rootScope, $http, $location, $route) {
 

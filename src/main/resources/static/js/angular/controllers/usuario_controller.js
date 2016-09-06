@@ -12,7 +12,7 @@ myApp.controller('UsuarioController', function($scope, UsuarioService) {
                     self.usuarios = d;
                 },
                 function(errResponse){
-                    console.error('Error while fetching Currencies');
+                    console.error('Error while fetching Usuario');
                 }
             );
     };
