@@ -1,0 +1,40 @@
+<div class="container" ng-controller="CadastroUsuarioController as Cadastro">
+    <h1>Faça seu Cadastro</h1>
+    <h3>{{ Cadastro.message }}</h3>
+    <form name="cadastroForm" novalidate
+          ng-submit="Cadastro.submit(cadastroForm.$valid)">
+        <div class="form-group">
+            <label>Nome</label>
+            <input type="text" name="nome" class="form-control" ng-model="Cadastro.usuario.nome" required />
+            <div ng-messages="cadastroForm.nome.$error">
+                 <div ng-messages-include="html/noauth/mensagensCadastro.html"></div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" name="email" class="form-control" ng-model="Cadastro.usuario.email" required />
+            <div ng-messages="cadastroForm.email.$error">
+                 <div ng-messages-include="html/noauth/mensagensCadastro.html"></div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Senha</label>
+            <input type="password" name="senha" class="form-control" ng-model="Cadastro.usuario.senha" required />
+            <div ng-messages="cadastroForm.senha.$error">
+                 <div ng-messages-include="html/noauth/mensagensCadastro.html"></div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Confirma Senha</label>
+            <input type="password" name="confirmaSenha" class="form-control"
+                   ng-model="Cadastro.usuario.confirmaSenha"
+                   required compare-to="Cadastro.usuario.senha" />
+            <div ng-messages="cadastroForm.confirmaSenha.$error">
+                <div ng-messages-include="html/noauth/mensagensCadastro.html"></div>
+            </div>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
+        </div>
+    </form>
+</div>

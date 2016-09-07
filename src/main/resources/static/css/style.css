@@ -99,3 +99,20 @@ body, .form-control{
 [ng\:cloak], [ng-cloak], .ng-cloak {
     display: none !important;
 }
+
+.ng-invalid {
+    border-color: red;
+    outline-color: red;
+}
+
+.ng-valid {
+    border-color: green;
+    outline-color: green;
+}
+
+.messages {
+    font-size: smaller;
+    padding-top: 5px;
+    padding-bottom: 10px;
+    color: red;
+}

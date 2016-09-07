@@ -71,7 +71,7 @@ public class UsuarioController {
 
     //-------------------Create a Usuario--------------------------------------------------------
 
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(value = "register/", method = RequestMethod.POST)
     public ResponseEntity<Void> createUser(@RequestBody Usuario usuario, UriComponentsBuilder ucBuilder) {
         System.out.println("Creating User " + usuario.getNome());
 
@@ -91,6 +91,7 @@ public class UsuarioController {
         headers.setLocation(ucBuilder.path("/{email:.+}").buildAndExpand(usuario.getEmail()).toUri());
         return new ResponseEntity<>(headers, HttpStatus.CREATED);
     }
+
 
     //------------------- Update a User --------------------------------------------------------
 

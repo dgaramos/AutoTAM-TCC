@@ -6,10 +6,13 @@ myApp.config(function ($routeProvider, $httpProvider){
 
         }).
         when('/Login', {
-          templateUrl: 'login.html',
-          controller: 'LoginController',
+            templateUrl: 'login.html',
+            controller: 'LoginController',
             controllerAs: 'LoginCtrl'
 
+        }).
+        when('/Cadastro', {
+            templateUrl: 'html/noauth/cadastrousuario.html'
         }).
         otherwise({
             redirectTo: '/Login'

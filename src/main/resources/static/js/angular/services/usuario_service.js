@@ -31,7 +31,7 @@ myApp.factory('UsuarioService', function($http, $q){
         },
 
         createUsuario: function(usuario){
-            return $http.post('http://localhost:8080/usuario/', usuario)
+            return $http.post('http://localhost:8080/usuario/register/', usuario)
                 .then(
                     function(response){
                         return response.data;

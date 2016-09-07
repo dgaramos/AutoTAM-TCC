@@ -2,25 +2,38 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="100a1176-abd5-4a80-ba5c-82ecf3ee224f" name="Default" comment="Tela de login pronta,">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/static/html/auth/menus/userMenu.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/static/html/auth/usuario/usuariologado.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/static/html/loginform.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/static/html/unauthorized.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/static/inicial.html" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/resources/main/static/listausuarios.html" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/resources/static/listausuarios.html" afterPath="$PROJECT_DIR$/src/main/resources/static/html/auth/admin/listausuarios.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/static/html/noauth/cadastrousuario.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/static/html/noauth/mensagensCadastro.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/static/js/angular/controllers/cadastro_usuario_controller.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/static/js/angular/directives/compareTo_directive.js" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/resources/main/static/html/loginform.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/resources/main/static/html/unauthorized.html" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/resources/static/html/loginform.html" afterPath="$PROJECT_DIR$/src/main/resources/static/html/noauth/loginform.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/resources/static/html/unauthorized.html" afterPath="$PROJECT_DIR$/src/main/resources/static/html/noauth/unauthorized.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/api/autotam/config/security/SecurityConfiguration.class" afterPath="$PROJECT_DIR$/build/classes/main/api/autotam/config/security/SecurityConfiguration.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/api/autotam/restControllers/secure/UsuarioController.class" afterPath="$PROJECT_DIR$/build/classes/main/api/autotam/restControllers/secure/UsuarioController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/components/angular/angular.min.js.gzip" afterPath="$PROJECT_DIR$/src/main/resources/static/components/angular/angular.min.js.gzip" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.bowerrc" afterPath="$PROJECT_DIR$/.bowerrc" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/resources/main/static/css/style.css" afterPath="$PROJECT_DIR$/build/resources/main/static/css/style.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/resources/main/static/index.html" afterPath="$PROJECT_DIR$/build/resources/main/static/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/resources/main/static/inicial.html" afterPath="$PROJECT_DIR$/build/resources/main/static/inicial.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/resources/main/static/js/angular/configs/routes.js" afterPath="$PROJECT_DIR$/build/resources/main/static/js/angular/configs/routes.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/resources/main/static/js/angular/controllers/login_controller.js" afterPath="$PROJECT_DIR$/build/resources/main/static/js/angular/controllers/login_controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/resources/main/static/js/angular/services/usuario_service.js" afterPath="$PROJECT_DIR$/build/resources/main/static/js/angular/services/usuario_service.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/resources/main/static/login.html" afterPath="$PROJECT_DIR$/build/resources/main/static/login.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/AutoTAM_Client/index.html" afterPath="$PROJECT_DIR$/out/artifacts/AutoTAM_Client/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/api/autotam/config/security/SecurityConfiguration.java" afterPath="$PROJECT_DIR$/src/main/java/api/autotam/config/security/SecurityConfiguration.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/api/autotam/config/security/WebSecurityAuth.java" afterPath="$PROJECT_DIR$/src/main/java/api/autotam/config/security/WebSecurityAuth.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/api/autotam/restControllers/secure/UsuarioController.java" afterPath="$PROJECT_DIR$/src/main/java/api/autotam/restControllers/secure/UsuarioController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/components/angular/.bower.json" afterPath="$PROJECT_DIR$/src/main/resources/static/components/angular/.bower.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/components/angular/angular.js" afterPath="$PROJECT_DIR$/src/main/resources/static/components/angular/angular.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/components/angular/angular.min.js" afterPath="$PROJECT_DIR$/src/main/resources/static/components/angular/angular.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/components/angular/angular.min.js.map" afterPath="$PROJECT_DIR$/src/main/resources/static/components/angular/angular.min.js.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/components/angular/bower.json" afterPath="$PROJECT_DIR$/src/main/resources/static/components/angular/bower.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/components/angular/package.json" afterPath="$PROJECT_DIR$/src/main/resources/static/components/angular/package.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/css/style.css" afterPath="$PROJECT_DIR$/src/main/resources/static/css/style.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/index.html" afterPath="$PROJECT_DIR$/src/main/resources/static/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/inicial.html" afterPath="$PROJECT_DIR$/src/main/resources/static/inicial.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/js/angular/app.js" afterPath="$PROJECT_DIR$/src/main/resources/static/js/angular/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/js/angular/configs/routes.js" afterPath="$PROJECT_DIR$/src/main/resources/static/js/angular/configs/routes.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/js/angular/controllers/login_controller.js" afterPath="$PROJECT_DIR$/src/main/resources/static/js/angular/controllers/login_controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/js/angular/services/usuario_service.js" afterPath="$PROJECT_DIR$/src/main/resources/static/js/angular/services/usuario_service.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/login.html" afterPath="$PROJECT_DIR$/src/main/resources/static/login.html" />
     </list>
     <ignored path="autotam-tcc.iws" />
@@ -62,41 +75,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="login.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/static/login.html">
+      <file leaf-file-name="cadastrousuario.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/static/html/noauth/cadastrousuario.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="544">
+              <caret line="32" column="49" selection-start-line="32" selection-start-column="49" selection-end-line="32" selection-end-column="49" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/style.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="459">
+              <caret line="113" column="7" selection-start-line="113" selection-start-column="7" selection-end-line="113" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/angular/app.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="17">
-              <caret line="1" column="20" selection-start-line="1" selection-start-column="20" selection-end-line="1" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="loginform.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/static/html/loginform.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="inicial.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/static/inicial.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" column="32" selection-start-line="1" selection-start-column="32" selection-end-line="1" selection-end-column="32" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="routes.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/angular/configs/routes.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="36" selection-start-line="8" selection-start-column="36" selection-end-line="8" selection-end-column="36" />
+              <caret line="1" column="54" selection-start-line="1" selection-start-column="54" selection-end-line="1" selection-end-column="54" />
               <folding />
             </state>
           </provider>
@@ -105,39 +108,41 @@
       <file leaf-file-name="login_controller.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/angular/controllers/login_controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="139">
-              <caret line="44" column="55" selection-start-line="44" selection-start-column="55" selection-end-line="44" selection-end-column="55" />
+            <state relative-caret-position="493">
+              <caret line="59" column="45" selection-start-line="59" selection-start-column="45" selection-end-line="59" selection-end-column="45" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SecurityConfiguration.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/api/autotam/config/security/SecurityConfiguration.java">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/static/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="283">
-              <caret line="24" column="66" selection-start-line="24" selection-start-column="66" selection-end-line="24" selection-end-column="66" />
+            <state relative-caret-position="119">
+              <caret line="7" column="61" selection-start-line="7" selection-start-column="61" selection-end-line="7" selection-end-column="61" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="usuariologado.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/static/html/auth/usuario/usuariologado.html">
+      <file leaf-file-name="mensagensCadastro.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/static/html/noauth/mensagensCadastro.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="40" selection-start-line="3" selection-start-column="40" selection-end-line="3" selection-end-column="40" />
+            <state relative-caret-position="102">
+              <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="unauthorized.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/static/html/unauthorized.html">
+      <file leaf-file-name="cadastro_usuario_controller.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/angular/controllers/cadastro_usuario_controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="10" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="10" />
-              <folding />
+            <state relative-caret-position="340">
+              <caret line="22" column="37" selection-start-line="22" selection-start-column="37" selection-end-line="22" selection-end-column="37" />
+              <folding>
+                <element signature="e#0#41#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -145,18 +150,28 @@
       <file leaf-file-name="listausuarios.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/static/html/auth/admin/listausuarios.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="507">
-              <caret line="85" column="0" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
+            <state relative-caret-position="1071">
+              <caret line="63" column="37" selection-start-line="63" selection-start-column="37" selection-end-line="63" selection-end-column="37" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="userMenu.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/static/html/auth/menus/userMenu.html">
+      <file leaf-file-name="usuario_controller.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/angular/controllers/usuario_controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
+            <state relative-caret-position="-204">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="usuario_service.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/angular/services/usuario_service.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="33" column="70" selection-start-line="33" selection-start-column="70" selection-end-line="33" selection-end-column="70" />
               <folding />
             </state>
           </provider>
@@ -574,17 +589,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/webapp/app/public/js/angular/app.js" />
-        <option value="$PROJECT_DIR$/src/main/webapp/app/public/js/angular/controllers/login_controller.js" />
-        <option value="$PROJECT_DIR$/src/main/java/api/autotam/config/security/WebSecurityConfig.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/public/js/angular/configs/routes.js" />
-        <option value="$PROJECT_DIR$/src/main/resources/public/listausuarios.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/public/index.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/public/login.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/public/css/style.css" />
-        <option value="$PROJECT_DIR$/src/main/resources/public/js/angular/controllers/login_controller.js" />
-        <option value="$PROJECT_DIR$/src/main/java/api/autotam/config/security/SecurityConfig.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
         <option value="$PROJECT_DIR$/src/main/java/api/autotam/config/security/CsrfHeaderFilter.java" />
         <option value="$PROJECT_DIR$/src/main/java/api/autotam/config/HibernateConfig.java" />
         <option value="$PROJECT_DIR$/src/main/java/api/autotam/dao/AbstractDAO.java" />
@@ -594,19 +598,13 @@
         <option value="$PROJECT_DIR$/src/main/java/api/autotam/model/Usuario.java" />
         <option value="$PROJECT_DIR$/src/main/java/api/autotam/dao/UsuarioDAOImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/api/autotam/dao/UsuarioDAO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/api/autotam/restControllers/secure/UsuarioController.java" />
         <option value="$PROJECT_DIR$/src/main/java/api/autotam/config/security/WebSecurityAuth.java" />
         <option value="$PROJECT_DIR$/src/main/java/api/autotam/Bootstrap.java" />
         <option value="$PROJECT_DIR$/src/main/resources/static/js/angular/services/login_service.js" />
         <option value="$PROJECT_DIR$/out/artifacts/AutoTAM_Client/js/angular/controllers/login_controller.js" />
         <option value="$PROJECT_DIR$/src/main/resources/static/components/angular-route/README.md" />
         <option value="$PROJECT_DIR$/out/artifacts/AutoTAM_Client/components/angular-resource/README.md" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/js/angular/app.js" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/js/angular/services/usuario_service.js" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/js/angular/controllers/usuario_controller.js" />
         <option value="$PROJECT_DIR$/src/main/resources/static/js/angular/services/loggedUsuario_service.js" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/index.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/css/style.css" />
         <option value="$PROJECT_DIR$/src/main/resources/static/mainMenu.html" />
         <option value="$PROJECT_DIR$/src/main/resources/static/listausuarios.html" />
         <option value="$PROJECT_DIR$/src/main/resources/static/admin/listausuarios.html" />
@@ -614,17 +612,34 @@
         <option value="$PROJECT_DIR$/src/main/resources/static/html/inicial.html" />
         <option value="$PROJECT_DIR$/src/main/resources/static/html/login.html" />
         <option value="$PROJECT_DIR$/src/main/resources/static/html/login/showuser.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/html/loginform.html" />
         <option value="$PROJECT_DIR$/src/main/resources/static/html/login/loginform.html" />
         <option value="$PROJECT_DIR$/src/main/resources/static/html/login/usuariologado.html" />
         <option value="$PROJECT_DIR$/src/main/resources/static/html/admin/listausuarios.html" />
         <option value="$PROJECT_DIR$/src/main/resources/static/html/unauthorized.html" />
         <option value="$PROJECT_DIR$/src/main/resources/static/html/menus/userMenu.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/inicial.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/js/angular/controllers/login_controller.js" />
+        <option value="$PROJECT_DIR$/src/main/java/api/autotam/restControllers/secure/UsuarioController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/js/angular/services/usuario_service.js" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/js/angular/controllers/usuario_controller.js" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/html/auth/admin/listausuarios.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/js/angular/controllers/cadastro_controller.js" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/js/angular/directives/password_directive.js" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/js/angular/directives/confirmaSenha_directive.js" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/html/auth/usuario/cadastrousuario.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/html/auth/usuario/mensagensCadastro.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/html/cadastrousuario.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/html/loginform.html" />
         <option value="$PROJECT_DIR$/src/main/resources/static/login.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/inicial.html" />
         <option value="$PROJECT_DIR$/src/main/resources/static/js/angular/configs/routes.js" />
         <option value="$PROJECT_DIR$/src/main/java/api/autotam/config/security/SecurityConfiguration.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/js/angular/controllers/login_controller.js" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/html/noauth/loginform.html" />
+        <option value="$PROJECT_DIR$/.bowerrc" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/index.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/js/angular/app.js" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/html/noauth/cadastrousuario.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/css/style.css" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/js/angular/controllers/cadastro_usuario_controller.js" />
       </list>
     </option>
   </component>
@@ -697,10 +712,14 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches">
-        <subPane />
+      <pane id="Scope">
+        <subPane subId="Default" />
+        <subPane subId="Project Files" />
       </pane>
       <pane id="PackagesPane">
+        <subPane />
+      </pane>
+      <pane id="Scratches">
         <subPane />
       </pane>
       <pane id="ProjectPane">
@@ -899,41 +918,15 @@
               <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
+              <option name="myItemId" value="resources" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="autotam" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="autotam-tcc" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AutoTAM-TCC" />
+              <option name="myItemId" value="static" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="autotam" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="config" />
+              <option name="myItemId" value="html" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -955,27 +948,79 @@
               <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
+              <option name="myItemId" value="resources" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="autotam" />
+              <option name="myItemId" value="static" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="config" />
+              <option name="myItemId" value="html" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="security" />
+              <option name="myItemId" value="auth" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="autotam-tcc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AutoTAM-TCC" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="html" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="auth" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="autotam-tcc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AutoTAM-TCC" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
-      </pane>
-      <pane id="Scope">
-        <subPane subId="Default" />
-        <subPane subId="Project Files" />
       </pane>
     </panes>
   </component>
@@ -1001,14 +1046,18 @@
     </excluded-roots>
   </component>
   <component name="RecentsManager">
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="autotam.util" />
-    </key>
     <key name="ImportMappingsDialog.RecentPackages">
       <recent name="" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="filter" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Danilo\JavaProjects\AutoTAM-TCC\src\main\resources\static\html\noauth" />
+      <recent name="C:\Users\Danilo\JavaProjects\AutoTAM-TCC\src\main\resources\static\html" />
+      <recent name="C:\Users\Danilo\JavaProjects\AutoTAM-TCC\src\main\resources\static\html\auth\login" />
+      <recent name="C:\Users\Danilo\JavaProjects\AutoTAM-TCC\src\main\resources\static\html\auth" />
+      <recent name="C:\Users\Danilo\JavaProjects\AutoTAM-TCC\src\main\resources\static\html\login" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -1023,12 +1072,8 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Danilo\JavaProjects\AutoTAM-TCC\src\main\resources" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Danilo\JavaProjects\AutoTAM-TCC\src\main\resources\static\html" />
-      <recent name="C:\Users\Danilo\JavaProjects\AutoTAM-TCC\src\main\resources\static\html\auth\login" />
-      <recent name="C:\Users\Danilo\JavaProjects\AutoTAM-TCC\src\main\resources\static\html\auth" />
-      <recent name="C:\Users\Danilo\JavaProjects\AutoTAM-TCC\src\main\resources\static\html\login" />
-      <recent name="C:\Users\Danilo\JavaProjects\AutoTAM-TCC\src\main\resources\static" />
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="autotam.util" />
     </key>
   </component>
   <component name="RunManager" selected="Spring Boot.AutoTAM-API">
@@ -1515,6 +1560,7 @@
       <workItem from="1473186575994" duration="4198000" />
       <workItem from="1473206644118" duration="847000" />
       <workItem from="1473207668236" duration="9349000" />
+      <workItem from="1473260205161" duration="10860000" />
     </task>
     <task id="LOCAL-00001" summary="Package name change">
       <created>1461179105065</created>
@@ -1665,7 +1711,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="238134000" />
+    <option name="totallyTimeSpent" value="248994000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1678,7 +1724,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1358" y="-320" width="1936" height="1096" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3137558" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1687,16 +1733,15 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.298027" sideWeight="0.51178205" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32921174" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29698858" sideWeight="0.48821798" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29075804" sideWeight="0.48821798" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3271028" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32822084" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27622014" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15245202" sideWeight="0.49078342" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15405117" sideWeight="0.49078342" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32502595" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25869894" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962063" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1711,6 +1756,7 @@
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25037935" sideWeight="0.5092166" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32502595" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -1745,10 +1791,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/app/public/login.html" />
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/app/public/index.html" />
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/app/public/js/angular/app.js" />
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/app/public/js/angular/configs/routes.js" />
     <entry file="file://$PROJECT_DIR$/src/main/webapp/app/public/js/angular/controllers/usuario_controller.js" />
     <entry file="file://$PROJECT_DIR$/src/main/webapp/app/public/js/angular/services/usuario_service.js" />
     <entry file="file://$PROJECT_DIR$/src/main/webapp/app/public/js/angular/controllers/login_controller.js" />
@@ -1765,13 +1807,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
           <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.bowerrc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1841,13 +1876,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/api/autotam/restControllers/secure/UsuarioController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
-          <caret line="58" column="58" selection-start-line="58" selection-start-column="58" selection-end-line="58" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/api/autotam/config/security/CsrfHeaderFilter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -1871,7 +1899,7 @@
         <state relative-caret-position="118">
           <caret line="21" column="17" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="17" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1906,47 +1934,8 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/angular/services/loggedUsuario_service.js" />
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/angular/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="9" selection-start-line="1" selection-start-column="9" selection-end-line="1" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/angular/services/usuario_service.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="5" selection-start-line="2" selection-start-column="5" selection-end-line="2" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/angular/controllers/usuario_controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="4" column="16" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="748">
-          <caret line="44" column="19" selection-start-line="44" selection-start-column="19" selection-end-line="44" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="26" selection-start-line="16" selection-start-column="26" selection-end-line="16" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/html/login/showuser.html">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/html/login/showuser.html" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/html/noauth/loginform.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1954,39 +1943,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/html/loginform.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/html/auth/usuario/usuariologado.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="40" selection-start-line="3" selection-start-column="40" selection-end-line="3" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/html/loginform.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/html/auth/admin/listausuarios.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="507">
-          <caret line="85" column="0" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/html/unauthorized.html">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/html/noauth/unauthorized.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="10" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="10" />
@@ -2002,42 +1959,158 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/inicial.html">
+    <entry file="file://$PROJECT_DIR$/src/main/java/api/autotam/restControllers/secure/UsuarioController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="32" selection-start-line="1" selection-start-column="32" selection-end-line="1" selection-end-column="32" />
+        <state relative-caret-position="62">
+          <caret line="69" column="5" selection-start-line="69" selection-start-column="5" selection-end-line="69" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/login.html">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/angular/directives/compareTo_directive.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="20" selection-start-line="1" selection-start-column="20" selection-end-line="1" selection-end-column="20" />
+        <state relative-caret-position="306">
+          <caret line="20" column="3" selection-start-line="20" selection-start-column="3" selection-end-line="20" selection-end-column="3" />
+          <folding>
+            <element signature="e#0#41#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/html/auth/usuario/usuariologado.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="40" selection-start-line="3" selection-start-column="40" selection-end-line="3" selection-end-column="40" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/angular/configs/routes.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="36" selection-start-line="8" selection-start-column="36" selection-end-line="8" selection-end-column="36" />
+        <state relative-caret-position="238">
+          <caret line="14" column="38" selection-start-line="14" selection-start-column="38" selection-end-line="14" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="34" selection-start-line="0" selection-start-column="34" selection-end-line="0" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/api/autotam/config/security/SecurityConfiguration.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="24" column="66" selection-start-line="24" selection-start-column="66" selection-end-line="24" selection-end-column="66" />
+        <state relative-caret-position="289">
+          <caret line="24" column="121" selection-start-line="24" selection-start-column="121" selection-end-line="24" selection-end-column="121" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/inicial.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="34" selection-start-line="0" selection-start-column="34" selection-end-line="0" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/html/noauth/loginform.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="22" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.bowerrc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/angular/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="54" selection-start-line="1" selection-start-column="54" selection-end-line="1" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="61" selection-start-line="7" selection-start-column="61" selection-end-line="7" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="113" column="7" selection-start-line="113" selection-start-column="7" selection-end-line="113" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/html/noauth/mensagensCadastro.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/angular/services/usuario_service.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="33" column="70" selection-start-line="33" selection-start-column="70" selection-end-line="33" selection-end-column="70" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/html/noauth/cadastrousuario.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="32" column="49" selection-start-line="32" selection-start-column="49" selection-end-line="32" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/html/auth/admin/listausuarios.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1071">
+          <caret line="63" column="37" selection-start-line="63" selection-start-column="37" selection-end-line="63" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/angular/controllers/usuario_controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-204">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/angular/controllers/cadastro_usuario_controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="22" column="37" selection-start-line="22" selection-start-column="37" selection-end-line="22" selection-end-column="37" />
+          <folding>
+            <element signature="e#0#41#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/angular/controllers/login_controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="139">
-          <caret line="44" column="55" selection-start-line="44" selection-start-column="55" selection-end-line="44" selection-end-column="55" />
+        <state relative-caret-position="493">
+          <caret line="59" column="45" selection-start-line="59" selection-start-column="45" selection-end-line="59" selection-end-column="45" />
           <folding />
         </state>
       </provider>
