@@ -42,10 +42,7 @@ myApp.controller('LoginController', function($rootScope, $http, $location, $rout
                     UsuarioService.fetchUsuarioByEmail(response.data.name)
                         .then(
                             function (d) {
-                                console.log(d)
                                 self.loggedUsuario = d;
-                                console.log(self.loggedUsuario)
-
                             },
                             function (errResponse) {
                                 console.error('Error while fetching logged Usuario');
@@ -60,7 +57,7 @@ myApp.controller('LoginController', function($rootScope, $http, $location, $rout
               if (authenticated) {
                   loggedUser();
                   console.log("Login succeeded, logged usuario: " + self.credentials.username)
-                  $location.path("/ListarUsuarios");
+                  $location.path("/Inicial");
                   self.error = false;
                   $rootScope.authenticated = true;
               } else {

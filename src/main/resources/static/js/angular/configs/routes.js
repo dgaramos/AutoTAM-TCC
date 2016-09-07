@@ -1,10 +1,8 @@
 'use strict';
 myApp.config(function ($routeProvider, $httpProvider){
         $routeProvider.
-        when('/ListarUsuarios', {
-          templateUrl: 'listausuarios.html',
-          controller: 'UsuarioController',
-            controllerAs:'UsuarioCtrl'
+        when('/Inicial', {
+          templateUrl: 'inicial.html'
 
         }).
         when('/Login', {

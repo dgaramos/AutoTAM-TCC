@@ -1,0 +1,8 @@
+<div ng-show="authenticated">
+    <div class="menu-container" ng-controller="LoginController as LoginCtrl">
+        <div class="pull-right">
+            Olá, {{LoginCtrl.loggedUsuario.nome}}
+            <button type="button" class="btn btn-danger" ng-click="LoginCtrl.logout()">Sair</button>
+        </div>
+    </div>
+</div>

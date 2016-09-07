@@ -1,11 +1,4 @@
 <div ng-show="authenticated">
-    <div class="menu-container" ng-controller="LoginController as LoginCtrl">
-        <ul class="nav nav-pills" role="tablist">
-            <li class="active pull-right"><a href="" ng-click="LoginCtrl.logout()">Sair</a></li>
-            <li class="active pull-right"> <a href="">Olá {{LoginCtrl.loggedUsuario.nome}}</a></li>
-
-        </ul>
-    </div>
     <div ng-controller="UsuarioController as UsuarioCtrl">
         <div class="panel panel-default">
             <div class="panel-heading"><span class="lead">Formulário de registro de Usuario </span></div>
@@ -89,16 +82,4 @@
             </div>
         </div>
     </div>
-</div>
-<div ng-show="!authenticated">
-    <div class="menu-container" ng-controller="LoginController as LoginCtrl">
-        <ul class="nav nav-pills" role="tablist">
-            <li class="active"><a href="#/Login" > Login </a></li>
-
-        </ul>
-    </div>
-    <div class="alert alert-danger animate-show">
-        <p>Faça login para visualizar os usuarios</p>
-    </div>
-
 </div>

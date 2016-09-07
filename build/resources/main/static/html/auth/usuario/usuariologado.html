@@ -1,0 +1,19 @@
+<div ng-show="authenticated">
+    <div class="login-container">
+        <div class="loginForm-container">
+            <div class="alert alert-info">
+                <p>Você está logado com o seguinte usuário</p>
+            </div>
+            <p>
+                <b>E-mail: </b>{{LoginCtrl.loggedUsuario.nome}}
+            </p>
+
+            <p>
+                <b>Senha: </b>{{LoginCtrl.loggedUsuario.email}}
+            </p>
+            <form role="form" ng-submit="LoginCtrl.logout()">
+                <button type="submit" class="btn btn-danger" >Sair</button>
+            </form>
+        </div>
+    </div>
+</div>

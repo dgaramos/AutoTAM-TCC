@@ -15,7 +15,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 /**
  * Essa classe busca os usuarios armazenados no banco para que suas credenciais possam ser usadas
- * como login e senha
+ * como usuario e senha
  * Created by Danilo on 9/4/2016.
  */
 @Configuration
