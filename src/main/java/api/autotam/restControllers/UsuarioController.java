@@ -1,4 +1,4 @@
-package api.autotam.restControllers.secure;
+package api.autotam.restControllers;
 
 
 import org.springframework.http.HttpHeaders;
@@ -47,7 +47,7 @@ public class UsuarioController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Usuario> getUserById(@PathVariable("id") Integer id) {
-        System.out.println("Fetching User with id " + id);
+        System.out.println("Fetching User with id: " + id);
         Usuario usuario = service.findById(id);
         if (usuario == null) {
             System.out.println("User with id " + id + " not found");
@@ -60,7 +60,7 @@ public class UsuarioController {
 
     @RequestMapping(value = "byEmail/{email:.+}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Usuario> getUserByEmail(@PathVariable("email") String email) {
-        System.out.println("Fetching User with username" + email);
+        System.out.println("Fetching User with email: " + email);
         Usuario usuario = service.findByEmail(email);
         if (usuario == null) {
             System.out.println("User with username " + email + " not found");

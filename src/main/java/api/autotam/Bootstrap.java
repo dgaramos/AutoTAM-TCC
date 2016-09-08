@@ -18,9 +18,11 @@ import java.security.Principal;
 @RestController
 public class Bootstrap {
 
+    /*Esse método retorna o usuário que está logado
+      no momento por meio da URI #/userLogin
+     */
     @RequestMapping("/userLogin")
     public Principal user(Principal user) {
-
         return user;
     }
 
@@ -35,8 +37,13 @@ public class Bootstrap {
 
         return new CommandLineRunner() {
 
+
             @Override
             public void run(String... arg0) throws Exception {
+                /*Esse bloco de código checa se existem usuários cadastrados no banco de dados
+                  quando o programa é iniciado, e caso não exista, ele gera um usuário
+                  com login admin e senha admin.
+                */
                 if (usuarioService.findAllUsuarios().isEmpty()) {
                     usuarioService.saveUsuario(new Usuario("admin", "admin"));
                 }

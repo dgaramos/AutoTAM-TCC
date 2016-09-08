@@ -7,18 +7,13 @@ body, .form-control{
     font-size:12px!important;
 }
 
-.floatRight{
-    float:right;
-    margin-right: 18px;
-}
-
 .has-error{
     color:red;
 }
 
-.formcontainer{
+.form-container{
     background-color: #DAE8E8;
-    padding: 20px;
+    padding: 20px 20px 5px 20px;
 }
 
 
@@ -53,16 +48,31 @@ body, .form-control{
     position: absolute;
     top: 0; left: 0; bottom: 0; right: 0;
 }
-.loginForm-container{
+.loginForm-container {
     max-width: 250px;
+    padding: 20px;
+    background-color: #FFFFFF;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 1px 1px 25px 5px #8F8F8F;
+}
+.cadastro-container{
+    max-width: 800px;
+    height: 600px;
+    margin: auto;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+}
+.cadastroForm-container{
+    max-width: 750px;
     padding:20px;
     background-color: #FFFFFF;
     border: 1px solid #ddd;
     border-radius: 10px;
     box-shadow: 1px 1px 25px 5px #8F8F8F;
 
-
 }
+
 .custom-width {
     width: 80px !important;
 }
@@ -91,23 +101,27 @@ body, .form-control{
     background-color: yellow;
 }
 
-.formField{
-    padding-left: 28px !important;
-    padding-right:10px !important;
+.senha.ng-dirty.ng-invalid-required {
+    background-color: red;
+}
+
+.senha.ng-valid {
+    background-color: lightgreen;
+}
+
+.confirmaSenha.ng-dirty.ng-invalid-required {
+    background-color: red;
+}
+
+.confirmaSenha.ng-valid {
+    background-color: lightgreen;
+}
+.confirmaSenha.ng-invalid-compare-to {
+    background-color: yellow;
 }
 
 [ng\:cloak], [ng-cloak], .ng-cloak {
     display: none !important;
-}
-
-.ng-invalid {
-    border-color: red;
-    outline-color: red;
-}
-
-.ng-valid {
-    border-color: green;
-    outline-color: green;
 }
 
 .messages {

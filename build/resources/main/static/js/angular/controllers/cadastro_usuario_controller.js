@@ -6,7 +6,7 @@
 myApp.controller("CadastroUsuarioController", function(UsuarioService, $location) {
     var model = this;
 
-    model.message = "";
+    model.message = { box: false, message:""};
 
     model.usuario = {
         nome: "",
@@ -16,13 +16,13 @@ myApp.controller("CadastroUsuarioController", function(UsuarioService, $location
     };
 
     model.submit = function(isValid) {
-        console.log("h");
         if (isValid) {
             model.usuario = {nome: model.usuario.nome, email: model.usuario.email, senha: model.usuario.senha};
             UsuarioService.createUsuario(model.usuario);
             $location.path("/Login");
         } else {
-            model.message = "Ainda existem campos inválidos no formulário";
+            model.message.box = true;
+            model.message.message = "Ainda existem campos inválidos no formulário";
         }
     };
 

@@ -37,7 +37,7 @@ myApp.factory('UsuarioService', function($http, $q){
                         return response.data;
                     },
                     function(errResponse){
-                        console.error('Error while creating user');
+                        console.error('Error while creating usuario');
                         return $q.reject(errResponse);
                     }
                 );
@@ -57,7 +57,7 @@ myApp.factory('UsuarioService', function($http, $q){
         },
 
         deleteUsuario: function(idUsuario){
-            return $http.delete('http://localhost:8080/usuario/'+ idUsuario)
+            return $http.delete('http://localhost:8080/misc/'+ idUsuario)
                 .then(
                     function(response){
                         return response.data;

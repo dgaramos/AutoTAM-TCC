@@ -10,7 +10,7 @@ import java.util.List;
 
 
 /**
- * Implementação da interface UsuarioDAO para buscar os dados do usuario no banco
+ * Implementação da interface UsuarioDAO para buscar os dados do misc no banco
  * Created by Danilo on 4/17/2016.
  */
 

@@ -5,7 +5,7 @@ import api.autotam.model.Usuario;
 import java.util.List;
 
 /**
- * Interface para criação de DAO de usuario
+ * Interface para criação de DAO de misc
  * Created by Danilo on 4/17/2016.
  */
 public interface UsuarioDAO {

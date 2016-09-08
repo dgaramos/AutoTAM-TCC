@@ -15,7 +15,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 /**
  * Essa classe busca os usuarios armazenados no banco para que suas credenciais possam ser usadas
- * como usuario e senha
+ * como misc e senha
  * Created by Danilo on 9/4/2016.
  */
 @Configuration
@@ -40,7 +40,7 @@ public class WebSecurityAuth extends GlobalAuthenticationConfigurerAdapter {
                     return new User(usuario.getEmail(), usuario.getSenha(), true, true, true, true,
                             AuthorityUtils.createAuthorityList("USER"));
                 } else {
-                    throw new UsernameNotFoundException("could not find the usuario '"
+                    throw new UsernameNotFoundException("could not find the misc '"
                             + email + "'");
                 }
             }

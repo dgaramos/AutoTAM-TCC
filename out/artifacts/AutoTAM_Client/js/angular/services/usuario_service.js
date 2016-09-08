@@ -5,7 +5,7 @@ myApp.factory('UsuarioService', ['$http', '$q', function($http, $q){
     return {
 
         fetchAllUsuarios: function() {
-            return $http.get('http://localhost:8081/usuario/')
+            return $http.get('http://localhost:8081/misc/')
                 .then(
                     function(response){
                         return response.data;
@@ -18,7 +18,7 @@ myApp.factory('UsuarioService', ['$http', '$q', function($http, $q){
         },
 
         createUsuario: function(usuario){
-            return $http.post('http://localhost:8081/usuario/', usuario)
+            return $http.post('http://localhost:8081/misc/', usuario)
                 .then(
                     function(response){
                         return response.data;
@@ -31,26 +31,26 @@ myApp.factory('UsuarioService', ['$http', '$q', function($http, $q){
         },
 
         updateUsuario: function(usuario, idUsuario){
-            return $http.put('http://localhost:8081/usuario/'+ idUsuario, usuario)
+            return $http.put('http://localhost:8081/misc/'+ idUsuario, usuario)
                 .then(
                     function(response){
                         return response.data;
                     },
                     function(errResponse){
-                        console.error('Error while updating usuario');
+                        console.error('Error while updating misc');
                         return $q.reject(errResponse);
                     }
                 );
         },
 
         deleteUsuario: function(idUsuario){
-            return $http.delete('http://localhost:8081/usuario/'+ idUsuario)
+            return $http.delete('http://localhost:8081/misc/'+ idUsuario)
                 .then(
                     function(response){
                         return response.data;
                     },
                     function(errResponse){
-                        console.error('Error while deleting usuario');
+                        console.error('Error while deleting misc');
                         return $q.reject(errResponse);
                     }
                 );

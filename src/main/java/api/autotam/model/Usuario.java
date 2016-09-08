@@ -9,8 +9,8 @@ import java.util.Set;
 
 
 /**
- * Classe de dominio referente ao usuario, aqui são guardadas as credenciais de acesso
- * (email e senha) e o nome completo do usuario
+ * Classe de dominio referente ao misc, aqui são guardadas as credenciais de acesso
+ * (email e senha) e o nome completo do misc
  * Created by Danilo on 4/17/2016.
  */
 

@@ -2,17 +2,17 @@
 myApp.config(function ($routeProvider, $httpProvider){
         $routeProvider.
         when('/Inicial', {
-          templateUrl: 'inicial.html'
+          templateUrl: '/html/pages/inicial.html'
 
         }).
         when('/Login', {
-            templateUrl: 'login.html',
+            templateUrl: '/html/pages/login.html',
             controller: 'LoginController',
             controllerAs: 'LoginCtrl'
 
         }).
         when('/Cadastro', {
-            templateUrl: 'html/noauth/cadastrousuario.html'
+            templateUrl: 'html/pages/cadastrousuario.html'
         }).
         otherwise({
             redirectTo: '/Login'
