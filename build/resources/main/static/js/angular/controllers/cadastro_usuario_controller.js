@@ -3,7 +3,7 @@
  */
 'use strict';
 
-myApp.controller("CadastroUsuarioController", function(UsuarioService, $location) {
+myApp.controller("CadastroUsuarioController", function(UsuarioService, $location, $scope) {
     var model = this;
 
     model.message = { box: false, message:""};
@@ -23,10 +23,12 @@ myApp.controller("CadastroUsuarioController", function(UsuarioService, $location
                     $location.path("/Login");
                 })
                 .catch(function(errResponse){
+                    $scope.errorBox = 'alert alert-danger';
                     model.message.box = true;
                     model.message.message = "Já existe um usuário cadastrado com esse e-mail, por favor cadastre-se com outro e-mail válido";
                 })
         } else {
+            $scope.errorBox = 'alert alert-warning';
             model.message.box = true;
             model.message.message = "Ainda existem campos inválidos no formulário, preencha-os e tente novamente";
         }

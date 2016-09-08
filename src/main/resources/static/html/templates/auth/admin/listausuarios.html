@@ -3,7 +3,7 @@
         <div class="panel panel-default">
             <div class="panel-heading"><span class="lead">Formulário de registro de Usuario </span></div>
             <div class="form-container">
-                <div class="alert alert-warning" ng-show="UsuarioCtrl.message.box">
+                <div class="alert alert-warning" ng-show="UsuarioCtrl.message.box" ng-class="errorBox">
                     {{ UsuarioCtrl.message.message }}
                 </div>
                 <form name="myForm" ng-submit="UsuarioCtrl.submit()">

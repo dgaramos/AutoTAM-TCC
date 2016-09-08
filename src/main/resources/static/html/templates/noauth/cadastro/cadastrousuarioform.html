@@ -2,7 +2,7 @@
     <div class="cadastro-container" ng-controller="CadastroUsuarioController as Cadastro">
         <div class="cadastroForm-container">
             <h1>Faça seu Cadastro</h1>
-            <div class="alert alert-warning" ng-show="Cadastro.message.box">
+            <div class="alert alert-warning" ng-show="Cadastro.message.box" ng-class="errorBox">
                 {{ Cadastro.message.message }}
             </div>
             <form name="cadastroForm" novalidate

@@ -51,6 +51,7 @@ myApp.controller('LoginController', function($rootScope, $http, $location, $rout
                 })
     }
     loggedUser();
+
       self.credentials = {};
       self.login = function() {
           authenticate(self.credentials, function(authenticated) {

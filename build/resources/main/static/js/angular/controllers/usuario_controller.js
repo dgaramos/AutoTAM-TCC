@@ -27,6 +27,7 @@ myApp.controller('UsuarioController', function($scope, UsuarioService) {
             })
             .catch(function(errResponse){
                 console.error('Error while creating Usuario.' + errResponse);
+                $scope.errorBox = 'alert alert-danger';
                 self.message.box = true;
                 self.message.message = "Já existe um usuário cadastrado com esse e-mail, por favor cadastre-se com outro e-mail válido";
             })
@@ -40,6 +41,7 @@ myApp.controller('UsuarioController', function($scope, UsuarioService) {
                 self.reset();
             }).catch(function(errResponse){
                     console.error('Error while updating Usuario.'+ errResponse);
+                    $scope.errorBox = 'alert alert-danger';
                     self.message.box = true;
                     self.message.message = "Já existe um usuário cadastrado com esse e-mail, por favor cadastre-se com outro e-mail válido";
             })
