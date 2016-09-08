@@ -4,6 +4,7 @@ myApp.controller('UsuarioController', function($scope, UsuarioService) {
     var self = this;
     self.usuario={idUsuario:null,nome:'',email:'',senha:''};
     self.usuarios=[];
+    self.message = {box: false, message: ''};
 
     self.fetchAllUsuarios = function(){
         UsuarioService.fetchAllUsuarios()
@@ -19,22 +20,29 @@ myApp.controller('UsuarioController', function($scope, UsuarioService) {
 
     self.createUsuario = function(usuario){
         UsuarioService.createUsuario(usuario)
-            .then(
-                self.fetchAllUsuarios,
-                function(errResponse){
-                    console.error('Error while creating Usuario.');
-                }
-            );
+            .then(function (response) {
+                console.log(response);
+                self.fetchAllUsuarios();
+                self.reset();
+            })
+            .catch(function(errResponse){
+                console.error('Error while creating Usuario.' + errResponse);
+                self.message.box = true;
+                self.message.message = "Já existe um usuário cadastrado com esse e-mail, por favor cadastre-se com outro e-mail válido";
+            })
     };
 
     self.updateUsuario = function(usuario, idUsuario){
         UsuarioService.updateUsuario(usuario, idUsuario)
-            .then(
-                self.fetchAllUsuarios,
-                function(errResponse){
-                    console.error('Error while updating Usuario.');
-                }
-            );
+            .then(function (response) {
+                console.log(response);
+                self.fetchAllUsuarios();
+                self.reset();
+            }).catch(function(errResponse){
+                    console.error('Error while updating Usuario.'+ errResponse);
+                    self.message.box = true;
+                    self.message.message = "Já existe um usuário cadastrado com esse e-mail, por favor cadastre-se com outro e-mail válido";
+            })
     };
 
     self.deleteUsuario = function(idUsuario){
@@ -57,7 +65,6 @@ myApp.controller('UsuarioController', function($scope, UsuarioService) {
             self.updateUsuario(self.usuario, self.usuario.idUsuario);
             console.log('User updated with email ', self.usuario.email);
         }
-        self.reset();
     };
 
     self.edit = function(idUsuario){
@@ -81,6 +88,7 @@ myApp.controller('UsuarioController', function($scope, UsuarioService) {
 
     self.reset = function(){
         self.usuario={idUsuario:null,nome:'',email:'',senha:''};
+        self.message.box = false;
         $scope.myForm.$setPristine(); //reset Form
     };
 

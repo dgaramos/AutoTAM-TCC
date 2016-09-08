@@ -47,7 +47,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     public boolean isUsuarioExist(Usuario usuario) {
-        return findById(usuario.getIdUsuario())!=null;
+        return findByEmail(usuario.getEmail())!=null;
     }
 
 }

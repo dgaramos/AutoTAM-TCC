@@ -57,7 +57,7 @@ myApp.factory('UsuarioService', function($http, $q){
         },
 
         deleteUsuario: function(idUsuario){
-            return $http.delete('http://localhost:8080/misc/'+ idUsuario)
+            return $http.delete('http://localhost:8080/usuario/'+ idUsuario)
                 .then(
                     function(response){
                         return response.data;
