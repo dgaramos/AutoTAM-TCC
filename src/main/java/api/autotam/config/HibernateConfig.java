@@ -34,8 +34,6 @@ public class HibernateConfig {
     @Autowired
     Environment env;
 
-
-
     @Bean(name = "dataSource")
     public DataSource getDataSource() {
 

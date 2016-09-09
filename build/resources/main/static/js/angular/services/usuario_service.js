@@ -31,13 +31,26 @@ myApp.factory('UsuarioService', function($http, $q){
         },
 
         createUsuario: function(usuario){
-            return $http.post('http://localhost:8080/usuario/register/', usuario)
+            return $http.post('http://localhost:8080/usuario/noauth/register/', usuario)
                 .then(
                     function(response){
                         return response.data;
                     },
                     function(errResponse){
                         console.error('Error while creating usuario');
+                        return $q.reject(errResponse);
+                    }
+                );
+        },
+
+        recoverPassword: function(email){
+            return $http.get('http://localhost:8080/usuario/password/'+ email)
+                .then(
+                    function(response){
+                        return response.data;
+                    },
+                    function(errResponse){
+                        console.error('Error recovering password');
                         return $q.reject(errResponse);
                     }
                 );

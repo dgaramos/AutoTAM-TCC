@@ -1,10 +1,14 @@
 package api.autotam.restControllers;
 
 
+import api.autotam.config.EmailConfig;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 import api.autotam.model.Usuario;
@@ -17,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import api.autotam.model.Usuario;
 */
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 import java.util.List;
 
 /**
@@ -88,7 +94,7 @@ public class UsuarioController {
         service.saveUsuario(usuario);
 
         HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(ucBuilder.path("/{email:.+}").buildAndExpand(usuario.getEmail()).toUri());
+        headers.setLocation(ucBuilder.path("byEmail/{email:.+}").buildAndExpand(usuario.getEmail()).toUri());
         return new ResponseEntity<>(headers, HttpStatus.CREATED);
     }
 
@@ -129,5 +135,39 @@ public class UsuarioController {
         service.deleteUsuario(user);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+//-----------------------Recover Password -----------------------
 
+    @RequestMapping(value = "password/{email:.+}", method = RequestMethod.GET)
+    public ResponseEntity<Void> recoverPassword(@PathVariable("email") String email) {
+        System.out.println("Fetching User with email: " + email);
+        Usuario usuario = service.findByEmail(email);
+        if (usuario == null) {
+            System.out.println("User with username " + email + " not found");
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }else{
+            System.out.println(email);
+            String senha = usuario.getSenha();
+
+            AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
+            ctx.register(EmailConfig.class);
+            ctx.refresh();
+            JavaMailSenderImpl mailSender = ctx.getBean(JavaMailSenderImpl.class);
+            MimeMessage mimeMessage = mailSender.createMimeMessage();
+            MimeMessageHelper mailMsg = new MimeMessageHelper(mimeMessage);
+
+            try {
+                mailMsg.setFrom("arvindraivns02@gmail.com");
+                mailMsg.setTo(email);
+                mailMsg.setSubject("Recuperação de Senha");
+                mailMsg.setText(senha);
+            } catch (MessagingException e) {
+                e.printStackTrace();
+            }
+
+            mailSender.send(mimeMessage);
+            System.out.println("---Done---");
+        }
+
+        return new ResponseEntity<>( HttpStatus.OK);
+    }
 }

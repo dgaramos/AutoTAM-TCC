@@ -5,15 +5,23 @@ myApp.config(function ($routeProvider, $httpProvider){
           templateUrl: '/html/pages/inicial.html'
 
         }).
+
+        when('/RecuperaSenha', {
+            templateUrl: '/html/pages/recuperasenha.html'
+
+        }).
+
+        when('/Cadastro', {
+            templateUrl: 'html/pages/cadastrousuario.html'
+        }).
+
         when('/Login', {
             templateUrl: '/html/pages/login.html',
             controller: 'LoginController',
             controllerAs: 'LoginCtrl'
 
         }).
-        when('/Cadastro', {
-            templateUrl: 'html/pages/cadastrousuario.html'
-        }).
+
         otherwise({
             redirectTo: '/Login'
         });

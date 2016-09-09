@@ -4,6 +4,7 @@ myApp.controller('UsuarioController', function($scope, UsuarioService) {
     var self = this;
     self.usuario={idUsuario:null,nome:'',email:'',senha:''};
     self.usuarios=[];
+    self.email;
     self.message = {box: false, message: ''};
 
     self.fetchAllUsuarios = function(){

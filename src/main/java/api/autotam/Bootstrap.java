@@ -1,16 +1,21 @@
 package api.autotam;
 
 
+import api.autotam.config.EmailConfig;
 import api.autotam.model.Usuario;
 import api.autotam.service.UsuarioService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.mail.internet.MimeMessage;
 import java.security.Principal;
 
 
@@ -44,6 +49,7 @@ public class Bootstrap {
                   quando o programa é iniciado, e caso não exista, ele gera um usuário
                   com login admin e senha admin.
                 */
+
                 if (usuarioService.findAllUsuarios().isEmpty()) {
                     usuarioService.saveUsuario(new Usuario("admin", "admin"));
                 }
