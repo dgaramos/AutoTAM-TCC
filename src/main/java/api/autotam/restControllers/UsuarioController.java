@@ -1,28 +1,18 @@
 package api.autotam.restControllers;
 
 
-import api.autotam.config.EmailConfig;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import api.autotam.service.EmailService;
+import api.autotam.service.EmailServiceImpl;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.mail.javamail.JavaMailSenderImpl;
-import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 import api.autotam.model.Usuario;
 import api.autotam.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 
-/*import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-import api.autotam.model.Usuario;
-*/
-import javax.mail.MessagingException;
-import javax.mail.internet.MimeMessage;
 import java.util.List;
 
 /**
@@ -37,6 +27,7 @@ public class UsuarioController {
 
      @Autowired
     private UsuarioService service; //Service which will do all data retrieval/manipulation work
+    private EmailService emailService = new EmailServiceImpl();
 
 
    //-------------------Retrieve All Usuarios--------------------------------------------------------
@@ -77,7 +68,7 @@ public class UsuarioController {
 
     //-------------------Create a Usuario--------------------------------------------------------
 
-    @RequestMapping(value = "register/", method = RequestMethod.POST)
+    @RequestMapping(value = "noauth/register/", method = RequestMethod.POST)
     public ResponseEntity<Void> createUser(@RequestBody Usuario usuario, UriComponentsBuilder ucBuilder) {
         System.out.println("Creating User " + usuario.getNome());
 
@@ -92,6 +83,7 @@ public class UsuarioController {
         }
 
         service.saveUsuario(usuario);
+        emailService.registrationConfirm(usuario);
 
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(ucBuilder.path("byEmail/{email:.+}").buildAndExpand(usuario.getEmail()).toUri());
@@ -137,37 +129,15 @@ public class UsuarioController {
     }
 //-----------------------Recover Password -----------------------
 
-    @RequestMapping(value = "password/{email:.+}", method = RequestMethod.GET)
+    @RequestMapping(value = "noauth/password/{email:.+}", method = RequestMethod.GET)
     public ResponseEntity<Void> recoverPassword(@PathVariable("email") String email) {
         System.out.println("Fetching User with email: " + email);
         Usuario usuario = service.findByEmail(email);
         if (usuario == null) {
             System.out.println("User with username " + email + " not found");
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }else{
-            System.out.println(email);
-            String senha = usuario.getSenha();
-
-            AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
-            ctx.register(EmailConfig.class);
-            ctx.refresh();
-            JavaMailSenderImpl mailSender = ctx.getBean(JavaMailSenderImpl.class);
-            MimeMessage mimeMessage = mailSender.createMimeMessage();
-            MimeMessageHelper mailMsg = new MimeMessageHelper(mimeMessage);
-
-            try {
-                mailMsg.setFrom("arvindraivns02@gmail.com");
-                mailMsg.setTo(email);
-                mailMsg.setSubject("Recuperação de Senha");
-                mailMsg.setText(senha);
-            } catch (MessagingException e) {
-                e.printStackTrace();
-            }
-
-            mailSender.send(mimeMessage);
-            System.out.println("---Done---");
         }
-
-        return new ResponseEntity<>( HttpStatus.OK);
+        emailService.recoverPassword(usuario);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

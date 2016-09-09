@@ -44,7 +44,7 @@ myApp.factory('UsuarioService', function($http, $q){
         },
 
         recoverPassword: function(email){
-            return $http.get('http://localhost:8080/usuario/password/'+ email)
+            return $http.get('http://localhost:8080/usuario/noauth/password/'+ email)
                 .then(
                     function(response){
                         return response.data;
