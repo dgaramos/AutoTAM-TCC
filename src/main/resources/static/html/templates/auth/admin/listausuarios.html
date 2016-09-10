@@ -4,6 +4,7 @@
             <div class="panel-heading"><span class="lead">Formulário de registro de Usuario </span></div>
             <div class="form-container">
                 <div class="alert alert-warning" ng-show="UsuarioCtrl.message.box" ng-class="errorBox">
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                     {{ UsuarioCtrl.message.message }}
                 </div>
                 <form name="myForm" ng-submit="UsuarioCtrl.submit()">
@@ -50,7 +51,7 @@
                         <th>Nome</th>
                         <th>Email</th>
                         <th>Senha</th>
-                        <th width="25%"></th>
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -60,7 +61,12 @@
                         <td><span ng-bind="u.email"></span></td>
                         <td><span ng-bind="u.senha"></span></td>
                         <td>
-                            <button type="button" ng-click="UsuarioCtrl.edit(u.idUsuario)" class="btn btn-success custom-width">Editar</button>  <button type="button" ng-click="UsuarioCtrl.remove(u.idUsuario)" class="btn btn-danger custom-width">Excluir</button>
+                            <button type="button" ng-click="UsuarioCtrl.edit(u.idUsuario)" class="btn btn-success">
+                                <span class="glyphicon glyphicon-edit" aria-hidden="true" ></span>
+                            </button>
+                            <button type="button" ng-click="UsuarioCtrl.remove(u.idUsuario)" class="btn btn-danger">
+                                <span class="glyphicon glyphicon-trash" aria-hidden="true" ></span>
+                            </button>
                         </td>
                     </tr>
                     </tbody>

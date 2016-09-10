@@ -12,7 +12,10 @@
                 <b>Senha: </b>{{LoginCtrl.loggedUsuario.email}}
             </p>
             <form role="form" ng-submit="LoginCtrl.logout()">
-                <button type="submit" class="btn btn-danger" >Sair</button>
+                <button type="submit" class="btn btn-danger" >
+                    <span class="glyphicon glyphicon-log-out" aria-hidden="true" ></span>
+                    Sair
+                </button>
             </form>
         </div>
     </div>

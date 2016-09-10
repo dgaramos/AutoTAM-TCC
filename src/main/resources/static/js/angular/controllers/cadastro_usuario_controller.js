@@ -43,7 +43,7 @@ myApp.controller("CadastroUsuarioController", function(UsuarioService, $location
             ).catch(function(errResponse){
                 $scope.errorBox = 'alert alert-danger';
                 model.message.box = true;
-                model.message.message = "Não existe nenhum usuário com esse email";
+                model.message.message = "Não existe nenhum usuário cadastrado com esse email no sistema";
         })
     };
 

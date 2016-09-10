@@ -28,11 +28,11 @@ body, .form-control{
     border-radius: 4px;
 }
 
-.menu-container{
+.userMenu-container{
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
-    padding: 2px 5px 2px 5px ;
+    padding: 8px ;
     height: 40px;
     background-color: #eee;
     border: 1px solid #ddd;

@@ -1,8 +1,23 @@
 <div ng-show="authenticated">
-    <div class="menu-container" ng-controller="LoginController as LoginCtrl">
+    <div class="userMenu-container" ng-controller="LoginController as LoginCtrl">
         <div class="pull-right">
             Olá, {{LoginCtrl.loggedUsuario.nome}}
-            <button type="button" class="btn btn-danger" ng-click="LoginCtrl.logout()">Sair</button>
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary btn-xs dropdown-toggle"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                   <span class=" glyphicon glyphicon-cog" aria-hidden="true" ></span>
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li><a href="#">Editar Perfil</a></li>
+                    <li><a href="#">Mudar Senha</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="" ng-click="LoginCtrl.logout()">
+                        <span class="glyphicon glyphicon-log-out" aria-hidden="true" ></span>
+                        Sair
+                    </a></li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>

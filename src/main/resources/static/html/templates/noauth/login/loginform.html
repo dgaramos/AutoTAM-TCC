@@ -1,6 +1,7 @@
 <div ng-show="!authenticated">
     <div class="login-container">
         <div class="alert alert-danger" ng-show="LoginCtrl.error">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
             Houve um erro ao logar, por favor, tente novamente
         </div>
         <div class="loginForm-container">
@@ -16,7 +17,7 @@
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary"  >Entrar</button>
                     <a class="btn btn-info" href="#/Cadastro" role="button">Cadastre-se</a>
-                    <a class="btn btn-warning" href="#/RecuperaSenha" role="button">Esqueceu sua senha?</a>
+                    <a class="btn btn-default" href="#/RecuperaSenha" role="button">Esqueceu sua senha?</a>
                 </div>
             </form>
         </div>
