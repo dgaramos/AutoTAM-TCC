@@ -2,24 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="100a1176-abd5-4a80-ba5c-82ecf3ee224f" name="Default" comment="Tela de login pronta,">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/static/html/templates/auth/misc/loggedfooter.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/static/html/templates/auth/modals/usermodals.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/static/html/templates/noauth/misc/footer.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/resources/main/static/css/style.css" afterPath="$PROJECT_DIR$/build/resources/main/static/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/resources/main/static/html/pages/cadastrousuario.html" afterPath="$PROJECT_DIR$/build/resources/main/static/html/pages/cadastrousuario.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/resources/main/static/html/pages/inicial.html" afterPath="$PROJECT_DIR$/build/resources/main/static/html/pages/inicial.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/resources/main/static/html/pages/login.html" afterPath="$PROJECT_DIR$/build/resources/main/static/html/pages/login.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/resources/main/static/html/pages/recuperasenha.html" afterPath="$PROJECT_DIR$/build/resources/main/static/html/pages/recuperasenha.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/resources/main/static/html/templates/auth/menus/userMenu.html" afterPath="$PROJECT_DIR$/build/resources/main/static/html/templates/auth/menus/userMenu.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/resources/main/static/index.html" afterPath="$PROJECT_DIR$/build/resources/main/static/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/css/style.css" afterPath="$PROJECT_DIR$/src/main/resources/static/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/html/pages/cadastrousuario.html" afterPath="$PROJECT_DIR$/src/main/resources/static/html/pages/cadastrousuario.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/html/pages/inicial.html" afterPath="$PROJECT_DIR$/src/main/resources/static/html/pages/inicial.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/html/pages/login.html" afterPath="$PROJECT_DIR$/src/main/resources/static/html/pages/login.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/html/pages/recuperasenha.html" afterPath="$PROJECT_DIR$/src/main/resources/static/html/pages/recuperasenha.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/html/templates/auth/menus/userMenu.html" afterPath="$PROJECT_DIR$/src/main/resources/static/html/templates/auth/menus/userMenu.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/index.html" afterPath="$PROJECT_DIR$/src/main/resources/static/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/html/templates/auth/misc/loggedfooter.html" afterPath="$PROJECT_DIR$/src/main/resources/static/html/templates/auth/misc/loggedfooter.html" />
     </list>
     <ignored path="autotam-tcc.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -80,7 +64,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="style.css" pinned="false" current-in-tab="true">
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="18">
@@ -94,7 +78,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/resources/static/html/templates/auth/misc/loggedfooter.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
-              <caret line="0" column="73" selection-start-line="0" selection-start-column="73" selection-end-line="0" selection-end-column="73" />
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -120,11 +104,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="inicial.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="inicial.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/static/html/pages/inicial.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="34">
-              <caret line="2" column="46" selection-start-line="2" selection-start-column="46" selection-end-line="2" selection-end-column="46" />
+              <caret line="2" column="73" selection-start-line="2" selection-start-column="73" selection-end-line="2" selection-end-column="73" />
               <folding />
             </state>
           </provider>
@@ -621,8 +605,8 @@
         <option value="$PROJECT_DIR$/src/main/resources/static/html/templates/auth/menus/userMenu.html" />
         <option value="$PROJECT_DIR$/src/main/resources/static/index.html" />
         <option value="$PROJECT_DIR$/src/main/resources/static/html/templates/auth/misc/modals.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/html/pages/inicial.html" />
         <option value="$PROJECT_DIR$/src/main/resources/static/html/templates/auth/misc/loggedfooter.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/html/pages/inicial.html" />
       </list>
     </option>
   </component>
@@ -1751,7 +1735,7 @@
       <workItem from="1473548696256" duration="6202000" />
       <workItem from="1473557279974" duration="695000" />
       <workItem from="1473607252916" duration="13581000" />
-      <workItem from="1473625983599" duration="3031000" />
+      <workItem from="1473625983599" duration="3644000" />
     </task>
     <task id="LOCAL-00001" summary="Package name change">
       <created>1461179105065</created>
@@ -1902,7 +1886,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="345001000" />
+    <option name="totallyTimeSpent" value="345614000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2279,14 +2263,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/html/pages/inicial.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="46" selection-start-line="2" selection-start-column="46" selection-end-line="2" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/html/pages/login.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -2303,18 +2279,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/html/templates/auth/misc/loggedfooter.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="73" selection-start-line="0" selection-start-column="73" selection-end-line="0" selection-end-column="73" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="18">
           <caret line="140" column="23" selection-start-line="140" selection-start-column="14" selection-end-line="140" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/html/templates/auth/misc/loggedfooter.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/html/pages/inicial.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="73" selection-start-line="2" selection-start-column="73" selection-end-line="2" selection-end-column="73" />
           <folding />
         </state>
       </provider>
