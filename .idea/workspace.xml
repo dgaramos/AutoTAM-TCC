@@ -2,22 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="100a1176-abd5-4a80-ba5c-82ecf3ee224f" name="Default" comment="Tela de login pronta,">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/api/autotam/model/Error.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/api/autotam/restControllers/ErrorPageController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/static/css/btfmodal.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/static/html/templates/auth/menus/changePassword.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/static/html/templates/auth/menus/editProfile.html" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/api/autotam/service/EmailServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/resources/main/static/html/templates/auth/menus/changePassword.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/resources/main/static/html/templates/auth/menus/editProfile.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/resources/static/css/btfmodal.css" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/api/autotam/service/EmailServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/api/autotam/service/EmailService.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/resources/static/html/templates/auth/menus/changePassword.html" afterPath="$PROJECT_DIR$/src/main/resources/static/html/templates/auth/user/changePassword.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/resources/static/html/templates/auth/menus/editProfile.html" afterPath="$PROJECT_DIR$/src/main/resources/static/html/templates/auth/user/editProfile.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/api/autotam/restControllers/UsuarioController.class" afterPath="$PROJECT_DIR$/build/classes/main/api/autotam/restControllers/UsuarioController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/api/autotam/service/EmailService.class" afterPath="$PROJECT_DIR$/build/classes/main/api/autotam/service/EmailService.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/resources/main/static/html/pages/inicial.html" afterPath="$PROJECT_DIR$/build/resources/main/static/html/pages/inicial.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/resources/main/static/html/templates/auth/admin/listausuarios.html" afterPath="$PROJECT_DIR$/build/resources/main/static/html/templates/auth/admin/listausuarios.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/resources/main/static/html/templates/auth/menus/userMenu.html" afterPath="$PROJECT_DIR$/build/resources/main/static/html/templates/auth/menus/userMenu.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/resources/main/static/js/angular/configs/routes.js" afterPath="$PROJECT_DIR$/build/resources/main/static/js/angular/configs/routes.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/resources/main/static/js/angular/controllers/cadastro_usuario_controller.js" afterPath="$PROJECT_DIR$/build/resources/main/static/js/angular/controllers/cadastro_usuario_controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/resources/main/static/js/angular/controllers/login_controller.js" afterPath="$PROJECT_DIR$/build/resources/main/static/js/angular/controllers/login_controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/resources/main/static/js/angular/services/usuario_service.js" afterPath="$PROJECT_DIR$/build/resources/main/static/js/angular/services/usuario_service.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/resources/main/static/html/templates/noauth/cadastro/cadastrousuarioform.html" afterPath="$PROJECT_DIR$/build/resources/main/static/html/templates/noauth/cadastro/cadastrousuarioform.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/api/autotam/restControllers/UsuarioController.java" afterPath="$PROJECT_DIR$/src/main/java/api/autotam/restControllers/UsuarioController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/api/autotam/service/UsuarioService.java" afterPath="$PROJECT_DIR$/src/main/java/api/autotam/service/UsuarioService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/html/pages/inicial.html" afterPath="$PROJECT_DIR$/src/main/resources/static/html/pages/inicial.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/html/templates/auth/admin/listausuarios.html" afterPath="$PROJECT_DIR$/src/main/resources/static/html/templates/auth/admin/listausuarios.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/html/templates/auth/menus/userMenu.html" afterPath="$PROJECT_DIR$/src/main/resources/static/html/templates/auth/menus/userMenu.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/js/angular/configs/routes.js" afterPath="$PROJECT_DIR$/src/main/resources/static/js/angular/configs/routes.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/js/angular/controllers/cadastro_usuario_controller.js" afterPath="$PROJECT_DIR$/src/main/resources/static/js/angular/controllers/cadastro_usuario_controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/js/angular/controllers/login_controller.js" afterPath="$PROJECT_DIR$/src/main/resources/static/js/angular/controllers/login_controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/js/angular/services/usuario_service.js" afterPath="$PROJECT_DIR$/src/main/resources/static/js/angular/services/usuario_service.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/html/templates/noauth/cadastro/cadastrousuarioform.html" afterPath="$PROJECT_DIR$/src/main/resources/static/html/templates/noauth/cadastro/cadastrousuarioform.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/index.html" afterPath="$PROJECT_DIR$/src/main/resources/static/index.html" />
     </list>
     <ignored path="autotam-tcc.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -58,78 +63,22 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="cadastrousuarioform.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/static/html/templates/noauth/cadastro/cadastrousuarioform.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="44" selection-start-line="9" selection-start-column="38" selection-end-line="9" selection-end-column="44" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="login_controller.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/angular/controllers/login_controller.js">
+      <file leaf-file-name="userMenu.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/static/html/templates/auth/menus/userMenu.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="68">
-              <caret line="40" column="16" selection-start-line="40" selection-start-column="16" selection-end-line="46" selection-end-column="13" />
+              <caret line="4" column="63" selection-start-line="4" selection-start-column="61" selection-end-line="4" selection-end-column="63" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="usuario_controller.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/angular/controllers/usuario_controller.js">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/static/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-458">
-              <caret line="48" column="6" selection-start-line="48" selection-start-column="6" selection-end-line="48" selection-end-column="6" />
+            <state relative-caret-position="459">
+              <caret line="27" column="42" selection-start-line="27" selection-start-column="42" selection-end-line="27" selection-end-column="42" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="changePassword.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/static/html/templates/auth/menus/changePassword.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="39" selection-start-line="8" selection-start-column="39" selection-end-line="8" selection-end-column="39" />
-              <folding>
-                <element signature="e#124#131#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="cadastro_usuario_controller.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/angular/controllers/cadastro_usuario_controller.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1122">
-              <caret line="68" column="94" selection-start-line="68" selection-start-column="94" selection-end-line="68" selection-end-column="94" />
-              <folding>
-                <element signature="e#0#41#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="usuario_service.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/angular/services/usuario_service.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="358">
-              <caret line="82" column="10" selection-start-line="82" selection-start-column="10" selection-end-line="82" selection-end-column="10" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="editProfile.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/static/html/templates/auth/menus/editProfile.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-42">
-              <caret line="11" column="48" selection-start-line="11" selection-start-column="48" selection-end-line="11" selection-end-column="48" />
-              <folding>
-                <element signature="e#124#131#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -137,8 +86,8 @@
       <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="349">
-              <caret line="131" column="1" selection-start-line="131" selection-start-column="1" selection-end-line="131" selection-end-column="1" />
+            <state relative-caret-position="357">
+              <caret line="72" column="17" selection-start-line="72" selection-start-column="17" selection-end-line="72" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -147,8 +96,48 @@
       <file leaf-file-name="listausuarios.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/static/html/templates/auth/admin/listausuarios.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="97" selection-start-line="6" selection-start-column="97" selection-end-line="6" selection-end-column="97" />
+            <state relative-caret-position="221">
+              <caret line="13" column="125" selection-start-line="13" selection-start-column="125" selection-end-line="13" selection-end-column="155" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="login.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/static/html/pages/login.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="71" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="navmenu.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/static/html/templates/noauth/menus/navmenu.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="374">
+              <caret line="22" column="10" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="10" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="loggednavmenu.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/static/html/templates/auth/menus/loggednavmenu.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="391">
+              <caret line="23" column="10" selection-start-line="23" selection-start-column="10" selection-end-line="23" selection-end-column="10" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="inicial.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/static/html/pages/inicial.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -158,7 +147,17 @@
         <entry file="file://$PROJECT_DIR$/src/main/resources/static/html/pages/cadastrousuario.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="86" />
+              <caret line="0" column="71" selection-start-line="0" selection-start-column="71" selection-end-line="0" selection-end-column="71" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="recuperasenha.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/static/html/pages/recuperasenha.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="71" selection-start-line="0" selection-start-column="71" selection-end-line="0" selection-end-column="71" />
               <folding />
             </state>
           </provider>
@@ -576,38 +575,21 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/resources/static/html/templates/noauth/cadastro/mensagensCadastro.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/js/angular/controllers/unauthorized_controller.js" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/html/pages/login.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/js/angular/controllers/redirection_controllers.js" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/html/pages/cadastrousuario.html" />
-        <option value="$PROJECT_DIR$/src/main/java/api/autotam/service/UsuarioServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/api/autotam/config/HibernateConfig.java" />
-        <option value="$PROJECT_DIR$/src/main/java/api/autotam/service/EmailNotificationService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/api/autotam/restControllers/EmailNotificationController.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/js/angular/controllers/email_controller.js" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/js/angular/services/email_service.js" />
         <option value="$PROJECT_DIR$/build.gradle" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/html/pages/recuperasenha.html" />
         <option value="$PROJECT_DIR$/src/main/java/api/autotam/SendSimpleMail.java" />
         <option value="$PROJECT_DIR$/src/main/resources/static/js/angular/controllers/usuario_controller.js" />
         <option value="$PROJECT_DIR$/src/main/java/api/autotam/dao/UsuarioDAOImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/api/autotam/service/EmailService.java" />
         <option value="$PROJECT_DIR$/src/main/java/api/autotam/config/security/SecurityConfiguration.java" />
         <option value="$PROJECT_DIR$/src/main/java/api/autotam/config/EmailConfig.java" />
-        <option value="$PROJECT_DIR$/src/main/java/api/autotam/service/EmailServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/api/autotam/restControllers/UsuarioController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/javamail.properties" />
         <option value="$PROJECT_DIR$/src/main/resources/static/html/templates/auth/misc/loggedUser.html" />
         <option value="$PROJECT_DIR$/src/main/resources/static/html/templates/noauth/login/loginform.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/html/templates/auth/admin/listausuarios.html" />
         <option value="$PROJECT_DIR$/src/main/resources/static/html/templates/noauth/login/forgotpassword.html" />
         <option value="$PROJECT_DIR$/src/main/java/api/autotam/model/Error.java" />
         <option value="$PROJECT_DIR$/src/main/java/api/autotam/config/ErrorConfig.java" />
         <option value="$PROJECT_DIR$/src/main/java/api/autotam/config/ErrorViewResolver.java" />
         <option value="$PROJECT_DIR$/src/main/java/api/autotam/config/ErrorPageConfig.java" />
         <option value="$PROJECT_DIR$/src/main/java/api/autotam/config/ErrorConfiguration.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/html/templates/noauth/misc/unauthorized.html" />
         <option value="$PROJECT_DIR$/src/main/java/api/autotam/restControllers/ErrorPageController.java" />
         <option value="$PROJECT_DIR$/src/main/java/api/autotam/Bootstrap.java" />
         <option value="$PROJECT_DIR$/src/main/resources/static/js/angular/services/btford.modal.js" />
@@ -618,15 +600,32 @@
         <option value="$PROJECT_DIR$/src/main/resources/static/js/angular/controllers/modal_controller.js" />
         <option value="$PROJECT_DIR$/src/main/resources/static/css/btfmodal.css" />
         <option value="$PROJECT_DIR$/src/main/resources/static/html/templates/auth/menus/userEdit.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/index.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/html/templates/auth/menus/userMenu.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/html/templates/noauth/cadastro/cadastrousuarioform.html" />
         <option value="$PROJECT_DIR$/src/main/resources/static/js/angular/controllers/login_controller.js" />
         <option value="$PROJECT_DIR$/src/main/resources/static/js/angular/services/usuario_service.js" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/css/style.css" />
         <option value="$PROJECT_DIR$/src/main/resources/static/html/templates/auth/menus/changePassword.html" />
         <option value="$PROJECT_DIR$/src/main/resources/static/html/templates/auth/menus/editProfile.html" />
         <option value="$PROJECT_DIR$/src/main/resources/static/js/angular/controllers/cadastro_usuario_controller.js" />
+        <option value="$PROJECT_DIR$/src/main/java/api/autotam/service/EmailServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/api/autotam/service/UsuarioService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/api/autotam/restControllers/UsuarioController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/api/autotam/service/EmailService.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/html/templates/auth/user/changePassword.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/html/templates/auth/admin/listausuarios.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/html/templates/noauth/cadastro/cadastrousuarioform.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/html/templates/auth/user/editProfile.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/index.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/html/templates/auth/menus/userMenu.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/html/templates/auth/menus/nav menu.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/html/templates/noauth/misc/unauthorized.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/html/templates/auth/menus/navmenu.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/html/templates/noauth/navmenu.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/html/pages/login.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/html/pages/inicial.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/html/pages/recuperasenha.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/html/pages/cadastrousuario.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/html/templates/noauth/menus/navmenu.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/html/templates/auth/menus/loggednavmenu.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/css/style.css" />
       </list>
     </option>
   </component>
@@ -700,6 +699,13 @@
     </navigator>
     <panes>
       <pane id="Scratches">
+        <subPane />
+      </pane>
+      <pane id="Scope">
+        <subPane subId="Default" />
+        <subPane subId="Project Files" />
+      </pane>
+      <pane id="PackagesPane">
         <subPane />
       </pane>
       <pane id="ProjectPane">
@@ -808,7 +814,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="angular" />
+              <option name="myItemId" value="components" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -838,45 +844,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="angular" />
+              <option name="myItemId" value="components" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="services" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="autotam-tcc" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AutoTAM-TCC" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="angular" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controllers" />
+              <option name="myItemId" value="bootstrap" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -899,13 +871,6 @@
             </PATH_ELEMENT>
           </PATH>
         </subPane>
-      </pane>
-      <pane id="Scope">
-        <subPane subId="Default" />
-        <subPane subId="Project Files" />
-      </pane>
-      <pane id="PackagesPane">
-        <subPane />
       </pane>
     </panes>
   </component>
@@ -931,18 +896,14 @@
     </excluded-roots>
   </component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="autotam.util" />
+    </key>
     <key name="ImportMappingsDialog.RecentPackages">
       <recent name="" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="filter" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Danilo\JavaProjects\AutoTAM-TCC\src\main\resources\static\html\pages" />
-      <recent name="C:\Users\Danilo\JavaProjects\AutoTAM-TCC\src\main\resources\static\html\noauth" />
-      <recent name="C:\Users\Danilo\JavaProjects\AutoTAM-TCC\src\main\resources\static\html\noauth\misc" />
-      <recent name="C:\Users\Danilo\JavaProjects\AutoTAM-TCC\src\main\resources\static\html\noauth\login" />
-      <recent name="C:\Users\Danilo\JavaProjects\AutoTAM-TCC\src\main\resources\static\html\noauth\cadastro" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -957,8 +918,12 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Danilo\JavaProjects\AutoTAM-TCC\src\main\resources" />
     </key>
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="autotam.util" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Danilo\JavaProjects\AutoTAM-TCC\src\main\resources\static\html\templates\noauth\menus" />
+      <recent name="C:\Users\Danilo\JavaProjects\AutoTAM-TCC\src\main\resources\static\html\templates\auth\menus\User" />
+      <recent name="C:\Users\Danilo\JavaProjects\AutoTAM-TCC\src\main\resources\static\html\pages" />
+      <recent name="C:\Users\Danilo\JavaProjects\AutoTAM-TCC\src\main\resources\static\html\noauth" />
+      <recent name="C:\Users\Danilo\JavaProjects\AutoTAM-TCC\src\main\resources\static\html\noauth\misc" />
     </key>
   </component>
   <component name="RunManager" selected="Spring Boot.AutoTAM-API">
@@ -1458,7 +1423,9 @@
       <workItem from="1473443985031" duration="19359000" />
       <workItem from="1473519649886" duration="99000" />
       <workItem from="1473520176018" duration="17554000" />
-      <workItem from="1473548696256" duration="5624000" />
+      <workItem from="1473548696256" duration="6202000" />
+      <workItem from="1473557279974" duration="695000" />
+      <workItem from="1473607252916" duration="12499000" />
     </task>
     <task id="LOCAL-00001" summary="Package name change">
       <created>1461179105065</created>
@@ -1609,7 +1576,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="327116000" />
+    <option name="totallyTimeSpent" value="340888000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1622,7 +1589,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1358" y="-320" width="1936" height="1096" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3137558" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1631,15 +1598,16 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.298027" sideWeight="0.51178205" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32921174" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.47559708" sideWeight="0.48821798" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36033228" sideWeight="0.48821798" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3271028" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32822084" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27570093" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20255864" sideWeight="0.49078342" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20682302" sideWeight="0.49078342" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32398754" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25869894" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962063" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1654,7 +1622,6 @@
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25037935" sideWeight="0.5092166" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32398754" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -1689,48 +1656,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-context-support/4.1.3.RELEASE/b530e9a242ff07a3ab6f52db2bf1cbc947f84a3a/spring-context-support-4.1.3.RELEASE-sources.jar!/org/springframework/mail/javamail/JavaMailSenderImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2405">
-          <caret line="191" column="16" selection-start-line="191" selection-start-column="16" selection-end-line="191" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/hibernate.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="18" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/api/autotam/dao/UsuarioDAOImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="40" column="19" selection-start-line="40" selection-start-column="19" selection-end-line="40" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/api/autotam/service/UsuarioService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="24" column="19" selection-start-line="24" selection-start-column="19" selection-end-line="24" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/api/autotam/service/EmailService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="16" column="28" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.mail/mail/1.4.7/bb76e5678cdb3e7488bb5578a8461e82fba5fe36/mail-1.4.7-sources.jar!/javax/mail/internet/InternetAddress.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="33">
-          <caret line="155" column="43" selection-start-line="155" selection-start-column="43" selection-end-line="155" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="211">
@@ -1751,27 +1676,6 @@
         <state relative-caret-position="-629">
           <caret line="41" column="81" selection-start-line="41" selection-start-column="42" selection-end-line="41" selection-end-column="81" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/api/autotam/service/UsuarioServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="83">
-          <caret line="19" column="57" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/api/autotam/config/EmailConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="42" column="5" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/api/autotam/service/EmailServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-818">
-          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1839,14 +1743,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/api/autotam/restControllers/UsuarioController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2176">
-          <caret line="140" column="49" selection-start-line="140" selection-start-column="49" selection-end-line="140" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/api/autotam/model/Usuario.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="212">
@@ -1885,13 +1781,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/html/templates/noauth/misc/unauthorized.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="85" selection-start-line="8" selection-start-column="85" selection-end-line="8" selection-end-column="85" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/api/autotam/restControllers/ErrorPageController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
@@ -1923,13 +1812,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/angular/services/modal_service.js" />
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/angular/controllers/modal_controller.js" />
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/html/pages/inicial.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="22" selection-start-line="1" selection-start-column="22" selection-end-line="1" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/btfmodal.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -1938,34 +1820,152 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/angular/services/btford.modal.js" />
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/index.html">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/angular/controllers/login_controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="96" selection-start-line="15" selection-start-column="96" selection-end-line="15" selection-end-column="96" />
+        <state relative-caret-position="680">
+          <caret line="40" column="16" selection-start-line="40" selection-start-column="16" selection-end-line="46" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/html/templates/auth/menus/userMenu.html">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/angular/services/usuario_service.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="18" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="18" />
+        <state relative-caret-position="1394">
+          <caret line="82" column="10" selection-start-line="82" selection-start-column="10" selection-end-line="82" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/angular/controllers/cadastro_usuario_controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-136">
+          <caret line="68" column="94" selection-start-line="68" selection-start-column="94" selection-end-line="68" selection-end-column="94" />
+          <folding>
+            <element signature="e#0#41#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/angular/controllers/usuario_controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="816">
+          <caret line="48" column="6" selection-start-line="48" selection-start-column="6" selection-end-line="48" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/api/autotam/service/EmailService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="31" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/api/autotam/service/UsuarioService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="24" column="4" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/api/autotam/service/UsuarioServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="19" column="57" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/api/autotam/restControllers/UsuarioController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="646">
+          <caret line="110" column="35" selection-start-line="110" selection-start-column="35" selection-end-line="110" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/api/autotam/config/EmailConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="358">
+          <caret line="42" column="5" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/api/autotam/service/EmailService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-60">
+          <caret line="76" column="78" selection-start-line="76" selection-start-column="78" selection-end-line="76" selection-end-column="78" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/html/templates/noauth/cadastro/cadastrousuarioform.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="44" selection-start-line="9" selection-start-column="38" selection-end-line="9" selection-end-column="44" />
+        <state relative-caret-position="425">
+          <caret line="34" column="100" selection-start-line="34" selection-start-column="100" selection-end-line="34" selection-end-column="100" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/html/templates/auth/user/changePassword.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="69">
+          <caret line="22" column="138" selection-start-line="22" selection-start-column="138" selection-end-line="22" selection-end-column="138" />
+          <folding>
+            <element signature="e#124#131#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/html/templates/auth/user/editProfile.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="27" column="43" selection-start-line="27" selection-start-column="34" selection-end-line="27" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" column="42" selection-start-line="27" selection-start-column="42" selection-end-line="27" selection-end-column="42" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/html/templates/auth/admin/listausuarios.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="97" selection-start-line="6" selection-start-column="97" selection-end-line="6" selection-end-column="97" />
+        <state relative-caret-position="221">
+          <caret line="13" column="125" selection-start-line="13" selection-start-column="125" selection-end-line="13" selection-end-column="155" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/html/templates/noauth/misc/unauthorized.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="30" selection-start-line="0" selection-start-column="30" selection-end-line="0" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/html/templates/auth/menus/userMenu.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="63" selection-start-line="4" selection-start-column="61" selection-end-line="4" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/html/pages/recuperasenha.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="71" selection-start-line="0" selection-start-column="71" selection-end-line="0" selection-end-column="71" />
           <folding />
         </state>
       </provider>
@@ -1973,70 +1973,48 @@
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/html/pages/cadastrousuario.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="86" />
+          <caret line="0" column="71" selection-start-line="0" selection-start-column="71" selection-end-line="0" selection-end-column="71" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/angular/controllers/usuario_controller.js">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/html/templates/noauth/menus/navmenu.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-458">
-          <caret line="48" column="6" selection-start-line="48" selection-start-column="6" selection-end-line="48" selection-end-column="6" />
+        <state relative-caret-position="374">
+          <caret line="22" column="10" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="10" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/angular/controllers/login_controller.js">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/html/templates/auth/menus/loggednavmenu.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="40" column="16" selection-start-line="40" selection-start-column="16" selection-end-line="46" selection-end-column="13" />
+        <state relative-caret-position="391">
+          <caret line="23" column="10" selection-start-line="23" selection-start-column="10" selection-end-line="23" selection-end-column="10" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="349">
-          <caret line="131" column="1" selection-start-line="131" selection-start-column="1" selection-end-line="131" selection-end-column="1" />
+        <state relative-caret-position="357">
+          <caret line="72" column="17" selection-start-line="72" selection-start-column="17" selection-end-line="72" selection-end-column="17" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/html/templates/auth/menus/editProfile.html">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/html/pages/login.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-42">
-          <caret line="11" column="48" selection-start-line="11" selection-start-column="48" selection-end-line="11" selection-end-column="48" />
-          <folding>
-            <element signature="e#124#131#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/angular/services/usuario_service.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="358">
-          <caret line="82" column="10" selection-start-line="82" selection-start-column="10" selection-end-line="82" selection-end-column="10" />
+        <state relative-caret-position="17">
+          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="71" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/html/templates/auth/menus/changePassword.html">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/html/pages/inicial.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="39" selection-start-line="8" selection-start-column="39" selection-end-line="8" selection-end-column="39" />
-          <folding>
-            <element signature="e#124#131#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/angular/controllers/cadastro_usuario_controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1122">
-          <caret line="68" column="94" selection-start-line="68" selection-start-column="94" selection-end-line="68" selection-end-column="94" />
-          <folding>
-            <element signature="e#0#41#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="34">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

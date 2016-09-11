@@ -22,7 +22,7 @@ public interface UsuarioService {
 
     void updateUsuario(Usuario usuario);
 
-    public boolean isUsuarioExist(Usuario usuario);
+    boolean isUsuarioExist(Usuario usuario);
 }
 
 

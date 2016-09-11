@@ -1,6 +1,6 @@
 body, #mainWrapper {
     height: 70%;
-    background-color:rgb(245, 245, 245);
+    background-color: #a9a7a7;
 }
 
 body, .form-control{
@@ -18,25 +18,30 @@ body, .form-control{
 
 
 .generic-container {
+}
+.mobile-menu{
+    background-color: #f8f8f8;
+    border-color: #e7e7e7;
+}
+.menu-container{
+    background-color: #f8f8f8;
+    border-color: #e7e7e7;
+    height: 50px;
+    display:block;
+}
+
+.menu-principal{
+    height: 50px;
+    border-color: #f8f8f8;
+    margin-bottom: 0px;
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 20px;
-    padding-right: 20px;
-    background-color: #EAE7E7;
-    border: 1px solid #ddd;
-    border-radius: 4px;
 }
 
 .userMenu-container{
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 8px ;
-    height: 40px;
-    background-color: #eee;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    height: 50px;
+    padding: 15px 10px 15px 10px ;
     display: block;
 }
 
@@ -51,7 +56,7 @@ body, .form-control{
 .loginForm-container {
     max-width: 250px;
     padding: 20px 20px 5px 20px;
-    background-color: #FFFFFF;
+    background-color: #f8f8f8;
     border: 1px solid #ddd;
     border-radius: 10px;
     box-shadow: 1px 1px 25px 5px #8F8F8F;
@@ -65,8 +70,9 @@ body, .form-control{
 }
 .cadastroForm-container{
     max-width: 750px;
+    margin-top: 20px;
     padding:20px;
-    background-color: #FFFFFF;
+    background-color: #f8f8f8;
     border: 1px solid #ddd;
     border-radius: 10px;
     box-shadow: 1px 1px 25px 5px #8F8F8F;

@@ -2,7 +2,6 @@ package api.autotam.restControllers;
 
 
 import api.autotam.service.EmailService;
-import api.autotam.service.EmailServiceImpl;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -27,7 +26,7 @@ public class UsuarioController {
 
      @Autowired
     private UsuarioService service; //Service which will do all data retrieval/manipulation work
-    private EmailService emailService = new EmailServiceImpl();
+    private EmailService emailService = new EmailService();
 
 
    //-------------------Retrieve All Usuarios--------------------------------------------------------
@@ -109,6 +108,7 @@ public class UsuarioController {
         currentUsuario.setSenha(usuario.getSenha());
 
         service.updateUsuario(currentUsuario);
+        emailService.updateProfile(usuario);
         return new ResponseEntity<>(currentUsuario, HttpStatus.OK);
     }
 
