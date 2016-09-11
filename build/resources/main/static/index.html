@@ -27,5 +27,16 @@
 <body ng-app="clientAutoTAM" ng-cloak class="ng-cloak">
     <div class="generic-container clearfix" ng-view ></div>
 
+
+    <div class="modal fade" id="passwordModal" role="dialog">
+        <div class="modal-dialog">
+            <div ng-include src="'html/templates/auth/user/changePassword.html'"></div>
+        </div>
+    </div>
+    <div class="modal fade" id="profileModal" role="dialog">
+        <div class="modal-dialog">
+            <div ng-include src="'html/templates/auth/user/editProfile.html'"></div>
+        </div>
+    </div>
 </body>
 </html>
