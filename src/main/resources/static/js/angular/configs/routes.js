@@ -21,7 +21,6 @@ myApp.config(function ($routeProvider, $httpProvider){
             controllerAs: 'LoginCtrl'
 
         }).
-
         otherwise({
             redirectTo: '/Login'
         });

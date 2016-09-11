@@ -5,7 +5,7 @@
 
 myApp.controller("CadastroUsuarioController", function(UsuarioService, $location, $scope) {
     var model = this;
-    var self = this;
+
     model.message = { box: false, message:""};
 
     model.usuario = {
@@ -14,6 +14,9 @@ myApp.controller("CadastroUsuarioController", function(UsuarioService, $location
         senha: "",
         confirmaSenha: ""
     };
+
+    model.senhaAtual = "";
+
     model.submit = function(isValid) {
         if (isValid) {
             model.usuario = {nome: model.usuario.nome, email: model.usuario.email, senha: model.usuario.senha};
@@ -46,5 +49,78 @@ myApp.controller("CadastroUsuarioController", function(UsuarioService, $location
                 model.message.message = "Não existe nenhum usuário cadastrado com esse email no sistema";
         })
     };
+
+    model.changePassword = function(isValid){
+        if(isValid){
+            if(model.senhaAtual == model.usuario.senha){
+                $scope.errorBox = 'alert alert-warning';
+                model.message.box = true;
+                model.message.message = "Sua nova senha não pode ser a mesma da senha atual!";
+            }else{
+                UsuarioService.fetchLoggedUser()
+                    .then(
+                        function (loggedUser) {
+                            console.log(model.senhaAtual);
+                            if(loggedUser.senha == model.senhaAtual){
+                                loggedUser.senha = model.usuario.senha;
+                                UsuarioService.updateUsuario(loggedUser, loggedUser.idUsuario);
+                                $scope.errorBox = 'alert alert-success';
+                                model.message.box = true;
+                                model.message.message = "Sua senha foi alterada com sucesso!";
+                            }else{
+                                $scope.errorBox = 'alert alert-danger';
+                                model.message.box = true;
+                                model.message.message = "A essa não é sua senha atual";
+                            }
+                        },
+                        function (errResponse) {
+                            console.error('Error while fetching logged Usuario');
+                        }
+                    )
+            }
+        }else {
+            $scope.errorBox = 'alert alert-warning';
+            model.message.box = true;
+            model.message.message = "Ainda existem campos inválidos no formulário, preencha-os e tente novamente";
+        }
+    }
+
+    model.updateProfile = function(){
+        UsuarioService.fetchLoggedUser()
+            .then(
+                function (loggedUser) {
+                    console.log(model.usuario);
+                    if(model.usuario.nome == "" && model.usuario.email == ""){
+                        $scope.errorBox = 'alert alert-danger';
+                        model.message.box = true;
+                        model.message.message = "Você não alterou seus dados!";
+                    }else if(model.usuario.nome == ""){
+                        loggedUser.email = model.usuario.email;
+                        UsuarioService.updateUsuario(loggedUser, loggedUser.idUsuario);
+                        $scope.errorBox = 'alert alert-success';
+                        model.message.box = true;
+                        model.message.message = "Seu email foi alterado com sucesso";
+                    }else if(model.usuario.email == ""){
+                        loggedUser.nome = model.usuario.nome;
+                        UsuarioService.updateUsuario(loggedUser, loggedUser.idUsuario);
+                        $scope.errorBox = 'alert alert-success';
+                        model.message.box = true;
+                        model.message.message = "Seu nome foi alterado com sucesso! Sua mudança terá efeito a partir de quando você recarregar a página";
+                        $scope.showModal = false;
+                    }else{
+                        loggedUser.email = model.usuario.email;
+                        loggedUser.nome = model.usuario.nome;
+                        UsuarioService.updateUsuario(loggedUser, loggedUser.idUsuario);
+                        $scope.errorBox = 'alert alert-success';
+                        model.message.box = true;
+                        model.message.message = "Seus dados foram alterados com sucesso!";
+                    }
+                },
+                function (errResponse) {
+                    console.error('Error while fetching logged Usuario');
+                }
+        )
+    }
+
 
 });

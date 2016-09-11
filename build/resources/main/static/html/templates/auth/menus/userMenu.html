@@ -9,14 +9,24 @@
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-right">
-                    <li><a href="#">Editar Perfil</a></li>
-                    <li><a href="#">Mudar Senha</a></li>
+                    <li><a href="" data-toggle="modal" data-target="#profileModal">Editar Perfil</a></li>
+                    <li><a href="" data-toggle="modal" data-target="#passwordModal">Mudar Senha</a></li>
                     <li role="separator" class="divider"></li>
                     <li><a href="" ng-click="LoginCtrl.logout()">
                         <span class="glyphicon glyphicon-log-out" aria-hidden="true" ></span>
                         Sair
                     </a></li>
                 </ul>
+            </div>
+            <div class="modal fade" id="passwordModal" role="dialog">
+                <div class="modal-dialog">
+                    <div ng-include src="'html/templates/auth/menus/changePassword.html'"></div>
+                </div>
+            </div>
+            <div class="modal fade" id="profileModal" role="dialog">
+                <div class="modal-dialog">
+                    <div ng-include src="'html/templates/auth/menus/editProfile.html'"></div>
+                </div>
             </div>
         </div>
     </div>

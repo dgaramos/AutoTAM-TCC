@@ -36,19 +36,15 @@ myApp.controller('LoginController', function($rootScope, $http, $location, $rout
       authenticate();
 
     var loggedUser = function(){
-        $http.get('http://localhost:8080/userLogin')
+            UsuarioService.fetchLoggedUser()
             .then(
-                function(response) {
-                    UsuarioService.fetchUsuarioByEmail(response.data.name)
-                        .then(
-                            function (d) {
-                                self.loggedUsuario = d;
-                            },
-                            function (errResponse) {
-                                console.error('Error while fetching logged Usuario');
-                            }
-                        );
-                })
+                function (d) {
+                    self.loggedUsuario = d;
+                },
+                function (errResponse) {
+                    console.error('Error while fetching logged Usuario');
+                }
+            )
     }
     loggedUser();
 
@@ -56,7 +52,6 @@ myApp.controller('LoginController', function($rootScope, $http, $location, $rout
       self.login = function() {
           authenticate(self.credentials, function(authenticated) {
               if (authenticated) {
-                  loggedUser();
                   console.log("Login succeeded, logged usuario: " + self.credentials.username)
                   $location.path("/Inicial");
                   self.error = false;
