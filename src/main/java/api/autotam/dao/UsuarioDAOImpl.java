@@ -1,7 +1,6 @@
 package api.autotam.dao;
 
 import org.hibernate.Criteria;
-import org.hibernate.Query;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import api.autotam.model.Usuario;

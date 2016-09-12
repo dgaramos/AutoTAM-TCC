@@ -15,23 +15,23 @@ import java.util.Set;
  */
 
 @Entity
-@Table(name= "USUARIO")
+@Table(name= "usuario")
 public class Usuario implements Serializable {
 
 
     private static final long serialVersionUID = -3756253191774836358L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_USUARIO")
+    @Column(name = "idUsuario")
     private Integer idUsuario;
 
-    @Column(name = "NOME")
+    @Column(name = "nome")
     private String nome;
 
-    @Column(name = "EMAIL", unique=true)
+    @Column(name = "email", unique=true)
     private String email;
 
-    @Column(name = "SENHA")
+    @Column(name = "senha")
     private String senha;
 
 

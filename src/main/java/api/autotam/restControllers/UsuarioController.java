@@ -1,7 +1,9 @@
 package api.autotam.restControllers;
 
 
+import api.autotam.model.Permissao;
 import api.autotam.service.EmailService;
+import api.autotam.service.PermissaoService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -24,8 +26,11 @@ import java.util.List;
 @RequestMapping("/usuario")
 public class UsuarioController {
 
-     @Autowired
+    @Autowired
     private UsuarioService service; //Service which will do all data retrieval/manipulation work
+    @Autowired
+    private PermissaoService permissaoService;
+
     private EmailService emailService = new EmailService();
 
 
@@ -140,4 +145,15 @@ public class UsuarioController {
         emailService.recoverPassword(usuario);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    //-------------------Retrieve All Permissoes from Usuario--------------------------------------------------------
+    @RequestMapping(value = "permissoes/", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<Permissao>> listAllPermissoes() {
+        List<Permissao> permissoes = permissaoService.findAllPermissoes();
+        if(permissoes.isEmpty()){
+            return new ResponseEntity<List<Permissao>>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<List<Permissao>>(permissoes, HttpStatus.OK);
+    }
+
 }
