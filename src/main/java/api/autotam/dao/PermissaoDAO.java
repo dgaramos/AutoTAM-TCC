@@ -14,7 +14,7 @@ public interface PermissaoDAO {
 
     List<Permissao> findAllPermissoes();
 
-    List<Permissao> findAllPermissoesByUsuario(Usuario usuario);
+    List<Permissao> findAllPermissoesByUsuario(int idUsuario);
 
     void deletePermissao(Permissao permissao);
 

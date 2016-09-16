@@ -3,6 +3,7 @@ package api.autotam.dao;
 import api.autotam.model.Permissao;
 import api.autotam.model.Usuario;
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
@@ -37,10 +38,12 @@ public class PermissaoDAOImpl extends AbstractDAO implements PermissaoDAO{
     }
 
 
-    public List<Permissao> findAllPermissoesByUsuario(Usuario usuario) {
-        Criteria criteria = getSession().createCriteria(Permissao.class);
-        criteria.add(Restrictions.eq("usuario",usuario));
-        return (List<Permissao>) criteria.list();
+    public List<Permissao> findAllPermissoesByUsuario(int idUsuario) {
+        Query query = getSession().createSQLQuery(
+                "select * from permissao p where p.idUsuario = :idUsuario")
+                .addEntity(Permissao.class)
+                .setParameter("idUsuario", idUsuario);
+        return (List<Permissao>) query.list();
     }
 
     public void updatePermissao(Permissao permissao) {

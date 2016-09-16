@@ -1,9 +1,6 @@
 package api.autotam.service;
 
-import api.autotam.dao.AnaliseDAO;
 import api.autotam.dao.PermissaoDAO;
-import api.autotam.dao.PermissaoDAOImpl;
-import api.autotam.model.Analise;
 import api.autotam.model.Permissao;
 import api.autotam.model.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,13 +14,13 @@ import java.util.List;
  */
 @Service("permissaoService")
 @Transactional
-public class PermissaoServiceImpl implements PermissaoService {
+public class AnaliseServiceImpl implements AnaliseService {
 
     @Autowired
     private PermissaoDAO permissaoDAO;
 
-    public List<Permissao> findAllPermissoes(){
-        List<Permissao> permissoes = permissaoDAO.findAllPermissoes();
+    public List<Permissao> findAllAnalises(int idUsuario){
+        List<Permissao> permissoes = permissaoDAO.findAllPermissoesByUsuario(idUsuario);
         return permissoes;
     }
 

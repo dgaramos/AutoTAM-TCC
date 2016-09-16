@@ -3,7 +3,7 @@ package api.autotam.restControllers;
 
 import api.autotam.model.Permissao;
 import api.autotam.service.EmailService;
-import api.autotam.service.PermissaoService;
+import api.autotam.service.AnaliseService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -29,7 +29,7 @@ public class UsuarioController {
     @Autowired
     private UsuarioService service; //Service which will do all data retrieval/manipulation work
     @Autowired
-    private PermissaoService permissaoService;
+    private AnaliseService analiseService;
 
     private EmailService emailService = new EmailService();
 
@@ -147,9 +147,9 @@ public class UsuarioController {
     }
 
     //-------------------Retrieve All Permissoes from Usuario--------------------------------------------------------
-    @RequestMapping(value = "permissoes/", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<Permissao>> listAllPermissoes() {
-        List<Permissao> permissoes = permissaoService.findAllPermissoes();
+    @RequestMapping(value = "permissoes/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<Permissao>> listAllPermissoes(@PathVariable("id") int id) {
+        List<Permissao> permissoes = analiseService.findAllAnalises(id);
         if(permissoes.isEmpty()){
             return new ResponseEntity<List<Permissao>>(HttpStatus.NO_CONTENT);
         }

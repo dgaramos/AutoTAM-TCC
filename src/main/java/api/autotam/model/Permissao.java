@@ -20,7 +20,7 @@ public class Permissao implements Serializable{
     @JoinColumn(name = "idUsuario")
     private Usuario usuario;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idAnalise")
     private Analise analise;
 

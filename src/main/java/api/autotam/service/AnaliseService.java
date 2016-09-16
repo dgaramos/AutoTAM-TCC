@@ -1,14 +1,15 @@
 package api.autotam.service;
 
 import api.autotam.model.Permissao;
+import api.autotam.model.Usuario;
 
 import java.util.List;
 
 /**
  * Created by Danilo on 9/12/2016.
  */
-public interface PermissaoService {
+public interface AnaliseService {
 
-    List<Permissao> findAllPermissoes();
+    List<Permissao> findAllAnalises(int id);
 
 }
