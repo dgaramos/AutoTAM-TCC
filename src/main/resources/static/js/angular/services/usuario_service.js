@@ -83,20 +83,10 @@ myApp.factory('UsuarioService', function($http, $q){
         },
 
         fetchLoggedUser: function(){
-            return $http.get('http://localhost:8080/userLogin')
+            return $http.get('http://localhost:8080/usuario/logged')
                 .then(
-                    function (response) {
-                        return $http.get('http://localhost:8080/usuario/byEmail/'+ response.data.name )
-                            .then(
-                                function(response){
-                                    console
-                                    return response.data;
-                                },
-                                function(errResponse){
-                                    console.error('Error while fetching usuario');
-                                    return $q.reject(errResponse);
-                                }
-                            );
+                    function(response){
+                        return response.data;
                     },
                     function (errResponse) {
                         console.error('Error while fetching logged Usuario');

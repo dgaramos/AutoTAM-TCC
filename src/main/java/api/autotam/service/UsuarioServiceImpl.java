@@ -17,10 +17,15 @@ import java.util.List;
  */
 @Service("usuarioService")
 @Transactional
-public class UsuarioServiceImpl implements UsuarioService {
+public class UsuarioServiceImpl extends AbstractService implements UsuarioService {
 
     @Autowired
     private UsuarioDAO dao;
+
+    @Override
+    public Usuario getUsuarioLogado() {
+        return super.getUsuarioLogado();
+    }
 
     public void saveUsuario(Usuario usuario) {
         dao.saveUsuario(usuario);
@@ -49,5 +54,6 @@ public class UsuarioServiceImpl implements UsuarioService {
     public boolean isUsuarioExist(Usuario usuario) {
         return findByEmail(usuario.getEmail())!=null;
     }
+
 
 }

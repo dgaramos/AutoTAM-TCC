@@ -1,6 +1,11 @@
 package api.autotam.model;
 
+import org.hibernate.annotations.*;
+
 import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.io.Serializable;
 
 /**
@@ -20,8 +25,9 @@ public class Permissao implements Serializable{
     @JoinColumn(name = "idUsuario")
     private Usuario usuario;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL )
     @JoinColumn(name = "idAnalise")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Analise analise;
 
     @Column(name = "isAdministrador")

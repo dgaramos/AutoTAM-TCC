@@ -23,6 +23,8 @@ public interface UsuarioService {
     void updateUsuario(Usuario usuario);
 
     boolean isUsuarioExist(Usuario usuario);
+
+    Usuario getUsuarioLogado();
 }
 
 

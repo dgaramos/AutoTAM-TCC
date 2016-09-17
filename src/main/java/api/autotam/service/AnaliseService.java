@@ -1,5 +1,6 @@
 package api.autotam.service;
 
+import api.autotam.model.Analise;
 import api.autotam.model.Permissao;
 import api.autotam.model.Usuario;
 
@@ -10,6 +11,13 @@ import java.util.List;
  */
 public interface AnaliseService {
 
+    void saveAnalise(Analise analise);
+
     List<Permissao> findAllAnalises(int id);
+
+    Analise findById(Integer id);
+
+    boolean isAnaliseExist(Analise analise);
+
 
 }

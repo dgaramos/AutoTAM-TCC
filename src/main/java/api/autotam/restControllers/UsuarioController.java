@@ -44,6 +44,18 @@ public class UsuarioController {
         return new ResponseEntity<List<Usuario>>(usuarios, HttpStatus.OK);
     }
 
+    //-------------------Retrieve Logged User--------------------------------------------------------
+    @RequestMapping(value = "logged", method = RequestMethod.GET)
+    public ResponseEntity<Usuario> fetchLoggedUser() {
+        Usuario usuario = service.getUsuarioLogado();
+        if(usuario == null){
+            System.out.println("No logged User");
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(usuario, HttpStatus.OK);
+    }
+
+
     //-------------------Retrieve Single Usuario--------------------------------------------------------
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)

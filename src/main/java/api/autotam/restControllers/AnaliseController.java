@@ -27,29 +27,22 @@ public class AnaliseController {
     @Autowired
     private AnaliseService analiseService;
 
-//-------------------Create a Usuario--------------------------------------------------------
+//-------------------Create a analise--------------------------------------------------------
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Void> createAnalise(@RequestBody Analise analise, UriComponentsBuilder ucBuilder) {
         System.out.println("Creating Analise " + analise.getNome());
 
-        /*if (analiseService.isUsuarioExist(usuario)) {
-            System.out.println("A User with id " + usuario.getIdUsuario() + " already exist");
+        if (analiseService.isAnaliseExist(analise)) {
+            System.out.println("A analise with id " + analise.getIdAnalise() + " already exist");
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
 
-        if (analiseService.findByEmail(usuario.getEmail()) != null) {
-            System.out.println("A User with username " + usuario.getEmail() + " already exist");
-            return new ResponseEntity<>(HttpStatus.CONFLICT);
-        }
-
-        analiseService.saveUsuario(usuario);
-        emailService.registrationConfirm(usuario);
+        analiseService.saveAnalise(analise);
 
         HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(ucBuilder.path("byEmail/{email:.+}").buildAndExpand(usuario.getEmail()).toUri());
-        return new ResponseEntity<>(headers, HttpStatus.CREATED);*/
-        return null;
+        headers.setLocation(ucBuilder.path("{id}").buildAndExpand(analise.getIdAnalise()).toUri());
+        return new ResponseEntity<>(headers, HttpStatus.CREATED);
     }
 
 }
