@@ -7,10 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 /**
@@ -44,5 +41,44 @@ public class AnaliseController {
         headers.setLocation(ucBuilder.path("{id}").buildAndExpand(analise.getIdAnalise()).toUri());
         return new ResponseEntity<>(headers, HttpStatus.CREATED);
     }
+
+    //------------------- Delete an Analise --------------------------------------------------------
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<Analise> deleteAnalise(@PathVariable("id") Integer id) {
+        System.out.println("Fetching & Deleting User with id " + id);
+
+        Analise analise = analiseService.findById(id);
+        if (analise == null) {
+            System.out.println("Unable to delete. User with id " + id + " not found");
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        analiseService.deleteAnalise(analise);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    //------------------- Update a User --------------------------------------------------------
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<Analise> updateAnalise(@PathVariable("id") Integer idAnalise, @RequestBody Analise analise) {
+        System.out.println("Updating analise " + idAnalise);
+
+        Analise currentAnalise = analiseService.findById(analise.getIdAnalise());
+
+        if (currentAnalise==null) {
+            System.out.println("Analise with id " + idAnalise + " not found");
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        currentAnalise.setNome(analise.getNome());
+        currentAnalise.setObjetoDeAnalise(analise.getObjetoDeAnalise());
+        currentAnalise.setStatus(analise.getStatus());
+
+        analiseService.updateAnalise(currentAnalise);
+
+        return new ResponseEntity<>(currentAnalise, HttpStatus.OK);
+    }
+
 
 }

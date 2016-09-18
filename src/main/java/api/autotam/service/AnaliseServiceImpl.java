@@ -32,7 +32,6 @@ public class AnaliseServiceImpl extends AbstractService implements AnaliseServic
 
     public void saveAnalise(Analise analise) {
        Permissao administrador = new Permissao();
-
         administrador.setUsuario(getUsuarioLogado());
         administrador.setAdministrador(true);
         administrador.setTestador(true);
@@ -53,10 +52,21 @@ public class AnaliseServiceImpl extends AbstractService implements AnaliseServic
         return analiseDAO.findById(id);
     }
 
+
+    @Override
+    public void deleteAnalise(Analise analise) {
+        analiseDAO.deleteAnalise(analise);
+    }
+
+    @Override
+    public void updateAnalise(Analise analise) {
+        analiseDAO.updateAnalise(analise);
+
+    }
+
     @Override
     public boolean isAnaliseExist(Analise analise) {
         return findById(analise.getIdAnalise())!=null;
     }
-
 
 }

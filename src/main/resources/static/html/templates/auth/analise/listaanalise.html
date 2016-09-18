@@ -1,0 +1,31 @@
+<div class="analise-container" ng-show="authenticated">
+    <div class="panel panel-default" ng-controller="AnaliseController as AnaliseCtrl">
+        <!-- Default panel contents -->
+        <div class="panel-heading"><span class="lead">Lista de Analises </span></div>
+        <div class="row" id="search">
+            <div class="form-group col-md-12">
+                <div class="col-md-7">
+                    <input type="text" ng-model="search" id="busca" class="input-sm" placeholder="Filtro de Resultados"/>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid analise-col-container">
+            <div class="row">
+                <div class = "col-xs-12 col-sm-4 col-md-3 analise-col" ng-repeat="p in AnaliseCtrl.permissoes | filter: search">
+                    <p><b>Id Análise: </b><span ng-bind="p.analise.idAnalise"></span></p>
+                    <p><b>Nome: </b><span ng-bind="p.analise.nome"></span></p>
+                    <p><b>Objeto Da Análise: </b><span ng-bind="p.analise.objetoDeAnalise"></span></p>
+                    <p><b>Status: </b><span ng-bind="p.analise.status"></span></p>
+                    <p><b>Administrador: </b><span ng-bind="p.administrador"></span></p>
+                    <p><b>Testador: </b><span ng-bind="p.testador"></span></p>
+                    <button type="button" ng-click="AnaliseCtrl.edit(p.analise.idAnalise)" class="btn btn-success">
+                        <span class="glyphicon glyphicon-cog" aria-hidden="true" ></span>
+                    </button>
+                    <button type="button" ng-click="AnaliseCtrl.remove(p.analise.idAnalise)" class="btn btn-danger">
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true" ></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

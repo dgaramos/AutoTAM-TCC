@@ -33,7 +33,6 @@ public class UsuarioController {
 
     private EmailService emailService = new EmailService();
 
-
    //-------------------Retrieve All Usuarios--------------------------------------------------------
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List<Usuario>> listAllUsuarios() {
@@ -47,12 +46,12 @@ public class UsuarioController {
     //-------------------Retrieve Logged User--------------------------------------------------------
     @RequestMapping(value = "logged", method = RequestMethod.GET)
     public ResponseEntity<Usuario> fetchLoggedUser() {
-        Usuario usuario = service.getUsuarioLogado();
-        if(usuario == null){
+        Usuario loggedUser = service.getUsuarioLogado();
+        if(loggedUser == null){
             System.out.println("No logged User");
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(usuario, HttpStatus.OK);
+        return new ResponseEntity<>(loggedUser, HttpStatus.OK);
     }
 
 
@@ -159,9 +158,9 @@ public class UsuarioController {
     }
 
     //-------------------Retrieve All Permissoes from Usuario--------------------------------------------------------
-    @RequestMapping(value = "permissoes/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<Permissao>> listAllPermissoes(@PathVariable("id") int id) {
-        List<Permissao> permissoes = analiseService.findAllAnalises(id);
+    @RequestMapping(value = "permissoes/", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<Permissao>> listAllPermissoes() {
+        List<Permissao> permissoes = analiseService.findAllAnalises(service.getUsuarioLogado().getIdUsuario());
         if(permissoes.isEmpty()){
             return new ResponseEntity<List<Permissao>>(HttpStatus.NO_CONTENT);
         }

@@ -17,7 +17,10 @@ public interface AnaliseService {
 
     Analise findById(Integer id);
 
-    boolean isAnaliseExist(Analise analise);
+    void deleteAnalise(Analise analise);
 
+    void updateAnalise(Analise analise);
+
+    boolean isAnaliseExist(Analise analise);
 
 }
