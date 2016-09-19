@@ -1,4 +1,5 @@
 'use strict';
+
 myApp.config(function ($routeProvider, $httpProvider){
         $routeProvider.
         when('/Inicial', {
@@ -13,6 +14,10 @@ myApp.config(function ($routeProvider, $httpProvider){
 
         when('/Cadastro', {
             templateUrl: 'html/pages/cadastrousuario.html'
+        }).
+
+        when('/ConfigAnalise', {
+            templateUrl: 'html/pages/configanalise.html'
         }).
 
         when('/Login', {

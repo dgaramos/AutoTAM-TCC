@@ -1,8 +1,9 @@
 /**
  * Created by Danilo on 9/17/2016.
  */
+'use strict';
 
-myApp.controller('AnaliseController', function($scope, AnaliseService, $window) {
+myApp.controller('AnaliseController', function($scope, AnaliseService, $location) {
     var self = this;
     self.usuario = {idUsuario: null, nome: '', email: '', senha: ''};
     self.usuarios = [];
@@ -60,7 +61,8 @@ myApp.controller('AnaliseController', function($scope, AnaliseService, $window) 
         if(self.permissao.analise.idAnalise===null){
             console.log('Saving New Analise', self.permissao.analise);
             self.createAnalise(self.permissao.analise);
-            $window.location.reload();
+            $('.modal-backdrop').remove();
+            $location.path("/ConfigAnalise");
         }else{
             self.updateAnalise(self.permissao.analise, self.permissao.analise.idAnalise);
             console.log('Analise updated with nome ', self.permissao.analise.nome);
@@ -85,5 +87,10 @@ myApp.controller('AnaliseController', function($scope, AnaliseService, $window) 
         self.deleteAnalise(idAnalise);
     };
 
-
+    self.reset = function(){
+        self.permissao = {idPermissao: null,
+            usuario: {idUsuario: null, nome: '', email: '', senha: ''},
+            analise: {idAnalise: null, nome: '', objetoDeAnalise: '', status: ''},
+            testador: false, administrador: false};
+    };
 })

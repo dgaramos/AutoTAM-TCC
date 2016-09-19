@@ -1,6 +1,8 @@
 /**
  * Created by Danilo on 9/7/2016.
  */
+'use strict';
+
 myApp.directive("compareTo", function() {
     return {
         require: "ngModel",

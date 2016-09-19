@@ -1,6 +1,7 @@
 /**
  * Created by Danilo on 9/18/2016.
  */
+'use strict';
 
 myApp.directive('tooltip', function(){
     return {

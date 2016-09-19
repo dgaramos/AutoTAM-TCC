@@ -95,9 +95,7 @@ body, .form-control{
 .nome.ng-valid {
     background-color: lightgreen;
 }
-.nome.ng-dirty.ng-invalid-required {
-    background-color: red;
-}
+
 .nome.ng-dirty.ng-invalid-minlength {
     background-color: yellow;
 }
@@ -105,9 +103,7 @@ body, .form-control{
 .email.ng-valid {
     background-color: lightgreen;
 }
-.email.ng-dirty.ng-invalid-required {
-    background-color: red;
-}
+
 .email.ng-dirty.ng-invalid-email {
     background-color: yellow;
 }
@@ -118,10 +114,6 @@ body, .form-control{
 
 .senha.ng-valid {
     background-color: lightgreen;
-}
-
-.confirmaSenha.ng-dirty.ng-invalid-required {
-    background-color: red;
 }
 
 .confirmaSenha.ng-valid {
