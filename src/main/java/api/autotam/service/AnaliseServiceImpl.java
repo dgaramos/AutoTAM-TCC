@@ -35,6 +35,7 @@ public class AnaliseServiceImpl extends AbstractService implements AnaliseServic
         administrador.setUsuario(getUsuarioLogado());
         administrador.setAdministrador(true);
         administrador.setTestador(true);
+        analise.setStatus("Avaliação das Questões");
         administrador.setAnalise(analise);
         permissaoDAO.savePermissao(administrador);
         analiseDAO.saveAnalise(analise);

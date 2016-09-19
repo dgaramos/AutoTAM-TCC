@@ -3,9 +3,12 @@
         <!-- Default panel contents -->
         <div class="panel-heading"><span class="lead">Lista de Analises </span></div>
         <div class="container" id="search">
+
             <label for="busca">Busca: </label>
             <input type="text" ng-model="search" id="busca" class="input-sm" placeholder="Filtro de Resultados"/>
-            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createAnaliseModal">
+
+            <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#createAnaliseModal"
+                    title="Criar nova análise" data-toggle="tooltip" data-placement="left" tooltip>
                 <span class="glyphicon glyphicon-plus" aria-hidden="true" ></span>
             </button>
         </div>
@@ -13,12 +16,17 @@
         <div class="container-fluid analise-col-container">
             <div class="row">
                 <div class = "col-xs-12 col-sm-4 col-md-3 analise-col" ng-repeat="p in AnaliseCtrl.permissoes | filter: search">
-                    <p><b>Id Análise: </b><span ng-bind="p.analise.idAnalise"></span></p>
+                    <h5>
+                        <span class="label label-default"><span ng-bind="p.analise.idAnalise"></span></span>
+                        <span class="glyphicon glyphicon-certificate pull-right" aria-hidden="true"  ng-show="p.administrador"
+                              title="Usuario Administrador" data-toggle="tooltip" data-placement="top" tooltip></span>
+                        <span class="glyphicon glyphicon-edit pull-right" aria-hidden="true" ng-show="p.testador"
+                              title="Usuario Testador" data-toggle="tooltip" data-placement="top" tooltip></span>
+                    </h5>
                     <p><b>Nome: </b><span ng-bind="p.analise.nome"></span></p>
                     <p><b>Objeto Da Análise: </b><span ng-bind="p.analise.objetoDeAnalise"></span></p>
                     <p><b>Status: </b><span ng-bind="p.analise.status"></span></p>
-                    <p><b>Administrador: </b><span ng-bind="p.administrador"></span></p>
-                    <p><b>Testador: </b><span ng-bind="p.testador"></span></p>
+
                     <button type="button" ng-click="AnaliseCtrl.edit(p.analise.idAnalise)" class="btn btn-success">
                         <span class="glyphicon glyphicon-cog" aria-hidden="true" ></span>
                     </button>
