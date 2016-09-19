@@ -2,13 +2,14 @@
     <div class="panel panel-default" ng-controller="AnaliseController as AnaliseCtrl">
         <!-- Default panel contents -->
         <div class="panel-heading"><span class="lead">Lista de Analises </span></div>
-        <div class="row" id="search">
-            <div class="form-group col-md-12">
-                <div class="col-md-7">
-                    <input type="text" ng-model="search" id="busca" class="input-sm" placeholder="Filtro de Resultados"/>
-                </div>
-            </div>
+        <div class="container" id="search">
+            <label for="busca">Busca: </label>
+            <input type="text" ng-model="search" id="busca" class="input-sm" placeholder="Filtro de Resultados"/>
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createAnaliseModal">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true" ></span>
+            </button>
         </div>
+        <hr>
         <div class="container-fluid analise-col-container">
             <div class="row">
                 <div class = "col-xs-12 col-sm-4 col-md-3 analise-col" ng-repeat="p in AnaliseCtrl.permissoes | filter: search">

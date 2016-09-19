@@ -1,0 +1,28 @@
+
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Criar Análise</h4>
+    </div>
+    <div class="modal-body" ng-controller="AnaliseController as Analise">
+        <form name="salvaAnaliseForm"
+              ng-submit="Analise.submit()">
+            <div class="form-group">
+                <label>Nome</label>
+                <input type="text" name="nome" class="form-control" ng-model="Analise.permissao.analise.nome" ng-minlength="5"/>
+
+            </div>
+            <div class="form-group">
+                <label>Objeto de Análise</label>
+                <input type="text" name="email" class="form-control" ng-model="Analise.permissao.analise.objetoDeAnalise" ng-minlength="5"/>
+
+            </div>
+            <hr>
+            <div class="form-group clearfix">
+                <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Cancelar</button>
+                &nbsp
+                <button type="submit" class="btn btn-primary pull-right">Salvar Análise</button>
+            </div>
+        </form>
+    </div>
+</div>

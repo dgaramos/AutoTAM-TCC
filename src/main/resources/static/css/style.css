@@ -141,23 +141,23 @@ body, .form-control{
     margin-right: auto;
 }
 .analise-col-container{
-    max-width: 1100px;
+    max-width: 1000px;
     margin-left: auto;
     margin-right: auto;
     padding-bottom:30px;
+
 }
 .analise-col{
     padding: 20px;
-    text-align: center;
 }
 
 .analise-col:nth-of-type(even){
-    background-color: #dcdcdc;
+    background-color: #e7e7e7;
 
 }
 
 .analise-col:nth-of-type(odd){
-    background-color: #aaaaaa;
+    background-color: #eeeeee ;
 
 }
 
