@@ -20,7 +20,7 @@ public class AnaliseController {
 
 
     @Autowired
-    private UsuarioService usuarioService; //Service which will do all data retrieval/manipulation work
+    private UsuarioService usuarioService;
     @Autowired
     private AnaliseService analiseService;
 

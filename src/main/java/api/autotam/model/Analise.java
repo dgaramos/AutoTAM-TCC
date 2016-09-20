@@ -1,5 +1,7 @@
 package api.autotam.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -19,8 +21,15 @@ public class Analise {
     @Column(name = "nome")
     private String nome;
 
+    @Column(name = "tipoAnalise")
+    private String tipoAnalise;
+
     @Column(name = "objetoDeAnalise")
     private String objetoDeAnalise;
+
+    @OneToMany(mappedBy = "analise", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonManagedReference
+    private List<VariavelTAM> variaveis;
 
     @Column(name = "status")
     private String status;
@@ -57,28 +66,47 @@ public class Analise {
         this.status = status;
     }
 
+    public String getTipoAnalise() {
+        return tipoAnalise;
+    }
+
+    public void setTipoAnalise(String tipoAnalise) {
+        this.tipoAnalise = tipoAnalise;
+    }
+
+    public List<VariavelTAM> getVariaveis() {
+        return variaveis;
+    }
+
+    public void setVariaveis(List<VariavelTAM> variaveis) {
+        this.variaveis = variaveis;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Analise)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
 
         Analise analise = (Analise) o;
 
-        if (getIdAnalise() != null ? !getIdAnalise().equals(analise.getIdAnalise()) : analise.getIdAnalise() != null)
+        if (idAnalise != null ? !idAnalise.equals(analise.idAnalise) : analise.idAnalise != null) return false;
+        if (nome != null ? !nome.equals(analise.nome) : analise.nome != null) return false;
+        if (tipoAnalise != null ? !tipoAnalise.equals(analise.tipoAnalise) : analise.tipoAnalise != null) return false;
+        if (objetoDeAnalise != null ? !objetoDeAnalise.equals(analise.objetoDeAnalise) : analise.objetoDeAnalise != null)
             return false;
-        if (getNome() != null ? !getNome().equals(analise.getNome()) : analise.getNome() != null) return false;
-        if (getObjetoDeAnalise() != null ? !getObjetoDeAnalise().equals(analise.getObjetoDeAnalise()) : analise.getObjetoDeAnalise() != null)
-            return false;
-        return getStatus() != null ? getStatus().equals(analise.getStatus()) : analise.getStatus() == null;
+        if (variaveis != null ? !variaveis.equals(analise.variaveis) : analise.variaveis != null) return false;
+        return status != null ? status.equals(analise.status) : analise.status == null;
 
     }
 
     @Override
     public int hashCode() {
-        int result = getIdAnalise() != null ? getIdAnalise().hashCode() : 0;
-        result = 31 * result + (getNome() != null ? getNome().hashCode() : 0);
-        result = 31 * result + (getObjetoDeAnalise() != null ? getObjetoDeAnalise().hashCode() : 0);
-        result = 31 * result + (getStatus() != null ? getStatus().hashCode() : 0);
+        int result = idAnalise != null ? idAnalise.hashCode() : 0;
+        result = 31 * result + (nome != null ? nome.hashCode() : 0);
+        result = 31 * result + (tipoAnalise != null ? tipoAnalise.hashCode() : 0);
+        result = 31 * result + (objetoDeAnalise != null ? objetoDeAnalise.hashCode() : 0);
+        result = 31 * result + (variaveis != null ? variaveis.hashCode() : 0);
+        result = 31 * result + (status != null ? status.hashCode() : 0);
         return result;
     }
 
@@ -87,7 +115,9 @@ public class Analise {
         return "Analise{" +
                 "idAnalise=" + idAnalise +
                 ", nome='" + nome + '\'' +
+                ", tipoAnalise='" + tipoAnalise + '\'' +
                 ", objetoDeAnalise='" + objetoDeAnalise + '\'' +
+                ", variaveis=" + variaveis +
                 ", status='" + status + '\'' +
                 '}';
     }

@@ -3,6 +3,8 @@ package api.autotam.config;
 import javax.sql.DataSource;
 
 
+import api.autotam.service.AnaliseService;
+import api.autotam.service.AnaliseServiceImpl;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -91,6 +93,9 @@ public class HibernateConfig {
 
     @Bean (name= "usuarioService")
     public UsuarioService usuarioService(){ return new UsuarioServiceImpl();}
+
+    @Bean (name= "analiseService")
+    public AnaliseService analiseService(){ return new AnaliseServiceImpl();}
 
 
 }

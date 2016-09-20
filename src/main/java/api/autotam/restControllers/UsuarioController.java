@@ -27,7 +27,7 @@ import java.util.List;
 public class UsuarioController {
 
     @Autowired
-    private UsuarioService service; //Service which will do all data retrieval/manipulation work
+    private UsuarioService usuarioService; //Service which will do all data retrieval/manipulation work
     @Autowired
     private AnaliseService analiseService;
 
@@ -36,7 +36,7 @@ public class UsuarioController {
    //-------------------Retrieve All Usuarios--------------------------------------------------------
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List<Usuario>> listAllUsuarios() {
-        List<Usuario> usuarios = service.findAllUsuarios();
+        List<Usuario> usuarios = usuarioService.findAllUsuarios();
         if(usuarios.isEmpty()){
             return new ResponseEntity<List<Usuario>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
         }
@@ -46,7 +46,7 @@ public class UsuarioController {
     //-------------------Retrieve Logged User--------------------------------------------------------
     @RequestMapping(value = "logged", method = RequestMethod.GET)
     public ResponseEntity<Usuario> fetchLoggedUser() {
-        Usuario loggedUser = service.getUsuarioLogado();
+        Usuario loggedUser = usuarioService.getUsuarioLogado();
         if(loggedUser == null){
             System.out.println("No logged User");
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -60,7 +60,7 @@ public class UsuarioController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Usuario> getUserById(@PathVariable("id") Integer id) {
         System.out.println("Fetching User with id: " + id);
-        Usuario usuario = service.findById(id);
+        Usuario usuario = usuarioService.findById(id);
         if (usuario == null) {
             System.out.println("User with id " + id + " not found");
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -73,7 +73,7 @@ public class UsuarioController {
     @RequestMapping(value = "byEmail/{email:.+}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Usuario> getUserByEmail(@PathVariable("email") String email) {
         System.out.println("Fetching User with email: " + email);
-        Usuario usuario = service.findByEmail(email);
+        Usuario usuario = usuarioService.findByEmail(email);
         if (usuario == null) {
             System.out.println("User with username " + email + " not found");
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -87,17 +87,17 @@ public class UsuarioController {
     public ResponseEntity<Void> createUser(@RequestBody Usuario usuario, UriComponentsBuilder ucBuilder) {
         System.out.println("Creating User " + usuario.getNome());
 
-        if (service.isUsuarioExist(usuario)) {
+        if (usuarioService.isUsuarioExist(usuario)) {
             System.out.println("A User with id " + usuario.getIdUsuario() + " already exist");
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
 
-        if (service.findByEmail(usuario.getEmail()) != null) {
+        if (usuarioService.findByEmail(usuario.getEmail()) != null) {
             System.out.println("A User with username " + usuario.getEmail() + " already exist");
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
 
-        service.saveUsuario(usuario);
+        usuarioService.saveUsuario(usuario);
         emailService.registrationConfirm(usuario);
 
         HttpHeaders headers = new HttpHeaders();
@@ -112,7 +112,7 @@ public class UsuarioController {
     public ResponseEntity<Usuario> updateUser(@PathVariable("id") Integer idUsuario, @RequestBody Usuario usuario) {
         System.out.println("Updating User " + idUsuario);
 
-        Usuario currentUsuario = service.findById(usuario.getIdUsuario());
+        Usuario currentUsuario = usuarioService.findById(usuario.getIdUsuario());
 
         if (currentUsuario==null) {
             System.out.println("User with id " + idUsuario + " not found");
@@ -123,7 +123,7 @@ public class UsuarioController {
         currentUsuario.setEmail(usuario.getEmail());
         currentUsuario.setSenha(usuario.getSenha());
 
-        service.updateUsuario(currentUsuario);
+        usuarioService.updateUsuario(currentUsuario);
         emailService.updateProfile(usuario);
         return new ResponseEntity<>(currentUsuario, HttpStatus.OK);
     }
@@ -134,13 +134,13 @@ public class UsuarioController {
     public ResponseEntity<Usuario> deleteUser(@PathVariable("id") Integer id) {
         System.out.println("Fetching & Deleting User with id " + id);
 
-        Usuario user = service.findById(id);
+        Usuario user = usuarioService.findById(id);
         if (user == null) {
             System.out.println("Unable to delete. User with id " + id + " not found");
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
-        service.deleteUsuario(user);
+        usuarioService.deleteUsuario(user);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 //-----------------------Recover Password -----------------------
@@ -148,7 +148,7 @@ public class UsuarioController {
     @RequestMapping(value = "noauth/password/{email:.+}", method = RequestMethod.GET)
     public ResponseEntity<Void> recoverPassword(@PathVariable("email") String email) {
         System.out.println("Fetching User with email: " + email);
-        Usuario usuario = service.findByEmail(email);
+        Usuario usuario = usuarioService.findByEmail(email);
         if (usuario == null) {
             System.out.println("User with username " + email + " not found");
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -160,7 +160,7 @@ public class UsuarioController {
     //-------------------Retrieve All Permissoes from Usuario--------------------------------------------------------
     @RequestMapping(value = "permissoes/", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Permissao>> listAllPermissoes() {
-        List<Permissao> permissoes = analiseService.findAllAnalises(service.getUsuarioLogado().getIdUsuario());
+        List<Permissao> permissoes = analiseService.findAllAnalises(usuarioService.getUsuarioLogado().getIdUsuario());
         if(permissoes.isEmpty()){
             return new ResponseEntity<List<Permissao>>(HttpStatus.NO_CONTENT);
         }
