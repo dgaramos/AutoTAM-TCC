@@ -1,3 +1,16 @@
+### Windows ###
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+### Java ###
+
 *.class
 
 # Mobile Tools for Java (J2ME)
@@ -11,4 +24,52 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
+### IntelliJ ###
+*.iml
+*.ipr
+*.iws
 .idea/
+
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+
+### Eclipse ###
+*.pydevproject
+.project
+.metadata
+bin/**
+tmp/**
+tmp/**/*
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.classpath
+.settings/
+.loadpath
+
+### Gradle ###
+# Exclude Folder List #
+.gradle/
+build/
+
+### Linux ###
+.*
+!.gitignore
+!.git*
+*~
+
+
+### OSX ###
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+
+
+# Thumbnails
+._*
+
+/bin
