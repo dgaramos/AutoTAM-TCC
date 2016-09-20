@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="exploded-war" name="AutoTAM-Client">
-    <output-path>$PROJECT_DIR$/out/artifacts/AutoTAM_Client</output-path>
-    <root id="root">
-      <element id="dir-copy" path="$PROJECT_DIR$/src/main/webapp/app/public" />
-    </root>
-  </artifact>
-</component>
