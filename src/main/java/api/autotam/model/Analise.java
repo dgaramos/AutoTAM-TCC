@@ -34,6 +34,16 @@ public class Analise {
     @Column(name = "status")
     private String status;
 
+    public Analise(){}
+
+    public Analise( String nome, String tipoAnalise, String objetoDeAnalise){
+        this.nome = nome;
+        this.tipoAnalise = tipoAnalise;
+        this.objetoDeAnalise = objetoDeAnalise;
+    }
+
+
+
     public Integer getIdAnalise() {
         return idAnalise;
     }

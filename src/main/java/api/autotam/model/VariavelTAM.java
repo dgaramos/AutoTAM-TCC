@@ -20,6 +20,9 @@ public class VariavelTAM {
     @Column(name = "idVariavel")
     private Integer idVariavel;
 
+    @Column(name = "nomeVariavel")
+    private String nomeVariavel;
+
     @ManyToOne(cascade = CascadeType.ALL )
     @JoinColumn(name = "idAnalise")
     @OnDelete(action = OnDeleteAction.CASCADE)
@@ -28,6 +31,16 @@ public class VariavelTAM {
 
     @Column(name = "nota")
     private double nota;
+
+    public VariavelTAM(){}
+
+    public VariavelTAM( String nomeVariavel, Analise analise){
+        this.nomeVariavel = nomeVariavel;
+        this.analise = analise;
+        this.nota = 0;
+    }
+
+
 
     public Integer getIdVariavel() {
         return idVariavel;
@@ -53,16 +66,27 @@ public class VariavelTAM {
         this.nota = nota;
     }
 
+    public String getNomeVariavel() {
+        return nomeVariavel;
+    }
+
+    public void setNomeVariavel(String nomeVariavel) {
+        this.nomeVariavel = nomeVariavel;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof VariavelTAM)) return false;
 
         VariavelTAM that = (VariavelTAM) o;
 
-        if (Double.compare(that.nota, nota) != 0) return false;
-        if (idVariavel != null ? !idVariavel.equals(that.idVariavel) : that.idVariavel != null) return false;
-        return analise != null ? analise.equals(that.analise) : that.analise == null;
+        if (Double.compare(that.getNota(), getNota()) != 0) return false;
+        if (getIdVariavel() != null ? !getIdVariavel().equals(that.getIdVariavel()) : that.getIdVariavel() != null)
+            return false;
+        if (getNomeVariavel() != null ? !getNomeVariavel().equals(that.getNomeVariavel()) : that.getNomeVariavel() != null)
+            return false;
+        return getAnalise() != null ? getAnalise().equals(that.getAnalise()) : that.getAnalise() == null;
 
     }
 
@@ -70,9 +94,10 @@ public class VariavelTAM {
     public int hashCode() {
         int result;
         long temp;
-        result = idVariavel != null ? idVariavel.hashCode() : 0;
-        result = 31 * result + (analise != null ? analise.hashCode() : 0);
-        temp = Double.doubleToLongBits(nota);
+        result = getIdVariavel() != null ? getIdVariavel().hashCode() : 0;
+        result = 31 * result + (getNomeVariavel() != null ? getNomeVariavel().hashCode() : 0);
+        result = 31 * result + (getAnalise() != null ? getAnalise().hashCode() : 0);
+        temp = Double.doubleToLongBits(getNota());
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         return result;
     }
@@ -81,6 +106,7 @@ public class VariavelTAM {
     public String toString() {
         return "VariavelTAM{" +
                 "idVariavel=" + idVariavel +
+                ", nomeVariavel='" + nomeVariavel + '\'' +
                 ", analise=" + analise +
                 ", nota=" + nota +
                 '}';

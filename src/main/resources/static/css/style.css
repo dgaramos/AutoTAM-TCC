@@ -153,6 +153,10 @@ body, .form-control{
 
 }
 
+.analiseForm-container{
+    padding-top: 20px;
+}
+
 .messages {
     font-size: smaller;
     padding-top: 5px;

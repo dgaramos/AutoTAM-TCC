@@ -36,6 +36,15 @@ public class Permissao implements Serializable{
     @Column(name = "isTestador")
     private boolean isTestador;
 
+    public Permissao(){}
+
+    public Permissao( Usuario usuario, Analise analise, boolean isAdministrador, boolean isTestador){
+        this.usuario = usuario;
+        this.analise = analise;
+        this.isAdministrador = isAdministrador;
+        this.isTestador = isTestador;
+    }
+
     public Integer getIdPermissao() {
         return idPermissao;
     }
