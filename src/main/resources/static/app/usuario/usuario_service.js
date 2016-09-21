@@ -5,7 +5,7 @@ services.factory('UsuarioService', function($http, $q){
     return {
 
         fetchAllUsuarios: function() {
-            return $http.get('http://localhost:8080/usuario/')
+            return $http.get(__env.apiUrl + '/usuario/')
                 .then(
                     function(response){
                         return response.data;
@@ -18,7 +18,7 @@ services.factory('UsuarioService', function($http, $q){
         },
 
         fetchUsuarioByEmail: function(email) {
-            return $http.get('http://localhost:8080/usuario/byEmail/'+ email )
+            return $http.get(__env.apiUrl + '/usuario/byEmail/'+ email )
                 .then(
                     function(response){
                         return response.data;
@@ -31,7 +31,7 @@ services.factory('UsuarioService', function($http, $q){
         },
 
         createUsuario: function(usuario){
-            return $http.post('http://localhost:8080/usuario/noauth/register/', usuario)
+            return $http.post(__env.apiUrl + '/usuario/noauth/register/', usuario)
                 .then(
                     function(response){
                         return response.data;
@@ -44,7 +44,7 @@ services.factory('UsuarioService', function($http, $q){
         },
 
         recoverPassword: function(email){
-            return $http.get('http://localhost:8080/usuario/noauth/password/'+ email)
+            return $http.get(__env.apiUrl + '/usuario/noauth/password/'+ email)
                 .then(
                     function(response){
                         return response.data;
@@ -57,7 +57,7 @@ services.factory('UsuarioService', function($http, $q){
         },
 
         updateUsuario: function(usuario, idUsuario){
-            return $http.put('http://localhost:8080/usuario/'+ idUsuario, usuario)
+            return $http.put(__env.apiUrl + '/usuario/'+ idUsuario, usuario)
                 .then(
                     function(response){
                         return response.data;
@@ -70,7 +70,7 @@ services.factory('UsuarioService', function($http, $q){
         },
 
         deleteUsuario: function(idUsuario){
-            return $http.delete('http://localhost:8080/usuario/'+ idUsuario)
+            return $http.delete(__env.apiUrl + '/usuario/'+ idUsuario)
                 .then(
                     function(response){
                         return response.data;
@@ -83,7 +83,7 @@ services.factory('UsuarioService', function($http, $q){
         },
 
         fetchLoggedUser: function(){
-            return $http.get('http://localhost:8080/usuario/logged')
+            return $http.get(__env.apiUrl + '/usuario/logged')
                 .then(
                     function(response){
                         return response.data;

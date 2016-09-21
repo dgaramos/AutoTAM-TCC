@@ -3,59 +3,69 @@
  */
 'use strict';
 
-controllers.controller("CadastroUsuarioController", function(UsuarioService, $location, $scope, $window) {
-    var model = this;
+controllers.controller("CadastroUsuarioController", function(UsuarioService, $location, $scope, $rootScope) {
+    var self = this;
 
-    model.message = { box: false, message:""};
+    self.message = { box: false, message:""};
 
-    model.usuario = {
+    self.usuario = {
         nome: "",
         email: "",
         senha: "",
         confirmaSenha: ""
     };
 
-    model.senhaAtual = "";
+    self.senhaAtual = "";
 
-    model.submit = function(isValid) {
+    self.reset = function(){
+        self.message = { box: false, message:""};
+        self.usuario = {
+            nome: "",
+            email: "",
+            senha: "",
+            confirmaSenha: ""
+        };
+    }
+
+    self.submit = function(isValid) {
         if (isValid) {
-            model.usuario = {nome: model.usuario.nome, email: model.usuario.email, senha: model.usuario.senha};
-            UsuarioService.createUsuario(model.usuario)
+            self.usuario = {nome: self.usuario.nome, email: self.usuario.email, senha: self.usuario.senha};
+            UsuarioService.createUsuario(self.usuario)
                 .then(function (response) {
                     $location.path("/Login");
                 })
                 .catch(function(errResponse){
                     $scope.errorBox = 'alert alert-danger';
-                    model.message.box = true;
-                    model.message.message = "Já existe um usuário cadastrado com esse e-mail, por favor cadastre-se com outro e-mail válido";
+                    self.message.box = true;
+                    self.message.message = "Já existe um usuário cadastrado com esse e-mail, por favor cadastre-se com outro e-mail válido";
                 })
         } else {
             $scope.errorBox = 'alert alert-warning';
-            model.message.box = true;
-            model.message.message = "Ainda existem campos inválidos no formulário, preencha-os e tente novamente";
+            self.message.box = true;
+            self.message.message = "Ainda existem campos inválidos no formulário, preencha-os e tente novamente";
         }
     };
 
-    model.recoverPassword = function(){
+    self.recoverPassword = function(){
         UsuarioService.recoverPassword(model.usuario.email)
             .then(function (response) {
                 $scope.errorBox = 'alert alert-success';
-                model.message.box = true;
-                model.message.message = "Um e-mail com sua senha cadastrada acabou de ser enviado, por favor cheque sua caixa de entrada";
+                self.message.box = true;
+                self.message.message = "Um e-mail com sua senha cadastrada acabou de ser enviado, por favor cheque sua caixa de entrada";
                 }
             ).catch(function(errResponse){
                 $scope.errorBox = 'alert alert-danger';
-                model.message.box = true;
-                model.message.message = "Não existe nenhum usuário cadastrado com esse email no sistema";
+                self.message.box = true;
+                self.message.message = "Não existe nenhum usuário cadastrado com esse email no sistema";
         })
     };
 
-    model.changePassword = function(isValid){
+    self.changePassword = function(isValid){
         if(isValid){
             if(model.senhaAtual == model.usuario.senha){
                 $scope.errorBox = 'alert alert-warning';
-                model.message.box = true;
-                model.message.message = "Sua nova senha não pode ser a mesma da senha atual!";
+                self.message.box = true;
+                self.message.message = "Sua nova senha não pode ser a mesma da senha atual!";
             }else{
                 UsuarioService.fetchLoggedUser()
                     .then(
@@ -65,12 +75,12 @@ controllers.controller("CadastroUsuarioController", function(UsuarioService, $lo
                                 loggedUser.senha = model.usuario.senha;
                                 UsuarioService.updateUsuario(loggedUser, loggedUser.idUsuario);
                                 $scope.errorBox = 'alert alert-success';
-                                model.message.box = true;
-                                model.message.message = "Sua senha foi alterada com sucesso!";
+                                self.message.box = true;
+                                self.message.message = "Sua senha foi alterada com sucesso!";
                             }else{
                                 $scope.errorBox = 'alert alert-danger';
-                                model.message.box = true;
-                                model.message.message = "A essa não é sua senha atual";
+                                self.message.box = true;
+                                self.message.message = "A essa não é sua senha atual";
                             }
                         },
                         function (errResponse) {
@@ -80,61 +90,62 @@ controllers.controller("CadastroUsuarioController", function(UsuarioService, $lo
             }
         }else {
             $scope.errorBox = 'alert alert-warning';
-            model.message.box = true;
-            model.message.message = "Ainda existem campos inválidos no formulário, preencha-os e tente novamente";
+            self.message.box = true;
+            self.message.message = "Ainda existem campos inválidos no formulário, preencha-os e tente novamente";
         }
     }
 
-    model.updateProfile = function(){
+    self.updateProfile = function(){
+        console.log($rootScope.loggedUsuario);
         UsuarioService.fetchLoggedUser()
             .then(
                 function (loggedUser) {
-                    console.log(model.usuario);
-                    if(model.usuario.nome == "" && model.usuario.email == ""){
+                    if(self.usuario.nome == "" && self.usuario.email == ""){
                         $scope.errorBox = 'alert alert-danger';
-                        model.message.box = true;
-                        model.message.message = "Você não alterou seus dados!";
-                    }else if(model.usuario.nome == ""){
-                        loggedUser.email = model.usuario.email;
+                        self.message.box = true;
+                        self.message.message = "Você não alterou seus dados!";
+                    }else if(self.usuario.nome == ""){
+                        loggedUser.email = self.usuario.email;
                         UsuarioService.updateUsuario(loggedUser, loggedUser.idUsuario)
                             .then(function (response) {
                                 $scope.errorBox = 'alert alert-success';
-                                model.message.box = true;
-                                model.message.message = "Seu email foi alterado com sucesso";
+                                self.message.box = true;
+                                self.message.message = "Seu email foi alterado com sucesso";
                             })
                             .catch(function(errResponse){
                                 $scope.errorBox = 'alert alert-danger';
-                                model.message.box = true;
-                                model.message.message = "Já existe um usuário cadastrado com esse e-mail, por favor cadastre-se com outro e-mail válido";
+                                self.message.box = true;
+                                self.message.message = "Já existe um usuário cadastrado com esse e-mail, por favor cadastre-se com outro e-mail válido";
                             })
-                    }else if(model.usuario.email == ""){
-                        loggedUser.nome = model.usuario.nome;
+                    }else if(self.usuario.email == ""){
+                        loggedUser.nome = self.usuario.nome;
                         UsuarioService.updateUsuario(loggedUser, loggedUser.idUsuario)
                             .then(function (response) {
                                 $scope.errorBox = 'alert alert-success';
-                                model.message.box = true;
-                                model.message.message = "Seu nome foi alterado com sucesso!";
-                                $window.location.reload();
+                                self.message.box = true;
+                                self.message.message = "Seu nome foi alterado com sucesso!";
+                                $rootScope.loggedUser();
+                                console.log($rootScope.loggedUsuario);
                             })
                             .catch(function(errResponse){
                                 $scope.errorBox = 'alert alert-danger';
-                                model.message.box = true;
-                                model.message.message = "Não foi possivel enviar um email com seus dados novos";
+                                self.message.box = true;
+                                self.message.message = "Não foi possivel enviar um email com seus dados novos, mas seus dados foram alterados";
                             })
                     }else{
-                        loggedUser.email = model.usuario.email;
-                        loggedUser.nome = model.usuario.nome;
+                        loggedUser.email = self.usuario.email;
+                        loggedUser.nome = self.usuario.nome;
                         UsuarioService.updateUsuario(loggedUser, loggedUser.idUsuario)
                             .then(function (response) {
                                 $scope.errorBox = 'alert alert-success';
-                                model.message.box = true;
-                                model.message.message = "Seus dados foram alterados com sucesso!";
-                                $window.location.reload();
+                                self.message.box = true;
+                                self.message.message = "Seus dados foram alterados com sucesso!";
+                                $rootScope.loggedUser();
                             })
                             .catch(function(errResponse){
                                 $scope.errorBox = 'alert alert-danger';
-                                model.message.box = true;
-                                model.message.message = "Já existe um usuário cadastrado com esse e-mail, por favor cadastre-se com outro e-mail válido";
+                                self.message.box = true;
+                                self.message.message = "Já existe um usuário cadastrado com esse e-mail, por favor cadastre-se com outro e-mail válido";
                             })
                     }
                 },

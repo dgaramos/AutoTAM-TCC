@@ -5,11 +5,11 @@
                 <p>Você está logado com o seguinte usuário</p>
             </div>
             <p>
-                <b>E-mail: </b>{{LoginCtrl.loggedUsuario.nome}}
+                <b>E-mail: </b>{{loggedUsuario.nome}}
             </p>
 
             <p>
-                <b>Senha: </b>{{LoginCtrl.loggedUsuario.email}}
+                <b>Senha: </b>{{loggedUsuario.email}}
             </p>
             <form role="form" ng-submit="LoginCtrl.logout()">
                 <button type="submit" class="btn btn-danger" >

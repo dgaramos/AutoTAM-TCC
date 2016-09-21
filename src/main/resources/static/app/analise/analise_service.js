@@ -8,7 +8,7 @@ services.factory('AnaliseService', function($http, $q){
 
     return {
         fetchAllAnalises: function () {
-            return $http.get('http://localhost:8080/usuario/permissoes/')
+            return $http.get(__env.apiUrl + '/usuario/permissoes/')
                 .then(
                     function (response) {
                         return response.data;
@@ -21,7 +21,7 @@ services.factory('AnaliseService', function($http, $q){
         },
 
         createAnalise: function (analise) {
-            return $http.post('http://localhost:8080/analise/', analise)
+            return $http.post(__env.apiUrl + '/analise/', analise)
                 .then(
                     function (response) {
                         return response.data;
@@ -34,7 +34,7 @@ services.factory('AnaliseService', function($http, $q){
         },
 
         updateAnalise: function (analise, idAnalise) {
-            return $http.put('http://localhost:8080/usuario/' + idAnalise, analise)
+            return $http.put(__env.apiUrl + '/usuario/' + idAnalise, analise)
                 .then(
                     function (response) {
                         return response.data;
@@ -47,7 +47,7 @@ services.factory('AnaliseService', function($http, $q){
         },
 
         deleteAnalise: function (idAnalise) {
-            return $http.delete('http://localhost:8080/analise/' + idAnalise)
+            return $http.delete(__env.apiUrl + '/analise/' + idAnalise)
                 .then(
                     function (response) {
                         return response.data;

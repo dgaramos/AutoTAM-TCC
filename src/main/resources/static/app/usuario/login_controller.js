@@ -4,7 +4,7 @@ controllers.controller('LoginController', function($rootScope, $http, $location,
 
     var self = this;
 
-    self.loggedUsuario = {idUsuario:null,nome:'',email:'',senha:''};
+    $rootScope.loggedUsuario = {idUsuario:null,nome:'',email:'',senha:''};
     self.tab = function(route) {
       return $route.current && route === $route.current.controller;
     };
@@ -17,7 +17,7 @@ controllers.controller('LoginController', function($rootScope, $http, $location,
                   + credentials.password)
           } : {};
 
-          $http.get('http://localhost:8080/userLogin', {
+          $http.get(__env.apiUrl + '/userLogin', {
               headers : headers
           }).then(function(response) {
               if (response.data.name) {
@@ -35,18 +35,18 @@ controllers.controller('LoginController', function($rootScope, $http, $location,
 
       authenticate();
 
-    var loggedUser = function(){
+    $rootScope.loggedUser = function(){
             UsuarioService.fetchLoggedUser()
             .then(
                 function (d) {
-                    self.loggedUsuario = d;
+                    $rootScope.loggedUsuario = d;
                 },
                 function (errResponse) {
                     console.error('Error while fetching logged Usuario');
                 }
             )
     }
-    loggedUser();
+    $rootScope.loggedUser();
 
       self.credentials = {};
       self.login = function() {
@@ -68,7 +68,7 @@ controllers.controller('LoginController', function($rootScope, $http, $location,
       self.logout = function() {
           $http.post('logout', {}).finally(function() {
               $rootScope.authenticated = false;
-              self.loggedUsuario={idUsuario:null,nome:'',email:'',senha:''};
+              $rootScope.loggedUsuario={idUsuario:null,nome:'',email:'',senha:''};
               $location.path("/Login");
           });
       }
