@@ -91,7 +91,7 @@ controllers.controller('AnaliseController', function($scope, AnaliseService, $lo
     self.reset = function(){
         self.permissao = {idPermissao: null,
             usuario: {idUsuario: null, nome: '', email: '', senha: ''},
-            analise: {idAnalise: null, nome: '', objetoDeAnalise: '', status: ''},
+            analise: {idAnalise: null, nome: '', tipoAnalise:'', objetoDeAnalise: '', status: ''},
             testador: false, administrador: false};
             self.analiseForm = false;
     };

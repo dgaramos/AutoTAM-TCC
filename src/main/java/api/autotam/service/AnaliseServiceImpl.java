@@ -52,7 +52,7 @@ public class AnaliseServiceImpl extends AbstractService implements AnaliseServic
         variaveis.add(pu);
         variavelTAMDAO.saveVariavel(pu);
 
-        if(analise.getTipoAnalise() == "TAM2"){
+        if(analise.getTipoAnalise().equals("TAM2")){
             VariavelTAM pue = new VariavelTAM("Uso Percebido", analise);
             variaveis.add(pue);
             variavelTAMDAO.saveVariavel(pue);
