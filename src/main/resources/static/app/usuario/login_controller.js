@@ -5,6 +5,7 @@ controllers.controller('LoginController', function($rootScope, $http, $location,
     var self = this;
 
     $rootScope.loggedUsuario = {idUsuario:null,nome:'',email:'',senha:''};
+
     self.tab = function(route) {
       return $route.current && route === $route.current.controller;
     };
@@ -46,7 +47,6 @@ controllers.controller('LoginController', function($rootScope, $http, $location,
                 }
             )
     }
-    $rootScope.loggedUser();
 
       self.credentials = {};
       self.login = function() {
@@ -56,6 +56,7 @@ controllers.controller('LoginController', function($rootScope, $http, $location,
                   $location.path("/Inicial");
                   self.error = false;
                   $rootScope.authenticated = true;
+                  $rootScope.loggedUser();
               } else {
                   console.log("Login failed")
                   $location.path("/Login");

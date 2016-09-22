@@ -25,6 +25,7 @@ controllers.controller("CadastroUsuarioController", function(UsuarioService, $lo
             senha: "",
             confirmaSenha: ""
         };
+        self.senhaAtual = "";
     }
 
     self.submit = function(isValid) {
@@ -47,7 +48,7 @@ controllers.controller("CadastroUsuarioController", function(UsuarioService, $lo
     };
 
     self.recoverPassword = function(){
-        UsuarioService.recoverPassword(model.usuario.email)
+        UsuarioService.recoverPassword(self.usuario.email)
             .then(function (response) {
                 $scope.errorBox = 'alert alert-success';
                 self.message.box = true;
@@ -62,31 +63,20 @@ controllers.controller("CadastroUsuarioController", function(UsuarioService, $lo
 
     self.changePassword = function(isValid){
         if(isValid){
-            if(model.senhaAtual == model.usuario.senha){
+            if(self.senhaAtual == self.usuario.senha){
                 $scope.errorBox = 'alert alert-warning';
                 self.message.box = true;
                 self.message.message = "Sua nova senha não pode ser a mesma da senha atual!";
+            }else if($rootScope.loggedUsuario.senha == self.senhaAtual){
+                $rootScope.loggedUsuario.senha = self.usuario.senha;
+                UsuarioService.updateUsuario($rootScope.loggedUsuario, $rootScope.loggedUsuario.idUsuario);
+                $scope.errorBox = 'alert alert-success';
+                self.message.box = true;
+                self.message.message = "Sua senha foi alterada com sucesso!";
             }else{
-                UsuarioService.fetchLoggedUser()
-                    .then(
-                        function (loggedUser) {
-                            console.log(model.senhaAtual);
-                            if(loggedUser.senha == model.senhaAtual){
-                                loggedUser.senha = model.usuario.senha;
-                                UsuarioService.updateUsuario(loggedUser, loggedUser.idUsuario);
-                                $scope.errorBox = 'alert alert-success';
-                                self.message.box = true;
-                                self.message.message = "Sua senha foi alterada com sucesso!";
-                            }else{
-                                $scope.errorBox = 'alert alert-danger';
-                                self.message.box = true;
-                                self.message.message = "A essa não é sua senha atual";
-                            }
-                        },
-                        function (errResponse) {
-                            console.error('Error while fetching logged Usuario');
-                        }
-                    )
+                $scope.errorBox = 'alert alert-danger';
+                self.message.box = true;
+                self.message.message = "A essa não é sua senha atual";
             }
         }else {
             $scope.errorBox = 'alert alert-warning';
@@ -96,64 +86,53 @@ controllers.controller("CadastroUsuarioController", function(UsuarioService, $lo
     }
 
     self.updateProfile = function(){
-        console.log($rootScope.loggedUsuario);
-        UsuarioService.fetchLoggedUser()
-            .then(
-                function (loggedUser) {
-                    if(self.usuario.nome == "" && self.usuario.email == ""){
-                        $scope.errorBox = 'alert alert-danger';
-                        self.message.box = true;
-                        self.message.message = "Você não alterou seus dados!";
-                    }else if(self.usuario.nome == ""){
-                        loggedUser.email = self.usuario.email;
-                        UsuarioService.updateUsuario(loggedUser, loggedUser.idUsuario)
-                            .then(function (response) {
-                                $scope.errorBox = 'alert alert-success';
-                                self.message.box = true;
-                                self.message.message = "Seu email foi alterado com sucesso";
-                            })
-                            .catch(function(errResponse){
-                                $scope.errorBox = 'alert alert-danger';
-                                self.message.box = true;
-                                self.message.message = "Já existe um usuário cadastrado com esse e-mail, por favor cadastre-se com outro e-mail válido";
-                            })
-                    }else if(self.usuario.email == ""){
-                        loggedUser.nome = self.usuario.nome;
-                        UsuarioService.updateUsuario(loggedUser, loggedUser.idUsuario)
-                            .then(function (response) {
-                                $scope.errorBox = 'alert alert-success';
-                                self.message.box = true;
-                                self.message.message = "Seu nome foi alterado com sucesso!";
-                                $rootScope.loggedUser();
-                                console.log($rootScope.loggedUsuario);
-                            })
-                            .catch(function(errResponse){
-                                $scope.errorBox = 'alert alert-danger';
-                                self.message.box = true;
-                                self.message.message = "Não foi possivel enviar um email com seus dados novos, mas seus dados foram alterados";
-                            })
-                    }else{
-                        loggedUser.email = self.usuario.email;
-                        loggedUser.nome = self.usuario.nome;
-                        UsuarioService.updateUsuario(loggedUser, loggedUser.idUsuario)
-                            .then(function (response) {
-                                $scope.errorBox = 'alert alert-success';
-                                self.message.box = true;
-                                self.message.message = "Seus dados foram alterados com sucesso!";
-                                $rootScope.loggedUser();
-                            })
-                            .catch(function(errResponse){
-                                $scope.errorBox = 'alert alert-danger';
-                                self.message.box = true;
-                                self.message.message = "Já existe um usuário cadastrado com esse e-mail, por favor cadastre-se com outro e-mail válido";
-                            })
-                    }
-                },
-                function (errResponse) {
-                    console.error('Error while fetching logged Usuario');
-                }
-        )
+        if(self.usuario.nome == "" && self.usuario.email == ""){
+            $scope.errorBox = 'alert alert-danger';
+            self.message.box = true;
+            self.message.message = "Você não alterou seus dados!";
+        }else if(self.usuario.nome == ""){
+            $rootScope.loggedUsuario.email = self.usuario.email;
+            UsuarioService.updateUsuario($rootScope.loggedUsuario, $rootScope.loggedUsuario.idUsuario)
+                .then(function (response) {
+                    $scope.errorBox = 'alert alert-success';
+                    self.message.box = true;
+                    self.message.message = "Seu email foi alterado com sucesso";
+                })
+                .catch(function(errResponse){
+                    $scope.errorBox = 'alert alert-danger';
+                    self.message.box = true;
+                    self.message.message = "Já existe um usuário cadastrado com esse e-mail, por favor cadastre-se com outro e-mail válido";
+                })
+        }else if(self.usuario.email == ""){
+            $rootScope.loggedUsuario.nome = self.usuario.nome;
+            UsuarioService.updateUsuario($rootScope.loggedUsuario, $rootScope.loggedUsuario.idUsuario)
+                .then(function (response) {
+                    $scope.errorBox = 'alert alert-success';
+                    self.message.box = true;
+                    self.message.message = "Seu nome foi alterado com sucesso!";
+                    $rootScope.loggedUser();
+                    console.log($rootScope.loggedUsuario);
+                })
+                .catch(function(errResponse){
+                    $scope.errorBox = 'alert alert-danger';
+                    self.message.box = true;
+                    self.message.message = "Não foi possivel enviar um email com seus dados novos, mas seus dados foram alterados";
+                })
+        }else{
+            $rootScope.loggedUsuario.email = self.usuario.email;
+            $rootScope.loggedUsuario.nome = self.usuario.nome;
+            UsuarioService.updateUsuario($rootScope.loggedUsuario, $rootScope.loggedUsuario.idUsuario)
+                .then(function (response) {
+                    $scope.errorBox = 'alert alert-success';
+                    self.message.box = true;
+                    self.message.message = "Seus dados foram alterados com sucesso!";
+                    $rootScope.loggedUser();
+                })
+                .catch(function(errResponse){
+                    $scope.errorBox = 'alert alert-danger';
+                    self.message.box = true;
+                    self.message.message = "Já existe um usuário cadastrado com esse e-mail, por favor cadastre-se com outro e-mail válido";
+                })
+        }
     }
-
-
 });
