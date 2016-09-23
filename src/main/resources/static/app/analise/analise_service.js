@@ -34,7 +34,7 @@ services.factory('AnaliseService', function($http, $q){
         },
 
         updateAnalise: function (analise, idAnalise) {
-            return $http.put(__env.apiUrl + '/usuario/' + idAnalise, analise)
+            return $http.put(__env.apiUrl + '/analise/' + idAnalise, analise)
                 .then(
                     function (response) {
                         return response.data;

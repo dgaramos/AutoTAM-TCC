@@ -1,6 +1,6 @@
 <div class="analise-container" ng-show="authenticated" ng-controller="AnaliseController as AnaliseCtrl">
     <div ng-show="AnaliseCtrl.analiseForm">
-        <div ng-include src="'app/analise/createanalise.html'"></div>
+        <div ng-include src="'app/analise/configs/criaanalise.html'"></div>
     </div>
     <div class="panel panel-default" >
         <div class="panel-heading"><span class="lead">Lista de Analises </span></div>
@@ -29,14 +29,15 @@
                     <p><b>Objeto Da Análise: </b>{{p.analise.objetoDeAnalise}}</p>
                     <b>
                         Variaveis:
-                        <button type="button" class="btn btn-default btn-xs"
-                                title="Adcionar variável extra" data-toggle="tooltip" data-placement="top" tooltip>
+                        <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#criaVariavelModal"
+                                title="Adcionar variável extra" data-toggle="tooltip" data-placement="right" tooltip>
                             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                         </button>
                     </b>
                     <ul>
                         <li ng-repeat="v in p.analise.variaveis">
-                            {{v.nomeVariavel}}
+                            <i class="glyphicon glyphicon-cog" data-toggle="modal" data-target="#criaVariavelModal"
+                               title="Editar Variavel" data-toggle="tooltip" data-placement="left" tooltip></i>{{v.nomeVariavel}}
                         </li>
                     </ul>
                     <p><b>Status: </b>{{p.analise.status}}</p>
@@ -47,6 +48,7 @@
                     <button type="button" ng-click="AnaliseCtrl.remove(p.analise.idAnalise)" class="btn btn-danger">
                         <span class="glyphicon glyphicon-trash" aria-hidden="true" ></span>
                     </button>
+                    <div ng-include src="'app/analise/configs/analisemodals.html'"></div>
                 </div>
             </div>
         </div>

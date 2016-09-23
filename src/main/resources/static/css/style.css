@@ -146,9 +146,18 @@ body, .form-control{
     padding-bottom:30px;
 
 }
+
+.analise-col-container .row{
+    background-color: #ececec;
+}
 .analise-col{
     padding: 20px;
-    height: 260px;
+    min-height: 260px;
+}
+
+.analise-col ul{
+    list-style-type: none;
+
 }
 
 .analise-col h5{

@@ -7,6 +7,7 @@
     <div class="container analiseForm-container">
         <form name="salvaAnaliseForm"
               ng-submit="AnaliseCtrl.submit()">
+            <input type="hidden" ng-model="AnaliseCtrl.permissao.analise.idAnalise" />
             <div class="form-group">
                 <label>Nome</label>
                 <input type="text" name="nome" class="nome form-control" ng-model="AnaliseCtrl.permissao.analise.nome" placeholder="Nome da Análise" required ng-minlength="5"/>

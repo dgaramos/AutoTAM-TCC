@@ -3,14 +3,15 @@
  */
 'use strict';
 
-controllers.controller('AnaliseController', function($scope, AnaliseService, $location) {
+controllers.controller('AnaliseController', function($scope, AnaliseService, $window) {
     var self = this;
     self.usuario = {idUsuario: null, nome: '', email: '', senha: ''};
     self.usuarios = [];
     self.permissao = {idPermissao: null,
         usuario: {idUsuario: null, nome: '', email: '', senha: ''},
-        analise: {idAnalise: null, nome: '', objetoDeAnalise: '', status: ''},
+        analise: {idAnalise: null, nome: '', objetoDeAnalise: '', variaveis:[], status: ''},
         testador: false, administrador: false};
+    self.variavel = {idVariavel: null, nomeVariavel: '', nota: ''};
     self.permissoes = [];
     self.analiseForm = false;
 
@@ -67,11 +68,14 @@ controllers.controller('AnaliseController', function($scope, AnaliseService, $lo
         }else{
             self.updateAnalise(self.permissao.analise, self.permissao.analise.idAnalise);
             console.log('Analise updated with nome ', self.permissao.analise.nome);
+            self.fetchAllAnalises();
+            self.reset();
         }
     };
 
     self.edit = function(idAnalise){
         console.log('Analise to be edited', idAnalise);
+        self.criaAnalise();
         for(var i = 0; i < self.permissoes.length; i++){
             if(self.permissoes[i].analise.idAnalise === idAnalise) {
                 self.permissao.analise = angular.copy(self.permissoes[i].analise);
@@ -98,5 +102,10 @@ controllers.controller('AnaliseController', function($scope, AnaliseService, $lo
 
     self.criaAnalise = function(){
         self.analiseForm = true;
+        $window.scrollTo(0, 0);
     }
+
+    self.editVariavel = function(idVariavel){
+        console.log('Variavel to be edited', idVariavel);
+    };
 })
