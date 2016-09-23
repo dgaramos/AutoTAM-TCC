@@ -70,6 +70,7 @@ controllers.controller('LoginController', function($rootScope, $http, $location,
         $http.post('logout', {}).finally(function() {
             $rootScope.authenticated = false;
             $rootScope.loggedUsuario={idUsuario:null,nome:'',email:'',senha:''};
+            $('.modal-backdrop').remove();
             $location.path("/Login");
         });
     }

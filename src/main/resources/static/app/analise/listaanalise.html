@@ -27,7 +27,13 @@
                     </h5>
                     <p><b>Nome: </b>{{p.analise.nome}}</p>
                     <p><b>Objeto Da Análise: </b>{{p.analise.objetoDeAnalise}}</p>
-                    <b>Variaveis: </b>
+                    <b>
+                        Variaveis:
+                        <button type="button" class="btn btn-default btn-xs"
+                                title="Adcionar variável extra" data-toggle="tooltip" data-placement="top" tooltip>
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        </button>
+                    </b>
                     <ul>
                         <li ng-repeat="v in p.analise.variaveis">
                             {{v.nomeVariavel}}

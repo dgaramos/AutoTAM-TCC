@@ -16,9 +16,10 @@ body, .form-control{
     padding: 20px 20px 5px 20px;
 }
 
-
-.generic-container {
+.form-group .btn{
+    margin: 0px 2px 5px 0px;
 }
+
 .mobile-menu{
     background-color: #f8f8f8;
     border-color: #e7e7e7;
@@ -60,6 +61,8 @@ body, .form-control{
     border-radius: 10px;
     box-shadow: 1px 1px 25px 5px #8F8F8F;
 }
+
+
 .cadastro-container{
     max-width: 800px;
     margin-left: auto;
@@ -131,6 +134,10 @@ body, .form-control{
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
+}
+
+.analise-container .glyphicon{
+    top:0px;
 }
 .analise-col-container{
     max-width: 1035px;

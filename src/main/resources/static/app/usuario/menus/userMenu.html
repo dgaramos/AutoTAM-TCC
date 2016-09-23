@@ -1,5 +1,5 @@
 <div ng-show="authenticated">
-    <div class="userMenu-container pull-right" ng-controller="LoginController as LoginCtrl">
+    <div class="userMenu-container pull-right">
         Olá, {{loggedUsuario.nome}}
         <div class="btn-group">
             <button type="button" class="btn btn-primary btn-xs dropdown-toggle"
@@ -17,7 +17,7 @@
                     Mudar Senha
                 </a></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="" ng-click="LoginCtrl.logout()">
+                <li><a href="" data-toggle="modal" data-target="#logoutModal">
                     <span class="glyphicon glyphicon-log-out" aria-hidden="true" ></span>
                     Sair
                 </a></li>
