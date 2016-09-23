@@ -52,14 +52,6 @@ public class AnaliseServiceImpl extends AbstractService implements AnaliseServic
         variaveis.add(pu);
         variavelTAMDAO.saveVariavel(pu);
 
-        if(analise.getTipoAnalise().equals("TAM2")){
-            VariavelTAM pue = new VariavelTAM("Uso Percebido", analise);
-            variaveis.add(pue);
-            variavelTAMDAO.saveVariavel(pue);
-        }else{
-            analise.setTipoAnalise("TAM1");
-        }
-
         analise.setVariaveis(variaveis);
         analiseDAO.saveAnalise(analise);
     }
@@ -74,7 +66,6 @@ public class AnaliseServiceImpl extends AbstractService implements AnaliseServic
     public Analise findById(Integer id) {
         return analiseDAO.findById(id);
     }
-
 
     @Override
     public void deleteAnalise(Analise analise) {

@@ -19,16 +19,21 @@
             <div class="row">
                 <div class = "col-xs-12 col-sm-4 col-md-3 analise-col" ng-repeat="p in AnaliseCtrl.permissoes | filter: search">
                     <h5>
-                        <span class="label label-default"><span ng-bind="p.analise.idAnalise"></span></span>
+                        <span class="label label-default">{{p.analise.idAnalise}}</span>
                         <span class="glyphicon glyphicon-certificate pull-right" aria-hidden="true"  ng-show="p.administrador"
                               title="Usuario Administrador" data-toggle="tooltip" data-placement="top" tooltip></span>
                         <span class="glyphicon glyphicon-edit pull-right" aria-hidden="true" ng-show="p.testador"
                               title="Usuario Testador" data-toggle="tooltip" data-placement="top" tooltip></span>
                     </h5>
-                    <p><b>Nome: </b><span ng-bind="p.analise.nome"></span></p>
-                    <p><b>Objeto Da Análise: </b><span ng-bind="p.analise.objetoDeAnalise"></span></p>
-                    <p><b>Tipo: </b><span ng-bind="p.analise.tipoAnalise"></span></p>
-                    <p><b>Status: </b><span ng-bind="p.analise.status"></span></p>
+                    <p><b>Nome: </b>{{p.analise.nome}}</p>
+                    <p><b>Objeto Da Análise: </b>{{p.analise.objetoDeAnalise}}</p>
+                    <b>Variaveis: </b>
+                    <ul>
+                        <li ng-repeat="v in p.analise.variaveis">
+                            {{v.nomeVariavel}}
+                        </li>
+                    </ul>
+                    <p><b>Status: </b>{{p.analise.status}}</p>
 
                     <button type="button" ng-click="AnaliseCtrl.edit(p.analise.idAnalise)" class="btn btn-success">
                         <span class="glyphicon glyphicon-cog" aria-hidden="true" ></span>

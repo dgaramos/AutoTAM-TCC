@@ -133,7 +133,7 @@ body, .form-control{
     margin-right: auto;
 }
 .analise-col-container{
-    max-width: 1000px;
+    max-width: 1035px;
     margin-left: auto;
     margin-right: auto;
     padding-bottom:30px;
@@ -141,8 +141,13 @@ body, .form-control{
 }
 .analise-col{
     padding: 20px;
+    height: 260px;
 }
 
+.analise-col h5{
+    margin: 0px 0px 15px 0px;
+
+}
 .analise-col:nth-of-type(even){
     background-color: #e7e7e7;
 

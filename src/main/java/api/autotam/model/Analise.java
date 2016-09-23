@@ -21,9 +21,6 @@ public class Analise {
     @Column(name = "nome")
     private String nome;
 
-    @Column(name = "tipoAnalise")
-    private String tipoAnalise;
-
     @Column(name = "objetoDeAnalise")
     private String objetoDeAnalise;
 
@@ -36,9 +33,8 @@ public class Analise {
 
     public Analise(){}
 
-    public Analise( String nome, String tipoAnalise, String objetoDeAnalise){
+    public Analise( String nome, String objetoDeAnalise){
         this.nome = nome;
-        this.tipoAnalise = tipoAnalise;
         this.objetoDeAnalise = objetoDeAnalise;
     }
 
@@ -76,14 +72,6 @@ public class Analise {
         this.status = status;
     }
 
-    public String getTipoAnalise() {
-        return tipoAnalise;
-    }
-
-    public void setTipoAnalise(String tipoAnalise) {
-        this.tipoAnalise = tipoAnalise;
-    }
-
     public List<VariavelTAM> getVariaveis() {
         return variaveis;
     }
@@ -95,28 +83,28 @@ public class Analise {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Analise)) return false;
 
         Analise analise = (Analise) o;
 
-        if (idAnalise != null ? !idAnalise.equals(analise.idAnalise) : analise.idAnalise != null) return false;
-        if (nome != null ? !nome.equals(analise.nome) : analise.nome != null) return false;
-        if (tipoAnalise != null ? !tipoAnalise.equals(analise.tipoAnalise) : analise.tipoAnalise != null) return false;
-        if (objetoDeAnalise != null ? !objetoDeAnalise.equals(analise.objetoDeAnalise) : analise.objetoDeAnalise != null)
+        if (getIdAnalise() != null ? !getIdAnalise().equals(analise.getIdAnalise()) : analise.getIdAnalise() != null)
             return false;
-        if (variaveis != null ? !variaveis.equals(analise.variaveis) : analise.variaveis != null) return false;
-        return status != null ? status.equals(analise.status) : analise.status == null;
+        if (getNome() != null ? !getNome().equals(analise.getNome()) : analise.getNome() != null) return false;
+        if (getObjetoDeAnalise() != null ? !getObjetoDeAnalise().equals(analise.getObjetoDeAnalise()) : analise.getObjetoDeAnalise() != null)
+            return false;
+        if (getVariaveis() != null ? !getVariaveis().equals(analise.getVariaveis()) : analise.getVariaveis() != null)
+            return false;
+        return getStatus() != null ? getStatus().equals(analise.getStatus()) : analise.getStatus() == null;
 
     }
 
     @Override
     public int hashCode() {
-        int result = idAnalise != null ? idAnalise.hashCode() : 0;
-        result = 31 * result + (nome != null ? nome.hashCode() : 0);
-        result = 31 * result + (tipoAnalise != null ? tipoAnalise.hashCode() : 0);
-        result = 31 * result + (objetoDeAnalise != null ? objetoDeAnalise.hashCode() : 0);
-        result = 31 * result + (variaveis != null ? variaveis.hashCode() : 0);
-        result = 31 * result + (status != null ? status.hashCode() : 0);
+        int result = getIdAnalise() != null ? getIdAnalise().hashCode() : 0;
+        result = 31 * result + (getNome() != null ? getNome().hashCode() : 0);
+        result = 31 * result + (getObjetoDeAnalise() != null ? getObjetoDeAnalise().hashCode() : 0);
+        result = 31 * result + (getVariaveis() != null ? getVariaveis().hashCode() : 0);
+        result = 31 * result + (getStatus() != null ? getStatus().hashCode() : 0);
         return result;
     }
 
@@ -125,7 +113,6 @@ public class Analise {
         return "Analise{" +
                 "idAnalise=" + idAnalise +
                 ", nome='" + nome + '\'' +
-                ", tipoAnalise='" + tipoAnalise + '\'' +
                 ", objetoDeAnalise='" + objetoDeAnalise + '\'' +
                 ", variaveis=" + variaveis +
                 ", status='" + status + '\'' +
