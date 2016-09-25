@@ -11,9 +11,9 @@ controllers.controller('AnaliseController', function($scope, AnaliseService, $wi
         usuario: {idUsuario: null, nome: '', email: '', senha: ''},
         analise: {idAnalise: null, nome: '', objetoDeAnalise: '', variaveis:[], status: ''},
         testador: false, administrador: false};
-    self.variavel = {idVariavel: null, nomeVariavel: '', nota: ''};
     self.permissoes = [];
     self.analiseForm = false;
+    self.variavel = {idVariavel: null, nomeVariavel: '', nota: ''};
 
     self.fetchAllAnalises = function(){
         AnaliseService.fetchAllAnalises()
@@ -64,16 +64,16 @@ controllers.controller('AnaliseController', function($scope, AnaliseService, $wi
             console.log('Saving New Analise', self.permissao.analise);
             self.createAnalise(self.permissao.analise);
             self.fetchAllAnalises();
-            self.reset();
+            self.resetAnalise();
         }else{
             self.updateAnalise(self.permissao.analise, self.permissao.analise.idAnalise);
             console.log('Analise updated with nome ', self.permissao.analise.nome);
             self.fetchAllAnalises();
-            self.reset();
+            self.resetAnalise();
         }
     };
 
-    self.edit = function(idAnalise){
+    self.editAnalise = function(idAnalise){
         console.log('Analise to be edited', idAnalise);
         self.criaAnalise();
         for(var i = 0; i < self.permissoes.length; i++){
@@ -84,15 +84,15 @@ controllers.controller('AnaliseController', function($scope, AnaliseService, $wi
         }
     };
 
-    self.remove = function(idAnalise){
+    self.removeAnalise = function(idAnalise){
         console.log('Analise id to be deleted', idAnalise);
         if(self.permissao.analise.idAnalise === idAnalise) {//clean form if the user to be deleted is shown there.
-            self.reset();
+            self.resetAnalise();
         }
         self.deleteAnalise(idAnalise);
     };
 
-    self.reset = function(){
+    self.resetAnalise = function(){
         self.permissao = {idPermissao: null,
             usuario: {idUsuario: null, nome: '', email: '', senha: ''},
             analise: {idAnalise: null, nome: '', objetoDeAnalise: '', status: ''},
@@ -103,9 +103,25 @@ controllers.controller('AnaliseController', function($scope, AnaliseService, $wi
     self.criaAnalise = function(){
         self.analiseForm = true;
         $window.scrollTo(0, 0);
-    }
-
-    self.editVariavel = function(idVariavel){
-        console.log('Variavel to be edited', idVariavel);
     };
+//--------------------------------------Operações com Variáveis--------------------------------------------------------
+    self.editVariavel = function(idAnalise,idVariavel){
+        console.log('Variavel to be edited', idVariavel);
+        for(var i = 0; i < self.permissoes.length; i++){
+            if(self.permissoes[i].analise.idAnalise === idAnalise) {
+                self.permissao.analise = angular.copy(self.permissoes[i].analise);
+                for(var i = 0; i < self.permissao.analise.variaveis.length; i++){
+                    if(self.permissao.analise.variaveis[i].idVariavel === idVariavel) {
+                        self.variavel = angular.copy(self.permissao.analise.variaveis[i]);
+                        break;
+                    }
+                }
+            }
+        }
+    };
+
+    self.resetVariavel = function(){
+        self.variavel = {idVariavel: null, nomeVariavel: '', nota: ''};
+    };
+
 })

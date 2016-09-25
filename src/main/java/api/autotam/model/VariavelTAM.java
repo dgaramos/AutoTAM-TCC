@@ -1,10 +1,12 @@
 package api.autotam.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by danilo on 20/09/16.
@@ -29,6 +31,10 @@ public class VariavelTAM {
     @JsonBackReference
     private Analise analise;
 
+    @OneToMany(mappedBy = "variavelTAM", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonManagedReference
+    private List<Questao> questoes;
+
     @Column(name = "nota")
     private double nota;
 
@@ -40,14 +46,20 @@ public class VariavelTAM {
         this.nota = 0;
     }
 
-
-
     public Integer getIdVariavel() {
         return idVariavel;
     }
 
     public void setIdVariavel(Integer idVariavel) {
         this.idVariavel = idVariavel;
+    }
+
+    public String getNomeVariavel() {
+        return nomeVariavel;
+    }
+
+    public void setNomeVariavel(String nomeVariavel) {
+        this.nomeVariavel = nomeVariavel;
     }
 
     public Analise getAnalise() {
@@ -58,20 +70,20 @@ public class VariavelTAM {
         this.analise = analise;
     }
 
+    public List<Questao> getQuestoes() {
+        return questoes;
+    }
+
+    public void setQuestoes(List<Questao> questoes) {
+        this.questoes = questoes;
+    }
+
     public double getNota() {
         return nota;
     }
 
     public void setNota(double nota) {
         this.nota = nota;
-    }
-
-    public String getNomeVariavel() {
-        return nomeVariavel;
-    }
-
-    public void setNomeVariavel(String nomeVariavel) {
-        this.nomeVariavel = nomeVariavel;
     }
 
     @Override
@@ -86,7 +98,8 @@ public class VariavelTAM {
             return false;
         if (getNomeVariavel() != null ? !getNomeVariavel().equals(that.getNomeVariavel()) : that.getNomeVariavel() != null)
             return false;
-        return getAnalise() != null ? getAnalise().equals(that.getAnalise()) : that.getAnalise() == null;
+        if (getAnalise() != null ? !getAnalise().equals(that.getAnalise()) : that.getAnalise() != null) return false;
+        return getQuestoes() != null ? getQuestoes().equals(that.getQuestoes()) : that.getQuestoes() == null;
 
     }
 
@@ -97,6 +110,7 @@ public class VariavelTAM {
         result = getIdVariavel() != null ? getIdVariavel().hashCode() : 0;
         result = 31 * result + (getNomeVariavel() != null ? getNomeVariavel().hashCode() : 0);
         result = 31 * result + (getAnalise() != null ? getAnalise().hashCode() : 0);
+        result = 31 * result + (getQuestoes() != null ? getQuestoes().hashCode() : 0);
         temp = Double.doubleToLongBits(getNota());
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         return result;
@@ -108,6 +122,7 @@ public class VariavelTAM {
                 "idVariavel=" + idVariavel +
                 ", nomeVariavel='" + nomeVariavel + '\'' +
                 ", analise=" + analise +
+                ", questoes=" + questoes +
                 ", nota=" + nota +
                 '}';
     }
