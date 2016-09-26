@@ -1,0 +1,25 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" >&times;</button>
+        <h4 class="modal-title">Deletar Variável</h4>
+    </div>
+    <div class="modal-body clearfix">
+        <div class="alert alert-danger">
+            <p>
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                Você realmente deseja apagar a variavel abaixo?
+            </p>
+        </div>
+        <div class="delete-container">
+            <h5><span class="label label-default">{{AnaliseCtrl.variavel.idVariavel}}</span></h5>
+            <p><b>Nome: </b>{{AnaliseCtrl.variavel.nomeVariavel}}</p>
+            <p><b>Análise: </b>{{AnaliseCtrl.permissao.analise.nome}}</p>
+        </div>
+        <hr>
+
+        <button type="submit" class="btn btn-danger pull-right" ng-click="AnaliseCtrl.deleteVariavel(AnaliseCtrl.variavel.idVariavel, AnaliseCtrl.permissao.analise.idAnalise)">
+            <span class="glyphicon glyphicon-ok" aria-hidden="true" ></span>
+            Apagar
+        </button>
+    </div>
+</div>

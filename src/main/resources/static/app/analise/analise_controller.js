@@ -87,12 +87,28 @@ controllers.controller('AnaliseController', function($scope, AnaliseService, $wi
         }
     };
 
-    self.removeAnalise = function(idAnalise){
+
+    self.removeAnalise= function(analise){
+        self.permissao.analise = analise;
+    }
+
+
+    self.deleteAnalise = function(idAnalise){
         console.log('Analise id to be deleted', idAnalise);
-        if(self.permissao.analise.idAnalise === idAnalise) {//clean form if the user to be deleted is shown there.
-            self.reset();
-        }
-        self.deleteAnalise(idAnalise);
+        AnaliseService.deleteAnalise(idAnalise)
+            .then(
+            function(d){
+                self.fetchAllAnalises(idAnalise);
+                self.reset();
+                $('#deleteAnaliseModal').modal('hide');
+                $('body').removeClass('modal-open');
+                $('.modal-backdrop').remove();
+            },
+            function(errResponse){
+                console.error('Error while fetching variaveis from Analise');
+            }
+        );
+
     };
 
     self.reset = function(){
@@ -112,7 +128,9 @@ controllers.controller('AnaliseController', function($scope, AnaliseService, $wi
         self.analiseForm.criaAnalise = true;
         $window.scrollTo(0, 0);
     };
+
 //--------------------------------------Operações com Variáveis--------------------------------------------------------
+
     self.analiseFormAbreVariavelExtra = function(){
         self.analiseForm.variavelExtra = true;
     };
@@ -137,7 +155,23 @@ controllers.controller('AnaliseController', function($scope, AnaliseService, $wi
         self.variavel = {idVariavel: null, nomeVariavel: '', nota: ''};
     };
 
-    self.editVariavel = function(idAnalise,idVariavel){
+    self.fetchAllVariaveisFromAnalise = function(idAnalise){
+        AnaliseService.fetchAllVariaveisFromAnalise(idAnalise)
+            .then(
+                function(d) {
+                    for(var i = 0; i < self.permissoes.length; i++){
+                        if(self.permissoes[i].analise.idAnalise === idAnalise) {
+                            self.permissoes[i].analise.variaveis = d;
+                        }
+                    }
+                },
+                function(errResponse){
+                    console.error('Error while fetching variaveis from Analise');
+                }
+            );
+    };
+
+    self.editVariavel = function(idVariavel, idAnalise){
         console.log('Variavel to be edited', idVariavel);
         for(var i = 0; i < self.permissoes.length; i++){
             if(self.permissoes[i].analise.idAnalise === idAnalise) {
@@ -154,9 +188,40 @@ controllers.controller('AnaliseController', function($scope, AnaliseService, $wi
     };
 
     self.addVariaveltoAnalise = function (idAnalise, variavel){
-        AnaliseService.addVariaveltoAnalise(idAnalise, variavel);
-        $('.modal-backdrop').remove();
-        self.fetchAllAnalises();
-        self.reset();
+        AnaliseService.addVariaveltoAnalise(idAnalise, variavel)
+            .then(
+                function(d){
+                    self.fetchAllVariaveisFromAnalise(idAnalise);
+                    self.reset();
+                    $('#criaVariavelModal').modal('hide');
+                    $('body').removeClass('modal-open');
+                    $('.modal-backdrop').remove();
+                },
+                function(errResponse){
+                    console.error('Error while fetching variaveis from Analise');
+                }
+            );
+    };
+
+    self.removeVariavel = function (variavel, analise){
+        self.variavel = variavel;
+        self.permissao.analise = analise;
+
+    }
+
+    self.deleteVariavel = function (idVariavel, idAnalise){
+        AnaliseService.deleteVariavel(idVariavel)
+            .then(
+                function(d){
+                    self.fetchAllVariaveisFromAnalise(idAnalise);
+                    self.reset();
+                    $('#deleteVariavelModal').modal('hide');
+                    $('body').removeClass('modal-open');
+                    $('.modal-backdrop').remove();
+                },
+                function(errResponse){
+                    console.error('Error while fetching variaveis from Analise');
+                }
+            );
     };
 })

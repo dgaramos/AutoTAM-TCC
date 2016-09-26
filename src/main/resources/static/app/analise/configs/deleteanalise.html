@@ -1,0 +1,33 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" >&times;</button>
+        <h4 class="modal-title">Deletar Análise</h4>
+    </div>
+    <div class="modal-body clearfix">
+        <div class="alert alert-danger">
+            <p>
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                Você realmente deseja apagar a análise abaixo?
+            </p>
+        </div>
+        <div class="delete-container">
+            <h5><span class="label label-default">{{AnaliseCtrl.permissao.analise.idAnalise}}</span></h5>
+            <p><b>Nome: </b>{{AnaliseCtrl.permissao.analise.nome}}</p>
+            <p><b>Objeto Da Análise: </b>{{AnaliseCtrl.permissao.analise.objetoDeAnalise}}</p>
+            <b>Variáveis: </b>
+            <ul>
+                <li ng-repeat="v in AnaliseCtrl.permissao.analise.variaveis">
+                    {{v.nomeVariavel}}
+                </li>
+            </ul>
+            <p><b>Status: </b>{{p.analise.status}}</p>
+        </div>
+
+        <hr>
+
+        <button type="submit" class="btn btn-danger pull-right" ng-click="AnaliseCtrl.deleteAnalise(AnaliseCtrl.permissao.analise.idAnalise)">
+            <span class="glyphicon glyphicon-ok" aria-hidden="true" ></span>
+           Apagar
+        </button>
+    </div>
+</div>

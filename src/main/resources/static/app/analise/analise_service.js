@@ -59,6 +59,19 @@ services.factory('AnaliseService', function($http, $q){
                 );
         },
 
+        fetchAllVariaveisFromAnalise: function (idAnalise) {
+            return $http.get(__env.apiUrl + '/analise/variaveis/' + idAnalise)
+                .then(
+                    function (response) {
+                        return response.data;
+                    },
+                    function (errResponse) {
+                        console.error('Error while fetching usuarios');
+                        return $q.reject(errResponse);
+                    }
+                );
+        },
+
         deleteAnalise: function (idAnalise) {
             return $http.delete(__env.apiUrl + '/analise/' + idAnalise)
                 .then(
@@ -67,6 +80,19 @@ services.factory('AnaliseService', function($http, $q){
                     },
                     function (errResponse) {
                         console.error('Error while deleting analise');
+                        return $q.reject(errResponse);
+                    }
+                );
+        },
+
+        deleteVariavel: function (idVariavel) {
+            return $http.delete(__env.apiUrl + '/analise/variavel/' + idVariavel)
+                .then(
+                    function (response) {
+                        return response.data;
+                    },
+                    function (errResponse) {
+                        console.error('Error while deleting variavel');
                         return $q.reject(errResponse);
                     }
                 );

@@ -37,8 +37,14 @@
                     <ul>
                         <li ng-repeat="v in p.analise.variaveis">
                             <i class="glyphicon glyphicon-cog" data-toggle="modal" data-target="#criaVariavelModal"
-                               ng-click="AnaliseCtrl.editVariavel(p.analise.idAnalise, v.idVariavel)" title="Editar Variavel"
-                               data-toggle="tooltip" data-placement="left" tooltip></i>{{v.nomeVariavel}}
+                               ng-click="AnaliseCtrl.editVariavel( v.idVariavel, p.analise.idAnalise)" title="Editar Variavel"
+                               data-toggle="tooltip" data-placement="left" tooltip></i>
+
+                            {{v.nomeVariavel}}
+
+                            <i class="glyphicon glyphicon-remove" ng-show="!v.variavelPadrao" data-toggle="modal" data-target="#deleteVariavelModal"
+                               ng-click="AnaliseCtrl.removeVariavel(v, p.analise)" title="Remover Variavel"
+                               data-toggle="tooltip" data-placement="right" tooltip></i>
                         </li>
                     </ul>
                     <p><b>Status: </b>{{p.analise.status}}</p>
@@ -46,7 +52,8 @@
                     <button type="button" ng-click="AnaliseCtrl.editAnalise(p.analise.idAnalise)" class="btn btn-success">
                         <span class="glyphicon glyphicon-cog" aria-hidden="true" ></span>
                     </button>
-                    <button type="button" ng-click="AnaliseCtrl.removeAnalise(p.analise.idAnalise)" class="btn btn-danger">
+                    <button type="button" data-toggle="modal" data-target="#deleteAnaliseModal"
+                            ng-click="AnaliseCtrl.removeAnalise(p.analise)" class="btn btn-danger">
                         <span class="glyphicon glyphicon-trash" aria-hidden="true" ></span>
                     </button>
                     <div ng-include src="'app/analise/configs/analisemodals.html'"></div>

@@ -16,10 +16,6 @@ myApp.config(function ($routeProvider, $httpProvider){
             templateUrl: 'app/pages/cadastrousuario.html'
         }).
 
-        when('/ConfigAnalise', {
-            templateUrl: 'app/pages/configanalise.html'
-        }).
-
         when('/Login', {
             templateUrl: 'app/pages/login.html',
             controller: 'LoginController',
