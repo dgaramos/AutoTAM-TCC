@@ -20,7 +20,7 @@ import java.util.List;
 public class UsuarioServiceImpl extends AbstractService implements UsuarioService {
 
     @Autowired
-    private UsuarioDAO usuarioDao;
+    private UsuarioDAO usuarioDAO;
 
     @Override
     public Usuario getUsuarioLogado() {
@@ -28,27 +28,25 @@ public class UsuarioServiceImpl extends AbstractService implements UsuarioServic
     }
 
     public void saveUsuario(Usuario usuario) {
-        usuarioDao.saveUsuario(usuario);
+        usuarioDAO.saveUsuario(usuario);
     }
 
     public List<Usuario> findAllUsuarios() {
-        return usuarioDao.findAllUsuarios();
+        return usuarioDAO.findAllUsuarios();
     }
 
-    public void deleteUsuario(Usuario usuario) {
-        usuarioDao.deleteUsuario(usuario);
-    }
+    public void deleteUsuario(int idUsuario) {usuarioDAO.deleteUsuario(idUsuario);}
 
     public Usuario findById(Integer id) {
-        return usuarioDao.findById(id);
+        return usuarioDAO.findById(id);
     }
 
     public Usuario findByEmail(String email) {
-        return usuarioDao.findByEmail(email);
+        return usuarioDAO.findByEmail(email);
     }
 
     public void updateUsuario(Usuario usuario){
-        usuarioDao.updateUsuario(usuario);
+        usuarioDAO.updateUsuario(usuario);
     }
 
     public boolean isUsuarioExist(Usuario usuario) {

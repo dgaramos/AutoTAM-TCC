@@ -41,19 +41,16 @@ public class AnaliseServiceImpl extends AbstractService implements AnaliseServic
         analise.setStatus("Avaliação das Questões");
         administrador.setAnalise(analise);
         permissaoDAO.savePermissao(administrador);
-
-        List<VariavelTAM> variaveis = new ArrayList<VariavelTAM>();
-
-        VariavelTAM peou = new VariavelTAM("Facilidade de Uso Percebida", analise);
-        variaveis.add(peou);
-        variavelTAMDAO.saveVariavel(peou);
-
-        VariavelTAM pu = new VariavelTAM("Utilidade Percebida", analise);
-        variaveis.add(pu);
-        variavelTAMDAO.saveVariavel(pu);
-
-        analise.setVariaveis(variaveis);
         analiseDAO.saveAnalise(analise);
+    }
+
+    public void addVariavelToAnalise(int idAnalise, VariavelTAM variavel){
+        Analise analise = findById(idAnalise);
+        variavel.setAnalise(analise);
+        List<VariavelTAM> variaveis = analise.getVariaveis();
+        variaveis.add(variavel);
+        analise.setVariaveis(variaveis);
+        updateAnalise(analise);
     }
 
     @Override
@@ -63,20 +60,17 @@ public class AnaliseServiceImpl extends AbstractService implements AnaliseServic
     }
 
     @Override
-    public Analise findById(Integer id) {
-        return analiseDAO.findById(id);
+    public Analise findById(int idAnalise) {
+        return analiseDAO.findById(idAnalise);
     }
 
     @Override
-    public void deleteAnalise(Analise analise) {
-        analiseDAO.deleteAnalise(analise);
+    public void deleteAnalise(int idAnalise) {
+        analiseDAO.deleteAnalise(idAnalise);
     }
 
     @Override
-    public void updateAnalise(Analise analise) {
-        analiseDAO.updateAnalise(analise);
-
-    }
+    public void updateAnalise(Analise analise) {analiseDAO.updateAnalise(analise);}
 
     @Override
     public boolean isAnaliseExist(Analise analise) {

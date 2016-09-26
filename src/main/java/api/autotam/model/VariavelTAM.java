@@ -32,6 +32,7 @@ public class VariavelTAM {
     private Analise analise;
 
     @OneToMany(mappedBy = "variavelTAM", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonManagedReference
     private List<Questao> questoes;
 

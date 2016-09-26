@@ -3,6 +3,7 @@ package api.autotam.service;
 import api.autotam.model.Analise;
 import api.autotam.model.Permissao;
 import api.autotam.model.Usuario;
+import api.autotam.model.VariavelTAM;
 
 import java.util.List;
 
@@ -13,11 +14,13 @@ public interface AnaliseService {
 
     void saveAnalise(Analise analise);
 
+    void addVariavelToAnalise(int idAnalise, VariavelTAM variavel);
+
     List<Permissao> findAllAnalises(int id);
 
-    Analise findById(Integer id);
+    Analise findById(int idAnalise);
 
-    void deleteAnalise(Analise analise);
+    void deleteAnalise(int idAnalise);
 
     void updateAnalise(Analise analise);
 

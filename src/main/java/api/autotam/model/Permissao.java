@@ -21,7 +21,7 @@ public class Permissao implements Serializable{
     @Column(name = "idPermissao")
     private Integer idPermissao;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL )
     @JoinColumn(name = "idUsuario")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Usuario usuario;

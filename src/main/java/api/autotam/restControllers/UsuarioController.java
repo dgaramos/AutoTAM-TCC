@@ -140,7 +140,7 @@ public class UsuarioController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
-        usuarioService.deleteUsuario(user);
+        usuarioService.deleteUsuario(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 //-----------------------Recover Password -----------------------

@@ -2,6 +2,7 @@ package api.autotam.dao;
 
 import api.autotam.model.Analise;
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
@@ -17,29 +18,30 @@ public class AnaliseDAOImpl extends AbstractDAO implements AnaliseDAO {
         persist(analise);
     }
 
-    @SuppressWarnings("unchecked")
-    public List<Analise> findAllAnalises() {
-        Criteria criteria = getSession().createCriteria(Analise.class);
-        return (List<Analise>) criteria.list();
-    }
-
-    public void deleteAnalise(Analise analise) {
-        delete(analise);
-    }
-
-    public Analise findById(Integer id) {
-        Criteria criteria = getSession().createCriteria(Analise.class);
-        criteria.add(Restrictions.eq("id",id));
-        return (Analise) criteria.uniqueResult();
-    }
-
-    public Analise findByObjetoDeAnalise(String objetoDeAnalise) {
-        Criteria criteria = getSession().createCriteria(Analise.class);
-        criteria.add(Restrictions.eq("objetoDeAnalise",objetoDeAnalise));
-        return (Analise) criteria.uniqueResult();
-    }
-
     public void updateAnalise(Analise analise) {
         getSession().update(analise);
+    }
+
+    public void deleteAnalise(int idAnalise) {
+        Query query = getSession().createSQLQuery(
+                "delete from analise where idAnalise = :idAnalise");
+        query.setParameter("idAnalise", idAnalise);
+        query.executeUpdate();
+    }
+
+    public Analise findById(int idAnalise) {
+        Query query = getSession().createSQLQuery(
+                "select * from analise a where a.idAnalise = :idAnalise")
+                .addEntity(Analise.class)
+                .setParameter("idAnalise", idAnalise);
+        return (Analise) query.uniqueResult() ;
+    }
+
+    public Analise findByObjetoDeAnalise(String objetoDeAnalise){
+        Query query = getSession().createSQLQuery(
+                "select * from analise a where a.objetoDeAnalise = :objetoDeAnalise")
+                .addEntity(Analise.class)
+                .setParameter("objetoDeAnalise", objetoDeAnalise);
+        return (Analise) query.uniqueResult();
     }
 }

@@ -1,7 +1,9 @@
 package api.autotam.dao;
 
 import api.autotam.model.VariavelTAM;
+import org.hibernate.Criteria;
 import org.hibernate.Query;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -12,10 +14,12 @@ import java.util.List;
 
 @Repository("variavelTAMDAO")
 public class VariavelTAMDAOImpl extends AbstractDAO implements VariavelTAMDAO {
-    @Override
-    public void saveVariavel(VariavelTAM variavel) {
 
-    }
+    @Override
+    public void saveVariavel(VariavelTAM variavel) {persist(variavel);}
+
+    @Override
+    public void updateVariavel(VariavelTAM variavel) { getSession().update(variavel);}
 
     @Override
     public List<VariavelTAM> findAllVariaveisFromAnalise(int idAnalise) {
@@ -27,17 +31,20 @@ public class VariavelTAMDAOImpl extends AbstractDAO implements VariavelTAMDAO {
     }
 
     @Override
-    public void deleteVariavel(VariavelTAM variavel) {
-
+    public void deleteVariavel(int idVariavel) {
+        Query query = getSession().createSQLQuery(
+                "delete from variavelTAM where idVariavel = :idVariavel");
+        query.setParameter("idVariavel", idVariavel);
+        query.executeUpdate();
     }
 
     @Override
-    public VariavelTAM findById(Integer id) {
-        return null;
+    public VariavelTAM findById(int idVariavel) {
+        Query query = getSession().createSQLQuery(
+                "select * from variavel v where v.idVariavel = :idVariavel")
+                .addEntity(VariavelTAM.class)
+                .setParameter("idVariavel", idVariavel);
+        return (VariavelTAM) query.uniqueResult() ;
     }
 
-    @Override
-    public void updateVariavel(VariavelTAM variavel) {
-
-    }
 }

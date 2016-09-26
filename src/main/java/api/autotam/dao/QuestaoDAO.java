@@ -11,12 +11,14 @@ public interface QuestaoDAO {
 
     void saveQuestao(Questao questao);
 
+    void updateQuestao(Questao questao);
+
     List<Questao> findAllQuestoesFromVariavel(int idVariavel);
 
-    void deleteQuestao(Questao questao);
+    Questao findById(int idQuestao);
 
-    Questao findById(Integer id);
+    void deleteQuestao(int idQuestao);
 
-    void updateQuestao(Questao questao);
+
 
 }

@@ -1,6 +1,7 @@
 package api.autotam.dao;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import api.autotam.model.Usuario;
@@ -13,40 +14,47 @@ import java.util.List;
  * Created by Danilo on 4/17/2016.
  */
 
-@Repository ("usuarioDAO")
+@Repository("usuarioDAO")
 public class UsuarioDAOImpl extends AbstractDAO implements UsuarioDAO {
 
     public void saveUsuario(Usuario usuario) {
         persist(usuario);
     }
 
-    @SuppressWarnings("unchecked")
-    public List<Usuario> findAllUsuarios() {
-        Criteria criteria = getSession().createCriteria(Usuario.class);
-        return (List<Usuario>) criteria.list();
-    }
-
-    public void deleteUsuario(Usuario usuario) {
-        delete(usuario);
-    }
-
-
-    public Usuario findById(Integer id){
-        Criteria criteria = getSession().createCriteria(Usuario.class);
-        criteria.add(Restrictions.eq("id",id));
-        return (Usuario) criteria.uniqueResult();
-    }
-
-    public Usuario findByEmail(String email){
-        Criteria criteria = getSession().createCriteria(Usuario.class);
-        criteria.add(Restrictions.eq("email",email));
-        return (Usuario) criteria.uniqueResult();
-    }
-
-
     public void updateUsuario(Usuario usuario){
         getSession().update(usuario);
     }
 
+    @SuppressWarnings("unchecked")
+    public List<Usuario> findAllUsuarios() {
+        Query query = getSession().createSQLQuery(
+                "select * from usuario u")
+                .addEntity(Usuario.class);
+        return (List<Usuario>) query.list();
+    }
+
+    public void deleteUsuario(int idUsuario) {
+        Query query = getSession().createSQLQuery(
+                "delete from usuario where idUsuario = :idUsuario");
+        query.setParameter("idUsuario", idUsuario);
+        query.executeUpdate();
+    }
+
+
+    public Usuario findById(int idUsuario){
+        Query query = getSession().createSQLQuery(
+                "select * from usuario u where u.idUsuario = :idUsuario")
+                .addEntity(Usuario.class)
+                .setParameter("idUsuario", idUsuario);
+        return (Usuario) query.uniqueResult() ;
+    }
+
+    public Usuario findByEmail(String email){
+        Query query = getSession().createSQLQuery(
+                "select * from usuario u where u.email = :email")
+                .addEntity(Usuario.class)
+                .setParameter("email", email);
+        return (Usuario) query.uniqueResult() ;
+    }
 
 }

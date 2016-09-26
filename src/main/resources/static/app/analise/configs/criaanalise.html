@@ -1,7 +1,7 @@
 <div class="panel panel-default">
     <div class="panel-heading">
         <span class="lead">Criar nova análise </span>
-        <button type="button" class="close" ng-click="AnaliseCtrl.resetAnalise()"
+        <button type="button" class="close" ng-click="AnaliseCtrl.reset()"
                 title="Fechar" data-toggle="tooltip" data-placement="left" tooltip>&times;</button>
     </div>
     <div class="container analiseForm-container">
@@ -21,6 +21,32 @@
                 <div ng-messages="salvaAnaliseForm.objetoDeAnalise.$error">
                     <div ng-messages-include="app/analise/mensagensCreateanalise.html"></div>
                 </div>
+            </div>
+            <div class="form-group">
+                <label>Variaveis TAM</label>
+                <ul class="container">
+                    <li ng-repeat="v in  AnaliseCtrl.permissao.analise.variaveis">
+                        <i class="glyphicon glyphicon-remove" ng-show="!v.variavelPadrao"
+                           ng-click="AnaliseCtrl.analiseFormRemoveVariavel(v.nomeVariavel)" title="Remover Variavel"
+                           data-toggle="tooltip" data-placement="right" tooltip></i>
+                        {{v.nomeVariavel}}</li>
+                    <button type="button" class="btn btn-default btn-xs" ng-hide="AnaliseCtrl.analiseForm.variavelExtra" title="" ng-click="AnaliseCtrl.analiseFormAbreVariavelExtra()"
+                            data-placement="right" tooltip="" data-original-title="Adcionar variável extra">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                    </button>
+                    <div class="well variavel-well well-sm clearfix col-sm-3" ng-show="AnaliseCtrl.analiseForm.variavelExtra">
+                        <label>Nome da Variavel Extra</label>
+                        <button type="button" class="btn btn-default btn-xs pull-right" ng-show="AnaliseCtrl.analiseForm.variavelExtra" title="" ng-click="AnaliseCtrl.analiseFormFechaVariavelExtra()"
+                                data-placement="left" tooltip="" data-original-title="Cancelar">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        </button>
+                        <input type="text" name="nomeVariavel" class="form-control input-sm" ng-model="AnaliseCtrl.variavel.nomeVariavel" ng-minlength="5"/>
+                        <button type="button" class="btn btn-primary pull-right" title="" ng-click="AnaliseCtrl.analiseFormAdicionaVariavelExtra()"
+                                data-placement="right" tooltip="" data-original-title="Adcionar Variável">
+                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                </ul>
             </div>
             <hr>
             <div class="form-group clearfix">

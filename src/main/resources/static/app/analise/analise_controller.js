@@ -9,11 +9,14 @@ controllers.controller('AnaliseController', function($scope, AnaliseService, $wi
     self.usuarios = [];
     self.permissao = {idPermissao: null,
         usuario: {idUsuario: null, nome: '', email: '', senha: ''},
-        analise: {idAnalise: null, nome: '', objetoDeAnalise: '', variaveis:[], status: ''},
+        analise: {idAnalise: null, nome: '', objetoDeAnalise: '',
+            variaveis:[{idVariavel: null, nomeVariavel: 'Facilidade de Uso Percebida', variavelPadrao: true, nota: ''},
+                        {idVariavel: null, nomeVariavel: 'Utilidade Percebida', variavelPadrao: true, nota: ''}],
+             status: ''},
         testador: false, administrador: false};
     self.permissoes = [];
-    self.analiseForm = false;
-    self.variavel = {idVariavel: null, nomeVariavel: '', nota: ''};
+    self.analiseForm = {criaAnalise: false, variavelExtra: false};
+    self.variavel = {idVariavel: null, nomeVariavel: '', variavelPadrao: false, nota: ''};
 
     self.fetchAllAnalises = function(){
         AnaliseService.fetchAllAnalises()
@@ -64,12 +67,12 @@ controllers.controller('AnaliseController', function($scope, AnaliseService, $wi
             console.log('Saving New Analise', self.permissao.analise);
             self.createAnalise(self.permissao.analise);
             self.fetchAllAnalises();
-            self.resetAnalise();
+            self.reset();
         }else{
             self.updateAnalise(self.permissao.analise, self.permissao.analise.idAnalise);
             console.log('Analise updated with nome ', self.permissao.analise.nome);
             self.fetchAllAnalises();
-            self.resetAnalise();
+            self.reset();
         }
     };
 
@@ -87,24 +90,53 @@ controllers.controller('AnaliseController', function($scope, AnaliseService, $wi
     self.removeAnalise = function(idAnalise){
         console.log('Analise id to be deleted', idAnalise);
         if(self.permissao.analise.idAnalise === idAnalise) {//clean form if the user to be deleted is shown there.
-            self.resetAnalise();
+            self.reset();
         }
         self.deleteAnalise(idAnalise);
     };
 
-    self.resetAnalise = function(){
+    self.reset = function(){
         self.permissao = {idPermissao: null,
             usuario: {idUsuario: null, nome: '', email: '', senha: ''},
-            analise: {idAnalise: null, nome: '', objetoDeAnalise: '', status: ''},
+            analise: {idAnalise: null, nome: '', objetoDeAnalise: '',
+                variaveis:[{idVariavel: null, nomeVariavel: 'Facilidade de Uso Percebida',variavelPadrao: true, nota: ''},
+                            {idVariavel: null, nomeVariavel: 'Utilidade Percebida',variavelPadrao: true, nota: ''}],
+                status: ''},
             testador: false, administrador: false};
-            self.analiseForm = false;
+            self.variavel = {idVariavel: null, nomeVariavel: '',variavelPadrao: false, nota: ''};
+            self.analiseForm.criaAnalise = false;
+            self.analiseForm.variavelExtra = false;
     };
 
     self.criaAnalise = function(){
-        self.analiseForm = true;
+        self.analiseForm.criaAnalise = true;
         $window.scrollTo(0, 0);
     };
 //--------------------------------------Operações com Variáveis--------------------------------------------------------
+    self.analiseFormAbreVariavelExtra = function(){
+        self.analiseForm.variavelExtra = true;
+    };
+    self.analiseFormFechaVariavelExtra = function(){
+        self.analiseForm.variavelExtra = false;
+        self.variavel = {idVariavel: null, nomeVariavel: '', variavelPadrao: false, nota: ''};
+    };
+
+    self.analiseFormRemoveVariavel = function(nomeVariavel){
+        console.log('Variavel to be removed', nomeVariavel);
+        for(var i = 0; i < self.permissao.analise.variaveis.length; i++){
+            if(self.permissao.analise.variaveis[i].nomeVariavel === nomeVariavel) {
+                self.permissao.analise.variaveis.splice(i, 1);
+                break;
+            }
+        }
+    };
+
+    self.analiseFormAdicionaVariavelExtra = function(){
+        self.permissao.analise.variaveis.push(self.variavel);
+        self.analiseForm.variavelExtra = false;
+        self.variavel = {idVariavel: null, nomeVariavel: '', nota: ''};
+    };
+
     self.editVariavel = function(idAnalise,idVariavel){
         console.log('Variavel to be edited', idVariavel);
         for(var i = 0; i < self.permissoes.length; i++){
@@ -116,12 +148,15 @@ controllers.controller('AnaliseController', function($scope, AnaliseService, $wi
                         break;
                     }
                 }
+                break;
             }
         }
     };
 
-    self.resetVariavel = function(){
-        self.variavel = {idVariavel: null, nomeVariavel: '', nota: ''};
+    self.addVariaveltoAnalise = function (idAnalise, variavel){
+        AnaliseService.addVariaveltoAnalise(idAnalise, variavel);
+        $('.modal-backdrop').remove();
+        self.fetchAllAnalises();
+        self.reset();
     };
-
 })

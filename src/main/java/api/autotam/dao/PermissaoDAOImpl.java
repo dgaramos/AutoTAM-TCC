@@ -21,20 +21,21 @@ public class PermissaoDAOImpl extends AbstractDAO implements PermissaoDAO{
         persist(permissao);
     }
 
-    @SuppressWarnings("unchecked")
-    public List<Permissao> findAllPermissoes() {
-        Criteria criteria = getSession().createCriteria(Permissao.class);
-        return (List<Permissao>) criteria.list();
+    public void deletePermissao(int idPermissao){
+    Query query = getSession().createSQLQuery(
+            "delete from permissao where idPermissao = :idPermissao");
+        query.setParameter("idPermissao", idPermissao);
+        query.executeUpdate();
+
     }
 
-    public void deletePermissao(Permissao permissao) {
-        delete(permissao);
-    }
+    public Permissao findById(int idPermissao) {
+        Query query = getSession().createSQLQuery(
+                "select * from permissao p where p.idPermissao = :idPermissao")
+                .addEntity(Permissao.class)
+                .setParameter("idPermissao", idPermissao);
+        return (Permissao) query.uniqueResult() ;
 
-    public Permissao findById(Integer id) {
-        Criteria criteria = getSession().createCriteria(Permissao.class);
-        criteria.add(Restrictions.eq("id",id));
-        return (Permissao) criteria.uniqueResult();
     }
 
 

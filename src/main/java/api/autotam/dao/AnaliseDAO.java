@@ -11,11 +11,10 @@ public interface AnaliseDAO {
 
     void saveAnalise(Analise analise);
 
-    List<Analise> findAllAnalises();
 
-    void deleteAnalise(Analise analise);
+    void deleteAnalise(int idAnalise);
 
-    Analise findById(Integer id);
+    Analise findById(int idAnalise);
 
     Analise findByObjetoDeAnalise(String objetoDeAnalise);
 

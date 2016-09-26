@@ -1,6 +1,8 @@
 package api.autotam.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.List;
@@ -24,7 +26,8 @@ public class Analise {
     @Column(name = "objetoDeAnalise")
     private String objetoDeAnalise;
 
-    @OneToMany(mappedBy = "analise", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "analise",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonManagedReference
     private List<VariavelTAM> variaveis;
 

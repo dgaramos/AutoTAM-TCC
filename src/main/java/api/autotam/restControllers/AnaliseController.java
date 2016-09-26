@@ -1,8 +1,10 @@
 package api.autotam.restControllers;
 
 import api.autotam.model.Analise;
+import api.autotam.model.VariavelTAM;
 import api.autotam.service.AnaliseService;
 import api.autotam.service.UsuarioService;
+import api.autotam.service.VariavelTAMService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -23,17 +25,14 @@ public class AnaliseController {
     private UsuarioService usuarioService;
     @Autowired
     private AnaliseService analiseService;
+    @Autowired
+    private VariavelTAMService variavelTAMService;
 
 //-------------------Create a analise--------------------------------------------------------
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Void> createAnalise(@RequestBody Analise analise, UriComponentsBuilder ucBuilder) {
         System.out.println("Creating Analise " + analise.getNome());
-
-        if (analiseService.isAnaliseExist(analise)) {
-            System.out.println("A analise with id " + analise.getIdAnalise() + " already exist");
-            return new ResponseEntity<>(HttpStatus.CONFLICT);
-        }
 
         analiseService.saveAnalise(analise);
 
@@ -46,19 +45,13 @@ public class AnaliseController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Analise> deleteAnalise(@PathVariable("id") Integer id) {
-        System.out.println("Fetching & Deleting User with id " + id);
+        System.out.println("Fetching & Deleting Analise with id " + id);
 
-        Analise analise = analiseService.findById(id);
-        if (analise == null) {
-            System.out.println("Unable to delete. User with id " + id + " not found");
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-
-        analiseService.deleteAnalise(analise);
+        analiseService.deleteAnalise(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    //------------------- Update a User --------------------------------------------------------
+    //------------------- Update an Analise --------------------------------------------------------
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Analise> updateAnalise(@PathVariable("id") Integer idAnalise, @RequestBody Analise analise) {
@@ -79,6 +72,13 @@ public class AnaliseController {
 
         return new ResponseEntity<>(currentAnalise, HttpStatus.OK);
     }
+    //-------------------Add a Variavel to an Analise--------------------------------------------------------
 
+    @RequestMapping(value = "addVariavel/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<Void> createVariavel(@PathVariable("id") Integer idAnalise, @RequestBody VariavelTAM variavel) {
+        System.out.println("Adding variavel "+ variavel.getNomeVariavel()+"to analise with id" + idAnalise);
+        analiseService.addVariavelToAnalise(idAnalise, variavel);
 
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

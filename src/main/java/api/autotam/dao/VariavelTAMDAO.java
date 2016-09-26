@@ -11,12 +11,12 @@ public interface VariavelTAMDAO {
 
     void saveVariavel(VariavelTAM variavel);
 
+    void updateVariavel(VariavelTAM variavel);
+
     List<VariavelTAM> findAllVariaveisFromAnalise(int idAnalise);
 
-    void deleteVariavel(VariavelTAM variavel);
+    void deleteVariavel(int idVariavel);
 
-    VariavelTAM findById(Integer id);
-
-    void updateVariavel(VariavelTAM variavel);
+    VariavelTAM findById(int idVariavel);
 
 }

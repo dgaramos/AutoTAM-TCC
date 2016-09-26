@@ -46,6 +46,19 @@ services.factory('AnaliseService', function($http, $q){
                 );
         },
 
+        addVariaveltoAnalise: function (idAnalise, variavel) {
+            return $http.put(__env.apiUrl + '/analise/addVariavel/' + idAnalise, variavel)
+                .then(
+                    function (response) {
+                        return response.data;
+                    },
+                    function (errResponse) {
+                        console.error('Error while updating analise');
+                        return $q.reject(errResponse);
+                    }
+                );
+        },
+
         deleteAnalise: function (idAnalise) {
             return $http.delete(__env.apiUrl + '/analise/' + idAnalise)
                 .then(

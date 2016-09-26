@@ -23,7 +23,7 @@ public class Questao implements Serializable {
     @Column(name = "enunciado")
     private String enunciado;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL )
     @JoinColumn(name = "idVariavel")
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonBackReference

@@ -20,6 +20,10 @@ body, .form-control{
     margin: 0px 2px 5px 0px;
 }
 
+.variavel-well .btn{
+    margin:5px 2px 5px 0px;
+}
+
 .mobile-menu{
     background-color: #f8f8f8;
     border-color: #e7e7e7;
@@ -157,7 +161,6 @@ body, .form-control{
 
 .analise-col ul{
     list-style-type: none;
-
 }
 
 .analise-col h5{
@@ -176,6 +179,10 @@ body, .form-control{
 
 .analiseForm-container{
     padding-top: 20px;
+}
+
+.analiseForm-container ul{
+    list-style-type: none;
 }
 
 .messages {
