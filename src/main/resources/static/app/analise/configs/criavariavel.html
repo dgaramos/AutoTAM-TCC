@@ -1,7 +1,7 @@
 <div class="modal-content">
     <div class="modal-header">
         <button type="button" class="close" ng-click="AnaliseCtrl.reset()" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Registre sua nova variável</h4>
+        <h4 class="modal-title">Gerenciar Variável</h4>
     </div>
     <div class="modal-body">
         <form name="cadastroVariavelForm" novalidate
@@ -9,12 +9,13 @@
             <div class="form-group">
                 <input type="hidden" ng-model="AnaliseCtrl.variavel.idVariavel" />
                 <label>Nome da Variavel</label>
+                <h4 ng-show="AnaliseCtrl.variavel.variavelPadrao">{{AnaliseCtrl.variavel.nomeVariavel}}</h4>
                 <input type="text" name="nomeVariavel" class="nome form-control" ng-model="AnaliseCtrl.variavel.nomeVariavel"
                        ng-show="!AnaliseCtrl.variavel.variavelPadrao"required />
             </div>
             <hr>
             <div class="form-group clearfix">
-                <button type="submit" class="btn btn-primary pull-right">Cadastrar Variável</button>
+                <input type="submit" value="{{!AnaliseCtrl.variavel.idVariavel? 'Adicionar Variável' : 'Atualizar Variável'}}"  class="btn btn-primary pull-right"/>
             </div>
         </form>
     </div>

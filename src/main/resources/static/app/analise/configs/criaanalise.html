@@ -1,6 +1,6 @@
 <div class="panel panel-default">
     <div class="panel-heading">
-        <span class="lead">Criar nova análise </span>
+        <span class="lead">Gerenciar Análise</span>
         <button type="button" class="close" ng-click="AnaliseCtrl.reset()"
                 title="Fechar" data-toggle="tooltip" data-placement="left" tooltip>&times;</button>
     </div>
@@ -21,6 +21,13 @@
                 <div ng-messages="salvaAnaliseForm.objetoDeAnalise.$error">
                     <div ng-messages-include="app/analise/mensagensCreateanalise.html"></div>
                 </div>
+            </div>
+            <div class="alert alert-warning">
+                <p>
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                    Você poderá criar as questões para gerar os questionários das suas variáveis
+                    após a criação da análise.
+                </p>
             </div>
             <div class="form-group" ng-show="(AnaliseCtrl.permissao.analise.idAnalise==null)">
                 <label>Variaveis TAM</label>
@@ -48,9 +55,23 @@
                     </div>
                 </ul>
             </div>
+            <div class="well well-sm">
+                <h5>Adicionar Permissões a outros Usuários</h5>
+                <hr>
+                <label>Email: </label>
+                <input type="email" class="email input-sm" placeholder="Email do convidado">
+                <label>Administrador: </label>
+                <input type="checkbox">
+                <label>Testador: </label>
+                <input type="checkbox">
+                <button type="submit" class="btn btn-success btn-sm"
+                        data-placement="right" tooltip="" data-original-title="Adcionar Variável">
+                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                </button>
+            </div>
             <hr>
             <div class="form-group clearfix">
-                <button type="submit" class="btn btn-primary pull-right" ng-disabled="salvaAnaliseForm.$invalid">Salvar Análise</button>
+                <input type="submit" value="{{!AnaliseCtrl.permissao.analise.idAnalise? 'Criar Análise' : 'Atualizar Análise'}}" class="btn btn-primary pull-right" ng-disabled="salvaAnaliseForm.$invalid"/>
             </div>
         </form>
     </div>
