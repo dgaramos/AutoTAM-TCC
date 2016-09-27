@@ -59,13 +59,13 @@
                 <h5>Adicionar Permissões a outros Usuários</h5>
                 <hr>
                 <label>Email: </label>
-                <input type="email" class="email input-sm" placeholder="Email do convidado">
+                <input type="email" class="email input-sm" ng-model="AnaliseCtrl.permissaoConvite.usuario.email" placeholder="Email do convidado">
                 <label>Administrador: </label>
-                <input type="checkbox">
+                <input type="checkbox" ng-model="AnaliseCtrl.permissaoConvite.administrador" value=true>
                 <label>Testador: </label>
-                <input type="checkbox">
-                <button type="submit" class="btn btn-success btn-sm"
-                        data-placement="right" tooltip="" data-original-title="Adcionar Variável">
+                <input type="checkbox"ng-model="AnaliseCtrl.permissaoConvite.testador" value=true>
+                <button type="button" class="btn btn-success btn-sm" ng-click="AnaliseCtrl.adicionaUsuario()"
+                        data-placement="right" tooltip="" data-original-title="Adcionar Permissão para Usuario">
                     <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
                 </button>
             </div>

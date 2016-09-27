@@ -3,10 +3,9 @@
  */
 'use strict';
 
-controllers.controller('AnaliseController', function($scope, AnaliseService, $window) {
+controllers.controller('AnaliseController', function($scope, AnaliseService, $window, UsuarioService) {
     var self = this;
-    self.usuario = {idUsuario: null, nome: '', email: '', senha: ''};
-    self.usuarios = [];
+
     self.permissao = {idPermissao: null,
         usuario: {idUsuario: null, nome: '', email: '', senha: ''},
         analise: {idAnalise: null, nome: '', objetoDeAnalise: '',
@@ -14,7 +13,9 @@ controllers.controller('AnaliseController', function($scope, AnaliseService, $wi
                         {idVariavel: null, nomeVariavel: 'Utilidade Percebida', variavelPadrao: true, nota: ''}],
              status: ''},
         testador: false, administrador: false};
+
     self.permissoes = [];
+
     self.analiseForm = {criaAnalise: false, variavelExtra: false};
     self.variavel = {idVariavel: null, nomeVariavel: '', variavelPadrao: false, nota: ''};
 
@@ -207,7 +208,7 @@ controllers.controller('AnaliseController', function($scope, AnaliseService, $wi
         self.variavel = variavel;
         self.permissao.analise = analise;
 
-    }
+    };
 
     self.deleteVariavel = function (idVariavel, idAnalise){
         AnaliseService.deleteVariavel(idVariavel)
@@ -224,4 +225,27 @@ controllers.controller('AnaliseController', function($scope, AnaliseService, $wi
                 }
             );
     };
-})
+
+
+//--------------------------------------Operações com Permissões--------------------------------------------------------
+
+    self.permissaoConvite = {idPermissao: null,
+        usuario: {idUsuario: null, nome: '', email: '', senha: ''},
+        analise: self.permissao.analise ,
+        testador: false, administrador: false};
+    self.permissoesConvites = [];
+
+    self.adicionaUsuario = function(){
+        console.log(self.permissaoConvite);
+        UsuarioService.fetchUsuarioByEmail(self.permissaoConvite.usuario.email)
+            .then(
+                function(u){
+                    self.permissaoConvite.usuario = u;
+                    console.log(u);
+                },
+                function(errResponse){
+                    console.error('usuario não encontrado');
+                }
+            )
+    };
+});
