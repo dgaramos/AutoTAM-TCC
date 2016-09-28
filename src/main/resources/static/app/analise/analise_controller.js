@@ -33,6 +33,7 @@ controllers.controller('AnaliseController', function($scope, AnaliseService, $wi
     self.fetchAllAnalises();
 
     self.createAnalise = function(analise){
+        console.log(analise)
         AnaliseService.createAnalise(analise)
             .then(function (response) {
                 console.log(response);
@@ -77,15 +78,10 @@ controllers.controller('AnaliseController', function($scope, AnaliseService, $wi
         }
     };
 
-    self.editAnalise = function(idAnalise){
-        console.log('Analise to be edited', idAnalise);
+    self.editAnalise = function(analise){
+        console.log('Analise to be edited', analise.idAnalise);
         self.criaAnalise();
-        for(var i = 0; i < self.permissoes.length; i++){
-            if(self.permissoes[i].analise.idAnalise === idAnalise) {
-                self.permissao.analise = angular.copy(self.permissoes[i].analise);
-                break;
-            }
-        }
+        self.permissao.analise = angular.copy(analise);
     };
 
 
@@ -163,6 +159,7 @@ controllers.controller('AnaliseController', function($scope, AnaliseService, $wi
                     for(var i = 0; i < self.permissoes.length; i++){
                         if(self.permissoes[i].analise.idAnalise === idAnalise) {
                             self.permissoes[i].analise.variaveis = d;
+                            break;
                         }
                     }
                 },
@@ -172,41 +169,41 @@ controllers.controller('AnaliseController', function($scope, AnaliseService, $wi
             );
     };
 
-    self.editVariavel = function(idVariavel, idAnalise){
-        console.log('Variavel to be edited', idVariavel);
-        for(var i = 0; i < self.permissoes.length; i++){
-            if(self.permissoes[i].analise.idAnalise === idAnalise) {
-                self.permissao.analise = angular.copy(self.permissoes[i].analise);
-                for(var i = 0; i < self.permissao.analise.variaveis.length; i++){
-                    if(self.permissao.analise.variaveis[i].idVariavel === idVariavel) {
-                        self.variavel = angular.copy(self.permissao.analise.variaveis[i]);
-                        break;
+    self.variavelToAnalise = function (idAnalise, variavel){
+        if(variavel.idVariavel===null) {
+            AnaliseService.addVariavelToAnalise(idAnalise, variavel)
+                .then(
+                    function (d) {
+                        self.fetchAllVariaveisFromAnalise(idAnalise);
+                        self.reset();
+                        $('#criaVariavelModal').modal('hide');
+                        $('body').removeClass('modal-open');
+                        $('.modal-backdrop').remove();
+                    },
+                    function (errResponse) {
+                        console.error('Error while fetching variaveis from Analise');
                     }
-                }
-                break;
-            }
+                )
+        }else{
+            AnaliseService.updateVariavelFromAnalise(idAnalise, variavel)
+                .then(
+                    function (d) {
+                        self.fetchAllVariaveisFromAnalise(idAnalise);
+                        self.reset();
+                        $('#criaVariavelModal').modal('hide');
+                        $('body').removeClass('modal-open');
+                        $('.modal-backdrop').remove();
+                    },
+                    function (errResponse) {
+                        console.error('Error while fetching variaveis from Analise');
+                    }
+                )
         }
     };
 
-    self.addVariaveltoAnalise = function (idAnalise, variavel){
-        AnaliseService.addVariaveltoAnalise(idAnalise, variavel)
-            .then(
-                function(d){
-                    self.fetchAllVariaveisFromAnalise(idAnalise);
-                    self.reset();
-                    $('#criaVariavelModal').modal('hide');
-                    $('body').removeClass('modal-open');
-                    $('.modal-backdrop').remove();
-                },
-                function(errResponse){
-                    console.error('Error while fetching variaveis from Analise');
-                }
-            );
-    };
-
-    self.removeVariavel = function (variavel, analise){
-        self.variavel = variavel;
-        self.permissao.analise = analise;
+    self.selectVariavel = function (variavel, analise){
+        self.variavel = angular.copy(variavel);
+        self.permissao.analise = angular.copy(analise);
 
     };
 
@@ -234,17 +231,23 @@ controllers.controller('AnaliseController', function($scope, AnaliseService, $wi
         analise: self.permissao.analise ,
         testador: false, administrador: false};
     self.permissoesConvites = [];
-
+    self.erroPermissao = false;
     self.adicionaUsuario = function(){
         console.log(self.permissaoConvite);
         UsuarioService.fetchUsuarioByEmail(self.permissaoConvite.usuario.email)
             .then(
                 function(u){
                     self.permissaoConvite.usuario = u;
-                    console.log(u);
+                    self.permissoesConvites.push(self.permissaoConvite)
+                    self.permissaoConvite = {idPermissao: null,
+                        usuario: {idUsuario: null, nome: '', email: '', senha: ''},
+                        analise: self.permissao.analise ,
+                        testador: false, administrador: false};
+                    self.erroPermissao = false;
                 },
                 function(errResponse){
                     console.error('usuario não encontrado');
+                    self.erroPermissao = true;
                 }
             )
     };

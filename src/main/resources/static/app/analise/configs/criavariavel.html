@@ -5,7 +5,7 @@
     </div>
     <div class="modal-body">
         <form name="cadastroVariavelForm" novalidate
-              ng-submit="AnaliseCtrl.addVariaveltoAnalise(p.analise.idAnalise, AnaliseCtrl.variavel)">
+              ng-submit="AnaliseCtrl.variavelToAnalise(AnaliseCtrl.permissao.analise.idAnalise, AnaliseCtrl.variavel)">
             <div class="form-group">
                 <input type="hidden" ng-model="AnaliseCtrl.variavel.idVariavel" />
                 <label>Nome da Variavel</label>

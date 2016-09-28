@@ -41,7 +41,7 @@ public class VariavelTAMDAOImpl extends AbstractDAO implements VariavelTAMDAO {
     @Override
     public VariavelTAM findById(int idVariavel) {
         Query query = getSession().createSQLQuery(
-                "select * from variavel v where v.idVariavel = :idVariavel")
+                "select * from variavelTAM v where v.idVariavel = :idVariavel")
                 .addEntity(VariavelTAM.class)
                 .setParameter("idVariavel", idVariavel);
         return (VariavelTAM) query.uniqueResult() ;

@@ -22,14 +22,14 @@
                     <div ng-messages-include="app/analise/mensagensCreateanalise.html"></div>
                 </div>
             </div>
-            <div class="alert alert-warning">
-                <p>
-                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                    Você poderá criar as questões para gerar os questionários das suas variáveis
-                    após a criação da análise.
-                </p>
-            </div>
             <div class="form-group" ng-show="(AnaliseCtrl.permissao.analise.idAnalise==null)">
+                <div class="alert alert-warning">
+                    <p>
+                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                        Você poderá criar as questões para gerar os questionários das suas variáveis
+                        após a criação da análise.
+                    </p>
+                </div>
                 <label>Variaveis TAM</label>
                 <ul class="container">
                     <li ng-repeat="v in  AnaliseCtrl.permissao.analise.variaveis">
@@ -54,20 +54,6 @@
                         </button>
                     </div>
                 </ul>
-            </div>
-            <div class="well well-sm">
-                <h5>Adicionar Permissões a outros Usuários</h5>
-                <hr>
-                <label>Email: </label>
-                <input type="email" class="email input-sm" ng-model="AnaliseCtrl.permissaoConvite.usuario.email" placeholder="Email do convidado">
-                <label>Administrador: </label>
-                <input type="checkbox" ng-model="AnaliseCtrl.permissaoConvite.administrador" value=true>
-                <label>Testador: </label>
-                <input type="checkbox"ng-model="AnaliseCtrl.permissaoConvite.testador" value=true>
-                <button type="button" class="btn btn-success btn-sm" ng-click="AnaliseCtrl.adicionaUsuario()"
-                        data-placement="right" tooltip="" data-original-title="Adcionar Permissão para Usuario">
-                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                </button>
             </div>
             <hr>
             <div class="form-group clearfix">

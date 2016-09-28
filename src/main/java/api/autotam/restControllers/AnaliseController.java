@@ -77,12 +77,34 @@ public class AnaliseController {
     }
     //-------------------Add a Variavel to an Analise--------------------------------------------------------
 
-    @RequestMapping(value = "addVariavel/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "variavel/{id}", method = RequestMethod.POST)
     public ResponseEntity<Void> createVariavel(@PathVariable("id") Integer idAnalise, @RequestBody VariavelTAM variavel) {
-        System.out.println("Adding variavel "+ variavel.getNomeVariavel()+"to analise with id" + idAnalise);
+        System.out.println("Adding variavel "+ variavel.getNomeVariavel()+" to analise with id " + idAnalise);
         analiseService.addVariavelToAnalise(idAnalise, variavel);
 
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+
+    //------------------- Update a Variavel from an Analise --------------------------------------------------------
+
+    @RequestMapping(value = "variavelUpdate/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<VariavelTAM> updateVariavel(@PathVariable("id") Integer idAnalise, @RequestBody VariavelTAM variavel) {
+        System.out.println("Updating variavel "+ variavel.getNomeVariavel()+"from analise with id " + idAnalise);
+
+        VariavelTAM currentVariavel = variavelTAMService.findById(variavel.getIdVariavel());
+
+        if (currentVariavel==null) {
+            System.out.println("Variavel with id " + variavel.getIdVariavel() + " not found");
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        currentVariavel.setNomeVariavel(variavel.getNomeVariavel());
+
+
+        variavelTAMService.updateVariavel(currentVariavel);
+
+        return new ResponseEntity<VariavelTAM>(currentVariavel, HttpStatus.OK);
     }
 
     //-------------------Retrieve All Permissoes from Usuario--------------------------------------------------------

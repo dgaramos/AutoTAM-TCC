@@ -46,8 +46,21 @@ services.factory('AnaliseService', function($http, $q){
                 );
         },
 
-        addVariaveltoAnalise: function (idAnalise, variavel) {
-            return $http.put(__env.apiUrl + '/analise/addVariavel/' + idAnalise, variavel)
+        addVariavelToAnalise: function (idAnalise, variavel) {
+            return $http.post(__env.apiUrl + '/analise/variavel/' + idAnalise, variavel)
+                .then(
+                    function (response) {
+                        return response.data;
+                    },
+                    function (errResponse) {
+                        console.error('Error while updating analise');
+                        return $q.reject(errResponse);
+                    }
+                );
+        },
+
+        updateVariavelFromAnalise: function (idAnalise, variavel) {
+            return $http.put(__env.apiUrl + '/analise/variavelUpdate/' + idAnalise, variavel)
                 .then(
                     function (response) {
                         return response.data;
