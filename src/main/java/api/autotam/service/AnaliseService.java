@@ -14,9 +14,13 @@ public interface AnaliseService {
 
     void saveAnalise(Analise analise);
 
+    void savePermissao(Permissao permissao);
+
     void addVariavelToAnalise(int idAnalise, VariavelTAM variavel);
 
-    List<Permissao> findAllAnalises(int id);
+    List<Permissao> findAllAnalises(int idUsuario);
+
+    List<Permissao> findAllPermissoesFromAnalise(int idAnalise);
 
     Analise findById(int idAnalise);
 

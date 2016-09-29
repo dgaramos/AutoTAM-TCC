@@ -36,6 +36,7 @@ public class AnaliseServiceImpl extends AbstractService implements AnaliseServic
     @Autowired
     private VariavelTAMDAO variavelTAMDAO;
 
+    @Override
     public void saveAnalise(Analise analise) {
         Permissao administrador = new Permissao(getUsuarioLogado(), analise, true, true);
         analise.setStatus("Avaliação das Questões");
@@ -44,6 +45,17 @@ public class AnaliseServiceImpl extends AbstractService implements AnaliseServic
         analiseDAO.saveAnalise(analise);
     }
 
+    @Override
+    public void savePermissao(Permissao permissao){
+        if(!permissao.getUsuario().equals(getUsuarioLogado())){
+            permissaoDAO.savePermissao(permissao);
+        }else {
+            System.out.println("Você tentou adicionar uma permissão ao usuário logado(que já possui permissões)");
+        }
+
+    }
+
+    @Override
     public void addVariavelToAnalise(int idAnalise, VariavelTAM variavel){
         Analise analise = findById(idAnalise);
         variavel.setAnalise(analise);
@@ -55,7 +67,13 @@ public class AnaliseServiceImpl extends AbstractService implements AnaliseServic
 
     @Override
     public List<Permissao> findAllAnalises(int idUsuario){
-        List<Permissao> permissoes = permissaoDAO.findAllPermissoesByUsuario(idUsuario);
+        List<Permissao> permissoes = permissaoDAO.findAllPermissoesFromUsuario(idUsuario);
+        return permissoes;
+    }
+
+    @Override
+    public List<Permissao> findAllPermissoesFromAnalise(int idAnalise) {
+        List<Permissao> permissoes = permissaoDAO.findAllPermissoesFromAnalise(idAnalise);
         return permissoes;
     }
 

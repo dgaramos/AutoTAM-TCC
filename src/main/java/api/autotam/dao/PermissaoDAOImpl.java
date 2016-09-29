@@ -18,7 +18,7 @@ public class PermissaoDAOImpl extends AbstractDAO implements PermissaoDAO{
 
 
     public void savePermissao(Permissao permissao) {
-        persist(permissao);
+        saveOrUpdate(permissao);
     }
 
     public void deletePermissao(int idPermissao){
@@ -39,11 +39,19 @@ public class PermissaoDAOImpl extends AbstractDAO implements PermissaoDAO{
     }
 
 
-    public List<Permissao> findAllPermissoesByUsuario(int idUsuario) {
+    public List<Permissao> findAllPermissoesFromUsuario(int idUsuario) {
         Query query = getSession().createSQLQuery(
                 "select * from permissao p where p.idUsuario = :idUsuario")
                 .addEntity(Permissao.class)
                 .setParameter("idUsuario", idUsuario);
+        return (List<Permissao>) query.list();
+    }
+
+    public List<Permissao> findAllPermissoesFromAnalise(int idAnalise) {
+        Query query = getSession().createSQLQuery(
+                "select * from permissao p where p.idAnalise = :idAnalise")
+                .addEntity(Permissao.class)
+                .setParameter("idAnalise", idAnalise);
         return (List<Permissao>) query.list();
     }
 

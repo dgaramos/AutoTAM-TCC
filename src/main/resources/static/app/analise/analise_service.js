@@ -45,7 +45,7 @@ services.factory('AnaliseService', function($http, $q){
                     }
                 );
         },
-
+//-----------------------------------Variavel Requisitions--------------------------------------
         addVariavelToAnalise: function (idAnalise, variavel) {
             return $http.post(__env.apiUrl + '/analise/variavel/' + idAnalise, variavel)
                 .then(
@@ -109,6 +109,35 @@ services.factory('AnaliseService', function($http, $q){
                         return $q.reject(errResponse);
                     }
                 );
+        },
+        //-----------------------------------Variavel Requisitions--------------------------------------
+        fetchAllPermissoesFromAnalise: function (idAnalise) {
+            return $http.get(__env.apiUrl + '/analise/permissoes/' + idAnalise)
+                .then(
+                    function (response) {
+                        return response.data;
+                    },
+                    function (errResponse) {
+                        console.error('Error while fetching permissoes');
+                        return $q.reject(errResponse);
+                    }
+                );
+        },
+        addPermissaoToAnalise: function (permissao) {
+            return $http.post(__env.apiUrl + '/analise/permissoes/', permissao)
+                .then(
+                    function (response) {
+                        return response.data;
+                    },
+                    function (errResponse) {
+                        console.error('Error while updating analise');
+                        return $q.reject(errResponse);
+                    }
+                );
         }
+
+
+
     }
+
 });

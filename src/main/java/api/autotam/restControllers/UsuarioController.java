@@ -75,7 +75,7 @@ public class UsuarioController {
         System.out.println("Fetching User with email: " + email);
         Usuario usuario = usuarioService.findByEmail(email);
         if (usuario == null) {
-            System.out.println("User with username " + email + " not found");
+            System.out.println("User with username " + email + "is logged in this session not found");
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(usuario, HttpStatus.OK);

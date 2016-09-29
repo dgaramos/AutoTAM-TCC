@@ -12,7 +12,9 @@ public interface PermissaoDAO {
 
     void savePermissao(Permissao permissao);
 
-    List<Permissao> findAllPermissoesByUsuario(int idUsuario);
+    List<Permissao> findAllPermissoesFromUsuario(int idUsuario);
+
+    List<Permissao> findAllPermissoesFromAnalise (int idAnalise);
 
     void deletePermissao(int idPermissao);
 

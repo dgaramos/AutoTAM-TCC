@@ -1,6 +1,7 @@
 package api.autotam.restControllers;
 
 import api.autotam.model.Analise;
+import api.autotam.model.Permissao;
 import api.autotam.model.VariavelTAM;
 import api.autotam.service.AnaliseService;
 import api.autotam.service.UsuarioService;
@@ -75,6 +76,7 @@ public class AnaliseController {
 
         return new ResponseEntity<>(currentAnalise, HttpStatus.OK);
     }
+
     //-------------------Add a Variavel to an Analise--------------------------------------------------------
 
     @RequestMapping(value = "variavel/{id}", method = RequestMethod.POST)
@@ -101,13 +103,12 @@ public class AnaliseController {
 
         currentVariavel.setNomeVariavel(variavel.getNomeVariavel());
 
-
         variavelTAMService.updateVariavel(currentVariavel);
 
         return new ResponseEntity<VariavelTAM>(currentVariavel, HttpStatus.OK);
     }
 
-    //-------------------Retrieve All Permissoes from Usuario--------------------------------------------------------
+    //-------------------Retrieve All Variaveis from Analise--------------------------------------------------------
     @RequestMapping(value = "variaveis/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<VariavelTAM>> listAllVariaveis(@PathVariable("id") Integer idAnalise) {
         List<VariavelTAM> variaveis = variavelTAMService.findAllVariaveisFromAnalise(idAnalise);
@@ -125,5 +126,26 @@ public class AnaliseController {
 
         variavelTAMService.deleteVariavel(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    //------------------- Permissões from Analise --------------------------------------------------------
+
+    @RequestMapping(value = "permissoes/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<Permissao>> listAllPermissoes(@PathVariable("id") Integer idAnalise) {
+        List<Permissao> permissoes = analiseService.findAllPermissoesFromAnalise(idAnalise);
+        if(permissoes.isEmpty()){
+            return new ResponseEntity<List<Permissao>>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<List<Permissao>>(permissoes, HttpStatus.OK);
+    }
+
+    //-------------------Add a Permissao to an Analise--------------------------------------------------------
+
+    @RequestMapping(value = "permissoes/", method = RequestMethod.POST)
+    public ResponseEntity<Void> createPermissao(@RequestBody Permissao permissao) {
+        System.out.println("Adding Permissao to Analise "+ permissao.getAnalise().getNome()+ " to Usuario with Nome " + permissao.getUsuario().getEmail());
+        analiseService.savePermissao(permissao);
+
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

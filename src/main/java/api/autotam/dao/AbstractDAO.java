@@ -22,6 +22,10 @@ public abstract class AbstractDAO{
         getSession().persist(entity);
     }
 
+    public void saveOrUpdate(Object entity) {
+        getSession().saveOrUpdate(entity);
+    }
+
     public void delete(Object entity) {
         getSession().delete(entity);
     }
