@@ -1,13 +1,12 @@
-package api.autotam.daos.interfaces;
+package api.autotam.services.interfaces;
 
 import api.autotam.model.Questao;
-
-import java.util.List;
+import api.autotam.model.VariavelTAM;
 
 /**
- * Created by Danilo on 9/24/2016.
+ * Created by Danilo on 9/30/2016.
  */
-public interface QuestaoDAO {
+public interface QuestaoService {
 
     void saveQuestao(Questao questao);
 
@@ -17,6 +16,6 @@ public interface QuestaoDAO {
 
     void deleteQuestao(int idQuestao);
 
-    List<Questao> findAllQuestoesFromVariavel(int idVariavel);
+    boolean isQuestaoExist(Questao questao);
 
 }

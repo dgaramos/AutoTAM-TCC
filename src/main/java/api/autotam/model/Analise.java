@@ -26,21 +26,21 @@ public class Analise {
     @Column(name = "objetoDeAnalise")
     private String objetoDeAnalise;
 
+    @Column(name = "status")
+    private String status;
+
     @OneToMany(mappedBy = "analise",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonManagedReference
     private List<VariavelTAM> variaveis;
 
-    @Column(name = "status")
-    private String status;
-
     public Analise(){}
 
-    public Analise( String nome, String objetoDeAnalise){
+    public Analise( String nome, String objetoDeAnalise, List<VariavelTAM> variaveis){
         this.nome = nome;
         this.objetoDeAnalise = objetoDeAnalise;
+        this.variaveis = variaveis;
     }
-
 
 
     public Integer getIdAnalise() {

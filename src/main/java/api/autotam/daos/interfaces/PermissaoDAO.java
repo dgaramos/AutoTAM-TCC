@@ -11,17 +11,17 @@ public interface PermissaoDAO {
 
     void savePermissao(Permissao permissao);
 
-    List<Permissao> findAllPermissoesFromUsuario(int idUsuario);
+    Permissao findById(int idPermissao);
 
-    List<Permissao> findAllPermissoesFromAnalise (int idAnalise);
+    void updatePermissao(Permissao permissao);
+
+    void deletePermissao(int idPermissao);
 
     boolean usuarioHasPermissaoToAnalise(int idAnalise, int idUsuario);
 
     boolean usuarioIsAdministrador(int idAnalise, int idUsuario);
 
-    void deletePermissao(int idPermissao);
+    List<Permissao> findAllPermissoesFromUsuario(int idUsuario);
 
-    Permissao findById(int idPermissao);
-
-    void updatePermissao(Permissao permissao);
+    List<Permissao> findAllPermissoesFromAnalise (int idAnalise);
 }

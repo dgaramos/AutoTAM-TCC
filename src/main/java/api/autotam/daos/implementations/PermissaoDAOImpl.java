@@ -14,17 +14,8 @@ import java.util.List;
 @Repository("permissaoDAO")
 public class PermissaoDAOImpl extends AbstractDAO implements PermissaoDAO {
 
-
     public void savePermissao(Permissao permissao) {
         saveOrUpdate(permissao);
-    }
-
-    public void deletePermissao(int idPermissao){
-    Query query = getSession().createSQLQuery(
-            "DELETE FROM permissao WHERE idPermissao = :idPermissao");
-        query.setParameter("idPermissao", idPermissao);
-        query.executeUpdate();
-
     }
 
     public Permissao findById(int idPermissao) {
@@ -33,6 +24,18 @@ public class PermissaoDAOImpl extends AbstractDAO implements PermissaoDAO {
                 .addEntity(Permissao.class)
                 .setParameter("idPermissao", idPermissao);
         return (Permissao) query.uniqueResult() ;
+
+    }
+
+    public void updatePermissao(Permissao permissao) {
+        getSession().update(permissao);
+    }
+
+    public void deletePermissao(int idPermissao){
+        Query query = getSession().createSQLQuery(
+                "DELETE FROM permissao WHERE idPermissao = :idPermissao");
+        query.setParameter("idPermissao", idPermissao);
+        query.executeUpdate();
 
     }
 
@@ -72,7 +75,4 @@ public class PermissaoDAOImpl extends AbstractDAO implements PermissaoDAO {
         return (List<Permissao>) query.list();
     }
 
-    public void updatePermissao(Permissao permissao) {
-        getSession().update(permissao);
-    }
 }

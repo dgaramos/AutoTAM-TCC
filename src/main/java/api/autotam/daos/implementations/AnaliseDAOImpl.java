@@ -15,17 +15,6 @@ public class AnaliseDAOImpl extends AbstractDAO implements AnaliseDAO {
         persist(analise);
     }
 
-    public void updateAnalise(Analise analise) {
-        getSession().update(analise);
-    }
-
-    public void deleteAnalise(int idAnalise) {
-        Query query = getSession().createSQLQuery(
-                "DELETE FROM analise WHERE idAnalise = :idAnalise");
-        query.setParameter("idAnalise", idAnalise);
-        query.executeUpdate();
-    }
-
     public Analise findById(int idAnalise) {
         Query query = getSession().createSQLQuery(
                 "SELECT * FROM analise a WHERE a.idAnalise = :idAnalise")
@@ -41,4 +30,16 @@ public class AnaliseDAOImpl extends AbstractDAO implements AnaliseDAO {
                 .setParameter("objetoDeAnalise", objetoDeAnalise);
         return (Analise) query.uniqueResult();
     }
+
+    public void updateAnalise(Analise analise) {
+        getSession().update(analise);
+    }
+
+    public void deleteAnalise(int idAnalise) {
+        Query query = getSession().createSQLQuery(
+                "DELETE FROM analise WHERE idAnalise = :idAnalise");
+        query.setParameter("idAnalise", idAnalise);
+        query.executeUpdate();
+    }
+
 }

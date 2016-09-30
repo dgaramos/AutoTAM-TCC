@@ -20,26 +20,6 @@ public class UsuarioDAOImpl extends AbstractDAO implements UsuarioDAO {
         persist(usuario);
     }
 
-    public void updateUsuario(Usuario usuario){
-        getSession().update(usuario);
-    }
-
-    @SuppressWarnings("unchecked")
-    public List<Usuario> findAllUsuarios() {
-        Query query = getSession().createSQLQuery(
-                "SELECT * FROM usuario u")
-                .addEntity(Usuario.class);
-        return (List<Usuario>) query.list();
-    }
-
-    public void deleteUsuario(int idUsuario) {
-        Query query = getSession().createSQLQuery(
-                "DELETE FROM usuario WHERE idUsuario = :idUsuario");
-        query.setParameter("idUsuario", idUsuario);
-        query.executeUpdate();
-    }
-
-
     public Usuario findById(int idUsuario){
         Query query = getSession().createSQLQuery(
                 "SELECT * FROM usuario u WHERE u.idUsuario = :idUsuario")
@@ -54,6 +34,25 @@ public class UsuarioDAOImpl extends AbstractDAO implements UsuarioDAO {
                 .addEntity(Usuario.class)
                 .setParameter("email", email);
         return (Usuario) query.uniqueResult() ;
+    }
+
+    public void updateUsuario(Usuario usuario){
+        getSession().update(usuario);
+    }
+
+    public void deleteUsuario(int idUsuario) {
+        Query query = getSession().createSQLQuery(
+                "DELETE FROM usuario WHERE idUsuario = :idUsuario");
+        query.setParameter("idUsuario", idUsuario);
+        query.executeUpdate();
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<Usuario> findAllUsuarios() {
+        Query query = getSession().createSQLQuery(
+                "SELECT * FROM usuario u")
+                .addEntity(Usuario.class);
+        return (List<Usuario>) query.list();
     }
 
 }

@@ -28,6 +28,9 @@ public class VariavelTAM {
     @Column(name = "variavelPadrao")
     private boolean variavelPadrao;
 
+    @Column(name = "nota")
+    private double nota;
+
     @ManyToOne(cascade = CascadeType.ALL )
     @JoinColumn(name = "idAnalise")
     @OnDelete(action = OnDeleteAction.CASCADE)
@@ -38,9 +41,6 @@ public class VariavelTAM {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonManagedReference
     private List<Questao> questoes;
-
-    @Column(name = "nota")
-    private double nota;
 
     public VariavelTAM(){}
 
@@ -66,6 +66,14 @@ public class VariavelTAM {
         this.nomeVariavel = nomeVariavel;
     }
 
+    public boolean isVariavelPadrao() {
+        return variavelPadrao;
+    }
+
+    public void setVariavelPadrao(boolean variavelPadrao) {
+        this.variavelPadrao = variavelPadrao;
+    }
+
     public Analise getAnalise() {
         return analise;
     }
@@ -88,14 +96,6 @@ public class VariavelTAM {
 
     public void setNota(double nota) {
         this.nota = nota;
-    }
-
-    public boolean isVariavelPadrao() {
-        return variavelPadrao;
-    }
-
-    public void setVariavelPadrao(boolean variavelPadrao) {
-        this.variavelPadrao = variavelPadrao;
     }
 
     @Override

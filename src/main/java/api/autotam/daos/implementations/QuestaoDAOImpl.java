@@ -17,16 +17,16 @@ public class QuestaoDAOImpl extends AbstractDAO implements QuestaoDAO {
     public void saveQuestao(Questao questao) { persist(questao);}
 
     @Override
-    public void updateQuestao(Questao questao) { getSession().update(questao);}
+    public Questao findById(int idQuestao) {
+        Query query = getSession().createSQLQuery(
+                "SELECT * FROM questao q WHERE q.idQuestao = :idQuestao")
+                .addEntity(Questao.class)
+                .setParameter("idQuestao", idQuestao);
+        return (Questao) query.uniqueResult() ;
+    }
 
     @Override
-    public List<Questao> findAllQuestoesFromVariavel(int idVariavel) {
-        Query query = getSession().createSQLQuery(
-                "SELECT * FROM questao q WHERE p.idVariavel = :idVariavel")
-                .addEntity(Questao.class)
-                .setParameter("idVariavel", idVariavel);
-        return (List<Questao>) query.list();
-    }
+    public void updateQuestao(Questao questao) { getSession().update(questao);}
 
     @Override
     public void deleteQuestao(int idQuestao) {
@@ -37,13 +37,12 @@ public class QuestaoDAOImpl extends AbstractDAO implements QuestaoDAO {
     }
 
     @Override
-    public Questao findById(int idQuestao) {
+    public List<Questao> findAllQuestoesFromVariavel(int idVariavel) {
         Query query = getSession().createSQLQuery(
-                "SELECT * FROM questao q WHERE q.idQuestao = :idQuestao")
+                "SELECT * FROM questao q WHERE p.idVariavel = :idVariavel")
                 .addEntity(Questao.class)
-                .setParameter("idQuestao", idQuestao);
-        return (Questao) query.uniqueResult() ;
+                .setParameter("idVariavel", idVariavel);
+        return (List<Questao>) query.list();
     }
-
 
 }

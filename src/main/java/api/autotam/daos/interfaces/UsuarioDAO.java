@@ -12,14 +12,14 @@ public interface UsuarioDAO {
 
     void saveUsuario(Usuario usuario);
 
-    void updateUsuario(Usuario usuario);
-
-    List<Usuario> findAllUsuarios();
-
-    void deleteUsuario(int idUsuario);
-
     Usuario findById(int idUsuario);
 
     Usuario findByEmail(String email);
+
+    void updateUsuario(Usuario usuario);
+
+    void deleteUsuario(int idUsuario);
+
+    List<Usuario> findAllUsuarios();
 
 }

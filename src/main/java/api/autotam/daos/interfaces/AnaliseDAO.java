@@ -9,12 +9,12 @@ public interface AnaliseDAO {
 
     void saveAnalise(Analise analise);
 
-
-    void deleteAnalise(int idAnalise);
-
     Analise findById(int idAnalise);
 
     Analise findByObjetoDeAnalise(String objetoDeAnalise);
 
     void updateAnalise(Analise analise);
+
+    void deleteAnalise(int idAnalise);
+
 }

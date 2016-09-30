@@ -19,6 +19,10 @@ public interface PermissaoService {
 
     void updatePermissao(Permissao permissao);
 
+    boolean isUsuarioHavePermissaoToAnalise(Permissao permissao);
+
     void deletePermissao (int idPermissao);
+
+
 
 }

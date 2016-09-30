@@ -36,23 +36,18 @@ public class AnaliseServiceImpl extends AbstractService implements AnaliseServic
     }
 
     @Override
-    public void addVariavelToAnalise(int idAnalise, VariavelTAM variavel){
-        if (usuarioLogadoIsAdministrador(idAnalise)){
-            Analise analise = findById(idAnalise);
-            variavel.setAnalise(analise);
-            List<VariavelTAM> variaveis = analise.getVariaveis();
-            variaveis.add(variavel);
-            analise.setVariaveis(variaveis);
-            updateAnalise(analise);
+    public Analise findById(int idAnalise) {
+        return analiseDAO.findById(idAnalise);
+    }
+
+
+    @Override
+    public void updateAnalise(Analise analise) {
+        if (usuarioLogadoIsAdministrador(analise.getIdAnalise())) {
+            analiseDAO.updateAnalise(analise);
         }else{
             throw new SecurityException("Usuario não tem permissão de administrador para essa análise");
         }
-
-    }
-
-    @Override
-    public Analise findById(int idAnalise) {
-        return analiseDAO.findById(idAnalise);
     }
 
     @Override
@@ -65,17 +60,23 @@ public class AnaliseServiceImpl extends AbstractService implements AnaliseServic
     }
 
     @Override
-    public void updateAnalise(Analise analise) {
-        if (usuarioLogadoIsAdministrador(analise.getIdAnalise())) {
-            analiseDAO.updateAnalise(analise);
-        }else{
-            throw new SecurityException("Usuario não tem permissão de administrador para essa análise");
-        }
+    public boolean isAnaliseExist(Analise analise) {
+        return findById(analise.getIdAnalise())!=null;
     }
 
     @Override
-    public boolean isAnaliseExist(Analise analise) {
-        return findById(analise.getIdAnalise())!=null;
+    public void addVariavelToAnalise(int idAnalise, VariavelTAM variavel){
+        if (usuarioLogadoIsAdministrador(idAnalise)){
+            Analise analise = findById(idAnalise);
+            variavel.setAnalise(analise);
+            List<VariavelTAM> variaveis = analise.getVariaveis();
+            variaveis.add(variavel);
+            analise.setVariaveis(variaveis);
+            updateAnalise(analise);
+        }else{
+            throw new SecurityException("Usuario não tem permissão de administrador para essa análise");
+        }
+
     }
 
 }

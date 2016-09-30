@@ -12,19 +12,20 @@ public interface UsuarioService {
 
     void saveUsuario(Usuario usuario);
 
-    List<Usuario> findAllUsuarios();
-
-    void deleteUsuario(int idUsuario);
-
     Usuario findById(Integer id);
 
     Usuario findByEmail(String email);
 
+    Usuario getUsuarioLogado();
+
     void updateUsuario(Usuario usuario);
+
+    void deleteUsuario(int idUsuario);
 
     boolean isUsuarioExist(Usuario usuario);
 
-    Usuario getUsuarioLogado();
+    List<Usuario> findAllUsuarios();
+
 }
 
 

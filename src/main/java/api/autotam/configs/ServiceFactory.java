@@ -1,13 +1,7 @@
 package api.autotam.configs;
 
-import api.autotam.services.implementations.AnaliseServiceImpl;
-import api.autotam.services.implementations.PermissaoServiceImpl;
-import api.autotam.services.implementations.UsuarioServiceImpl;
-import api.autotam.services.implementations.VariavelTAMServiceImpl;
-import api.autotam.services.interfaces.AnaliseService;
-import api.autotam.services.interfaces.PermissaoService;
-import api.autotam.services.interfaces.UsuarioService;
-import api.autotam.services.interfaces.VariavelTAMService;
+import api.autotam.services.implementations.*;
+import api.autotam.services.interfaces.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -31,4 +25,7 @@ public class ServiceFactory {
 
     @Bean (name="variavelTAMService")
     public VariavelTAMService variavelTAMService(){ return new VariavelTAMServiceImpl();}
+
+    @Bean(name="questaoService")
+    public QuestaoService questaoService(){ return new QuestaoServiceImpl();}
 }

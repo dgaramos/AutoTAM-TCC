@@ -24,34 +24,26 @@ public class UsuarioServiceImpl extends AbstractService implements UsuarioServic
     private UsuarioDAO usuarioDAO;
 
     @Override
-    public Usuario getUsuarioLogado() {
-        return super.getUsuarioLogado();
-    }
-
     public void saveUsuario(Usuario usuario) {
         usuarioDAO.saveUsuario(usuario);
     }
 
-    public List<Usuario> findAllUsuarios() {
-        return usuarioDAO.findAllUsuarios();
-    }
-
-    public void deleteUsuario(int idUsuario) {
-        if(getUsuarioLogado().getIdUsuario() == idUsuario){
-            usuarioDAO.deleteUsuario(idUsuario);
-        }else{
-            throw new SecurityException("Só o próprio usuário pode excluir sua conta");
-        }
-    }
-
+    @Override
     public Usuario findById(Integer id) {
         return usuarioDAO.findById(id);
     }
 
+    @Override
     public Usuario findByEmail(String email) {
         return usuarioDAO.findByEmail(email);
     }
 
+    @Override
+    public Usuario getUsuarioLogado() {
+        return super.getUsuarioLogado();
+    }
+
+    @Override
     public void updateUsuario(Usuario usuario){
         if(getUsuarioLogado().equals(usuario)){
             usuarioDAO.updateUsuario(usuario);
@@ -60,9 +52,28 @@ public class UsuarioServiceImpl extends AbstractService implements UsuarioServic
         }
     }
 
+    @Override
+    public void deleteUsuario(int idUsuario) {
+        if(getUsuarioLogado().getIdUsuario() == idUsuario){
+            usuarioDAO.deleteUsuario(idUsuario);
+        }else{
+            throw new SecurityException("Só o próprio usuário pode excluir sua conta");
+        }
+    }
+
+    @Override
     public boolean isUsuarioExist(Usuario usuario) {
         return findByEmail(usuario.getEmail())!=null;
     }
+
+    @Override
+    public List<Usuario> findAllUsuarios() {
+        return usuarioDAO.findAllUsuarios();
+    }
+
+
+
+
 
 
 }

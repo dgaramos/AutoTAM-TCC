@@ -18,18 +18,6 @@ public class VariavelTAMDAOImpl extends AbstractDAO implements VariavelTAMDAO {
     public void saveVariavel(VariavelTAM variavel) {persist(variavel);}
 
     @Override
-    public void updateVariavel(VariavelTAM variavel) { getSession().update(variavel);}
-
-    @Override
-    public List<VariavelTAM> findAllVariaveisFromAnalise(int idAnalise) {
-        Query query = getSession().createSQLQuery(
-                "SELECT * FROM  variavelTAM v WHERE v.idAnalise = :idAnalise")
-                .addEntity(VariavelTAM.class)
-                .setParameter("idAnalise", idAnalise);
-        return (List<VariavelTAM>) query.list();
-    }
-
-    @Override
     public VariavelTAM findById(int idVariavel) {
         Query query = getSession().createSQLQuery(
                 "SELECT * FROM  variavelTAM v WHERE v.idVariavel = :idVariavel")
@@ -39,6 +27,9 @@ public class VariavelTAMDAOImpl extends AbstractDAO implements VariavelTAMDAO {
     }
 
     @Override
+    public void updateVariavel(VariavelTAM variavel) { getSession().update(variavel);}
+
+    @Override
     public void deleteVariavel(int idVariavel) {
         Query query = getSession().createSQLQuery(
                 "DELETE FROM variavelTAM WHERE idVariavel = :idVariavel");
@@ -46,6 +37,13 @@ public class VariavelTAMDAOImpl extends AbstractDAO implements VariavelTAMDAO {
         query.executeUpdate();
     }
 
-
+    @Override
+    public List<VariavelTAM> findAllVariaveisFromAnalise(int idAnalise) {
+        Query query = getSession().createSQLQuery(
+                "SELECT * FROM  variavelTAM v WHERE v.idAnalise = :idAnalise")
+                .addEntity(VariavelTAM.class)
+                .setParameter("idAnalise", idAnalise);
+        return (List<VariavelTAM>) query.list();
+    }
 
 }

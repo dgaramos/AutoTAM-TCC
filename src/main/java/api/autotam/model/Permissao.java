@@ -21,6 +21,12 @@ public class Permissao implements Serializable{
     @Column(name = "idPermissao")
     private Integer idPermissao;
 
+    @Column(name = "isAdministrador")
+    private boolean isAdministrador;
+
+    @Column(name = "isTestador")
+    private boolean isTestador;
+
     @ManyToOne(cascade = CascadeType.ALL )
     @JoinColumn(name = "idUsuario")
     @OnDelete(action = OnDeleteAction.CASCADE)
@@ -31,19 +37,14 @@ public class Permissao implements Serializable{
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Analise analise;
 
-    @Column(name = "isAdministrador")
-    private boolean isAdministrador;
-
-    @Column(name = "isTestador")
-    private boolean isTestador;
 
     public Permissao(){}
 
     public Permissao( Usuario usuario, Analise analise, boolean isAdministrador, boolean isTestador){
-        this.usuario = usuario;
-        this.analise = analise;
         this.isAdministrador = isAdministrador;
         this.isTestador = isTestador;
+        this.usuario = usuario;
+        this.analise = analise;
     }
 
     public Integer getIdPermissao() {
@@ -52,22 +53,6 @@ public class Permissao implements Serializable{
 
     public void setIdPermissao(Integer idPermissao) {
         this.idPermissao = idPermissao;
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
-    public Analise getAnalise() {
-        return analise;
-    }
-
-    public void setAnalise(Analise analise) {
-        this.analise = analise;
     }
 
     public boolean isAdministrador() {
@@ -84,6 +69,22 @@ public class Permissao implements Serializable{
 
     public void setTestador(boolean testador) {
         isTestador = testador;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public Analise getAnalise() {
+        return analise;
+    }
+
+    public void setAnalise(Analise analise) {
+        this.analise = analise;
     }
 
     @Override

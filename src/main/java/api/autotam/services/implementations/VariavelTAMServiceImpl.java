@@ -1,6 +1,7 @@
 package api.autotam.services.implementations;
 
 import api.autotam.daos.interfaces.VariavelTAMDAO;
+import api.autotam.model.Questao;
 import api.autotam.model.VariavelTAM;
 import api.autotam.services.interfaces.VariavelTAMService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,26 +28,10 @@ public class VariavelTAMServiceImpl extends AbstractService implements VariavelT
         }else{
             throw new SecurityException("O usuário não é administrador da análise");
         }
-
-    }
-
-    @Override
-    public List<VariavelTAM> findAllVariaveisFromAnalise(int idAnalise) {
-        List<VariavelTAM> variaveis = variavelTAMDAO.findAllVariaveisFromAnalise(idAnalise);
-        return variaveis;
     }
 
     @Override
     public VariavelTAM findById(int idVariavel) {return variavelTAMDAO.findById(idVariavel);}
-
-    @Override
-    public void deleteVariavel(int idVariavel) {
-        if(usuarioLogadoIsAdministrador(findById(idVariavel).getAnalise().getIdAnalise())){
-          variavelTAMDAO.deleteVariavel(idVariavel);
-        }else{
-            throw new SecurityException("O usuário não é administrador da análise");
-     }
-    }
 
     @Override
     public void updateVariavel(VariavelTAM variavel) {
@@ -58,5 +43,20 @@ public class VariavelTAMServiceImpl extends AbstractService implements VariavelT
     }
 
     @Override
+    public void deleteVariavel(int idVariavel) {
+        if(usuarioLogadoIsAdministrador(findById(idVariavel).getAnalise().getIdAnalise())){
+            variavelTAMDAO.deleteVariavel(idVariavel);
+        }else{
+            throw new SecurityException("O usuário não é administrador da análise");
+        }
+    }
+
+    @Override
     public boolean isVariavelExist(VariavelTAM variavel) {return findById(variavel.getIdVariavel()) != null;}
+
+    @Override
+    public List<VariavelTAM> findAllVariaveisFromAnalise(int idAnalise) {
+        List<VariavelTAM> variaveis = variavelTAMDAO.findAllVariaveisFromAnalise(idAnalise);
+        return variaveis;
+    }
 }
