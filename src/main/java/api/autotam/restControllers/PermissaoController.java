@@ -57,6 +57,27 @@ public class PermissaoController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    //------------------- Update a Permissao --------------------------------------------------------
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<Permissao> updatePermissao(@PathVariable("id") Integer idPermissao, @RequestBody Permissao permissao) {
+        System.out.println("Updating Permissao " + idPermissao);
+
+        Permissao currentPermissao = permissaoService.findById(idPermissao);
+
+        if (currentPermissao==null) {
+            System.out.println("Permissao with id " + idPermissao + " not found");
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        currentPermissao.setTestador(permissao.isTestador());
+        currentPermissao.setAdministrador(permissao.isAdministrador());
+
+        permissaoService.updatePermissao(currentPermissao);
+
+        return new ResponseEntity<>(currentPermissao, HttpStatus.OK);
+    }
+
     //------------------- Delete a Permissao --------------------------------------------------------
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)

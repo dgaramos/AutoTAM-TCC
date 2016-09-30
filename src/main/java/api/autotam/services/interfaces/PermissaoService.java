@@ -9,6 +9,8 @@ import java.util.List;
  */
 public interface PermissaoService {
 
+    Permissao findById(int idPermissao);
+
     List<Permissao> findAllPermissoesFromUsuario(int idUsuario);
 
     List<Permissao> findAllPermissoesFromAnalise(int idAnalise);

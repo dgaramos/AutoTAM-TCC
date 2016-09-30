@@ -22,6 +22,11 @@ public class PermissaoServiceImpl extends AbstractService implements PermissaoSe
 
 
     @Override
+    public Permissao findById(int idPermissao) {
+        return permissaoDAO.findById(idPermissao);
+    }
+
+    @Override
     public List<Permissao> findAllPermissoesFromUsuario(int idUsuario){
         List<Permissao> permissoes = permissaoDAO.findAllPermissoesFromUsuario(idUsuario);
         return permissoes;
@@ -46,7 +51,7 @@ public class PermissaoServiceImpl extends AbstractService implements PermissaoSe
     }
     @Override
     public void updatePermissao(Permissao permissao) {
-
+        permissaoDAO.updatePermissao(permissao);
     }
 
     @Override

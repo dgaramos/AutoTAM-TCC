@@ -44,6 +44,19 @@ services.factory('PermissaoService', function($http, $q){
                 );
         },
 
+        updatePermissao: function (permissao, idPermissao) {
+            return $http.put(__env.apiUrl + '/permissao/' + idPermissao, permissao)
+                .then(
+                    function (response) {
+                        return response.data;
+                    },
+                    function (errResponse) {
+                        console.error('Error while updating analise');
+                        return $q.reject(errResponse);
+                    }
+                );
+        },
+
         deletePermissao: function (idPermissao) {
             return $http.delete(__env.apiUrl + '/permissao/' + idPermissao)
                 .then(

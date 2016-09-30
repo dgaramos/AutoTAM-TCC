@@ -57,7 +57,7 @@
                     <input type="checkbox"ng-model="AnaliseCtrl.permissaoConvite.testador" value=true>
                 </div>
                 <div class="col-md-1 col-permissao">
-                    <button type="submit" class="btn btn-primary btn-sm" ng-click="AnaliseCtrl.adicionaPermissao(AnaliseCtrl.permissaoConvite.analise)"
+                    <button type="submit" class="btn btn-primary btn-sm" ng-click="AnaliseCtrl.submitPermissao(AnaliseCtrl.permissaoConvite)"
                             ng-disabled="email.$invalid" data-placement="right" tooltip=""
                             data-original-title=" {{!AnaliseCtrl.permissaoConvite.idPermissao? 'Adcionar Permissão para Usuario' : 'Atualizar Permissão do Usuário'}}">
                     <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>

@@ -303,6 +303,27 @@ controllers.controller('AnaliseController', function($rootScope, $scope, $window
 
     self.selectPermissao = function(permissao){
         self.permissaoConvite = angular.copy(permissao);
+    };
+
+    self.updatePermissao = function(permissao, analise){
+        PermissaoService.updatePermissao(permissao, permissao.idPermissao)
+            .then(
+                function(d){
+                    self.fetchAllPermissoesFromAnalise(analise);
+                    self.resetPermissao();
+                },
+                function(errResponse){
+                    console.error('Error while updating Permissao');
+                }
+            )
+    };
+
+    self.submitPermissao = function(permissao){
+        if(permissao.idPermissao === null){
+            self.adicionaPermissao(permissao.analise);
+        }else{
+            self.updatePermissao(permissao, permissao.analise);
+        }
     }
 
     self.deletePermissao = function (idPermissao, analise){
@@ -313,7 +334,7 @@ controllers.controller('AnaliseController', function($rootScope, $scope, $window
                     self.resetPermissao();
                 },
                 function(errResponse){
-                    console.error('Error while fetching variaveis from Analise');
+                    console.error('Error while deleting Permissao');
                 }
             );
     };
