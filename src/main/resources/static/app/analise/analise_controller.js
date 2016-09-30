@@ -3,7 +3,7 @@
  */
 'use strict';
 
-controllers.controller('AnaliseController', function($scope, AnaliseService, $window, UsuarioService, $rootScope) {
+controllers.controller('AnaliseController', function($rootScope, $scope, $window, AnaliseService, PermissaoService, UsuarioService, VariavelTAMService) {
     var self = this;
 
     self.permissao = {idPermissao: null,
@@ -20,7 +20,7 @@ controllers.controller('AnaliseController', function($scope, AnaliseService, $wi
     self.variavel = {idVariavel: null, nomeVariavel: '', variavelPadrao: false, nota: ''};
 
     self.fetchAllAnalises = function(){
-        AnaliseService.fetchAllAnalises()
+        PermissaoService.fetchAllPermissoesFromUsuario()
             .then(
                 function(d) {
                     self.permissoes = d;
@@ -148,7 +148,7 @@ controllers.controller('AnaliseController', function($scope, AnaliseService, $wi
     //--------------------------------------Após a Análise Criada--------------------------------------------------------
 
     self.fetchAllVariaveisFromAnalise = function(idAnalise){
-        AnaliseService.fetchAllVariaveisFromAnalise(idAnalise)
+        VariavelTAMService.fetchAllVariaveisFromAnalise(idAnalise)
             .then(
                 function(d) {
                     for(var i = 0; i < self.permissoes.length; i++){
@@ -166,7 +166,7 @@ controllers.controller('AnaliseController', function($scope, AnaliseService, $wi
 
     self.variavelToAnalise = function (idAnalise, variavel){
         if(variavel.idVariavel===null) {
-            AnaliseService.addVariavelToAnalise(idAnalise, variavel)
+            VariavelTAMService.addVariavelToAnalise(idAnalise, variavel)
                 .then(
                     function (d) {
                         self.fetchAllVariaveisFromAnalise(idAnalise);
@@ -180,7 +180,7 @@ controllers.controller('AnaliseController', function($scope, AnaliseService, $wi
                     }
                 )
         }else{
-            AnaliseService.updateVariavelFromAnalise(idAnalise, variavel)
+            VariavelTAMService.updateVariavelFromAnalise(idAnalise, variavel)
                 .then(
                     function (d) {
                         self.fetchAllVariaveisFromAnalise(idAnalise);
@@ -203,7 +203,7 @@ controllers.controller('AnaliseController', function($scope, AnaliseService, $wi
     };
 
     self.deleteVariavel = function (idVariavel, idAnalise){
-        AnaliseService.deleteVariavel(idVariavel)
+        VariavelTAMService.deleteVariavel(idVariavel)
             .then(
                 function(d){
                     self.fetchAllVariaveisFromAnalise(idAnalise);
@@ -228,10 +228,17 @@ controllers.controller('AnaliseController', function($scope, AnaliseService, $wi
     self.permissoesConvite = [];
     self.erroPermissao = false;
 
+    self.resetPermissao = function(){
+        self.permissaoConvite = {idPermissao: null,
+            usuario: {idUsuario: null, nome: '', email: '', senha: ''},
+            analise: self.permissao.analise ,
+            testador: false, administrador: false};
+        self.erroPermissao = false;
+    }
 
     self.fetchAllPermissoesFromAnalise = function(analise){
         self.permissaoConvite.analise = analise;
-        AnaliseService.fetchAllPermissoesFromAnalise(analise.idAnalise)
+        PermissaoService.fetchAllPermissoesFromAnalise(analise.idAnalise)
             .then(
                 function(p){
                     console.log(p);
@@ -245,36 +252,44 @@ controllers.controller('AnaliseController', function($scope, AnaliseService, $wi
     };
 
     self.savePermissao = function (permissao){
-      AnaliseService.addPermissaoToAnalise(permissao)
-          .then(function (response) {
-              console.log(response);
-              permissao.usuario = {idUsuario: null, nome: '', email: '', senha: ''};
-              permissao.testador = false;
-              permissao.administrador = false;
-          })
-          .catch(function(errResponse){
-              console.error('Error while creating Permissao.' + errResponse);
-          })
+        PermissaoService.addPermissaoToAnalise(permissao)
+            .then(function (response) {
+                console.log(response);
+                permissao.usuario = {idUsuario: null, nome: '', email: '', senha: ''};
+                permissao.testador = false;
+                permissao.administrador = false;
+            })
+            .catch(function(errResponse){
+                console.error('Error while creating Permissao.' + errResponse);
+            })
     };
 
     self.adicionaPermissao = function(analise){
+        self.erroPermissao = false;
         if(self.permissaoConvite.usuario.email == $rootScope.loggedUsuario.email){
             console.error('Você está tentando adicionar o usuario logado');
             self.erroPermissao = true;
         } else{
             UsuarioService.fetchUsuarioByEmail(self.permissaoConvite.usuario.email)
                 .then(
-                    function(u){
-                        for(var i = 0; i< self.permissoesConvite.length; i++) {
+                    function(u) {
+                        for (var i = 0; i < self.permissoesConvite.length; i++) {
                             if (self.permissoesConvite[i].usuario.idUsuario === u.idUsuario) {
-                                console.error('Usuario já possui permissão');
                                 self.erroPermissao = true;
+                                console.error('Usuario já possui permissão');
                             }
                         }
-                        if(self.erroPermissao = false){
+                        if(self.erroPermissao === false){
                             self.permissaoConvite.usuario = u;
-                            self.savePermissao(self.permissaoConvite);
-                            self.fetchAllPermissoesFromAnalise(analise);
+                            self.savePermissao(self.permissaoConvite)
+                                .then(
+                                    function(p){
+                                        self.fetchAllPermissoesFromAnalise(analise);
+                                    },
+                                    function (errResponse) {
+                                        console.log(errResponse);
+                                    }
+                                )
                         }
                     },
                     function(errResponse){
@@ -285,4 +300,22 @@ controllers.controller('AnaliseController', function($scope, AnaliseService, $wi
         }
 
     };
+
+    self.selectPermissao = function(permissao){
+        self.permissaoConvite = angular.copy(permissao);
+    }
+
+    self.deletePermissao = function (idPermissao, analise){
+        PermissaoService.deletePermissao(idPermissao)
+            .then(
+                function(d){
+                    self.fetchAllPermissoesFromAnalise(analise);
+                    self.resetPermissao();
+                },
+                function(errResponse){
+                    console.error('Error while fetching variaveis from Analise');
+                }
+            );
+    };
+
 });

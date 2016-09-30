@@ -1,9 +1,8 @@
 package api.autotam.restControllers;
 
 
-import api.autotam.model.Permissao;
-import api.autotam.service.EmailService;
-import api.autotam.service.AnaliseService;
+import api.autotam.services.implementations.EmailService;
+import api.autotam.services.interfaces.AnaliseService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -11,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 import api.autotam.model.Usuario;
-import api.autotam.service.UsuarioService;
+import api.autotam.services.interfaces.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -155,16 +154,6 @@ public class UsuarioController {
         }
         emailService.recoverPassword(usuario);
         return new ResponseEntity<>(HttpStatus.OK);
-    }
-
-    //-------------------Retrieve All Permissoes from Usuario--------------------------------------------------------
-    @RequestMapping(value = "permissoes/", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<Permissao>> listAllPermissoes() {
-        List<Permissao> permissoes = analiseService.findAllAnalises(usuarioService.getUsuarioLogado().getIdUsuario());
-        if(permissoes.isEmpty()){
-            return new ResponseEntity<List<Permissao>>(HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<List<Permissao>>(permissoes, HttpStatus.OK);
     }
 
 }

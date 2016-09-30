@@ -1,0 +1,25 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" data-toggle="modal" data-target="#gerenciaPermissoesModal">&times;</button>
+        <h4 class="modal-title">Apagar Permissao</h4>
+    </div>
+    <div class="modal-body clearfix">
+        <div class="alert alert-danger">
+            <p>
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                Você realmente deseja apagar a permissão abaixo?
+            </p>
+        </div>
+        <div class="delete-container">
+            <h5><span class="label label-default">{{AnaliseCtrl.permissaoConvite.idPermissao}}</span></h5>
+            <p><b>Nome Análise: </b>{{AnaliseCtrl.permissaoConvite.analise.nome}} <b>Id: </b> {{AnaliseCtrl.permissaoConvite.analise.idAnalise}}</p>
+            <p><b>Nome Usuário: </b>{{AnaliseCtrl.permissaoConvite.usuario.nome}}</p>
+            <p><b>Email Usuário: </b>{{AnaliseCtrl.permissaoConvite.usuario.email}}</p>
+        </div>
+        <hr>
+        <button type="submit" class="btn btn-danger pull-right"  data-dismiss="modal" data-toggle="modal" data-target="#gerenciaPermissoesModal" ng-click="AnaliseCtrl.deletePermissao(AnaliseCtrl.permissaoConvite.idPermissao, AnaliseCtrl.permissaoConvite.analise)">
+            <span class="glyphicon glyphicon-ok" aria-hidden="true" ></span>
+            Apagar
+        </button>
+    </div>
+</div>

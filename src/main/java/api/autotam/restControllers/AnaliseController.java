@@ -1,20 +1,14 @@
 package api.autotam.restControllers;
 
 import api.autotam.model.Analise;
-import api.autotam.model.Permissao;
 import api.autotam.model.VariavelTAM;
-import api.autotam.service.AnaliseService;
-import api.autotam.service.UsuarioService;
-import api.autotam.service.VariavelTAMService;
+import api.autotam.services.interfaces.AnaliseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
-
-import java.util.List;
 
 /**
  * Created by Danilo on 9/11/2016.
@@ -26,14 +20,9 @@ public class AnaliseController {
 
 
     @Autowired
-    private UsuarioService usuarioService;
-    @Autowired
     private AnaliseService analiseService;
-    @Autowired
-    private VariavelTAMService variavelTAMService;
 
-//-------------------Create a analise--------------------------------------------------------
-
+    //-------------------Create an Analise--------------------------------------------------------
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Void> createAnalise(@RequestBody Analise analise, UriComponentsBuilder ucBuilder) {
         System.out.println("Creating Analise " + analise.getNome());
@@ -43,16 +32,6 @@ public class AnaliseController {
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(ucBuilder.path("{id}").buildAndExpand(analise.getIdAnalise()).toUri());
         return new ResponseEntity<>(headers, HttpStatus.CREATED);
-    }
-
-    //------------------- Delete an Analise --------------------------------------------------------
-
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<Analise> deleteAnalise(@PathVariable("id") Integer id) {
-        System.out.println("Fetching & Deleting Analise with id " + id);
-
-        analiseService.deleteAnalise(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     //------------------- Update an Analise --------------------------------------------------------
@@ -77,6 +56,17 @@ public class AnaliseController {
         return new ResponseEntity<>(currentAnalise, HttpStatus.OK);
     }
 
+
+    //------------------- Delete an Analise --------------------------------------------------------
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<Analise> deleteAnalise(@PathVariable("id") Integer id) {
+        System.out.println("Fetching & Deleting Analise with id " + id);
+
+        analiseService.deleteAnalise(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
     //-------------------Add a Variavel to an Analise--------------------------------------------------------
 
     @RequestMapping(value = "variavel/{id}", method = RequestMethod.POST)
@@ -88,64 +78,4 @@ public class AnaliseController {
     }
 
 
-    //------------------- Update a Variavel from an Analise --------------------------------------------------------
-
-    @RequestMapping(value = "variavelUpdate/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<VariavelTAM> updateVariavel(@PathVariable("id") Integer idAnalise, @RequestBody VariavelTAM variavel) {
-        System.out.println("Updating variavel "+ variavel.getNomeVariavel()+"from analise with id " + idAnalise);
-
-        VariavelTAM currentVariavel = variavelTAMService.findById(variavel.getIdVariavel());
-
-        if (currentVariavel==null) {
-            System.out.println("Variavel with id " + variavel.getIdVariavel() + " not found");
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-
-        currentVariavel.setNomeVariavel(variavel.getNomeVariavel());
-
-        variavelTAMService.updateVariavel(currentVariavel);
-
-        return new ResponseEntity<VariavelTAM>(currentVariavel, HttpStatus.OK);
-    }
-
-    //-------------------Retrieve All Variaveis from Analise--------------------------------------------------------
-    @RequestMapping(value = "variaveis/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<VariavelTAM>> listAllVariaveis(@PathVariable("id") Integer idAnalise) {
-        List<VariavelTAM> variaveis = variavelTAMService.findAllVariaveisFromAnalise(idAnalise);
-        if(variaveis.isEmpty()){
-            return new ResponseEntity<List<VariavelTAM>>(HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<List<VariavelTAM>>(variaveis, HttpStatus.OK);
-    }
-
-    //------------------- Delete a Variavel --------------------------------------------------------
-
-    @RequestMapping(value = "variavel/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<VariavelTAM> deleteVariavel(@PathVariable("id") Integer id) {
-        System.out.println("Fetching & Deleting Variavel with id " + id);
-
-        variavelTAMService.deleteVariavel(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
-
-    //------------------- Permissões from Analise --------------------------------------------------------
-
-    @RequestMapping(value = "permissoes/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<Permissao>> listAllPermissoes(@PathVariable("id") Integer idAnalise) {
-        List<Permissao> permissoes = analiseService.findAllPermissoesFromAnalise(idAnalise);
-        if(permissoes.isEmpty()){
-            return new ResponseEntity<List<Permissao>>(HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<List<Permissao>>(permissoes, HttpStatus.OK);
-    }
-
-    //-------------------Add a Permissao to an Analise--------------------------------------------------------
-
-    @RequestMapping(value = "permissoes/", method = RequestMethod.POST)
-    public ResponseEntity<Void> createPermissao(@RequestBody Permissao permissao) {
-        System.out.println("Adding Permissao to Analise "+ permissao.getAnalise().getNome()+ " to Usuario with Nome " + permissao.getUsuario().getEmail());
-        analiseService.savePermissao(permissao);
-
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
 }
