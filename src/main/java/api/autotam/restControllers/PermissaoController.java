@@ -19,16 +19,13 @@ import java.util.List;
 @RequestMapping("/permissao")
 public class PermissaoController {
 
-
-    @Autowired
-    private UsuarioService usuarioService;
     @Autowired
     private PermissaoService permissaoService;
 
     //-------------------Retrieve All Permissões from Usuario--------------------------------------------------------
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Permissao>> listAllPermissoesFromUsuario() {
-        List<Permissao> permissoes = permissaoService.findAllPermissoesFromUsuario(usuarioService.getUsuarioLogado().getIdUsuario());
+        List<Permissao> permissoes = permissaoService.findAllPermissoesFromUsuarioLogado();
         if(permissoes.isEmpty()){
             return new ResponseEntity<List<Permissao>>(HttpStatus.NO_CONTENT);
         }

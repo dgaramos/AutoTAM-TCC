@@ -26,9 +26,6 @@ public class AnaliseServiceImpl extends AbstractService implements AnaliseServic
     @Autowired
     private AnaliseDAO analiseDAO;
 
-    @Autowired
-    private VariavelTAMDAO variavelTAMDAO;
-
     @Override
     public void saveAnalise(Analise analise) {
         Permissao administrador = new Permissao(getUsuarioLogado(), analise, true, true);
@@ -40,12 +37,17 @@ public class AnaliseServiceImpl extends AbstractService implements AnaliseServic
 
     @Override
     public void addVariavelToAnalise(int idAnalise, VariavelTAM variavel){
-        Analise analise = findById(idAnalise);
-        variavel.setAnalise(analise);
-        List<VariavelTAM> variaveis = analise.getVariaveis();
-        variaveis.add(variavel);
-        analise.setVariaveis(variaveis);
-        updateAnalise(analise);
+        if (usuarioLogadoIsAdministrador(idAnalise)){
+            Analise analise = findById(idAnalise);
+            variavel.setAnalise(analise);
+            List<VariavelTAM> variaveis = analise.getVariaveis();
+            variaveis.add(variavel);
+            analise.setVariaveis(variaveis);
+            updateAnalise(analise);
+        }else{
+            throw new SecurityException("Usuario não tem permissão de administrador para essa análise");
+        }
+
     }
 
     @Override
@@ -55,11 +57,21 @@ public class AnaliseServiceImpl extends AbstractService implements AnaliseServic
 
     @Override
     public void deleteAnalise(int idAnalise) {
-        analiseDAO.deleteAnalise(idAnalise);
+        if (usuarioLogadoIsAdministrador(idAnalise)){
+            analiseDAO.deleteAnalise(idAnalise);
+        }else{
+            throw new SecurityException("Usuario não tem permissão de administrador para essa análise");
+        }
     }
 
     @Override
-    public void updateAnalise(Analise analise) {analiseDAO.updateAnalise(analise);}
+    public void updateAnalise(Analise analise) {
+        if (usuarioLogadoIsAdministrador(analise.getIdAnalise())) {
+            analiseDAO.updateAnalise(analise);
+        }else{
+            throw new SecurityException("Usuario não tem permissão de administrador para essa análise");
+        }
+    }
 
     @Override
     public boolean isAnaliseExist(Analise analise) {

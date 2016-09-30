@@ -3,6 +3,7 @@ package api.autotam.services.implementations;
 import api.autotam.daos.interfaces.PermissaoDAO;
 import api.autotam.model.Permissao;
 import api.autotam.services.interfaces.PermissaoService;
+import org.hibernate.service.spi.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,8 +27,8 @@ public class PermissaoServiceImpl extends AbstractService implements PermissaoSe
     }
 
     @Override
-    public List<Permissao> findAllPermissoesFromUsuario(int idUsuario){
-        return permissaoDAO.findAllPermissoesFromUsuario(idUsuario);
+    public List<Permissao> findAllPermissoesFromUsuarioLogado(){
+        return permissaoDAO.findAllPermissoesFromUsuario(getUsuarioLogado().getIdUsuario());
     }
 
     @Override
@@ -38,22 +39,34 @@ public class PermissaoServiceImpl extends AbstractService implements PermissaoSe
 
     @Override
     public void savePermissao(Permissao permissao){
-        if(!permissao.getUsuario().equals(getUsuarioLogado()) &&
-                !permissaoDAO.usuarioHasPermissaoToAnalise(permissao.getAnalise().getIdAnalise(), permissao.getUsuario().getIdUsuario())){
-                permissaoDAO.savePermissao(permissao);
-        }else {
-            System.out.println("Você tentou adicionar uma permissão ao usuário logado " +
-                    "ou a um usuário que já possui permissão para essa análise");
+        if (usuarioLogadoIsAdministrador(permissao.getAnalise().getIdAnalise())){
+            if(!permissao.getUsuario().equals(getUsuarioLogado()) &&
+                    !permissaoDAO.usuarioHasPermissaoToAnalise(permissao.getAnalise().getIdAnalise(), permissao.getUsuario().getIdUsuario())){
+                    permissaoDAO.savePermissao(permissao);
+            }else {
+                throw new ServiceException("Você tentou adicionar uma permissão ao usuário logado " +
+                        "ou a um usuário que já possui permissão para essa análise");
+            }
+        }else{
+            throw new SecurityException("Usuario não tem permissão de administrador para essa análise");
         }
 
     }
     @Override
     public void updatePermissao(Permissao permissao) {
-        permissaoDAO.updatePermissao(permissao);
+        if (usuarioLogadoIsAdministrador(permissao.getAnalise().getIdAnalise())){
+            permissaoDAO.updatePermissao(permissao);
+        }else{
+            throw new SecurityException("Usuario não tem permissão de administrador para essa análise");
+        }
     }
 
     @Override
     public void deletePermissao(int idPermissao){
-        permissaoDAO.deletePermissao(idPermissao);
+        if (usuarioLogadoIsAdministrador(findById(idPermissao).getAnalise().getIdAnalise())){
+            permissaoDAO.deletePermissao(idPermissao);
+        }else{
+            throw new SecurityException("Usuario não tem permissão de administrador para essa análise");
+        }
     }
 }

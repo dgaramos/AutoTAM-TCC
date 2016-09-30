@@ -36,7 +36,13 @@ public class UsuarioServiceImpl extends AbstractService implements UsuarioServic
         return usuarioDAO.findAllUsuarios();
     }
 
-    public void deleteUsuario(int idUsuario) {usuarioDAO.deleteUsuario(idUsuario);}
+    public void deleteUsuario(int idUsuario) {
+        if(getUsuarioLogado().getIdUsuario() == idUsuario){
+            usuarioDAO.deleteUsuario(idUsuario);
+        }else{
+            throw new SecurityException("Só o próprio usuário pode excluir sua conta");
+        }
+    }
 
     public Usuario findById(Integer id) {
         return usuarioDAO.findById(id);
@@ -47,7 +53,11 @@ public class UsuarioServiceImpl extends AbstractService implements UsuarioServic
     }
 
     public void updateUsuario(Usuario usuario){
-        usuarioDAO.updateUsuario(usuario);
+        if(getUsuarioLogado().equals(usuario)){
+            usuarioDAO.updateUsuario(usuario);
+        }else{
+            throw new SecurityException("Só o próprio usuário pode atualizar informações da sua conta");
+        }
     }
 
     public boolean isUsuarioExist(Usuario usuario) {

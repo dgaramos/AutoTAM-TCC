@@ -45,6 +45,17 @@ public class PermissaoDAOImpl extends AbstractDAO implements PermissaoDAO {
         return query.list().contains(idUsuario);
     }
 
+    @Override
+    public boolean usuarioIsAdministrador(int idAnalise, int idUsuario) {
+        Query query = getSession().createSQLQuery(
+                "SELECT p.Administrador FROM permissao p WHERE idAnalise =: idAnalise AND idUsuario =: idUsuario")
+                .addEntity(boolean.class)
+                .setParameter("idAnalise", idAnalise)
+                .setParameter("idUsuario", idUsuario);
+
+        return (boolean) query.uniqueResult();
+    }
+
     public List<Permissao> findAllPermissoesFromUsuario(int idUsuario) {
         Query query = getSession().createSQLQuery(
                 "SELECT * FROM permissao p WHERE p.idUsuario = :idUsuario")

@@ -3,8 +3,12 @@ package api.autotam.configs;
 import javax.sql.DataSource;
 
 
+import api.autotam.services.implementations.PermissaoServiceImpl;
+import api.autotam.services.implementations.VariavelTAMServiceImpl;
 import api.autotam.services.interfaces.AnaliseService;
 import api.autotam.services.implementations.AnaliseServiceImpl;
+import api.autotam.services.interfaces.PermissaoService;
+import api.autotam.services.interfaces.VariavelTAMService;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,20 +86,11 @@ public class HibernateConfig {
     }
 
     @Bean(name = "transactionManager")
-   @Autowired
-   public HibernateTransactionManager getTransactionManager(SessionFactory s) throws Exception {
-       HibernateTransactionManager txManager = new HibernateTransactionManager();
-       txManager.setSessionFactory(s);
-       return txManager;
+    @Autowired
+    public HibernateTransactionManager getTransactionManager(SessionFactory s) throws Exception {
+        HibernateTransactionManager txManager = new HibernateTransactionManager();
+        txManager.setSessionFactory(s);
+        return txManager;
     }
-
-
-
-    @Bean (name= "usuarioService")
-    public UsuarioService usuarioService(){ return new UsuarioServiceImpl();}
-
-    @Bean (name= "analiseService")
-    public AnaliseService analiseService(){ return new AnaliseServiceImpl();}
-
 
 }

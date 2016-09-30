@@ -10,13 +10,13 @@
             para convidar outro usuário é necessário que o email do mesmo esteja em nossa base de dados.
         </div>
         <div>
-            <form class="row permissaoForm-container" name="salvaAnaliseForm"
+            <form class="row" name="salvaAnaliseForm"
                   ng-submit="AnaliseCtrl.adicionaUsuario()">
                 <div class="col-md-5 col-permissao">
                     <input type="hidden" ng-model="AnaliseCtrl.permissaoConvite.idPermissao" />
                     <label>Email: </label>
                     <input type="email" id="email" ng-show="(AnaliseCtrl.permissaoConvite.idPermissao === null)" class="email input-sm" ng-model="AnaliseCtrl.permissaoConvite.usuario.email" placeholder="Email do convidado" required>
-                    <b ng-show="(AnaliseCtrl.permissaoConvite.idPermissao != null)">{{AnaliseCtrl.permissaoConvite.usuario.email}}</b>
+                    <input type="email" id="emailReadonly" ng-show="(AnaliseCtrl.permissaoConvite.idPermissao != null)" class="email input-sm"  ng-model="AnaliseCtrl.permissaoConvite.usuario.email"  readonly>
                 </div>
                 <div class="col-md-3 col-permissao">
                     <label>Administrador: </label>
@@ -26,14 +26,12 @@
                     <label>Testador: </label>
                     <input type="checkbox"ng-model="AnaliseCtrl.permissaoConvite.testador" value=true>
                 </div>
-                <div class="col-md-1 col-permissao">
+                <div class="col-md-2 col-permissao">
                     <button type="submit" class="btn btn-primary btn-sm" ng-click="AnaliseCtrl.submitPermissao(AnaliseCtrl.permissaoConvite)"
                             ng-disabled="email.$invalid" data-placement="right" tooltip=""
                             data-original-title=" {{!AnaliseCtrl.permissaoConvite.idPermissao? 'Adcionar Permissão para Usuario' : 'Atualizar Permissão do Usuário'}}">
                         <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
                     </button>
-                </div>
-                <div class="col-md-1 col-permissao">
                     <button type="button" class="btn btn-info btn-sm" ng-click="AnaliseCtrl.resetPermissao()"
                             ng-show="(AnaliseCtrl.permissaoConvite.idPermissao != null)"
                             data-placement="right" tooltip="" data-original-title="Limpar Formulário">

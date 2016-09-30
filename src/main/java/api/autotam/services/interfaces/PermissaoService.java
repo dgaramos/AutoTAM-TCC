@@ -11,7 +11,7 @@ public interface PermissaoService {
 
     Permissao findById(int idPermissao);
 
-    List<Permissao> findAllPermissoesFromUsuario(int idUsuario);
+    List<Permissao> findAllPermissoesFromUsuarioLogado();
 
     List<Permissao> findAllPermissoesFromAnalise(int idAnalise);
 

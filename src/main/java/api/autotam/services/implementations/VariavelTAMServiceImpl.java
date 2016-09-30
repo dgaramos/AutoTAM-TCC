@@ -22,7 +22,12 @@ public class VariavelTAMServiceImpl extends AbstractService implements VariavelT
 
     @Override
     public void saveVariavel(VariavelTAM variavel) {
-        variavelTAMDAO.saveVariavel(variavel);
+        if(usuarioLogadoIsAdministrador(variavel.getAnalise().getIdAnalise())){
+            variavelTAMDAO.saveVariavel(variavel);
+        }else{
+            throw new SecurityException("O usuário não é administrador da análise");
+        }
+
     }
 
     @Override
@@ -36,11 +41,21 @@ public class VariavelTAMServiceImpl extends AbstractService implements VariavelT
 
     @Override
     public void deleteVariavel(int idVariavel) {
-        variavelTAMDAO.deleteVariavel(idVariavel);
+        if(usuarioLogadoIsAdministrador(findById(idVariavel).getAnalise().getIdAnalise())){
+          variavelTAMDAO.deleteVariavel(idVariavel);
+        }else{
+            throw new SecurityException("O usuário não é administrador da análise");
+     }
     }
 
     @Override
-    public void updateVariavel(VariavelTAM variavel) {variavelTAMDAO.updateVariavel(variavel);}
+    public void updateVariavel(VariavelTAM variavel) {
+        if(usuarioLogadoIsAdministrador(variavel.getAnalise().getIdAnalise())){
+            variavelTAMDAO.updateVariavel(variavel);
+        }else{
+            throw new SecurityException("O usuário não é administrador da análise");
+        }
+    }
 
     @Override
     public boolean isVariavelExist(VariavelTAM variavel) {return findById(variavel.getIdVariavel()) != null;}

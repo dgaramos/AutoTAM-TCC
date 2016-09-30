@@ -1,5 +1,6 @@
 package api.autotam.services.implementations;
 
+import api.autotam.daos.interfaces.PermissaoDAO;
 import api.autotam.daos.interfaces.UsuarioDAO;
 import api.autotam.model.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,9 @@ public abstract class AbstractService {
     @Autowired
     private UsuarioDAO usuarioDAO;
 
+    @Autowired
+    private PermissaoDAO permissaoDAO;
+
 
     public Usuario getUsuarioLogado(){
 
@@ -26,5 +30,9 @@ public abstract class AbstractService {
         }
 
         return null;
+    }
+
+    public boolean usuarioLogadoIsAdministrador(int idAnalise){
+        return permissaoDAO.usuarioIsAdministrador(idAnalise, getUsuarioLogado().getIdUsuario());
     }
 }

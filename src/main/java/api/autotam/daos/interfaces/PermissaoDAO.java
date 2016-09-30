@@ -17,6 +17,8 @@ public interface PermissaoDAO {
 
     boolean usuarioHasPermissaoToAnalise(int idAnalise, int idUsuario);
 
+    boolean usuarioIsAdministrador(int idAnalise, int idUsuario);
+
     void deletePermissao(int idPermissao);
 
     Permissao findById(int idPermissao);
