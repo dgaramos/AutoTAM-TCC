@@ -27,9 +27,11 @@ import java.io.IOException;
 import java.util.Properties;
 
 /**
- * Essa classe gerencia a conexão com o banco de dados e ORM em relação aos modelos
- * Created by Danilo on 9/4/2016.
+ * Classe de configuração responsável pelas configurações referentes ao Hibernate.
+ *
+ * @author Danilo
  */
+
 
 @Configuration
 @ComponentScan("api.autotam")

@@ -5,9 +5,12 @@ import api.autotam.model.Usuario;
 import java.util.List;
 
 /**
- * Interface para criação de DAO de misc
- * Created by Danilo on 4/17/2016.
+ * Interface responsável por encapsular as assinaturas dos métodos das operações referentes aos registros no banco de
+ * dados da classe Usuário.
+ *
+ * @author Danilo
  */
+
 public interface UsuarioDAO {
 
     void saveUsuario(Usuario usuario);

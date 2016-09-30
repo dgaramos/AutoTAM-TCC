@@ -10,8 +10,9 @@ import org.springframework.security.web.csrf.CsrfTokenRepository;
 import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
 
 /**
- * Essa classe define as configurações de segurança da aplicação
- * Created by Danilo on 9/4/2016.
+ * Classe de configuração responsável pelas configurações de segurança do Spring Security.
+ *
+ * @author Danilo
  */
 @Configuration
 @Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)

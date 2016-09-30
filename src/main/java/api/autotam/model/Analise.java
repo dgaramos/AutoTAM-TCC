@@ -8,7 +8,11 @@ import javax.persistence.*;
 import java.util.List;
 
 /**
- * Created by Danilo on 9/11/2016.
+ * Classe modelo referente a Análises TAM.
+ * Um objeto dessa classe representa uma Análise TAM no sistema, guardando as informações
+ * e uma lista de Variáveis TAM referentes a tal Análise TAM
+ *
+ * @author Danilo
  */
 
 @Entity

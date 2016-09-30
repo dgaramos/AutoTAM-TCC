@@ -5,8 +5,12 @@ import api.autotam.model.Questao;
 import java.util.List;
 
 /**
- * Created by Danilo on 9/24/2016.
+ * Interface responsável por encapsular as assinaturas dos métodos das operações referentes aos registros no banco de
+ * dados da classe Questão.
+ *
+ * @author Danilo
  */
+
 public interface QuestaoDAO {
 
     void saveQuestao(Questao questao);

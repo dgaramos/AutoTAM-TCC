@@ -8,14 +8,28 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**
- * Created by Danilo on 9/24/2016.
+ * Implementação do DAO responsável pelas operações referentes a registros da classe Questão no banco de dados.
+ *
+ * @author Danilo
  */
 
 @Repository("questaoDAO")
 public class QuestaoDAOImpl extends AbstractDAO implements QuestaoDAO {
+
+    /**
+     * Método responsável pela operação de cadastro de uma determinada Questão no banco de dados.
+     *
+     * @param questao
+     */
     @Override
     public void saveQuestao(Questao questao) { persist(questao);}
 
+    /**
+     * Método responsável pela operação de busca do registro de uma determinada Questão no banco de dados por meio de seu id.
+     *
+     * @param idQuestao
+     * @return
+     */
     @Override
     public Questao findById(int idQuestao) {
         Query query = getSession().createSQLQuery(
@@ -25,9 +39,20 @@ public class QuestaoDAOImpl extends AbstractDAO implements QuestaoDAO {
         return (Questao) query.uniqueResult() ;
     }
 
+    /**
+     * Método responsável pela operação de atualização do registro de uma determinada Questão no banco de dados.
+     *
+     * @param questao
+     */
     @Override
     public void updateQuestao(Questao questao) { getSession().update(questao);}
 
+    /**
+     * Método responsável pela operação de remoção do registro de uma determinada Questão do banco de dados por
+     * meio de seu id.
+     *
+     * @param idQuestao
+     */
     @Override
     public void deleteQuestao(int idQuestao) {
         Query query = getSession().createSQLQuery(
@@ -36,6 +61,13 @@ public class QuestaoDAOImpl extends AbstractDAO implements QuestaoDAO {
         query.executeUpdate();
     }
 
+    /**
+     * Método responsável pela operação de listagem dos registros de todas as Questões vinculadas a uma determinada
+     * Variável TAM por meio de seu id.
+     *
+     * @param idVariavel
+     * @return
+     */
     @Override
     public List<Questao> findAllQuestoesFromVariavel(int idVariavel) {
         Query query = getSession().createSQLQuery(

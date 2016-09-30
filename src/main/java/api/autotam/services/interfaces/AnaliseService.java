@@ -4,7 +4,9 @@ import api.autotam.model.Analise;
 import api.autotam.model.VariavelTAM;
 
 /**
- * Created by Danilo on 9/12/2016.
+ * Interface responsável por encapsular as assinaturas dos métodos de regra de negócio referentes a classe Análise.
+ *
+ * @author Danilo
  */
 public interface AnaliseService {
 

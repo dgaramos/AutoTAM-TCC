@@ -13,13 +13,21 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
 
-
+/**
+ * Classe responsável por inicializar a aplicação.
+ *
+ * @author Danilo
+ */
 @SpringBootApplication
 @RestController
 public class Bootstrap {
 
-    /*Esse método retorna o usuário que está logado
-      no momento por meio da URI #/userLogin
+    /**
+     * Método responsável por passar o token de sessão.
+     *
+     * @param user
+     * @uri /userlogin
+     * @return
      */
     @RequestMapping("/userLogin")
     public Principal user(Principal user) {

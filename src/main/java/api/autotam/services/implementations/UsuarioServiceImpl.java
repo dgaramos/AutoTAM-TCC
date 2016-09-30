@@ -11,11 +11,11 @@ import api.autotam.model.Usuario;
 import java.util.List;
 
 /**
- * Essa classe implementa a interface UsuarioService, ela serve para encapsular as regras de negócio
- * em uma camada separada da busca de dados.
+ * Classe de serviço responsável por encapsular as regras de negócio referentes aos Usuários da aplicação.
  *
- * Created by Danilo on 9/4/2016.
+ * @author Danilo
  */
+
 @Service("usuarioService")
 @Transactional
 public class UsuarioServiceImpl extends AbstractService implements UsuarioService {
@@ -46,7 +46,9 @@ public class UsuarioServiceImpl extends AbstractService implements UsuarioServic
     @Override
     public void updateUsuario(Usuario usuario){
         if(getUsuarioLogado().equals(usuario)){
+
             usuarioDAO.updateUsuario(usuario);
+
         }else{
             throw new SecurityException("Só o próprio usuário pode atualizar informações da sua conta");
         }
@@ -55,7 +57,9 @@ public class UsuarioServiceImpl extends AbstractService implements UsuarioServic
     @Override
     public void deleteUsuario(int idUsuario) {
         if(getUsuarioLogado().getIdUsuario() == idUsuario){
+
             usuarioDAO.deleteUsuario(idUsuario);
+
         }else{
             throw new SecurityException("Só o próprio usuário pode excluir sua conta");
         }

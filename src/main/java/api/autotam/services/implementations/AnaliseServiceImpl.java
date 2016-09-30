@@ -14,8 +14,11 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 /**
- * Created by Danilo on 9/11/2016.
+ * Classe de serviço responsável por encapsular as regras de negócio referentes as Análises TAM da aplicação.
+ *
+ * @author Danilo
  */
+
 @Service("analiseService")
 @Transactional
 public class AnaliseServiceImpl extends AbstractService implements AnaliseService {
@@ -26,6 +29,12 @@ public class AnaliseServiceImpl extends AbstractService implements AnaliseServic
     @Autowired
     private AnaliseDAO analiseDAO;
 
+    /**
+     * Método responsável pela operação de cadastro de uma Análise, gerando uma Permissão para o Usuário em sessão
+     * que está criando a Análise.
+     *
+     * @param analise
+     */
     @Override
     public void saveAnalise(Analise analise) {
         Permissao administrador = new Permissao(getUsuarioLogado(), analise, true, true);
@@ -35,12 +44,23 @@ public class AnaliseServiceImpl extends AbstractService implements AnaliseServic
         analiseDAO.saveAnalise(analise);
     }
 
+    /**
+     * Método responsável pela operação de busca de uma determinada Análise por meio de seu id.
+     *
+     * @param idAnalise
+     * @return
+     */
     @Override
     public Analise findById(int idAnalise) {
         return analiseDAO.findById(idAnalise);
     }
 
-
+    /**
+     * Método responsável pela operação de atualização das informações de uma determinada Análise verificando se o
+     * Usuário em sessão possui permissão de Administrador para concluir a operação.
+     *
+     * @param analise
+     */
     @Override
     public void updateAnalise(Analise analise) {
         if (usuarioLogadoIsAdministrador(analise.getIdAnalise())) {
@@ -50,6 +70,12 @@ public class AnaliseServiceImpl extends AbstractService implements AnaliseServic
         }
     }
 
+    /**
+     * Método responsável por apagar as informações de uma determinada Análise verificando se o Usuário
+     * em sessão possui permissão de Administrador para concluir a operação.
+     *
+     * @param idAnalise
+     */
     @Override
     public void deleteAnalise(int idAnalise) {
         if (usuarioLogadoIsAdministrador(idAnalise)){
@@ -59,11 +85,24 @@ public class AnaliseServiceImpl extends AbstractService implements AnaliseServic
         }
     }
 
+    /**
+     * Método responsável por verificar se uma determinada Análise existe no Banco de Dados.
+     *
+     * @param analise
+     * @return
+     */
     @Override
     public boolean isAnaliseExist(Analise analise) {
         return findById(analise.getIdAnalise())!=null;
     }
 
+    /**
+     * Método responsável pela operação de cadastro de uma Variável TAM em uma determinada Análise, verificando se o
+     * Usuário em sessão possui permissão de Administrador para concluir a operação.
+     *
+     * @param idAnalise
+     * @param variavel
+     */
     @Override
     public void addVariavelToAnalise(int idAnalise, VariavelTAM variavel){
         if (usuarioLogadoIsAdministrador(idAnalise)){

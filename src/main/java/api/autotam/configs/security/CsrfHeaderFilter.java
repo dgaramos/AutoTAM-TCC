@@ -11,10 +11,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+
 /**
- * Essa classe gerencia os tokens de autenticação de acesso
- * Created by Danilo on 9/3/2016.
+ * Classe de configuração responsável pelo gerenciamento dos tokens de autenticação de acesso.
+ *
+ * @author Danilo
  */
+
 public class CsrfHeaderFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request,

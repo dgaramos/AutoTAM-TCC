@@ -7,7 +7,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
- * Created by Danilo on 9/30/2016.
+ * Classe de configuração responsável pelo mapeamento dos Services da Aplicação.
+ *
+ * @author Danilo
  */
 
 @Configuration

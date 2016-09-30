@@ -9,9 +9,10 @@ import java.util.Set;
 
 
 /**
- * Classe de dominio referente ao misc, aqui são guardadas as credenciais de acesso
- * (email e senha) e o nome completo do misc
- * Created by Danilo on 4/17/2016.
+ * Classe modelo referente aos Usuários.
+ * Um objeto dessa classe mapeia um Usuário e seus atributos.
+ *
+ * @author Danilo
  */
 
 @Entity

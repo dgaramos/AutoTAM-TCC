@@ -5,8 +5,9 @@ import api.autotam.model.Usuario;
 import java.util.List;
 
 /**
- * Essa é a interface do serviço da classe de usuario
- * Created by Danilo on 4/18/2016.
+ * Interface responsável por encapsular as assinaturas dos métodos de regra de negócio referentes a classe Usuario.
+ *
+ * @author Danilo
  */
 public interface UsuarioService {
 

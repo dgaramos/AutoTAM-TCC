@@ -13,11 +13,15 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
+
 /**
- * Essa classe busca os usuarios armazenados no banco para que suas credenciais possam ser usadas
- * como misc e senha
- * Created by Danilo on 9/4/2016.
+ * Classe de configuração responsável pelo atrelamento de objetos classe Usuário que vem carregada com os
+ * dados dos usuários vindos do banco de dados com a classe User, permitindo assim que as credenciais de acesso
+ * (email e senha) de cada Usuário guardado no banco de dados possam ser utilizadas para login.
+ *
+ * @author Danilo
  */
+
 @Configuration
 public class WebSecurityAuth extends GlobalAuthenticationConfigurerAdapter {
 

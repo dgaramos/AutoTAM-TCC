@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 
 /**
- * Created by Danilo on 9/30/2016.
+ * Classe de serviço responsável por encapsular as regras de negócio referentes as Questões da aplicação.
+ *
+ * @author Danilo
  */
 
 @Service("questaoService")

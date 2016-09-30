@@ -16,83 +16,111 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 /**
- * Essa classe trata de buscar os dados dos usuarios para que eles sejam entregues como JSON
- * nas requisições
+ * Classe responsável pelo mapeamento das URIs das requisições HTTP referentes a Classe Usuário.
  *
- * Created by Danilo on 9/4/2016.
+ * @author Danilo
  */
 @RestController
 @RequestMapping("/usuario")
 public class UsuarioController {
 
     @Autowired
-    private UsuarioService usuarioService; //Service which will do all data retrieval/manipulation work
-    @Autowired
-    private AnaliseService analiseService;
+    private UsuarioService usuarioService;
 
     private EmailService emailService = new EmailService();
 
-   //-------------------Retrieve All Usuarios--------------------------------------------------------
+    /**
+     * Método responsável por dar a resposta a requisição HTTP/GET referente a listagem de todos os Usuários.
+     *
+     * @uri /usuario/
+     * @return
+     */
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List<Usuario>> listAllUsuarios() {
+        System.out.println("Buscando Usuários");
+
         List<Usuario> usuarios = usuarioService.findAllUsuarios();
+
         if(usuarios.isEmpty()){
-            return new ResponseEntity<List<Usuario>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
+            return new ResponseEntity<List<Usuario>>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<List<Usuario>>(usuarios, HttpStatus.OK);
     }
 
-    //-------------------Retrieve Logged User--------------------------------------------------------
+    /**
+     * Método responsável por dar a resposta a requisição HTTP/GET referente ao Usuário em sessão
+     *
+     * @uri /usuario/logged
+     * @return
+     */
     @RequestMapping(value = "logged", method = RequestMethod.GET)
-    public ResponseEntity<Usuario> fetchLoggedUser() {
+    public ResponseEntity<Usuario> fetchLoggedUsuario() {
+
         Usuario loggedUser = usuarioService.getUsuarioLogado();
+
         if(loggedUser == null){
-            System.out.println("No logged User");
+            System.out.println("Não há nenhum Usuário em sessão");
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(loggedUser, HttpStatus.OK);
     }
 
-
-    //-------------------Retrieve Single Usuario--------------------------------------------------------
-
+    /**
+     * Método responsável por dar a resposta a requisição HTTP/GET referente a busca por um Usuário por meio do
+     * seu id que está sendo referenciado como parâmetro na URI
+     *
+     * @uri /usuario/{id}
+     * @param id
+     * @return
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Usuario> getUserById(@PathVariable("id") Integer id) {
-        System.out.println("Fetching User with id: " + id);
+    public ResponseEntity<Usuario> getUsuarioById(@PathVariable("id") Integer id) {
+        System.out.println("Buscando Usuário com id: " + id);
+
         Usuario usuario = usuarioService.findById(id);
+
         if (usuario == null) {
-            System.out.println("User with id " + id + " not found");
+            System.out.println("Usuário com id " + id + " não foi encontrado");
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(usuario, HttpStatus.OK);
     }
 
-    //-------------------Retrieve Single Usuario via Email   --------------------------------------------------------
-
+    /**
+     * Método responsável por dar a resposta a requisição HTTP/GET referente a busca por um Usuário por meio do
+     * seu email que está sendo referenciado como parâmetro na URI
+     *
+     * @uri /usuario/{email}
+     * @param email
+     * @return
+     */
     @RequestMapping(value = "byEmail/{email:.+}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Usuario> getUserByEmail(@PathVariable("email") String email) {
-        System.out.println("Fetching User with email: " + email);
+    public ResponseEntity<Usuario> getUsuarioByEmail(@PathVariable("email") String email) {
+        System.out.println("Buscando Usuário com email: " + email);
+
         Usuario usuario = usuarioService.findByEmail(email);
+
         if (usuario == null) {
-            System.out.println("User with username " + email + "is logged in this session not found");
+            System.out.println("Usuario com email " + email + "não foi encontrado");
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(usuario, HttpStatus.OK);
     }
 
-    //-------------------Create a Usuario--------------------------------------------------------
-
+    /**
+     * Método responsável por dar a resposta a requisição HTTP/POST referente ao registro de um novo Usuário.
+     *
+     * @uri /usuario/noauth/register/
+     * @param usuario
+     * @param ucBuilder
+     * @return
+     */
     @RequestMapping(value = "noauth/register/", method = RequestMethod.POST)
-    public ResponseEntity<Void> createUser(@RequestBody Usuario usuario, UriComponentsBuilder ucBuilder) {
-        System.out.println("Creating User " + usuario.getNome());
+    public ResponseEntity<Void> createUsuario(@RequestBody Usuario usuario, UriComponentsBuilder ucBuilder) {
+        System.out.println("Cadastrando Usuário " + usuario.getNome());
 
         if (usuarioService.isUsuarioExist(usuario)) {
-            System.out.println("A User with id " + usuario.getIdUsuario() + " already exist");
-            return new ResponseEntity<>(HttpStatus.CONFLICT);
-        }
-
-        if (usuarioService.findByEmail(usuario.getEmail()) != null) {
-            System.out.println("A User with username " + usuario.getEmail() + " already exist");
+            System.out.println("Um Usuário com Email " + usuario.getEmail() + " já está cadastrado");
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
 
@@ -104,17 +132,23 @@ public class UsuarioController {
         return new ResponseEntity<>(headers, HttpStatus.CREATED);
     }
 
-
-    //------------------- Update a User --------------------------------------------------------
-
+    /**
+     * Método responsável por dar a resposta a requisição HTTP/PUT referente a atualização do registro de um Usuário
+     * por meio do seu id que está sendo referenciado como parâmetro na URI
+     *
+     * @uri /usuario/{id}
+     * @param idUsuario
+     * @param usuario
+     * @return
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Usuario> updateUser(@PathVariable("id") Integer idUsuario, @RequestBody Usuario usuario) {
-        System.out.println("Updating User " + idUsuario);
+    public ResponseEntity<Usuario> updateUsuario(@PathVariable("id") Integer idUsuario, @RequestBody Usuario usuario) {
+        System.out.println("Atualizando Usuário com id " + idUsuario);
 
         Usuario currentUsuario = usuarioService.findById(usuario.getIdUsuario());
 
         if (currentUsuario==null) {
-            System.out.println("User with id " + idUsuario + " not found");
+            System.out.println("Usuário com id " + idUsuario + " não foi encontrado");
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
@@ -124,32 +158,49 @@ public class UsuarioController {
 
         usuarioService.updateUsuario(currentUsuario);
         emailService.updateProfile(usuario);
+
         return new ResponseEntity<>(currentUsuario, HttpStatus.OK);
     }
 
-//------------------- Delete a User --------------------------------------------------------
-
+    /**
+     * Método responsável por dar a resposta a requisição HTTP/DELETE responsável pela remoção do registro de um Usuário
+     * por meio de seu id que está sendo referenciado como parâmetro na URI
+     *
+     * @uri /usuario/{id}
+     * @param id
+     * @return
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<Usuario> deleteUser(@PathVariable("id") Integer id) {
-        System.out.println("Fetching & Deleting User with id " + id);
+    public ResponseEntity<Usuario> deleteUsuario(@PathVariable("id") Integer id) {
+        System.out.println("Buscando e apagando Usuario com id " + id);
 
         Usuario user = usuarioService.findById(id);
+
         if (user == null) {
-            System.out.println("Unable to delete. User with id " + id + " not found");
+            System.out.println("Não foi possível apagar o Usuário. Usuário com id " + id + " não foi encontrado");
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
         usuarioService.deleteUsuario(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-//-----------------------Recover Password -----------------------
 
+    /**
+     * Método responsável por dar a resposta a requisição HTTP/GET responsável por enviar um e-mail com a senha
+     * para o e-mail Cadastrado pelo Usuário que está sendo referenciado como parâmetro na URI
+     *
+     * @uri /usuario/noauth/password/{email}
+     * @param email
+     * @return
+     */
     @RequestMapping(value = "noauth/password/{email:.+}", method = RequestMethod.GET)
     public ResponseEntity<Void> recoverPassword(@PathVariable("email") String email) {
-        System.out.println("Fetching User with email: " + email);
+        System.out.println("Enviando senha de Usuário para o email " + email);
+
         Usuario usuario = usuarioService.findByEmail(email);
+
         if (usuario == null) {
-            System.out.println("User with username " + email + " not found");
+            System.out.println("Usuário com email " + email + " não foi encontrado");
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         emailService.recoverPassword(usuario);

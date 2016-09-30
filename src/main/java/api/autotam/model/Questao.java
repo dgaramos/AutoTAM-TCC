@@ -8,7 +8,10 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 /**
- * Created by Danilo on 9/24/2016.
+ * Classe modelo referente as Questões.
+ * Um objeto dessa classe mapeia uma Questão inclusa dentro de uma Variável TAM.
+ *
+ * @author Danilo
  */
 
 @Entity

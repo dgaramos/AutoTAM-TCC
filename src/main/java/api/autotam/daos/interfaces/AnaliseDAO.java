@@ -3,8 +3,12 @@ package api.autotam.daos.interfaces;
 import api.autotam.model.Analise;
 
 /**
- * Created by Danilo on 9/11/2016.
+ * Interface responsável por encapsular as assinaturas dos métodos das operações referentes aos registros no banco de
+ * dados da classe Análise.
+ *
+ * @author Danilo
  */
+
 public interface AnaliseDAO {
 
     void saveAnalise(Analise analise);

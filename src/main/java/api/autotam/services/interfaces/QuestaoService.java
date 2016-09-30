@@ -4,7 +4,9 @@ import api.autotam.model.Questao;
 import api.autotam.model.VariavelTAM;
 
 /**
- * Created by Danilo on 9/30/2016.
+ *  Interface responsável por encapsular as assinaturas dos métodos de regra de negócio referentes a classe Questão.
+ *
+ * @author Danilo
  */
 public interface QuestaoService {
 

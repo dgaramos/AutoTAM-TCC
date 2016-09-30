@@ -9,7 +9,13 @@ import javax.persistence.Table;
 import java.io.Serializable;
 
 /**
- * Created by Danilo on 9/11/2016.
+ * Classe modelo referente as Permissões de Usuário.
+ * Um objeto dessa classe mapeia um Usuário e uma Análise representando assim que o Usuário mapeado tem acesso
+ * aos dados da Análise mapeada nesta classe, além disso ela determina se o tipo de acesso do Usuário
+ * é de Administrador (quando a variável Administrador é true), Testador (quando a variável Testador
+ * é true) ou Observador (quando ambas as variáveis Administrador e Testador são false).
+ *
+ * @author Danilo
  */
 
 @Entity

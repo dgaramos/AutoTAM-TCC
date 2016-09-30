@@ -5,7 +5,9 @@ import api.autotam.model.Permissao;
 import java.util.List;
 
 /**
- * Created by Danilo on 9/29/2016.
+ * Interface responsável por encapsular as assinaturas dos métodos de regra de negócio referentes a classe Permissão.
+ *
+ * @author Danilo
  */
 public interface PermissaoService {
 

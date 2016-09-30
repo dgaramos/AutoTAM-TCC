@@ -5,8 +5,12 @@ import api.autotam.model.Permissao;
 import java.util.List;
 
 /**
- * Created by Danilo on 9/11/2016.
+ * Interface responsável por encapsular as assinaturas dos métodos das operações referentes aos registros no banco de
+ * dados da classe Permissão.
+ *
+ * @author Danilo
  */
+
 public interface PermissaoDAO {
 
     void savePermissao(Permissao permissao);

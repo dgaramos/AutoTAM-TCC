@@ -11,7 +11,9 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 /**
- * Created by Danilo on 9/29/2016.
+ * Classe de serviço responsável por encapsular as regras de negócio referentes as Permissões da aplicação.
+ *
+ * @author Danilo
  */
 
 @Service("permissaoService")
@@ -21,6 +23,13 @@ public class PermissaoServiceImpl extends AbstractService implements PermissaoSe
     @Autowired
     private PermissaoDAO permissaoDAO;
 
+    /**
+     * Método responsável pela operação de cadastro de uma Permissão de acesso a uma detererminada Análise para um
+     * determinado Usuário (que não está em sessão), verificando se o Usuário em sessão possui permissão de
+     * Administrador para realizar a operação.
+     *
+     * @param permissao
+     */
     @Override
     public void savePermissao(Permissao permissao){
         if (usuarioLogadoIsAdministrador(permissao.getAnalise().getIdAnalise())){
@@ -33,14 +42,25 @@ public class PermissaoServiceImpl extends AbstractService implements PermissaoSe
         }else{
             throw new SecurityException("Usuario não tem permissão de administrador para essa análise");
         }
-
     }
 
+    /**
+     * Método responsável pela operação de busca de uma determinada Permissão por meio de seu id.
+     *
+     * @param idPermissao
+     * @return
+     */
     @Override
     public Permissao findById(int idPermissao) {
         return permissaoDAO.findById(idPermissao);
     }
 
+    /**
+     * Método responsável pela operação de atualização das informações de uma determinada Permissão verificando se
+     * o Usuário em sessão possui permissão de Administrador para realizar a operação.
+     *
+     * @param permissao
+     */
     @Override
     public void updatePermissao(Permissao permissao) {
         if (usuarioLogadoIsAdministrador(permissao.getAnalise().getIdAnalise())){

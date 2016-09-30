@@ -11,7 +11,9 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 /**
- * Created by Danilo on 9/25/2016.
+ * Classe de serviço responsável por encapsular as regras de negócio referentes as Variáveis TAM da aplicação.
+ *
+ * @author Danilo
  */
 
 @Service("variavelTAMService")

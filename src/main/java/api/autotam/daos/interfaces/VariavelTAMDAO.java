@@ -5,8 +5,12 @@ import api.autotam.model.VariavelTAM;
 import java.util.List;
 
 /**
- * Created by Danilo on 9/20/2016.
+ * Interface responsável por encapsular as assinaturas dos métodos das operações referentes aos registros no banco de
+ * dados da classe Variável TAM.
+ *
+ * @author Danilo
  */
+
 public interface VariavelTAMDAO {
 
     void saveVariavel(VariavelTAM variavel);

@@ -1,8 +1,11 @@
 package api.autotam.configs;
 
 /**
- * Created by Danilo on 9/8/2016.
+ * Classe de configuração responsável pelas configurações referentes ao JavaMail.
+ *
+ * @author Danilo
  */
+
 import java.util.Properties;
 
 import org.springframework.beans.factory.annotation.Autowired;

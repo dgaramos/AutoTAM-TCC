@@ -14,14 +14,22 @@ import javax.transaction.Transactional;
 import java.io.UnsupportedEncodingException;
 
 /**
- * Created by Danilo on 9/9/2016.
+ * Classe de serviço responsável por enviar os e-mails provindos de determinadas operações da aplicação.
+ *
+ * @author Danilo
  */
 
 @Service("emailService")
 @Transactional
 public class EmailService{
 
-
+    /**
+     * Método responsável pela operação de envio de emails da aplicação.
+     *
+     * @param to
+     * @param subject
+     * @param text
+     */
     private void sendEmail(String to, String subject, String text){
 
         AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
@@ -46,8 +54,12 @@ public class EmailService{
         System.out.println("---Done---");
     }
 
+    /**
+     * Método responsável por guardar o conteúdo do email de recuperação de senha do Usuário.
+     *
+     * @param usuario
+     */
     public void recoverPassword(Usuario usuario) {
-
         String emailContent =
                 "<p>As informações da sua conta no AutoTAM estão impressas no final desta mensagem.</p>" +
                         "<p>Esta senha permite o acesso a o sistema e a todas as análises as quais sua conta for vinculada,</p>" +
@@ -62,8 +74,12 @@ public class EmailService{
         sendEmail(usuario.getEmail(),"[AutoTAM] - Recuperação de Senha", emailContent);
     }
 
+    /**
+     * Método responsável por guardar o conteúdo do email de confirmação de registro de Usuário.
+     *
+     * @param usuario
+     */
     public void registrationConfirm(Usuario usuario) {
-
         String emailContent =
                 "<p>Olá "+usuario.getNome()+"!</p>"+
                         "<p>Seja bem vindo ao AutoTAM, um automador para análises TAM</p>"+
@@ -81,8 +97,12 @@ public class EmailService{
         sendEmail(usuario.getEmail(),"[AutoTAM] - Bem Vindo ao AutoTAM", emailContent);
     }
 
+    /**
+     * Método responsável por guardar o conteúdo do email com as atualizações de registro de Usuário.
+     *
+     * @param usuario
+     */
     public void updateProfile(Usuario usuario) {
-
         String emailContent =
                 "<p>Olá "+usuario.getNome()+"!</p>"+
                         "<p>Estamos encaminhando esse email para que você tenha suas informações atualizadas.</p>"+

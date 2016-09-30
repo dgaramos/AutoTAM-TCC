@@ -6,7 +6,10 @@ import api.autotam.model.VariavelTAM;
 import java.util.List;
 
 /**
- * Created by Danilo on 9/25/2016.
+ *  Interface responsável por encapsular as assinaturas dos métodos de regra de negócio referentes a classe
+ *  Variável TAM.
+ *
+ * @author Danilo
  */
 public interface VariavelTAMService {
 

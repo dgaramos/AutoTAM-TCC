@@ -9,8 +9,12 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 /**
- * Created by Danilo on 9/17/2016.
+ * Classe de serviço Abstrata responsável por encapsular as operações básicas referêntes as regras de negócio
+ * da aplicação para que possam ser usadas em outras classes
+ *
+ * @author Danilo
  */
+
 public abstract class AbstractService {
 
     @Autowired
@@ -19,7 +23,11 @@ public abstract class AbstractService {
     @Autowired
     private PermissaoDAO permissaoDAO;
 
-
+    /**
+     * Método responsável por retornar o Usuário em sessão.
+     *
+     * @return
+     */
     public Usuario getUsuarioLogado(){
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -32,6 +40,13 @@ public abstract class AbstractService {
         return null;
     }
 
+    /**
+     * Método responsável por verificar se o Usuário em sessão tem Permissão de administrador
+     * para uma determinada Análise por meio de seu id.
+     *
+     * @param idAnalise
+     * @return
+     */
     public boolean usuarioLogadoIsAdministrador(int idAnalise){
         return permissaoDAO.usuarioIsAdministrador(idAnalise, getUsuarioLogado().getIdUsuario());
     }

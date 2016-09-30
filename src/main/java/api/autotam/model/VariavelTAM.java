@@ -9,9 +9,12 @@ import javax.persistence.*;
 import java.util.List;
 
 /**
- * Created by danilo on 20/09/16.
+ * Classe modelo referente as Variáveis TAM.
+ * Um objeto dessa classe mapeia uma Variável TAM, fazendo referência a qual Análise TAM ela faz parte
+ * e guardando uma lista com todas as suas Questões.
+ *
+ * @author Danilo
  */
-
 
 @Entity
 @Table(name= "variavelTAM")
