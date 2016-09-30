@@ -21,7 +21,7 @@ public class PermissaoDAOImpl extends AbstractDAO implements PermissaoDAO {
 
     public void deletePermissao(int idPermissao){
     Query query = getSession().createSQLQuery(
-            "delete from permissao where idPermissao = :idPermissao");
+            "DELETE FROM permissao WHERE idPermissao = :idPermissao");
         query.setParameter("idPermissao", idPermissao);
         query.executeUpdate();
 
@@ -29,17 +29,25 @@ public class PermissaoDAOImpl extends AbstractDAO implements PermissaoDAO {
 
     public Permissao findById(int idPermissao) {
         Query query = getSession().createSQLQuery(
-                "select * from permissao p where p.idPermissao = :idPermissao")
+                "SELECT * FROM permissao p WHERE p.idPermissao = :idPermissao")
                 .addEntity(Permissao.class)
                 .setParameter("idPermissao", idPermissao);
         return (Permissao) query.uniqueResult() ;
 
     }
 
+    @Override
+    public boolean usuarioHasPermissaoToAnalise(int idAnalise, int idUsuario) {
+        Query query = getSession().createSQLQuery(
+                "SELECT u.idUsuario FROM permissao p JOIN usuario u USING (idUsuario) WHERE idAnalise =: idAnalise")
+                .addEntity(Integer.class)
+                .setParameter("idAnalise", idAnalise);
+        return query.list().contains(idUsuario);
+    }
 
     public List<Permissao> findAllPermissoesFromUsuario(int idUsuario) {
         Query query = getSession().createSQLQuery(
-                "select * from permissao p where p.idUsuario = :idUsuario")
+                "SELECT * FROM permissao p WHERE p.idUsuario = :idUsuario")
                 .addEntity(Permissao.class)
                 .setParameter("idUsuario", idUsuario);
         return (List<Permissao>) query.list();
@@ -47,7 +55,7 @@ public class PermissaoDAOImpl extends AbstractDAO implements PermissaoDAO {
 
     public List<Permissao> findAllPermissoesFromAnalise(int idAnalise) {
         Query query = getSession().createSQLQuery(
-                "select * from permissao p where p.idAnalise = :idAnalise")
+                "SELECT * FROM permissao p WHERE p.idAnalise = :idAnalise")
                 .addEntity(Permissao.class)
                 .setParameter("idAnalise", idAnalise);
         return (List<Permissao>) query.list();

@@ -15,6 +15,8 @@ public interface PermissaoDAO {
 
     List<Permissao> findAllPermissoesFromAnalise (int idAnalise);
 
+    boolean usuarioHasPermissaoToAnalise(int idAnalise, int idUsuario);
+
     void deletePermissao(int idPermissao);
 
     Permissao findById(int idPermissao);

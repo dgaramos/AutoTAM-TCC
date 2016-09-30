@@ -27,14 +27,14 @@ public class UsuarioDAOImpl extends AbstractDAO implements UsuarioDAO {
     @SuppressWarnings("unchecked")
     public List<Usuario> findAllUsuarios() {
         Query query = getSession().createSQLQuery(
-                "select * from usuario u")
+                "SELECT * FROM usuario u")
                 .addEntity(Usuario.class);
         return (List<Usuario>) query.list();
     }
 
     public void deleteUsuario(int idUsuario) {
         Query query = getSession().createSQLQuery(
-                "delete from usuario where idUsuario = :idUsuario");
+                "DELETE FROM usuario WHERE idUsuario = :idUsuario");
         query.setParameter("idUsuario", idUsuario);
         query.executeUpdate();
     }
@@ -42,7 +42,7 @@ public class UsuarioDAOImpl extends AbstractDAO implements UsuarioDAO {
 
     public Usuario findById(int idUsuario){
         Query query = getSession().createSQLQuery(
-                "select * from usuario u where u.idUsuario = :idUsuario")
+                "SELECT * FROM usuario u WHERE u.idUsuario = :idUsuario")
                 .addEntity(Usuario.class)
                 .setParameter("idUsuario", idUsuario);
         return (Usuario) query.uniqueResult() ;
@@ -50,7 +50,7 @@ public class UsuarioDAOImpl extends AbstractDAO implements UsuarioDAO {
 
     public Usuario findByEmail(String email){
         Query query = getSession().createSQLQuery(
-                "select * from usuario u where u.email = :email")
+                "SELECT * FROM usuario u WHERE u.email = :email")
                 .addEntity(Usuario.class)
                 .setParameter("email", email);
         return (Usuario) query.uniqueResult() ;

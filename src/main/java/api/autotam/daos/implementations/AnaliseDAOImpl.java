@@ -21,14 +21,14 @@ public class AnaliseDAOImpl extends AbstractDAO implements AnaliseDAO {
 
     public void deleteAnalise(int idAnalise) {
         Query query = getSession().createSQLQuery(
-                "delete from analise where idAnalise = :idAnalise");
+                "DELETE FROM analise WHERE idAnalise = :idAnalise");
         query.setParameter("idAnalise", idAnalise);
         query.executeUpdate();
     }
 
     public Analise findById(int idAnalise) {
         Query query = getSession().createSQLQuery(
-                "select * from analise a where a.idAnalise = :idAnalise")
+                "SELECT * FROM analise a WHERE a.idAnalise = :idAnalise")
                 .addEntity(Analise.class)
                 .setParameter("idAnalise", idAnalise);
         return (Analise) query.uniqueResult() ;
@@ -36,7 +36,7 @@ public class AnaliseDAOImpl extends AbstractDAO implements AnaliseDAO {
 
     public Analise findByObjetoDeAnalise(String objetoDeAnalise){
         Query query = getSession().createSQLQuery(
-                "select * from analise a where a.objetoDeAnalise = :objetoDeAnalise")
+                "SELECT * FROM analise a WHERE a.objetoDeAnalise = :objetoDeAnalise")
                 .addEntity(Analise.class)
                 .setParameter("objetoDeAnalise", objetoDeAnalise);
         return (Analise) query.uniqueResult();

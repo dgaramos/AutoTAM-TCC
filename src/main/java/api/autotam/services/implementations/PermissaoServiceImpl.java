@@ -20,7 +20,6 @@ public class PermissaoServiceImpl extends AbstractService implements PermissaoSe
     @Autowired
     private PermissaoDAO permissaoDAO;
 
-
     @Override
     public Permissao findById(int idPermissao) {
         return permissaoDAO.findById(idPermissao);
@@ -28,24 +27,23 @@ public class PermissaoServiceImpl extends AbstractService implements PermissaoSe
 
     @Override
     public List<Permissao> findAllPermissoesFromUsuario(int idUsuario){
-        List<Permissao> permissoes = permissaoDAO.findAllPermissoesFromUsuario(idUsuario);
-        return permissoes;
+        return permissaoDAO.findAllPermissoesFromUsuario(idUsuario);
     }
 
     @Override
     public List<Permissao> findAllPermissoesFromAnalise(int idAnalise) {
-        List<Permissao> permissoes = permissaoDAO.findAllPermissoesFromAnalise(idAnalise);
-        return permissoes;
+        return permissaoDAO.findAllPermissoesFromAnalise(idAnalise);
     }
 
 
     @Override
     public void savePermissao(Permissao permissao){
-        if(!permissao.getUsuario().equals(getUsuarioLogado())){
-
-            permissaoDAO.savePermissao(permissao);
+        if(!permissao.getUsuario().equals(getUsuarioLogado()) &&
+                !permissaoDAO.usuarioHasPermissaoToAnalise(permissao.getAnalise().getIdAnalise(), permissao.getUsuario().getIdUsuario())){
+                permissaoDAO.savePermissao(permissao);
         }else {
-            System.out.println("Você tentou adicionar uma permissão ao usuário logado(que já possui permissões)");
+            System.out.println("Você tentou adicionar uma permissão ao usuário logado " +
+                    "ou a um usuário que já possui permissão para essa análise");
         }
 
     }

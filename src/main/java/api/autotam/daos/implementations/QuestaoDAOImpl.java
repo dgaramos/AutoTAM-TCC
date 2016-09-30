@@ -22,7 +22,7 @@ public class QuestaoDAOImpl extends AbstractDAO implements QuestaoDAO {
     @Override
     public List<Questao> findAllQuestoesFromVariavel(int idVariavel) {
         Query query = getSession().createSQLQuery(
-                "select * from questao q where p.idVariavel = :idVariavel")
+                "SELECT * FROM questao q WHERE p.idVariavel = :idVariavel")
                 .addEntity(Questao.class)
                 .setParameter("idVariavel", idVariavel);
         return (List<Questao>) query.list();
@@ -31,7 +31,7 @@ public class QuestaoDAOImpl extends AbstractDAO implements QuestaoDAO {
     @Override
     public void deleteQuestao(int idQuestao) {
         Query query = getSession().createSQLQuery(
-                "delete from questao where idQuestao = :idQuestao");
+                "DELETE FROM questao WHERE idQuestao = :idQuestao");
         query.setParameter("idQuestao", idQuestao);
         query.executeUpdate();
     }
@@ -39,7 +39,7 @@ public class QuestaoDAOImpl extends AbstractDAO implements QuestaoDAO {
     @Override
     public Questao findById(int idQuestao) {
         Query query = getSession().createSQLQuery(
-                "select * from questao q where q.idQuestao = :idQuestao")
+                "SELECT * FROM questao q WHERE q.idQuestao = :idQuestao")
                 .addEntity(Questao.class)
                 .setParameter("idQuestao", idQuestao);
         return (Questao) query.uniqueResult() ;

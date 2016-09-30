@@ -23,27 +23,29 @@ public class VariavelTAMDAOImpl extends AbstractDAO implements VariavelTAMDAO {
     @Override
     public List<VariavelTAM> findAllVariaveisFromAnalise(int idAnalise) {
         Query query = getSession().createSQLQuery(
-                "select * from variavelTAM v where v.idAnalise = :idAnalise")
+                "SELECT * FROM  variavelTAM v WHERE v.idAnalise = :idAnalise")
                 .addEntity(VariavelTAM.class)
                 .setParameter("idAnalise", idAnalise);
         return (List<VariavelTAM>) query.list();
     }
 
     @Override
-    public void deleteVariavel(int idVariavel) {
-        Query query = getSession().createSQLQuery(
-                "delete from variavelTAM where idVariavel = :idVariavel");
-        query.setParameter("idVariavel", idVariavel);
-        query.executeUpdate();
-    }
-
-    @Override
     public VariavelTAM findById(int idVariavel) {
         Query query = getSession().createSQLQuery(
-                "select * from variavelTAM v where v.idVariavel = :idVariavel")
+                "SELECT * FROM  variavelTAM v WHERE v.idVariavel = :idVariavel")
                 .addEntity(VariavelTAM.class)
                 .setParameter("idVariavel", idVariavel);
         return (VariavelTAM) query.uniqueResult() ;
     }
+
+    @Override
+    public void deleteVariavel(int idVariavel) {
+        Query query = getSession().createSQLQuery(
+                "DELETE FROM variavelTAM WHERE idVariavel = :idVariavel");
+        query.setParameter("idVariavel", idVariavel);
+        query.executeUpdate();
+    }
+
+
 
 }
