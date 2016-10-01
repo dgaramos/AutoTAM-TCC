@@ -1,6 +1,7 @@
 'use strict';
 
-controllers.controller('LoginController', function($rootScope, $http, $location, $route, UsuarioService) {
+controllers.controller('LoginController', [ '$rootScope', '$http', '$location', '$route', 'Global', 'UsuarioService',
+    function($rootScope, $http, $location, $route, Global, UsuarioService) {
 
     var self = this;
 
@@ -43,22 +44,24 @@ controllers.controller('LoginController', function($rootScope, $http, $location,
                     $rootScope.loggedUsuario = d;
                 },
                 function (errResponse) {
-                    console.error('Error while fetching logged Usuario');
+                    console.error('Erro ao buscar Usuario em sessão');
                 }
             )
     }
+
     $rootScope.loggedUser();
+
     self.credentials = {};
     self.login = function() {
         authenticate(self.credentials, function(authenticated) {
             if (authenticated) {
-                console.log("Login succeeded, logged usuario: " + self.credentials.username)
+                console.log("Login feito com sucesso, Usuário em sessão: " + self.credentials.username)
                 $location.path("/Inicial");
                 self.error = false;
                 $rootScope.authenticated = true;
                 $rootScope.loggedUser();
             } else {
-                console.log("Login failed")
+                console.log("Login falhou")
                 $location.path("/Login");
                 self.error = true;
                 $rootScope.authenticated = false;
@@ -70,9 +73,9 @@ controllers.controller('LoginController', function($rootScope, $http, $location,
         $http.post('logout', {}).finally(function() {
             $rootScope.authenticated = false;
             $rootScope.loggedUsuario={idUsuario:null,nome:'',email:'',senha:''};
-            $('.modal-backdrop').remove();
+            Global.fechaModal('#logoutModal');
             $location.path("/Login");
         });
     }
 
-})
+}]);

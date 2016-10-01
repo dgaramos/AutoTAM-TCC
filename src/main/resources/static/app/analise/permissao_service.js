@@ -3,7 +3,7 @@
  */
 'use strict';
 
-services.factory('PermissaoService', function($http, $q){
+services.factory('PermissaoService', ['$http', '$q', function($http, $q){
     return {
 
         fetchAllPermissoesFromUsuario: function () {
@@ -70,4 +70,4 @@ services.factory('PermissaoService', function($http, $q){
                 );
         }
     }
-});
+}]);

@@ -3,8 +3,16 @@
  */
 'use strict';
 
-controllers.controller('AnaliseController', function($rootScope, $scope, $window, AnaliseService, PermissaoService, UsuarioService, VariavelTAMService) {
+controllers.controller('AnaliseController',
+    ['$rootScope', '$scope', '$window', 'Global', 'AnaliseService', 'PermissaoService', 'UsuarioService', 'VariavelTAMService' ,
+        function($rootScope, $scope, $window, Global, AnaliseService, PermissaoService, UsuarioService, VariavelTAMService) {
+
     var self = this;
+
+            /**
+             * Declarações de variáveis
+             *
+             */
 
     self.permissao = {idPermissao: null,
         usuario: {idUsuario: null, nome: '', email: '', senha: ''},
@@ -17,87 +25,76 @@ controllers.controller('AnaliseController', function($rootScope, $scope, $window
     self.permissoes = [];
 
     self.analiseForm = {criaAnalise: false, variavelExtra: false};
+
     self.variavel = {idVariavel: null, nomeVariavel: '', variavelPadrao: false, nota: ''};
+
+            /**
+             * Funções de requisição
+             *
+             */
 
     self.fetchAllAnalises = function(){
         PermissaoService.fetchAllPermissoesFromUsuario()
             .then(
                 function(d) {
                     self.permissoes = d;
-                },
+                })
+            .catch(
                 function(errResponse){
-                    console.error('Error while fetching Analises');
+                    console.error('Erro ao buscar Analises' + errResponse);
                 }
             );
     };
+
     self.fetchAllAnalises();
 
     self.createAnalise = function(analise){
-        console.log(analise)
         AnaliseService.createAnalise(analise)
-            .then(function (response) {
-                console.log(response);
-                self.fetchAllAnalises();
-            })
-            .catch(function(errResponse){
-                console.error('Error while creating Analise.' + errResponse);
-            })
+            .then(
+                function (response) {
+                    console.log('Salvando nova Analise: ' + self.permissao.analise);
+                    console.log(response);
+                    self.fetchAllAnalises();
+                })
+            .catch(
+                function(errResponse){
+                    console.error('Erro ao criar Analise.' + errResponse);
+                }
+            );
     };
 
     self.updateAnalise = function(analise, idAnalise){
         AnaliseService.updateAnalise(analise, idAnalise)
-            .then(function (response) {
-                console.log(response);
-                self.fetchAllAnalises();
-            }).catch(function(errResponse){
-            console.error('Error while updating Usuario.'+ errResponse);
+            .then(
+                function (response) {
+                    console.log('Analise a ser atualizada: '+ self.permissao.analise.nome);
+                    console.log(response);
+                    self.fetchAllAnalises();
+            }).catch(
+                function(errResponse){
+                    console.error('Erro ao atualizar Análise. '+ errResponse);
         })
     };
 
-
-    self.submit = function() {
-        if(self.permissao.analise.idAnalise===null){
-            console.log('Saving New Analise', self.permissao.analise);
-            self.createAnalise(self.permissao.analise);
-            self.fetchAllAnalises();
-            self.reset();
-        }else{
-            self.updateAnalise(self.permissao.analise, self.permissao.analise.idAnalise);
-            console.log('Analise updated with nome ', self.permissao.analise.nome);
-            self.fetchAllAnalises();
-            self.reset();
-        }
-    };
-
-    self.editAnalise = function(analise){
-        console.log('Analise to be edited', analise.idAnalise);
-        self.selectAnalise(analise);
-        self.criaAnalise();
-    };
-
-
-    self.selectAnalise= function(analise){
-        self.permissao.analise = angular.copy(analise);
-    }
-
-
     self.deleteAnalise = function(idAnalise){
-        console.log('Analise id to be deleted', idAnalise);
         AnaliseService.deleteAnalise(idAnalise)
             .then(
             function(d){
+                console.log('Analise a ser apagada: ' + idAnalise);
+                console.log(d);
                 self.fetchAllAnalises(idAnalise);
                 self.reset();
-                $('#deleteAnaliseModal').modal('hide');
-                $('body').removeClass('modal-open');
-                $('.modal-backdrop').remove();
+                Global.fechaModal('#deleteAnaliseModal');
             },
             function(errResponse){
-                console.error('Error while fetching variaveis from Analise');
+                console.error('Erro ao apagar Análise ' + errResponse);
             }
         );
-
     };
+
+            /**
+             * Funções de ação
+             */
 
     self.reset = function(){
         self.permissao = {idPermissao: null,
@@ -112,25 +109,46 @@ controllers.controller('AnaliseController', function($rootScope, $scope, $window
             self.analiseForm.variavelExtra = false;
     };
 
+    self.selectAnalise= function(analise){
+        self.permissao.analise = angular.copy(analise);
+    };
+
+    self.submit = function() {
+        if(self.permissao.analise.idAnalise===null){
+            self.createAnalise(self.permissao.analise);
+            self.reset();
+        }else{
+            self.updateAnalise(self.permissao.analise, self.permissao.analise.idAnalise);
+            self.reset();
+        }
+    };
+
+    self.editAnalise = function(analise){
+        self.selectAnalise(analise);
+        self.criaAnalise();
+    };
+
+            /**
+             * Funções de Janela
+             *
+             */
+
     self.criaAnalise = function(){
         self.analiseForm.criaAnalise = true;
         $window.scrollTo(0, 0);
     };
 
-//--------------------------------------Operações com Variáveis--------------------------------------------------------
-
-    //--------------------------------------Durante criação da Análise--------------------------------------------------------
-
     self.analiseFormAbreVariavelExtra = function(){
         self.analiseForm.variavelExtra = true;
     };
+
     self.analiseFormFechaVariavelExtra = function(){
         self.analiseForm.variavelExtra = false;
         self.variavel = {idVariavel: null, nomeVariavel: '', variavelPadrao: false, nota: ''};
     };
 
     self.analiseFormRemoveVariavel = function(nomeVariavel){
-        console.log('Variavel to be removed', nomeVariavel);
+        console.log('Variavel a ser removida: ' + nomeVariavel);
         for(var i = 0; i < self.permissao.analise.variaveis.length; i++){
             if(self.permissao.analise.variaveis[i].nomeVariavel === nomeVariavel) {
                 self.permissao.analise.variaveis.splice(i, 1);
@@ -145,7 +163,10 @@ controllers.controller('AnaliseController', function($rootScope, $scope, $window
         self.variavel = {idVariavel: null, nomeVariavel: '', nota: ''};
     };
 
-    //--------------------------------------Após a Análise Criada--------------------------------------------------------
+            /**
+             * Funções de manipulação de Variável TAM
+             *
+             */
 
     self.fetchAllVariaveisFromAnalise = function(idAnalise){
         VariavelTAMService.fetchAllVariaveisFromAnalise(idAnalise)
@@ -157,9 +178,10 @@ controllers.controller('AnaliseController', function($rootScope, $scope, $window
                             break;
                         }
                     }
-                },
+                })
+            .catch(
                 function(errResponse){
-                    console.error('Error while fetching variaveis from Analise');
+                    console.error('Erro ao encontrar Variáveis da Análise' + errResponse);
                 }
             );
     };
@@ -169,28 +191,26 @@ controllers.controller('AnaliseController', function($rootScope, $scope, $window
             VariavelTAMService.addVariavelToAnalise(idAnalise, variavel)
                 .then(
                     function (d) {
+                        console.log(d);
                         self.fetchAllVariaveisFromAnalise(idAnalise);
                         self.reset();
-                        $('#criaVariavelModal').modal('hide');
-                        $('body').removeClass('modal-open');
-                        $('.modal-backdrop').remove();
+                        Global.fechaModal('#criaVariavelModal');
                     },
                     function (errResponse) {
-                        console.error('Error while fetching variaveis from Analise');
+                        console.error('Erro ao adicionar Variável a Análise:' + errResponse);
                     }
                 )
         }else{
             VariavelTAMService.updateVariavelFromAnalise(idAnalise, variavel)
                 .then(
                     function (d) {
+                        console.log(d);
                         self.fetchAllVariaveisFromAnalise(idAnalise);
                         self.reset();
-                        $('#criaVariavelModal').modal('hide');
-                        $('body').removeClass('modal-open');
-                        $('.modal-backdrop').remove();
+                        Global.fechaModal('#criaVariavelModal');
                     },
                     function (errResponse) {
-                        console.error('Error while fetching variaveis from Analise');
+                        console.error('Erro ao atualizar Variável ' + errResponse);
                     }
                 )
         }
@@ -206,20 +226,22 @@ controllers.controller('AnaliseController', function($rootScope, $scope, $window
         VariavelTAMService.deleteVariavel(idVariavel)
             .then(
                 function(d){
+                    console.log(d);
                     self.fetchAllVariaveisFromAnalise(idAnalise);
                     self.reset();
-                    $('#deleteVariavelModal').modal('hide');
-                    $('body').removeClass('modal-open');
-                    $('.modal-backdrop').remove();
+                    Global.fechaModal('#deleteVariavelModal');
                 },
                 function(errResponse){
-                    console.error('Error while fetching variaveis from Analise');
+                    console.error('Erro ao deletar Variável ' + errResponse);
                 }
             );
     };
 
 
-//--------------------------------------Operações com Permissões--------------------------------------------------------
+            /**
+             * Funções de gerenciamento de permissão
+             *
+             */
 
     self.permissaoConvite = {idPermissao: null,
         usuario: {idUsuario: null, nome: '', email: '', senha: ''},
@@ -244,11 +266,12 @@ controllers.controller('AnaliseController', function($rootScope, $scope, $window
                     console.log(p);
                     self.permissoesConvite = p;
                     console.log(self.permissoesConvite);
-                },
+                })
+            .catch(
                 function(errResponse){
-                    console.log("analise sem permissões")
+                    console.log("Analise sem permissões" + errResponse)
                 }
-            )
+            );
     };
 
     self.savePermissao = function (permissao){
@@ -259,9 +282,11 @@ controllers.controller('AnaliseController', function($rootScope, $scope, $window
                 permissao.testador = false;
                 permissao.administrador = false;
             })
-            .catch(function(errResponse){
-                console.error('Error while creating Permissao.' + errResponse);
-            })
+            .catch(
+                function(errResponse){
+                    console.error('Erro ao criar Permissao.' + errResponse);
+                }
+            );
     };
 
     self.adicionaPermissao = function(analise){
@@ -293,7 +318,7 @@ controllers.controller('AnaliseController', function($rootScope, $scope, $window
                         }
                     },
                     function(errResponse){
-                        console.error('Usuario não encontrado');
+                        console.error('Usuario não encontrado' + errResponse);
                         self.erroPermissao = true;
                     }
                 )
@@ -309,13 +334,15 @@ controllers.controller('AnaliseController', function($rootScope, $scope, $window
         PermissaoService.updatePermissao(permissao, permissao.idPermissao)
             .then(
                 function(d){
+                    console.log(d);
                     self.fetchAllPermissoesFromAnalise(analise);
                     self.resetPermissao();
-                },
+                })
+            .catch(
                 function(errResponse){
-                    console.error('Error while updating Permissao');
+                    console.error('Erro ao atualizar Permissao' + errResponse);
                 }
-            )
+            );
     };
 
     self.submitPermissao = function(permissao){
@@ -330,13 +357,15 @@ controllers.controller('AnaliseController', function($rootScope, $scope, $window
         PermissaoService.deletePermissao(idPermissao)
             .then(
                 function(d){
+                    console.log(d);
                     self.fetchAllPermissoesFromAnalise(analise);
                     self.resetPermissao();
-                },
+                })
+            .catch(
                 function(errResponse){
-                    console.error('Error while deleting Permissao');
+                    console.error('Erro ao deletar Permissão ' + errResponse);
                 }
             );
     };
 
-});
+}]);

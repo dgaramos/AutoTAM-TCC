@@ -89,8 +89,7 @@ public class PermissaoDAOImpl extends AbstractDAO implements PermissaoDAO {
     @Override
     public boolean usuarioIsAdministrador(int idAnalise, int idUsuario) {
         Query query = getSession().createSQLQuery(
-                "SELECT p.Administrador FROM permissao p WHERE idAnalise =: idAnalise AND idUsuario =: idUsuario")
-                .addEntity(boolean.class)
+                "SELECT p.isAdministrador FROM permissao p WHERE idAnalise = :idAnalise AND idUsuario = :idUsuario")
                 .setParameter("idAnalise", idAnalise)
                 .setParameter("idUsuario", idUsuario);
         return (boolean) query.uniqueResult();

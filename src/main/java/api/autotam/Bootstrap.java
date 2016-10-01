@@ -52,7 +52,6 @@ public class Bootstrap {
                   quando o programa é iniciado, e caso não exista, ele gera um usuário
                   com login admin e senha admin.
                 */
-
                 if (usuarioService.findAllUsuarios().isEmpty()) {
                     usuarioService.saveUsuario(new Usuario("admin", "admin"));
                 }

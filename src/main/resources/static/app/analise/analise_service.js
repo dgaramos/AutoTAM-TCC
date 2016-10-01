@@ -4,7 +4,7 @@
 
 'use strict';
 
-services.factory('AnaliseService', function($http, $q){
+services.factory('AnaliseService', ['$http', '$q', function($http, $q){
 
     return {
 
@@ -15,7 +15,7 @@ services.factory('AnaliseService', function($http, $q){
                         return response.data;
                     },
                     function (errResponse) {
-                        console.error('Error while creating analise');
+                        console.error('Erro ao criar Análise');
                         return $q.reject(errResponse);
                     }
                 );
@@ -28,7 +28,7 @@ services.factory('AnaliseService', function($http, $q){
                         return response.data;
                     },
                     function (errResponse) {
-                        console.error('Error while updating analise');
+                        console.error('Erro ao atualizar Analise');
                         return $q.reject(errResponse);
                     }
                 );
@@ -41,11 +41,11 @@ services.factory('AnaliseService', function($http, $q){
                         return response.data;
                     },
                     function (errResponse) {
-                        console.error('Error while deleting analise');
+                        console.error('Erro ao deletar Análise');
                         return $q.reject(errResponse);
                     }
                 );
         }
     }
 
-});
+}]);

@@ -1,6 +1,6 @@
 'use strict';
 
-services.factory('UsuarioService', function($http, $q){
+services.factory('UsuarioService',[ '$http', '$q', function($http, $q){
 
     return {
 
@@ -11,7 +11,7 @@ services.factory('UsuarioService', function($http, $q){
                         return response.data;
                     },
                     function(errResponse){
-                        console.error('Error while fetching usuarios');
+                        console.error('Erro ao listar Usuários');
                         return $q.reject(errResponse);
                     }
                 );
@@ -24,7 +24,7 @@ services.factory('UsuarioService', function($http, $q){
                         return response.data;
                     },
                     function(errResponse){
-                        console.error('Error while fetching usuario');
+                        console.error('Erro ao buscar Usuário por email');
                         return $q.reject(errResponse);
                     }
                 );
@@ -37,7 +37,7 @@ services.factory('UsuarioService', function($http, $q){
                         return response.data;
                     },
                     function(errResponse){
-                        console.error('Error while creating usuario');
+                        console.error('Erro ao criar Usuário');
                         return $q.reject(errResponse);
                     }
                 );
@@ -50,7 +50,7 @@ services.factory('UsuarioService', function($http, $q){
                         return response.data;
                     },
                     function(errResponse){
-                        console.error('Error recovering password');
+                        console.error('Erro ao recuperar senha');
                         return $q.reject(errResponse);
                     }
                 );
@@ -63,7 +63,7 @@ services.factory('UsuarioService', function($http, $q){
                         return response.data;
                     },
                     function(errResponse){
-                        console.error('Error while updating usuario');
+                        console.error('Erro ao atualizar Usuário');
                         return $q.reject(errResponse);
                     }
                 );
@@ -89,11 +89,11 @@ services.factory('UsuarioService', function($http, $q){
                         return response.data;
                     },
                     function (errResponse) {
-                        console.error('Error while fetching logged Usuario');
+                        console.error('Erro ao buscar Usuário logado');
                         return $q.reject(errResponse);
                     })
         }
 
     }
 
-});
+}]);

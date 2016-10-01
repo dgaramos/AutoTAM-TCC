@@ -3,16 +3,16 @@
  */
 'use strict';
 
-services.factory('VariavelTAMService', function($http, $q) {
+services.factory('VariavelTAMService', [ '$http', '$q', function($http, $q) {
     return {
         addVariavelToAnalise: function (idAnalise, variavel) {
-            return $http.post(__env.apiUrl + '/variavelTAM/' + idAnalise, variavel)
+            return $http.post(__env.apiUrl + '/analise/variavel/' + idAnalise, variavel)
                 .then(
                     function (response) {
                         return response.data;
                     },
                     function (errResponse) {
-                        console.error('Error while updating analise');
+                        console.error('Erro ao criar Análise');
                         return $q.reject(errResponse);
                     }
                 );
@@ -25,7 +25,7 @@ services.factory('VariavelTAMService', function($http, $q) {
                         return response.data;
                     },
                     function (errResponse) {
-                        console.error('Error while updating analise');
+                        console.error('Erro ao atualizar Análise');
                         return $q.reject(errResponse);
                     }
                 );
@@ -38,7 +38,7 @@ services.factory('VariavelTAMService', function($http, $q) {
                         return response.data;
                     },
                     function (errResponse) {
-                        console.error('Error while fetching usuarios');
+                        console.error('Erro ao listar todas as Variaveis de uma Análise');
                         return $q.reject(errResponse);
                     }
                 );
@@ -51,11 +51,11 @@ services.factory('VariavelTAMService', function($http, $q) {
                         return response.data;
                     },
                     function (errResponse) {
-                        console.error('Error while deleting variavel');
+                        console.error('Erro ao apagar Variável');
                         return $q.reject(errResponse);
                     }
                 );
         }
 
     }
-});
+}]);
