@@ -1,5 +1,6 @@
 package api.autotam.restControllers;
 
+import api.autotam.model.Questao;
 import api.autotam.model.VariavelTAM;
 import api.autotam.services.interfaces.VariavelTAMService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,5 +83,23 @@ public class VariavelTAMController {
         variavelTAMService.deleteVariavel(id);
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    /**
+     * Método responsável por dar a resposta a requisição HTTP/POST referente a criação de uma nova Questão em
+     * uma determinada Variável TAM utilizando o id da Variável como parâmetro na URI
+     *
+     * @uri /variavelTAM/questao/{id}
+     * @param idVariavel
+     * @param questao
+     * @return
+     */
+    @RequestMapping(value = "questao/{id}", method = RequestMethod.POST)
+    public ResponseEntity<Void> createQuestaoToVariavel(@PathVariable("id") Integer idVariavel, @RequestBody Questao questao) {
+        System.out.println("Cadastrando a  Questão "+ questao.getEnunciado()+" na Variável TAM com id " + idVariavel);
+
+        variavelTAMService.addQuestaoToVariavel(idVariavel, questao);
+
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

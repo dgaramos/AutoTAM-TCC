@@ -45,14 +45,19 @@ public class AnaliseServiceImpl extends AbstractService implements AnaliseServic
     }
 
     /**
-     * Método responsável pela operação de busca de uma determinada Análise por meio de seu id.
+     * Método responsável pela operação de busca de uma determinada Análise por meio de seu id verificando
+     * se o Usuário em sessão tem permissão para visualizar a Análise.
      *
      * @param idAnalise
      * @return
      */
     @Override
     public Analise findById(int idAnalise) {
-        return analiseDAO.findById(idAnalise);
+        if(usuarioLogadoHasPermissão(idAnalise)) {
+            return analiseDAO.findById(idAnalise);
+        }else{
+            throw new SecurityException("Usuario não tem permissão para essa análise");
+        }
     }
 
     /**
@@ -86,14 +91,20 @@ public class AnaliseServiceImpl extends AbstractService implements AnaliseServic
     }
 
     /**
-     * Método responsável por verificar se uma determinada Análise existe no Banco de Dados.
+     * Método responsável por verificar se uma determinada Análise existe no Banco de Dados verificando
+     * se o Usuário em sessão tem permissão para visualizar a Análise.
      *
      * @param analise
      * @return
      */
     @Override
     public boolean isAnaliseExist(Analise analise) {
-        return findById(analise.getIdAnalise())!=null;
+        if(usuarioLogadoHasPermissão(analise.getIdAnalise())) {
+            return findById(analise.getIdAnalise()) != null;
+        }else{
+            throw new SecurityException("Usuario não tem permissão para essa análise");
+        }
+
     }
 
     /**

@@ -96,6 +96,23 @@ public class PermissaoDAOImpl extends AbstractDAO implements PermissaoDAO {
     }
 
     /**
+     * Método responsável pela operação de verificação de se o Usuário em questão possui permissão de Testador
+     * de uma determinada Análise por meio de seu id.
+     *
+     * @param idAnalise
+     * @param idUsuario
+     * @return
+     */
+    @Override
+    public boolean usuarioIsTestador(int idAnalise, int idUsuario) {
+        Query query = getSession().createSQLQuery(
+                "SELECT p.isTestador FROM permissao p WHERE idAnalise = :idAnalise AND idUsuario = :idUsuario")
+                .setParameter("idAnalise", idAnalise)
+                .setParameter("idUsuario", idUsuario);
+        return (boolean) query.uniqueResult();
+    }
+
+    /**
      * Método responsável pela operação de listagem dos registros de todas as Permissões vinculadas a um determinado
      * Usuário por meio de seu id.
      *

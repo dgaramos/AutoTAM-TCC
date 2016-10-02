@@ -23,26 +23,54 @@ public class UsuarioServiceImpl extends AbstractService implements UsuarioServic
     @Autowired
     private UsuarioDAO usuarioDAO;
 
+    /**
+     * Método responsável pela operação de cadastro de um Usuário no banco de dados.
+     *
+     * @param usuario
+     */
     @Override
     public void saveUsuario(Usuario usuario) {
         usuarioDAO.saveUsuario(usuario);
     }
 
+    /**
+     * Método responsável pela operação de busca de um determinado Usuário por meio de seu id.
+     *
+     * @param idUsuario
+     * @return
+     */
     @Override
-    public Usuario findById(Integer id) {
-        return usuarioDAO.findById(id);
+    public Usuario findById(Integer idUsuario) {
+        return usuarioDAO.findById(idUsuario);
     }
 
+    /**
+     * Método responsável pela operação de busca de um determinado Usuário por meio de seu email.
+     *
+     * @param email
+     * @return
+     */
     @Override
     public Usuario findByEmail(String email) {
         return usuarioDAO.findByEmail(email);
     }
 
+    /**
+     * Método responsável por retornar o Usuário em sessão.
+     *
+     * @return
+     */
     @Override
     public Usuario getUsuarioLogado() {
         return super.getUsuarioLogado();
     }
 
+    /**
+     * Método responsável por atualizar um determinado Usuário verificando se o Usuário a ser atualizado
+     * é o Usuário em sessão
+     *
+     * @param usuario
+     */
     @Override
     public void updateUsuario(Usuario usuario){
         if(getUsuarioLogado().equals(usuario)){
@@ -50,10 +78,16 @@ public class UsuarioServiceImpl extends AbstractService implements UsuarioServic
             usuarioDAO.updateUsuario(usuario);
 
         }else{
-            throw new SecurityException("Só o próprio usuário pode atualizar informações da sua conta");
+            throw new SecurityException("Só o próprio Usuário pode atualizar informações da sua conta.");
         }
     }
 
+    /**
+     * Método responsável por apagar as informações de um determinado Usuário verificando se o Usuário
+     * em sessão é o Usuário que está sendo apagado.
+     *
+     * @param idUsuario
+     */
     @Override
     public void deleteUsuario(int idUsuario) {
         if(getUsuarioLogado().getIdUsuario() == idUsuario){
@@ -61,15 +95,26 @@ public class UsuarioServiceImpl extends AbstractService implements UsuarioServic
             usuarioDAO.deleteUsuario(idUsuario);
 
         }else{
-            throw new SecurityException("Só o próprio usuário pode excluir sua conta");
+            throw new SecurityException("Só o próprio Usuário pode excluir sua conta.");
         }
     }
 
+    /**
+     * Método responsável por verificar se um determinado Usuário existe no Banco de Dados.
+     *
+     * @param usuario
+     * @return
+     */
     @Override
     public boolean isUsuarioExist(Usuario usuario) {
         return findByEmail(usuario.getEmail())!=null;
     }
 
+    /**
+     * Método responsável por listar todos os Usuários cadastrados no banco de dados.
+     *
+     * @return
+     */
     @Override
     public List<Usuario> findAllUsuarios() {
         return usuarioDAO.findAllUsuarios();

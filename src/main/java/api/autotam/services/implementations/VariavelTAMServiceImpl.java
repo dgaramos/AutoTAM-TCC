@@ -23,6 +23,12 @@ public class VariavelTAMServiceImpl extends AbstractService implements VariavelT
     @Autowired
     private VariavelTAMDAO variavelTAMDAO;
 
+
+    /**
+     * Método responsável pela operação de cadastro de uma Variável TAM no banco de dados.
+     *
+     * @param variavel
+     */
     @Override
     public void saveVariavel(VariavelTAM variavel) {
         if(usuarioLogadoIsAdministrador(variavel.getAnalise().getIdAnalise())){
@@ -32,9 +38,21 @@ public class VariavelTAMServiceImpl extends AbstractService implements VariavelT
         }
     }
 
+    /**
+     * Método responsável pela operação de busca de uma determinada Variavel TAM por meio de seu id.
+     *
+     * @param idVariavel
+     * @return
+     */
     @Override
     public VariavelTAM findById(int idVariavel) {return variavelTAMDAO.findById(idVariavel);}
 
+    /**
+     * Método responsável pela operação de atualização das informações de uma determinada Variavel TAM verificando se o
+     * Usuário em sessão possui permissão de Administrador para concluir a operação.
+     *
+     * @param variavel
+     */
     @Override
     public void updateVariavel(VariavelTAM variavel) {
         if(usuarioLogadoIsAdministrador(variavel.getAnalise().getIdAnalise())){
@@ -44,6 +62,12 @@ public class VariavelTAMServiceImpl extends AbstractService implements VariavelT
         }
     }
 
+    /**
+     * Método responsável por apagar as informações de uma determinada Variável TAM verificando se o Usuário
+     * em sessão possui permissão de Administrador para concluir a operação.
+     *
+     * @param idVariavel
+     */
     @Override
     public void deleteVariavel(int idVariavel) {
         if(usuarioLogadoIsAdministrador(findById(idVariavel).getAnalise().getIdAnalise())){
@@ -53,12 +77,46 @@ public class VariavelTAMServiceImpl extends AbstractService implements VariavelT
         }
     }
 
+    /**
+     * Método responsável por verificar se uma determinada Variável TAM existe no Banco de Dados.
+     *
+     * @param variavel
+     * @return
+     */
     @Override
     public boolean isVariavelExist(VariavelTAM variavel) {return findById(variavel.getIdVariavel()) != null;}
 
+    /**
+     * Método responsável por buscar todas as Variáveis TAM de uma determinada Análise no banco de dados.
+     *
+     * @param idAnalise
+     * @return
+     */
     @Override
     public List<VariavelTAM> findAllVariaveisFromAnalise(int idAnalise) {
         List<VariavelTAM> variaveis = variavelTAMDAO.findAllVariaveisFromAnalise(idAnalise);
         return variaveis;
+    }
+
+    /**
+     * Método responsável pela operação de cadastro de uma Questão em uma determinada VariavelTAM, verificando se o
+     * Usuário em sessão possui permissão de Administrador para concluir a operação.
+     *
+     * @param idVariavel
+     * @param questao
+     */
+    @Override
+    public void addQuestaoToVariavel(int idVariavel, Questao questao){
+        if (usuarioLogadoIsAdministrador(findById(idVariavel).getAnalise().getIdAnalise())){
+            VariavelTAM variavelTAM = findById(idVariavel);
+            questao.setVariavelTAM(variavelTAM);
+            List<Questao> questoes = variavelTAM.getQuestoes();
+            questoes.add(questao);
+            variavelTAM.setQuestoes(questoes);
+            updateVariavel(variavelTAM);
+        }else{
+            throw new SecurityException("Usuario não tem permissão de administrador para essa análise");
+        }
+
     }
 }

@@ -236,8 +236,6 @@ controllers.controller('AnaliseController',
                 }
             );
     };
-
-
             /**
              * Funções de gerenciamento de permissão
              *
@@ -284,7 +282,7 @@ controllers.controller('AnaliseController',
             })
             .catch(
                 function(errResponse){
-                    console.error('Erro ao criar Permissao.' + errResponse);
+                    console.error('Error while creating Permissao.' + errResponse);
                 }
             );
     };

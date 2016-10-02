@@ -41,6 +41,17 @@ public abstract class AbstractService {
     }
 
     /**
+     * Método responsável por verificar se o Usuário em sessão tem Permissão
+     * para uma determinada Análise por meio de seu id.
+     *
+     * @param idAnalise
+     * @return
+     */
+    public boolean usuarioLogadoHasPermissão(int idAnalise){
+        return permissaoDAO.usuarioHasPermissaoToAnalise(idAnalise, getUsuarioLogado().getIdUsuario());
+    }
+
+    /**
      * Método responsável por verificar se o Usuário em sessão tem Permissão de administrador
      * para uma determinada Análise por meio de seu id.
      *

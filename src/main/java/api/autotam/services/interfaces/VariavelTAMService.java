@@ -25,4 +25,6 @@ public interface VariavelTAMService {
 
     List<VariavelTAM> findAllVariaveisFromAnalise(int idAnalise);
 
+    void addQuestaoToVariavel(int idVariavel, Questao questao);
+
 }

@@ -25,6 +25,8 @@ public interface PermissaoDAO {
 
     boolean usuarioIsAdministrador(int idAnalise, int idUsuario);
 
+    boolean usuarioIsTestador(int idAnalise, int idUsuario);
+
     List<Permissao> findAllPermissoesFromUsuario(int idUsuario);
 
     List<Permissao> findAllPermissoesFromAnalise (int idAnalise);

@@ -24,7 +24,7 @@ public class PermissaoServiceImpl extends AbstractService implements PermissaoSe
     private PermissaoDAO permissaoDAO;
 
     /**
-     * Método responsável pela operação de cadastro de uma Permissão de acesso a uma detererminada Análise para um
+     * Método responsável pela operação de cadastro de uma Permissão de acesso a uma determinada Análise para um
      * determinado Usuário (que não está em sessão), verificando se o Usuário em sessão possui permissão de
      * Administrador para realizar a operação.
      *
@@ -70,6 +70,12 @@ public class PermissaoServiceImpl extends AbstractService implements PermissaoSe
         }
     }
 
+    /**
+     * Método responsável por apagar as informações de uma determinada Permissão verificando se o Usuário
+     * em sessão possui permissão de Administrador para concluir a operação.
+     *
+     * @param idPermissao
+     */
     @Override
     public void deletePermissao(int idPermissao){
         if (usuarioLogadoIsAdministrador(findById(idPermissao).getAnalise().getIdAnalise())){
@@ -79,20 +85,43 @@ public class PermissaoServiceImpl extends AbstractService implements PermissaoSe
         }
     }
 
+    /**
+     * Método responsável por verificar se o Usuário já possui uma Permissão para uma determinada Análise com
+     * o intuito de evitar que um Usuário tenha mais de uma Permissão para uma Análise
+     *
+     * @param permissao
+     */
     @Override
     public boolean isUsuarioHavePermissaoToAnalise(Permissao permissao){
         return permissaoDAO.usuarioHasPermissaoToAnalise(permissao.getAnalise().getIdAnalise(),
                 permissao.getUsuario().getIdUsuario());
     }
 
+    /**
+     * Método responsável por listar todas as Permissões do Usuário em sessão.
+     *
+     * @return
+     */
     @Override
     public List<Permissao> findAllPermissoesFromUsuarioLogado(){
         return permissaoDAO.findAllPermissoesFromUsuario(getUsuarioLogado().getIdUsuario());
     }
 
+    /**
+     * Método responsável por listar todas as Permissões de uma determinada Análise no banco de dados por meio
+     * de seu id verificando se o Usuário em sessão tem permissão para visualizar a Análise
+     *
+     * @param idAnalise
+     * @return
+     */
     @Override
     public List<Permissao> findAllPermissoesFromAnalise(int idAnalise) {
-        return permissaoDAO.findAllPermissoesFromAnalise(idAnalise);
+        if (usuarioLogadoIsAdministrador(idAnalise)){
+            return permissaoDAO.findAllPermissoesFromAnalise(idAnalise);
+        }else{
+            throw new SecurityException("Usuario não tem permissão de administrador para essa análise");
+        }
+
     }
 
 
