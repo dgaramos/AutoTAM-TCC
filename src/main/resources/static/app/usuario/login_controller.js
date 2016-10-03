@@ -33,7 +33,7 @@ controllers.controller('LoginController', [ '$rootScope', '$http', '$location', 
             callback && callback(false);
         });
 
-    }
+    };
 
     authenticate();
 
@@ -44,10 +44,10 @@ controllers.controller('LoginController', [ '$rootScope', '$http', '$location', 
                     $rootScope.loggedUsuario = d;
                 },
                 function (errResponse) {
-                    console.error('Erro ao buscar Usuario em sessão');
+                    console.error('Erro ao buscar Usuario em sessão' + errResponse);
                 }
             )
-    }
+    };
 
     $rootScope.loggedUser();
 
@@ -55,13 +55,13 @@ controllers.controller('LoginController', [ '$rootScope', '$http', '$location', 
     self.login = function() {
         authenticate(self.credentials, function(authenticated) {
             if (authenticated) {
-                console.log("Login feito com sucesso, Usuário em sessão: " + self.credentials.username)
+                console.log("Login feito com sucesso, Usuário em sessão: " + self.credentials.username);
                 $location.path("/Inicial");
                 self.error = false;
                 $rootScope.authenticated = true;
                 $rootScope.loggedUser();
             } else {
-                console.log("Login falhou")
+                console.log("Login falhou");
                 $location.path("/Login");
                 self.error = true;
                 $rootScope.authenticated = false;

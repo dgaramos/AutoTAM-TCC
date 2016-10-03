@@ -1,10 +1,8 @@
-/**
- * Created by Danilo on 9/17/2016.
- */
+
 'use strict';
 
 controllers.controller('AnaliseController',
-    ['$rootScope', '$scope', '$window', 'Global', 'AnaliseService', 'PermissaoService', 'UsuarioService', 'VariavelTAMService' ,
+    ['$rootScope', '$scope', '$window', 'Global', 'AnaliseService', 'PermissaoService', 'UsuarioService', 'VariavelTAMService',
         function($rootScope, $scope, $window, Global, AnaliseService, PermissaoService, UsuarioService, VariavelTAMService) {
 
     var self = this;
@@ -254,7 +252,7 @@ controllers.controller('AnaliseController',
             analise: self.permissao.analise ,
             testador: false, administrador: false};
         self.erroPermissao = false;
-    }
+    };
 
     self.fetchAllPermissoesFromAnalise = function(analise){
         self.permissaoConvite.analise = analise;
@@ -307,6 +305,7 @@ controllers.controller('AnaliseController',
                             self.savePermissao(self.permissaoConvite)
                                 .then(
                                     function(p){
+                                        console.log(p);
                                         self.fetchAllPermissoesFromAnalise(analise);
                                     },
                                     function (errResponse) {
@@ -349,7 +348,7 @@ controllers.controller('AnaliseController',
         }else{
             self.updatePermissao(permissao, permissao.analise);
         }
-    }
+    };
 
     self.deletePermissao = function (idPermissao, analise){
         PermissaoService.deletePermissao(idPermissao)

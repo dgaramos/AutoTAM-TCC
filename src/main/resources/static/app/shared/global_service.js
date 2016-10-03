@@ -4,7 +4,7 @@
 
 'use strict';
 
-services.factory('Global', [ ,function(){
+services.factory('Global', function(){
     return {
 
         fechaModal : function (modalName){
@@ -13,4 +13,4 @@ services.factory('Global', [ ,function(){
             $('.modal-backdrop').remove();
         }
     }
-}]);
+});

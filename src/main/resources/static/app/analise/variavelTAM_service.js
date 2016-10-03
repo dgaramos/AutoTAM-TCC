@@ -1,6 +1,4 @@
-/**
- * Created by Danilo on 9/29/2016.
- */
+
 'use strict';
 
 services.factory('VariavelTAMService', [ '$http', '$q', function($http, $q) {

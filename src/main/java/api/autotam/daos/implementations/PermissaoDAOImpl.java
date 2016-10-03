@@ -72,8 +72,7 @@ public class PermissaoDAOImpl extends AbstractDAO implements PermissaoDAO {
     @Override
     public boolean usuarioHasPermissaoToAnalise(int idAnalise, int idUsuario) {
         Query query = getSession().createSQLQuery(
-                "SELECT u.idUsuario FROM permissao p JOIN usuario u USING (idUsuario) WHERE idAnalise =: idAnalise")
-                .addEntity(Integer.class)
+                "SELECT u.idUsuario FROM permissao p JOIN usuario u USING (idUsuario) WHERE idAnalise = :idAnalise")
                 .setParameter("idAnalise", idAnalise);
         return query.list().contains(idUsuario);
     }
