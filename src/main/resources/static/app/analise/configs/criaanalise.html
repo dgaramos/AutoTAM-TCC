@@ -38,7 +38,7 @@
                            data-toggle="tooltip" data-placement="right" tooltip></i>
                         {{v.nomeVariavel}}</li>
                     <button type="button" class="btn btn-default btn-xs" ng-hide="AnaliseCtrl.analiseForm.variavelExtra" title="" ng-click="AnaliseCtrl.analiseFormAbreVariavelExtra()"
-                            data-placement="right" tooltip="" data-original-title="Adcionar variável extra">
+                            data-placement="right" tooltip="" data-original-title="Adicionar variável extra">
                         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                     </button>
                     <div class="well variavel-well well-sm clearfix col-sm-3" ng-show="AnaliseCtrl.analiseForm.variavelExtra">
@@ -47,7 +47,7 @@
                                 data-placement="left" tooltip="" data-original-title="Cancelar">
                             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                         </button>
-                        <input type="text" name="nomeVariavel" class="form-control input-sm" ng-model="AnaliseCtrl.variavel.nomeVariavel" ng-minlength="5"/>
+                        <input type="text" name="nomeVariavel" class="form-control input-sm" ng-model="AnaliseCtrl.variavel.nomeVariavel"/>
                         <button type="button" class="btn btn-primary pull-right" title="" ng-click="AnaliseCtrl.analiseFormAdicionaVariavelExtra()"
                                 data-placement="right" tooltip="" data-original-title="Adcionar Variável">
                             <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>

@@ -24,6 +24,8 @@ controllers.controller('AnaliseController',
 
     self.analiseForm = {criaAnalise: false, variavelExtra: false};
 
+    self.analiseList = {variavelExtra: false};
+
     self.variavel = {idVariavel: null, nomeVariavel: '', variavelPadrao: false, nota: ''};
 
             /**
@@ -160,6 +162,16 @@ controllers.controller('AnaliseController',
         self.analiseForm.variavelExtra = false;
         self.variavel = {idVariavel: null, nomeVariavel: '', nota: ''};
     };
+
+    self.analiseListAbreVariavelExtra = function(){
+        self.analiseList.variavelExtra = true;
+    };
+
+    self.analiseListFechaVariavelExtra = function(){
+        self.analiseList.variavelExtra = false;
+        self.variavel = {idVariavel: null, nomeVariavel: '', variavelPadrao: false, nota: ''};
+    };
+
 
             /**
              * Funções de manipulação de Variável TAM
