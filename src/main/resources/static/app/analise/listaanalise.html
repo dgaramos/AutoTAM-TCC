@@ -37,7 +37,7 @@
                     </b>
                     <ul>
                         <li ng-repeat="v in p.analise.variaveis">
-                            <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#criaVariavelModal" ng-show="p.administrador"
+                            <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#gerenciaVariavelModal" ng-show="p.administrador"
                                     ng-click="AnaliseCtrl.selectVariavel(v, p.analise)" title="Editar Variavel" data-toggle="tooltip" data-placement="left" tooltip>
                                 <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                             </button>
@@ -58,7 +58,7 @@
                         </button>
                         <input type="text" name="nomeVariavel" class="form-control input-sm" ng-model="AnaliseCtrl.variavel.nomeVariavel"/>
                         <button type="button" class="btn btn-primary pull-right"  title="" ng-click="AnaliseCtrl.variavelToAnalise(p.analise.idAnalise, AnaliseCtrl.variavel)"
-                                data-placement="right" tooltip="" data-original-title="Adcionar Variável">
+                                data-placement="right" tooltip="" data-original-title="Adicionar Variável">
                             <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
                         </button>
                     </div>

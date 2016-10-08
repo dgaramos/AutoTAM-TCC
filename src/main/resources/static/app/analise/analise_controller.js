@@ -15,8 +15,8 @@ controllers.controller('AnaliseController',
     self.permissao = {idPermissao: null,
         usuario: {idUsuario: null, nome: '', email: '', senha: ''},
         analise: {idAnalise: null, nome: '', objetoDeAnalise: '',
-            variaveis:[{idVariavel: null, nomeVariavel: 'Facilidade de Uso Percebida', variavelPadrao: true, nota: ''},
-                        {idVariavel: null, nomeVariavel: 'Utilidade Percebida', variavelPadrao: true, nota: ''}],
+            variaveis:[{idVariavel: null, nomeVariavel: 'Facilidade de Uso Percebida', questoes: [], variavelPadrao: true, nota: ''},
+                        {idVariavel: null, nomeVariavel: 'Utilidade Percebida', questoes: [], variavelPadrao: true, nota: ''}],
              status: ''},
         testador: false, administrador: false};
 
@@ -26,7 +26,9 @@ controllers.controller('AnaliseController',
 
     self.analiseList = {variavelExtra: false};
 
-    self.variavel = {idVariavel: null, nomeVariavel: '', variavelPadrao: false, nota: ''};
+    self.variavel = {idVariavel: null, nomeVariavel: '', questoes: [], variavelPadrao: false, nota: ''};
+
+    self.questao = {idQuestao: null,  numero:'', enunciado: '', peso: '', resposta: ''};
 
             /**
              * Funções de requisição
@@ -204,7 +206,7 @@ controllers.controller('AnaliseController',
                         console.log(d);
                         self.fetchAllVariaveisFromAnalise(idAnalise);
                         self.reset();
-                        Global.fechaModal('#criaVariavelModal');
+                        Global.fechaModal('#gerenciaVariavelModal');
                     },
                     function (errResponse) {
                         console.error('Erro ao adicionar Variável a Análise:' + errResponse);
@@ -217,7 +219,7 @@ controllers.controller('AnaliseController',
                         console.log(d);
                         self.fetchAllVariaveisFromAnalise(idAnalise);
                         self.reset();
-                        Global.fechaModal('#criaVariavelModal');
+                        Global.fechaModal('#gerenciaVariavelModal');
                     },
                     function (errResponse) {
                         console.error('Erro ao atualizar Variável ' + errResponse);
@@ -246,6 +248,16 @@ controllers.controller('AnaliseController',
                 }
             );
     };
+            /**
+             * Funções de gerenciamento das questões da variável TAM
+             *
+             */
+    self.adicionaQuestaoToVariavel = function(){
+        self.questao.numero = self.variavel.questoes.length + 1;
+        self.variavel.questoes.push(self.questao);
+        self.questao = {idQuestao: null, numero:'', enunciado: '', peso: '', resposta: ''};
+    };
+
             /**
              * Funções de gerenciamento de permissão
              *

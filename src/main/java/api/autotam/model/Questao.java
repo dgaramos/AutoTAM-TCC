@@ -23,6 +23,9 @@ public class Questao implements Serializable {
     @Column(name = "idQuestao")
     private Integer idQuestao;
 
+    @Column(name = "numero")
+    private Integer numero;
+
     @Column(name = "enunciado")
     private String enunciado;
 
@@ -32,7 +35,7 @@ public class Questao implements Serializable {
     @Column(name ="resposta")
     private double resposta;
 
-    @ManyToOne(cascade = CascadeType.ALL )
+    @ManyToOne(cascade = CascadeType.MERGE )
     @JoinColumn(name = "idVariavel")
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonBackReference
@@ -51,6 +54,14 @@ public class Questao implements Serializable {
 
     public void setIdQuestao(Integer idQuestao) {
         this.idQuestao = idQuestao;
+    }
+
+    public Integer getNumero() {
+        return numero;
+    }
+
+    public void setNumero(Integer numero) {
+        this.numero = numero;
     }
 
     public String getEnunciado() {
@@ -96,6 +107,7 @@ public class Questao implements Serializable {
         if (Double.compare(questao.getResposta(), getResposta()) != 0) return false;
         if (getIdQuestao() != null ? !getIdQuestao().equals(questao.getIdQuestao()) : questao.getIdQuestao() != null)
             return false;
+        if (getNumero() != null ? !getNumero().equals(questao.getNumero()) : questao.getNumero() != null) return false;
         if (getEnunciado() != null ? !getEnunciado().equals(questao.getEnunciado()) : questao.getEnunciado() != null)
             return false;
         return getVariavelTAM() != null ? getVariavelTAM().equals(questao.getVariavelTAM()) : questao.getVariavelTAM() == null;
@@ -107,12 +119,13 @@ public class Questao implements Serializable {
         int result;
         long temp;
         result = getIdQuestao() != null ? getIdQuestao().hashCode() : 0;
+        result = 31 * result + (getNumero() != null ? getNumero().hashCode() : 0);
         result = 31 * result + (getEnunciado() != null ? getEnunciado().hashCode() : 0);
-        result = 31 * result + (getVariavelTAM() != null ? getVariavelTAM().hashCode() : 0);
         temp = Double.doubleToLongBits(getPeso());
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         temp = Double.doubleToLongBits(getResposta());
         result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + (getVariavelTAM() != null ? getVariavelTAM().hashCode() : 0);
         return result;
     }
 
@@ -120,10 +133,11 @@ public class Questao implements Serializable {
     public String toString() {
         return "Questao{" +
                 "idQuestao=" + idQuestao +
+                ", numero=" + numero +
                 ", enunciado='" + enunciado + '\'' +
-                ", variavelTAM=" + variavelTAM +
                 ", peso=" + peso +
                 ", resposta=" + resposta +
+                ", variavelTAM=" + variavelTAM +
                 '}';
     }
 }

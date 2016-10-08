@@ -2,6 +2,8 @@ package api.autotam.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -41,6 +43,7 @@ public class VariavelTAM {
     private Analise analise;
 
     @OneToMany(mappedBy = "variavelTAM", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @Fetch(FetchMode.SELECT)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonManagedReference
     private List<Questao> questoes;

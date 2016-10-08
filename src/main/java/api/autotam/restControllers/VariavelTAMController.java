@@ -27,15 +27,15 @@ public class VariavelTAMController {
      * Variável TAM utilizando o id da Variável como parâmetro na URI
      *
      * @uri /variavelTAM/{id}
-     * @param idAnalise
+     * @param idVariavel
      * @param variavel
      * @return
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<VariavelTAM> updateVariavel(@PathVariable("id") Integer idAnalise, @RequestBody VariavelTAM variavel) {
-        System.out.println("Atualizando Variável "+ variavel.getNomeVariavel()+" da Análise com id " + idAnalise);
+    public ResponseEntity<VariavelTAM> updateVariavel(@PathVariable("id") Integer idVariavel, @RequestBody VariavelTAM variavel) {
+        System.out.println("Atualizando Variável "+ variavel.getNomeVariavel());
 
-        VariavelTAM currentVariavel = variavelTAMService.findById(variavel.getIdVariavel());
+        VariavelTAM currentVariavel = variavelTAMService.findById(idVariavel);
 
         if (currentVariavel==null) {
             System.out.println("Variavel com id " + variavel.getIdVariavel() + " não foi encontrada");
@@ -43,6 +43,7 @@ public class VariavelTAMController {
         }
 
         currentVariavel.setNomeVariavel(variavel.getNomeVariavel());
+        currentVariavel.setQuestoes(variavel.getQuestoes());
 
         variavelTAMService.updateVariavel(currentVariavel);
 
