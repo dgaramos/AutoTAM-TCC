@@ -1,7 +1,9 @@
 package api.autotam.services.implementations;
 
 import api.autotam.daos.interfaces.QuestaoDAO;
+import api.autotam.daos.interfaces.VariavelTAMDAO;
 import api.autotam.model.Questao;
+import api.autotam.model.VariavelTAM;
 import api.autotam.services.interfaces.QuestaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +23,9 @@ public class QuestaoServiceImpl extends AbstractService implements QuestaoServic
 
     @Autowired
     private QuestaoDAO questaoDAO;
+
+    @Autowired
+    private VariavelTAMDAO variavelTAMDAO;
 
     /**
      * Método responsável pela operação de cadastro de uma Questão no banco de dados.
@@ -71,7 +76,22 @@ public class QuestaoServiceImpl extends AbstractService implements QuestaoServic
     @Override
     public void deleteQuestao(int idQuestao) {
         if(usuarioLogadoIsAdministrador(findById(idQuestao).getVariavelTAM().getAnalise().getIdAnalise())){
+
+            int idVariavel = findById(idQuestao).getVariavelTAM().getIdVariavel();
+
             questaoDAO.deleteQuestao(idQuestao);
+
+            VariavelTAM variavel = variavelTAMDAO.findById(idVariavel);
+
+            for (int i = 0; i < variavel.getQuestoes().size(); i++) {
+                Questao questao = variavel.getQuestoes().get(i);
+                questao.setNumero(i+1);
+                variavel.getQuestoes().set(i, questao);
+            }
+
+
+            variavelTAMDAO.saveVariavel(variavel);
+
         }else{
             throw new SecurityException("Usuario não tem permissão de administrador para essa análise");
         }

@@ -2,8 +2,8 @@
 'use strict';
 
 controllers.controller('AnaliseController',
-    ['$rootScope', '$scope', '$window', 'Global', 'AnaliseService', 'PermissaoService', 'UsuarioService', 'VariavelTAMService',
-        function($rootScope, $scope, $window, Global, AnaliseService, PermissaoService, UsuarioService, VariavelTAMService) {
+    ['$rootScope', '$scope', '$window', 'Global', 'AnaliseService', 'PermissaoService', 'UsuarioService', 'VariavelTAMService', 'QuestaoService',
+        function($rootScope, $scope, $window, Global, AnaliseService, PermissaoService, UsuarioService, VariavelTAMService, QuestaoService) {
 
     var self = this;
 
@@ -217,6 +217,15 @@ controllers.controller('AnaliseController',
                 .then(
                     function (d) {
                         console.log(d);
+                        QuestaoService.fetchAllQuestoesFromVariavel(variavel.idVariavel)
+                            .then(
+                                function(q){
+                                    variavel.questoes = q;
+                                },
+                                function(errResponse){
+                                    console.error('Erro ao carregar Questões ' + errResponse);
+                                }
+                            );
                         self.fetchAllVariaveisFromAnalise(idAnalise);
                         self.reset();
                         Global.fechaModal('#gerenciaVariavelModal');
@@ -230,6 +239,7 @@ controllers.controller('AnaliseController',
 
     self.selectVariavel = function (variavel, analise){
         self.variavel = angular.copy(variavel);
+        self.fetchAllQuestoesFromVariavel(variavel.idVariavel);
         self.permissao.analise = angular.copy(analise);
 
     };
@@ -258,6 +268,37 @@ controllers.controller('AnaliseController',
         self.questao = {idQuestao: null, numero:'', enunciado: '', peso: '', resposta: ''};
     };
 
+    self.selectQuestao = function (questao, variavel){
+        self.questao = angular.copy(questao);
+        self.variavel = angular.copy(variavel);
+    };
+
+     self.fetchAllQuestoesFromVariavel = function(idVariavel){
+         QuestaoService.fetchAllQuestoesFromVariavel(idVariavel)
+             .then(
+                 function(d) {
+                     self.variavel.questoes = d;
+                 })
+             .catch(
+                 function(errResponse){
+                     console.error('Erro ao encontrar Questões da Variável' + errResponse);
+                 }
+             );
+    };
+
+    self.deleteQuestao = function (idQuestao, idVariavel){
+        QuestaoService.deleteQuestao(idQuestao)
+            .then(
+                function(d){
+                    console.log(d);
+                    self.questao = {idQuestao: null, numero:'', enunciado: '', peso: '', resposta: ''};
+                    self.fetchAllQuestoesFromVariavel(idVariavel);
+                },
+                function(errResponse){
+                    console.error('Erro ao deletar Questão ' + errResponse);
+                }
+            );
+    };
             /**
              * Funções de gerenciamento de permissão
              *

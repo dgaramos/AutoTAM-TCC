@@ -1,0 +1,27 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" data-toggle="modal" data-target="#gerenciaVariavelModal" >&times;</button>
+        <h4 class="modal-title">Deletar Questão</h4>
+    </div>
+    <div class="modal-body clearfix">
+        <div class="alert alert-danger">
+            <p>
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                Você realmente deseja apagar a questão abaixo?
+            </p>
+        </div>
+        <div class="delete-container">
+            <h5><span class="label label-default">{{AnaliseCtrl.questao.numero}}</span></h5>
+            <p><b>Enunciado: </b>{{AnaliseCtrl.questao.enunciado}}</p>
+            <p><b>Nome Variável: </b>{{AnaliseCtrl.variavel.nomeVariavel}}</p>
+        </div>
+        <hr>
+
+        <button type="submit" class="btn btn-danger pull-right"
+                data-dismiss="modal" data-toggle="modal" data-target="#gerenciaVariavelModal"
+                ng-click="AnaliseCtrl.deleteQuestao(AnaliseCtrl.questao.idQuestao, AnaliseCtrl.variavel.idVariavel)">
+            <span class="glyphicon glyphicon-ok" aria-hidden="true" ></span>
+            Apagar
+        </button>
+    </div>
+</div>

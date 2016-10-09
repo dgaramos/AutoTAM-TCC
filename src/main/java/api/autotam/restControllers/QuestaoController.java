@@ -34,8 +34,8 @@ public class QuestaoController {
      * @return
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Questao> updateVariavel(@PathVariable("id") Integer idVariavel, @RequestBody Questao questao) {
-        System.out.println("Atualizando Variável "+ questao.getEnunciado()+" da Variável TAM com id " + idVariavel);
+    public ResponseEntity<Questao> updateQuestao(@PathVariable("id") Integer idVariavel, @RequestBody Questao questao) {
+        System.out.println("Atualizando Questao "+ questao.getEnunciado()+" da Variável TAM com id " + idVariavel);
 
         Questao currentQuestao = questaoService.findById(questao.getIdQuestao());
 

@@ -71,7 +71,7 @@ public class QuestaoDAOImpl extends AbstractDAO implements QuestaoDAO {
     @Override
     public List<Questao> findAllQuestoesFromVariavel(int idVariavel) {
         Query query = getSession().createSQLQuery(
-                "SELECT * FROM questao q WHERE p.idVariavel = :idVariavel")
+                "SELECT * FROM questao q WHERE q.idVariavel = :idVariavel")
                 .addEntity(Questao.class)
                 .setParameter("idVariavel", idVariavel);
         return (List<Questao>) query.list();
