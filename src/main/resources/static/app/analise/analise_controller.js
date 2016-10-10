@@ -23,7 +23,7 @@ controllers.controller('AnaliseController',
 
     self.analiseForm = {criaAnalise: false, variavelExtra: false};
 
-    self.analiseList = {variavelExtra: false};
+    self.analiseList = {variavelExtra: []};
 
     self.variavel = {idVariavel: null, nomeVariavel: '', questoes: [], variavelPadrao: false, nota: ''};
 
@@ -39,6 +39,12 @@ controllers.controller('AnaliseController',
             .then(
                 function(d) {
                     self.permissoes = d;
+                    self.analiseList.variavelExtra.length = self.permissoes.length;
+                    for(var i = 0; i < self.permissao.analise.variaveis.length; i++){
+                        if(self.permissao.analise.variaveis[i].nomeVariavel === nomeVariavel) {
+                            self.analiseList.variavelExtra[i] = false;
+                        }
+                    }
 
                 })
             .catch(
@@ -164,12 +170,12 @@ controllers.controller('AnaliseController',
         self.variavel = {idVariavel: null, nomeVariavel: '', nota: ''};
     };
 
-    self.analiseListAbreVariavelExtra = function(){
-        self.analiseList.variavelExtra = true;
+    self.analiseListAbreVariavelExtra = function(i){
+        self.analiseList.variavelExtra[i] = true;
     };
 
-    self.analiseListFechaVariavelExtra = function(){
-        self.analiseList.variavelExtra = false;
+    self.analiseListFechaVariavelExtra = function(i){
+        self.analiseList.variavelExtra[i] = false;
         self.variavel = {idVariavel: null, nomeVariavel: '', variavelPadrao: false, nota: ''};
     };
 

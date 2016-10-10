@@ -30,7 +30,7 @@
                     <b>
                         Variaveis:
                         <button type="button" class="btn btn-default btn-xs" ng-show="p.administrador"
-                                ng-click="AnaliseCtrl.analiseListAbreVariavelExtra()" ng-hide="AnaliseCtrl.analiseList.variavelExtra"
+                                ng-click="AnaliseCtrl.analiseListAbreVariavelExtra($index)" ng-hide="AnaliseCtrl.analiseList.variavelExtra[$index]"
                                 title="Adcionar variável extra" data-toggle="tooltip" data-placement="right" tooltip>
                             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                         </button>
@@ -50,9 +50,9 @@
                             </button>
                         </li>
                     </ul>
-                    <div class="well variavel-well well-sm clearfix" ng-show="AnaliseCtrl.analiseList.variavelExtra">
+                    <div class="well variavel-well well-sm clearfix" ng-show="AnaliseCtrl.analiseList.variavelExtra[$index]">
                         <label>Nome da Variavel Extra</label>
-                        <button type="button" class="btn btn-default btn-xs pull-right" ng-show="AnaliseCtrl.analiseList.variavelExtra" title="" ng-click="AnaliseCtrl.analiseListFechaVariavelExtra()"
+                        <button type="button" class="btn btn-default btn-xs pull-right" ng-show="AnaliseCtrl.analiseList.variavelExtra[$index]" title="" ng-click="AnaliseCtrl.analiseListFechaVariavelExtra($index)"
                                 data-placement="left" tooltip="" data-original-title="Cancelar">
                             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                         </button>
