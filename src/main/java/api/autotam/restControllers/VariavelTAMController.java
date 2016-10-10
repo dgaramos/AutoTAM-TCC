@@ -43,13 +43,6 @@ public class VariavelTAMController {
         }
 
         currentVariavel.setNomeVariavel(variavel.getNomeVariavel());
-
-        for (int i = 0; i < variavel.getQuestoes().size(); i++) {
-            Questao questao = variavel.getQuestoes().get(i);
-            questao.setNumero(i + 1);
-            variavel.getQuestoes().set(i, questao);
-        }
-
         currentVariavel.setQuestoes(variavel.getQuestoes());
 
         variavelTAMService.updateVariavel(currentVariavel);

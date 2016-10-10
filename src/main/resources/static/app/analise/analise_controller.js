@@ -15,8 +15,7 @@ controllers.controller('AnaliseController',
     self.permissao = {idPermissao: null,
         usuario: {idUsuario: null, nome: '', email: '', senha: ''},
         analise: {idAnalise: null, nome: '', objetoDeAnalise: '',
-            variaveis:[{idVariavel: null, nomeVariavel: 'Facilidade de Uso Percebida', questoes: [], variavelPadrao: true, nota: ''},
-                        {idVariavel: null, nomeVariavel: 'Utilidade Percebida', questoes: [], variavelPadrao: true, nota: ''}],
+            variaveis:[],
              status: ''},
         testador: false, administrador: false};
 
@@ -40,6 +39,7 @@ controllers.controller('AnaliseController',
             .then(
                 function(d) {
                     self.permissoes = d;
+
                 })
             .catch(
                 function(errResponse){
@@ -102,11 +102,10 @@ controllers.controller('AnaliseController',
         self.permissao = {idPermissao: null,
             usuario: {idUsuario: null, nome: '', email: '', senha: ''},
             analise: {idAnalise: null, nome: '', objetoDeAnalise: '',
-                variaveis:[{idVariavel: null, nomeVariavel: 'Facilidade de Uso Percebida',variavelPadrao: true, nota: ''},
-                            {idVariavel: null, nomeVariavel: 'Utilidade Percebida',variavelPadrao: true, nota: ''}],
+                variaveis:[],
                 status: ''},
             testador: false, administrador: false};
-            self.variavel = {idVariavel: null, nomeVariavel: '',variavelPadrao: false, nota: ''};
+            self.variavel = {idVariavel: null, nomeVariavel: '',variavelPadrao: false, questoes:[], nota: ''};
             self.analiseForm.criaAnalise = false;
             self.analiseForm.variavelExtra = false;
     };

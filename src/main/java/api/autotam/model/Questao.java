@@ -43,9 +43,12 @@ public class Questao implements Serializable {
 
     public Questao(){}
 
-    public Questao( String enunciado, VariavelTAM variavelTAM){
+    public Questao(Integer numero, String enunciado, VariavelTAM variavelTAM){
+        this.numero = numero;
         this.enunciado = enunciado;
         this.variavelTAM = variavelTAM;
+        this.peso = 0;
+        this.resposta = 0;
     }
 
     public Integer getIdQuestao() {

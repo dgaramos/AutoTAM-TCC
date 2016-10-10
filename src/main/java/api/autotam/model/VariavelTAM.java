@@ -50,8 +50,9 @@ public class VariavelTAM {
 
     public VariavelTAM(){}
 
-    public VariavelTAM( String nomeVariavel, Analise analise){
+    public VariavelTAM( String nomeVariavel, boolean variavelPadrao, Analise analise){
         this.nomeVariavel = nomeVariavel;
+        this.variavelPadrao = variavelPadrao;
         this.analise = analise;
         this.nota = 0;
     }

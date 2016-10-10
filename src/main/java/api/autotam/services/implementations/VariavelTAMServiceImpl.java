@@ -56,6 +56,13 @@ public class VariavelTAMServiceImpl extends AbstractService implements VariavelT
     @Override
     public void updateVariavel(VariavelTAM variavel) {
         if(usuarioLogadoIsAdministrador(variavel.getAnalise().getIdAnalise())){
+
+            for (int i = 0; i < variavel.getQuestoes().size(); i++) {
+                Questao questao = variavel.getQuestoes().get(i);
+                questao.setNumero(i + 1);
+                variavel.getQuestoes().set(i, questao);
+            }
+
             variavelTAMDAO.updateVariavel(variavel);
         }else{
             throw new SecurityException("O usuário não é administrador da análise");

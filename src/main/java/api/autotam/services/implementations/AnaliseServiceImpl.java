@@ -5,13 +5,14 @@ import api.autotam.daos.interfaces.PermissaoDAO;
 import api.autotam.daos.interfaces.VariavelTAMDAO;
 import api.autotam.model.Analise;
 import api.autotam.model.Permissao;
+import api.autotam.model.Questao;
 import api.autotam.model.VariavelTAM;
 import api.autotam.services.interfaces.AnaliseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.List;
+import java.util.*;
 
 /**
  * Classe de serviço responsável por encapsular as regras de negócio referentes as Análises TAM da aplicação.
@@ -40,8 +41,80 @@ public class AnaliseServiceImpl extends AbstractService implements AnaliseServic
         Permissao administrador = new Permissao(getUsuarioLogado(), analise, true, true);
         analise.setStatus("Avaliação das Questões");
         administrador.setAnalise(analise);
+
+        List<VariavelTAM> variaveis = new ArrayList<VariavelTAM>();
+
+        variaveis.add(createVariavelPadrao("Utilidade Percebida", analise));
+        variaveis.add(createVariavelPadrao("Facilidade de Uso Percebida", analise));
+
+        if(analise.getVariaveis().size() != 0) {
+
+            List<VariavelTAM> variaveisExtras = analise.getVariaveis();
+            variaveis.addAll(questionarioVariaveisExtras(variaveisExtras));
+
+        }
+        analise.setVariaveis(variaveis);
+
         permissaoDAO.savePermissao(administrador);
         analiseDAO.saveAnalise(analise);
+    }
+
+    /**
+     * Método responsável encapusular a geração das variáveis padrão na hora de salvar criar a análise
+     *
+     * @param nomeVariavel
+     * @param analise
+     * @return
+     */
+    private VariavelTAM createVariavelPadrao(String nomeVariavel, Analise analise){
+
+        VariavelTAM variavel= new VariavelTAM(
+                nomeVariavel, true, analise);
+
+        List<Questao> questoes = new ArrayList<Questao>();
+        Questao questao = new Questao(1, "", variavel);
+        questoes.add(questao);
+
+        variavel.setQuestoes(questoes);
+
+        return variavel;
+    }
+
+    /**
+     * Método responsável por inicializar a lista de Questões das Variáveis TAM Extras durante a criação
+     * da Análise
+     *
+     * @param variaveisExtras
+     * @return
+     */
+    private List<VariavelTAM> questionarioVariaveisExtras( List<VariavelTAM> variaveisExtras){
+
+        for (int i = 0 ; variaveisExtras.size() > i ; i++){
+            VariavelTAM variavel = variaveisExtras.get(i);
+
+            variavel = inicializaQuestionarioVariavel(variavel);
+
+            variaveisExtras.set(i, variavel);
+        }
+
+        return variaveisExtras;
+    }
+
+    /**
+     * Método responsável por retornar a Variável TAM inicializando a lista de Questões com uma
+     * Questão vazia
+     *
+     * @param variavel
+     * @return
+     */
+    private VariavelTAM inicializaQuestionarioVariavel(VariavelTAM variavel){
+
+        List<Questao> questoes = new ArrayList<Questao>();
+        Questao questao = new Questao(1, "", variavel);
+        questoes.add(questao);
+
+        variavel.setQuestoes(questoes);
+        return variavel;
     }
 
     /**
@@ -61,8 +134,8 @@ public class AnaliseServiceImpl extends AbstractService implements AnaliseServic
     }
 
     /**
-     * Método responsável pela operação de atualização das informações de uma determinada Análise verificando se o
-     * Usuário em sessão possui permissão de Administrador para concluir a operação.
+     * Método responsável pela operação de atualização das informações de uma determinada Análise verificando
+     * se o Usuário em sessão possui permissão de Administrador para concluir a operação.
      *
      * @param analise
      */
@@ -117,12 +190,18 @@ public class AnaliseServiceImpl extends AbstractService implements AnaliseServic
     @Override
     public void addVariavelToAnalise(int idAnalise, VariavelTAM variavel){
         if (usuarioLogadoIsAdministrador(idAnalise)){
+
+            variavel = inicializaQuestionarioVariavel(variavel);
+
             Analise analise = findById(idAnalise);
             variavel.setAnalise(analise);
+
             List<VariavelTAM> variaveis = analise.getVariaveis();
             variaveis.add(variavel);
             analise.setVariaveis(variaveis);
+
             updateAnalise(analise);
+
         }else{
             throw new SecurityException("Usuario não tem permissão de administrador para essa análise");
         }
