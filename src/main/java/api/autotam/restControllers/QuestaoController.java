@@ -82,7 +82,13 @@ public class QuestaoController {
     public ResponseEntity<Questao> deleteQuestao(@PathVariable("id") Integer id) {
         System.out.println("Buscando e apagando Questao com id " + id);
 
-        questaoService.deleteQuestao(id);
+        try{
+            questaoService.deleteQuestao(id);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+        }
+
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

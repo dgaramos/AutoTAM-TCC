@@ -170,12 +170,12 @@ controllers.controller('AnaliseController',
         self.variavel = {idVariavel: null, nomeVariavel: '', nota: ''};
     };
 
-    self.analiseListAbreVariavelExtra = function(i){
-        self.analiseList.variavelExtra[i] = true;
+    self.analiseListAbreVariavelExtra = function($index){
+        self.analiseList.variavelExtra[$index] = true;
     };
 
-    self.analiseListFechaVariavelExtra = function(i){
-        self.analiseList.variavelExtra[i] = false;
+    self.analiseListFechaVariavelExtra = function($index){
+        self.analiseList.variavelExtra[$index] = false;
         self.variavel = {idVariavel: null, nomeVariavel: '', variavelPadrao: false, nota: ''};
     };
 
@@ -185,16 +185,11 @@ controllers.controller('AnaliseController',
              *
              */
 
-    self.fetchAllVariaveisFromAnalise = function(idAnalise){
+    self.fetchAllVariaveisFromAnalise = function(idAnalise, $index){
         VariavelTAMService.fetchAllVariaveisFromAnalise(idAnalise)
             .then(
                 function(d) {
-                    for(var i = 0; i < self.permissoes.length; i++){
-                        if(self.permissoes[i].analise.idAnalise === idAnalise) {
-                            self.permissoes[i].analise.variaveis = d;
-                            break;
-                        }
-                    }
+                    self.permissoes[$index].analise.variaveis = d;
                 })
             .catch(
                 function(errResponse){
@@ -203,13 +198,13 @@ controllers.controller('AnaliseController',
             );
     };
 
-    self.variavelToAnalise = function (idAnalise, variavel){
+    self.variavelToAnalise = function (idAnalise, variavel, $index){
         if(variavel.idVariavel===null) {
             VariavelTAMService.addVariavelToAnalise(idAnalise, variavel)
                 .then(
                     function (d) {
                         console.log(d);
-                        self.fetchAllVariaveisFromAnalise(idAnalise);
+                        self.fetchAllVariaveisFromAnalise(idAnalise, $index);
                         self.reset();
                         Global.fechaModal('#gerenciaVariavelModal');
                     },
@@ -273,9 +268,8 @@ controllers.controller('AnaliseController',
         self.questao = {idQuestao: null, numero:'', enunciado: '', peso: '', resposta: ''};
     };
 
-    self.selectQuestao = function (questao, variavel){
+    self.selectQuestao = function (questao){
         self.questao = angular.copy(questao);
-        self.variavel = angular.copy(variavel);
     };
 
      self.fetchAllQuestoesFromVariavel = function(idVariavel){

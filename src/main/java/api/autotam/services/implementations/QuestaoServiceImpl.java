@@ -79,9 +79,14 @@ public class QuestaoServiceImpl extends AbstractService implements QuestaoServic
 
             int idVariavel = findById(idQuestao).getVariavelTAM().getIdVariavel();
 
-            questaoDAO.deleteQuestao(idQuestao);
+            if(findById(idQuestao).getVariavelTAM().getQuestoes().size() == 1){
+                throw new SecurityException("Uma Variavel precisa de pelo menos uma questão");
+            }
 
             VariavelTAM variavel = variavelTAMDAO.findById(idVariavel);
+            variavel.getQuestoes().remove(findById(idQuestao));
+
+            questaoDAO.deleteQuestao(idQuestao);
 
             for (int i = 0; i < variavel.getQuestoes().size(); i++) {
                 Questao questao = variavel.getQuestoes().get(i);

@@ -12,17 +12,15 @@
                    ng-show="!AnaliseCtrl.variavel.variavelPadrao"required />
         </div>
         <hr>
-         <div ng-repeat="q in AnaliseCtrl.variavel.questoes">
-             <div class="well variavel-well well-sm clearfix">
+             <div class="well variavel-well well-sm clearfix" ng-repeat="q in AnaliseCtrl.variavel.questoes">
                  <label>Questão nº:  <span class="label label-default">{{q.numero}}</span></label>
-                 <button type="button" class="btn btn-danger btn-xs pull-right" ng-click="AnaliseCtrl.selectQuestao(q, AnaliseCtrl.variavel)"
+                 <button type="button" class="btn btn-danger btn-xs pull-right" ng-click="AnaliseCtrl.selectQuestao(q)"
                          data-dismiss="modal" data-toggle="modal" data-target="#deleteQuestaoModal"
                          title="Remover Questão"  data-toggle="tooltip" data-placement="left" tooltip>
                      <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                  </button>
                  <input type="text" name="nomeVariavel" class="form-control input-sm" ng-model="q.enunciado"/>
              </div>
-         </div>
         <button type="button" class="btn btn-default" ng-click="AnaliseCtrl.adicionaQuestaoToVariavel()"
                 title="Adicionar questão" data-toggle="tooltip" data-placement="right" tooltip>
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
