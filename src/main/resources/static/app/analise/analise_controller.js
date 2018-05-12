@@ -90,7 +90,7 @@ controllers.controller('AnaliseController',
             function(d){
                 console.log('Analise a ser apagada: ' + idAnalise);
                 console.log(d);
-                self.fetchAllAnalises(idAnalise);
+                self.fetchAllAnalises();
                 self.reset();
                 Global.fechaModal('#deleteAnaliseModal');
             },
@@ -250,6 +250,7 @@ controllers.controller('AnaliseController',
                 function(d){
                     console.log(d);
                     self.fetchAllVariaveisFromAnalise(idAnalise);
+                    self.fetchAllAnalises();
                     self.reset();
                     Global.fechaModal('#deleteVariavelModal');
                 },

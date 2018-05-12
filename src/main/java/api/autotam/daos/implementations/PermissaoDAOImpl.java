@@ -22,7 +22,7 @@ public class PermissaoDAOImpl extends AbstractDAO implements PermissaoDAO {
      * @param permissao
      */
     public void savePermissao(Permissao permissao) {
-        saveOrUpdate(permissao);
+        persist(permissao);
     }
 
     /**

@@ -1,11 +1,16 @@
 package api.autotam.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * Classe modelo referente as Questões.
@@ -32,8 +37,13 @@ public class Questao implements Serializable {
     @Column(name ="peso")
     private double peso;
 
-    @Column(name ="resposta")
-    private double resposta;
+    @Column(name ="media")
+    private double media;
+
+    @OneToMany(mappedBy = "questao",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonManagedReference
+    private List<Resposta> respostas;
 
     @ManyToOne(cascade = CascadeType.MERGE )
     @JoinColumn(name = "idVariavel")
@@ -47,8 +57,8 @@ public class Questao implements Serializable {
         this.numero = numero;
         this.enunciado = enunciado;
         this.variavelTAM = variavelTAM;
+        this.media = 0;
         this.peso = 0;
-        this.resposta = 0;
     }
 
     public Integer getIdQuestao() {
@@ -91,45 +101,12 @@ public class Questao implements Serializable {
         this.peso = peso;
     }
 
-    public double getResposta() {
-        return resposta;
+    public double getMedia() {
+        return media;
     }
 
-    public void setResposta(double resposta) {
-        this.resposta = resposta;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Questao)) return false;
-
-        Questao questao = (Questao) o;
-
-        if (Double.compare(questao.getPeso(), getPeso()) != 0) return false;
-        if (Double.compare(questao.getResposta(), getResposta()) != 0) return false;
-        if (getIdQuestao() != null ? !getIdQuestao().equals(questao.getIdQuestao()) : questao.getIdQuestao() != null)
-            return false;
-        if (getNumero() != null ? !getNumero().equals(questao.getNumero()) : questao.getNumero() != null) return false;
-        if (getEnunciado() != null ? !getEnunciado().equals(questao.getEnunciado()) : questao.getEnunciado() != null)
-            return false;
-        return getVariavelTAM() != null ? getVariavelTAM().equals(questao.getVariavelTAM()) : questao.getVariavelTAM() == null;
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result;
-        long temp;
-        result = getIdQuestao() != null ? getIdQuestao().hashCode() : 0;
-        result = 31 * result + (getNumero() != null ? getNumero().hashCode() : 0);
-        result = 31 * result + (getEnunciado() != null ? getEnunciado().hashCode() : 0);
-        temp = Double.doubleToLongBits(getPeso());
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(getResposta());
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        result = 31 * result + (getVariavelTAM() != null ? getVariavelTAM().hashCode() : 0);
-        return result;
+    public void setMedia(double media) {
+        this.media = media;
     }
 
     @Override
@@ -139,8 +116,38 @@ public class Questao implements Serializable {
                 ", numero=" + numero +
                 ", enunciado='" + enunciado + '\'' +
                 ", peso=" + peso +
-                ", resposta=" + resposta +
+                ", media=" + media +
+                ", respostas=" + respostas +
                 ", variavelTAM=" + variavelTAM +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Questao)) return false;
+        Questao questao = (Questao) o;
+        return Double.compare(questao.getPeso(), getPeso()) == 0 &&
+                Double.compare(questao.getMedia(), getMedia()) == 0 &&
+                Objects.equals(getIdQuestao(), questao.getIdQuestao()) &&
+                Objects.equals(getNumero(), questao.getNumero()) &&
+                Objects.equals(getEnunciado(), questao.getEnunciado()) &&
+                Objects.equals(getRespostas(), questao.getRespostas()) &&
+                Objects.equals(getVariavelTAM(), questao.getVariavelTAM());
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(getIdQuestao(), getNumero(), getEnunciado(), getPeso(), getMedia(), getRespostas(), getVariavelTAM());
+    }
+
+    public List<Resposta> getRespostas() {
+
+        return respostas;
+    }
+
+    public void setRespostas(List<Resposta> respostas) {
+        this.respostas = respostas;
     }
 }
