@@ -13,6 +13,8 @@ import java.util.List;
 
 /**
  * @author Danilo
+ *
+ * @uri /variavelTAM
  */
 
 @RestController

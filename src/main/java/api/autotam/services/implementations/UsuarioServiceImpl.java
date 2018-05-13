@@ -73,13 +73,7 @@ public class UsuarioServiceImpl extends AbstractService implements UsuarioServic
      */
     @Override
     public void updateUsuario(Usuario usuario){
-        if(getUsuarioLogado().equals(usuario)){
-
             usuarioDAO.updateUsuario(usuario);
-
-        }else{
-            throw new SecurityException("Só o próprio Usuário pode atualizar informações da sua conta.");
-        }
     }
 
     /**
@@ -90,13 +84,7 @@ public class UsuarioServiceImpl extends AbstractService implements UsuarioServic
      */
     @Override
     public void deleteUsuario(int idUsuario) {
-        if(getUsuarioLogado().getIdUsuario() == idUsuario){
-
             usuarioDAO.deleteUsuario(idUsuario);
-
-        }else{
-            throw new SecurityException("Só o próprio Usuário pode excluir sua conta.");
-        }
     }
 
     /**

@@ -18,6 +18,7 @@ import java.util.List;
 /**
  * Classe responsável pelo mapeamento das URIs das requisições HTTP referentes a Classe Usuário.
  *
+ * @uri /usuario
  * @author Danilo
  */
 @RestController
@@ -129,6 +130,7 @@ public class UsuarioController {
 
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(ucBuilder.path("byEmail/{email:.+}").buildAndExpand(usuario.getEmail()).toUri());
+        System.out.println("passou");
         return new ResponseEntity<>(headers, HttpStatus.CREATED);
     }
 
