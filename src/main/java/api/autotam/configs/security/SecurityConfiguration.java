@@ -23,7 +23,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .httpBasic().and()
                 .authorizeRequests()
-                .antMatchers("/index.html", "/app/**", "/" ,"/components/**" ).permitAll()
+                .antMatchers("/index.html", "/app/**", "/" ,"/components/**","**/noauth/**" ).permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .logout()
