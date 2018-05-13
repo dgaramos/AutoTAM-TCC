@@ -9,17 +9,26 @@
             <label>Nome da Variavel</label>
             <h4 ng-show="AnaliseCtrl.variavel.variavelPadrao">{{AnaliseCtrl.variavel.nomeVariavel}}</h4>
             <input type="text" name="nomeVariavel" class="nome form-control" ng-model="AnaliseCtrl.variavel.nomeVariavel"
-                   ng-show="!AnaliseCtrl.variavel.variavelPadrao"required />
+                   ng-show="!AnaliseCtrl.variavel.variavelPadrao" required />
         </div>
         <hr>
              <div class="well variavel-well well-sm clearfix" ng-repeat="q in AnaliseCtrl.variavel.questoes">
-                 <label>Questão nº:  <span class="label label-default">{{q.numero}}</span></label>
-                 <button type="button" class="btn btn-danger btn-xs pull-right" ng-click="AnaliseCtrl.selectQuestao(q)"
-                         data-dismiss="modal" data-toggle="modal" data-target="#deleteQuestaoModal"
-                         title="Remover Questão"  data-toggle="tooltip" data-placement="left" tooltip>
-                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                 </button>
-                 <input type="text" name="nomeVariavel" class="form-control input-sm" ng-model="q.enunciado"/>
+                 <div class="col-xs-9">
+                     <label>Questão nº:  <span class="label label-default">{{q.numero}}</span></label>
+
+                     <input type="text" name="nomeQuestao" class="form-control input-sm" ng-model="q.enunciado"/>
+                </div>
+                 <div class="col-xs-2">
+                     <label>Peso: </label>
+                     <input type="number" name="pesoQuestao" class="form-control input-sm" ng-model="q.peso"/>
+                 </div>
+                 <div class="col-xs-1">
+                     <button type="button" class="btn btn-danger btn-lg" ng-click="AnaliseCtrl.selectQuestao(q)"
+                             data-dismiss="modal" data-toggle="modal" data-target="#deleteQuestaoModal"
+                             title="Remover Questão"  data-toggle="tooltip" data-placement="left" tooltip>
+                         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                     </button>
+                 </div>
              </div>
         <button type="button" class="btn btn-default" ng-click="AnaliseCtrl.adicionaQuestaoToVariavel()"
                 title="Adicionar questão" data-toggle="tooltip" data-placement="right" tooltip>

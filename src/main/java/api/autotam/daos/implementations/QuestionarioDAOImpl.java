@@ -3,7 +3,9 @@ package api.autotam.daos.implementations;
 import api.autotam.daos.interfaces.QuestionarioDAO;
 import api.autotam.model.Questionario;
 import org.hibernate.Query;
+import org.springframework.stereotype.Repository;
 
+@Repository("questionarioDAO")
 public class QuestionarioDAOImpl extends AbstractDAO implements QuestionarioDAO {
     @Override
     public void saveQuestionario(Questionario questionario) {

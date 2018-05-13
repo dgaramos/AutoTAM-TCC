@@ -30,4 +30,10 @@ public class ServiceFactory {
 
     @Bean(name="questaoService")
     public QuestaoService questaoService(){ return new QuestaoServiceImpl();}
+
+    @Bean(name="respostaService")
+    public RespostaService respostaService(){ return new RespostaServiceImpl();}
+
+    @Bean(name="questionarioService")
+    public QuestionarioService questionarioService(){ return new QuestionarioServiceImpl();}
 }

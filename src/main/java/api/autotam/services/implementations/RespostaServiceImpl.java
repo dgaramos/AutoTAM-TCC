@@ -1,30 +1,36 @@
 package api.autotam.services.implementations;
 
+import api.autotam.daos.interfaces.RespostaDAO;
 import api.autotam.model.Resposta;
 import api.autotam.services.interfaces.RespostaService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
 public class RespostaServiceImpl extends AbstractService implements RespostaService  {
 
-    @Override
-    public void saveResposta(Resposta questionario) {
 
+    @Autowired
+    private RespostaDAO respostaDAO;
+
+    @Override
+    public void saveResposta(Resposta resposta) {
+        respostaDAO.saveResposta(resposta);
     }
 
     @Override
-    public void updateResposta(Resposta questionario) {
-
+    public void updateResposta(Resposta resposta) {
+        respostaDAO.updateResposta(resposta);
     }
 
     @Override
     public void deleteResposta(int idResposta) {
-
+        respostaDAO.deleteResposta(idResposta);
     }
 
     @Override
     public Resposta findById(int idResposta) {
-        return null;
+        return respostaDAO.findById(idResposta);
     }
 
     @Override

@@ -3,9 +3,11 @@ package api.autotam.daos.implementations;
 import api.autotam.daos.interfaces.RespostaDAO;
 import api.autotam.model.Resposta;
 import org.hibernate.Query;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository("respostaDAO")
 public class RespostaDAOImpl extends AbstractDAO implements RespostaDAO {
     @Override
     public void saveResposta(Resposta resposta) {
