@@ -33,12 +33,12 @@ public class Permissao implements Serializable{
     @Column(name = "isTestador")
     private boolean isTestador;
 
-    @ManyToOne(cascade = CascadeType.ALL )
+    @ManyToOne
     @JoinColumn(name = "idUsuario")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Usuario usuario;
 
-    @ManyToOne(cascade = CascadeType.ALL )
+    @ManyToOne
     @JoinColumn(name = "idAnalise")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Analise analise;

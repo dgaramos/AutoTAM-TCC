@@ -29,9 +29,9 @@
                     <p><b>Objeto Da Análise: </b>{{p.analise.objetoDeAnalise}}</p>
                     <b>
                         Variaveis:
-                        <button type="button" class="btn btn-default btn-xs" ng-show="p.administrador"
-                                ng-click="AnaliseCtrl.analiseListAbreVariavelExtra($index)" ng-hide="AnaliseCtrl.analiseList.variavelExtra[$index]"
-                                title="Adcionar variável extra" data-toggle="tooltip" data-placement="right" tooltip>
+                        <button type="button" class="btn btn-default btn-xs"
+                                ng-click="AnaliseCtrl.analiseListAbreVariavelExtra($index)" ng-hide="AnaliseCtrl.analiseList.variavelExtra[$index] || !p.administrador"
+                                title="Adicionar variável extra" data-toggle="tooltip" data-placement="right" tooltip>
                             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                         </button>
                     </b>
