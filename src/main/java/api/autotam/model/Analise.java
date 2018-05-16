@@ -6,6 +6,8 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 
 /**
  * Classe modelo referente a Análises TAM.
@@ -35,12 +37,19 @@ public class Analise {
 
     @OneToMany(mappedBy = "analise",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @OnDelete(action = OnDeleteAction.CASCADE)
+    @OrderBy
     @JsonManagedReference
-    private List<VariavelTAM> variaveis;
+    private Set<VariavelTAM> variaveis;
+
+    @OneToMany(mappedBy = "analise",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @OrderBy
+    @JsonManagedReference
+    private Set<OpcaoDeObjeto> opcoesDeObjeto;
 
     public Analise(){}
 
-    public Analise( String nome, String objetoDeAnalise, List<VariavelTAM> variaveis){
+    public Analise( String nome, String objetoDeAnalise, Set<VariavelTAM> variaveis){
         this.nome = nome;
         this.objetoDeAnalise = objetoDeAnalise;
         this.variaveis = variaveis;
@@ -79,40 +88,39 @@ public class Analise {
         this.status = status;
     }
 
-    public List<VariavelTAM> getVariaveis() {
+    public Set<VariavelTAM> getVariaveis() {
         return variaveis;
     }
 
-    public void setVariaveis(List<VariavelTAM> variaveis) {
+    public void setVariaveis(Set<VariavelTAM> variaveis) {
         this.variaveis = variaveis;
+    }
+
+    public Set<OpcaoDeObjeto> getOpcoesDeObjeto() {
+        return opcoesDeObjeto;
+    }
+
+    public void setOpcoesDeObjeto(Set<OpcaoDeObjeto> opcoesDeObjeto) {
+        this.opcoesDeObjeto = opcoesDeObjeto;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Analise)) return false;
-
         Analise analise = (Analise) o;
-
-        if (getIdAnalise() != null ? !getIdAnalise().equals(analise.getIdAnalise()) : analise.getIdAnalise() != null)
-            return false;
-        if (getNome() != null ? !getNome().equals(analise.getNome()) : analise.getNome() != null) return false;
-        if (getObjetoDeAnalise() != null ? !getObjetoDeAnalise().equals(analise.getObjetoDeAnalise()) : analise.getObjetoDeAnalise() != null)
-            return false;
-        if (getVariaveis() != null ? !getVariaveis().equals(analise.getVariaveis()) : analise.getVariaveis() != null)
-            return false;
-        return getStatus() != null ? getStatus().equals(analise.getStatus()) : analise.getStatus() == null;
-
+        return Objects.equals(getIdAnalise(), analise.getIdAnalise()) &&
+                Objects.equals(getNome(), analise.getNome()) &&
+                Objects.equals(getObjetoDeAnalise(), analise.getObjetoDeAnalise()) &&
+                Objects.equals(getStatus(), analise.getStatus()) &&
+                Objects.equals(getVariaveis(), analise.getVariaveis()) &&
+                Objects.equals(getOpcoesDeObjeto(), analise.getOpcoesDeObjeto());
     }
 
     @Override
     public int hashCode() {
-        int result = getIdAnalise() != null ? getIdAnalise().hashCode() : 0;
-        result = 31 * result + (getNome() != null ? getNome().hashCode() : 0);
-        result = 31 * result + (getObjetoDeAnalise() != null ? getObjetoDeAnalise().hashCode() : 0);
-        result = 31 * result + (getVariaveis() != null ? getVariaveis().hashCode() : 0);
-        result = 31 * result + (getStatus() != null ? getStatus().hashCode() : 0);
-        return result;
+
+        return Objects.hash(getIdAnalise(), getNome(), getObjetoDeAnalise(), getStatus());
     }
 
     @Override
@@ -121,8 +129,9 @@ public class Analise {
                 "idAnalise=" + idAnalise +
                 ", nome='" + nome + '\'' +
                 ", objetoDeAnalise='" + objetoDeAnalise + '\'' +
-                ", variaveis=" + variaveis +
                 ", status='" + status + '\'' +
+                ", variaveis=" + variaveis +
+                ", opcoesDeObjeto=" + opcoesDeObjeto +
                 '}';
     }
 }

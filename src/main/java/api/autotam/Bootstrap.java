@@ -53,7 +53,7 @@ public class Bootstrap {
                   com login admin e senha admin.
                 */
                 if (usuarioService.findAllUsuarios().isEmpty()) {
-                    usuarioService.saveUsuario(new Usuario("admin", "admin"));
+                    usuarioService.saveUsuario(new Usuario("admin", "admin", "admin"));
                 }
             }
 

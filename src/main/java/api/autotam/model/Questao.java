@@ -139,7 +139,7 @@ public class Questao implements Serializable {
     @Override
     public int hashCode() {
 
-        return Objects.hash(getIdQuestao(), getNumero(), getEnunciado(), getPeso(), getMedia(), getRespostas(), getVariavelTAM());
+        return Objects.hash(getIdQuestao(), getNumero(), getEnunciado(), getPeso(), getMedia(), getRespostas());
     }
 
     public List<Resposta> getRespostas() {

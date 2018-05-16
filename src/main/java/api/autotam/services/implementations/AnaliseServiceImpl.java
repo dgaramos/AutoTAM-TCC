@@ -3,10 +3,7 @@ package api.autotam.services.implementations;
 import api.autotam.daos.interfaces.AnaliseDAO;
 import api.autotam.daos.interfaces.PermissaoDAO;
 import api.autotam.daos.interfaces.VariavelTAMDAO;
-import api.autotam.model.Analise;
-import api.autotam.model.Permissao;
-import api.autotam.model.Questao;
-import api.autotam.model.VariavelTAM;
+import api.autotam.model.*;
 import api.autotam.services.interfaces.AnaliseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,14 +39,14 @@ public class AnaliseServiceImpl extends AbstractService implements AnaliseServic
         analise.setStatus("Avaliação das Questões");
         administrador.setAnalise(analise);
 
-        List<VariavelTAM> variaveis = new ArrayList<VariavelTAM>();
+        Set<VariavelTAM> variaveis = new HashSet<VariavelTAM>();
 
         variaveis.add(createVariavelPadrao("Utilidade Percebida", analise));
         variaveis.add(createVariavelPadrao("Facilidade de Uso Percebida", analise));
 
         if(analise.getVariaveis().size() != 0) {
 
-            List<VariavelTAM> variaveisExtras = analise.getVariaveis();
+            Set<VariavelTAM> variaveisExtras =  analise.getVariaveis();
             variaveis.addAll(questionarioVariaveisExtras(variaveisExtras));
 
         }
@@ -87,14 +84,13 @@ public class AnaliseServiceImpl extends AbstractService implements AnaliseServic
      * @param variaveisExtras
      * @return
      */
-    private List<VariavelTAM> questionarioVariaveisExtras( List<VariavelTAM> variaveisExtras){
+    private Set<VariavelTAM> questionarioVariaveisExtras( Set<VariavelTAM> variaveisExtras){
 
-        for (int i = 0 ; variaveisExtras.size() > i ; i++){
-            VariavelTAM variavel = variaveisExtras.get(i);
-
+        for (VariavelTAM variavel:  variaveisExtras){
+            variaveisExtras.remove(variavel);
             variavel = inicializaQuestionarioVariavel(variavel);
 
-            variaveisExtras.set(i, variavel);
+            variaveisExtras.add(variavel);
         }
 
         return variaveisExtras;
@@ -196,7 +192,7 @@ public class AnaliseServiceImpl extends AbstractService implements AnaliseServic
             Analise analise = findById(idAnalise);
             variavel.setAnalise(analise);
 
-            List<VariavelTAM> variaveis = analise.getVariaveis();
+            Set<VariavelTAM> variaveis = analise.getVariaveis();
             variaveis.add(variavel);
             analise.setVariaveis(variaveis);
 
@@ -208,4 +204,29 @@ public class AnaliseServiceImpl extends AbstractService implements AnaliseServic
 
     }
 
+    /**
+     * Método responsável pela operação de cadastro de uma Variável TAM em uma determinada Análise, verificando se o
+     * Usuário em sessão possui permissão de Administrador para concluir a operação.
+     *
+     * @param idAnalise
+     * @param opcaoDeObjeto
+     */
+    @Override
+    public void addOpcaoDeObjetoToAnalise(int idAnalise, OpcaoDeObjeto opcaoDeObjeto){
+        if (usuarioLogadoIsAdministrador(idAnalise)){
+
+            Analise analise = findById(idAnalise);
+            opcaoDeObjeto.setAnalise(analise);
+
+            Set<OpcaoDeObjeto> opcoesDeObjeto = analise.getOpcoesDeObjeto();
+            opcoesDeObjeto.add(opcaoDeObjeto);
+            analise.setOpcoesDeObjeto(opcoesDeObjeto);
+
+            updateAnalise(analise);
+
+        }else{
+            throw new SecurityException("Usuario não tem permissão de administrador para essa análise");
+        }
+
+    }
 }

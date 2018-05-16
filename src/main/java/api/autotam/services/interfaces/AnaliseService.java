@@ -1,6 +1,7 @@
 package api.autotam.services.interfaces;
 
 import api.autotam.model.Analise;
+import api.autotam.model.OpcaoDeObjeto;
 import api.autotam.model.VariavelTAM;
 
 /**
@@ -21,5 +22,7 @@ public interface AnaliseService {
     boolean isAnaliseExist(Analise analise);
 
     void addVariavelToAnalise(int idAnalise, VariavelTAM variavel);
+
+    void addOpcaoDeObjetoToAnalise(int idAnalise, OpcaoDeObjeto opcaoDeObjeto);
 
 }

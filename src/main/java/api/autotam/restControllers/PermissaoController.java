@@ -1,6 +1,8 @@
 package api.autotam.restControllers;
 
+import api.autotam.model.OpcaoDeObjeto;
 import api.autotam.model.Permissao;
+import api.autotam.model.VariavelTAM;
 import api.autotam.services.interfaces.PermissaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -38,6 +40,7 @@ public class PermissaoController {
         System.out.println("Buscando todas as Permissões vinculadas ao Usuário Logado.");
 
         List<Permissao> permissoes = permissaoService.findAllPermissoesFromUsuarioLogado();
+
 
         if(permissoes.isEmpty()){
             return new ResponseEntity<List<Permissao>>(HttpStatus.NO_CONTENT);

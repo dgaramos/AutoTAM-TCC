@@ -17,7 +17,7 @@ public class RespostaDAOImpl extends AbstractDAO implements RespostaDAO {
     @Override
     public Resposta findById(int idResposta) {
         Query query = getSession().createSQLQuery(
-                "SELECT * FROM resposta q WHERE q.idResposta = :idResposta")
+                "SELECT * FROM resposta r WHERE r.idResposta = :idResposta")
                 .addEntity(Resposta.class)
                 .setParameter("idResposta", idResposta);
         return (Resposta) query.uniqueResult() ;
@@ -39,7 +39,7 @@ public class RespostaDAOImpl extends AbstractDAO implements RespostaDAO {
     @Override
     public List<Resposta> findAllRespostasFromQuestao(int idQuestao) {
         Query query = getSession().createSQLQuery(
-                "SELECT * FROM resposta p WHERE p.idQuestao = :idQuestao")
+                "SELECT * FROM resposta r WHERE r.idQuestao = :idQuestao")
                 .addEntity(Resposta.class)
                 .setParameter("idQuestao", idQuestao);
         return (List<Resposta>) query.list();
@@ -48,7 +48,7 @@ public class RespostaDAOImpl extends AbstractDAO implements RespostaDAO {
     @Override
     public List<Resposta> findAllRespostasFromQuestionario(int idQuestionario) {
         Query query = getSession().createSQLQuery(
-                "SELECT * FROM idQuestionario p WHERE p.idQuestionario = :idQuestionario")
+                "SELECT * FROM resposta r WHERE r.idQuestionario = :idQuestionario")
                 .addEntity(Resposta.class)
                 .setParameter("idQuestionario", idQuestionario);
         return (List<Resposta>) query.list();
@@ -57,7 +57,7 @@ public class RespostaDAOImpl extends AbstractDAO implements RespostaDAO {
     @Override
     public List<Resposta> findAllRespostasFromUsuario(int idUsuario) {
         Query query = getSession().createSQLQuery(
-                "SELECT * FROM resposta p WHERE p.idUsuario = :idUsuario")
+                "SELECT * FROM resposta r WHERE r.idUsuario = :idUsuario")
                 .addEntity(Resposta.class)
                 .setParameter("idUsuario", idUsuario);
         return (List<Resposta>) query.list();

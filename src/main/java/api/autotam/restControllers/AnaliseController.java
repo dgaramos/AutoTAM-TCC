@@ -1,6 +1,7 @@
 package api.autotam.restControllers;
 
 import api.autotam.model.Analise;
+import api.autotam.model.OpcaoDeObjeto;
 import api.autotam.model.VariavelTAM;
 import api.autotam.services.interfaces.AnaliseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -108,5 +109,22 @@ public class AnaliseController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    /**
+     * Método responsável por dar a resposta a requisição HTTP/POST referente a criação de uma nova Opção De Objeto em
+     * uma determinada Análise TAM utilizando o id da Análise como parâmetro na URI
+     *
+     * @uri /analise/variavel/{id}
+     * @param idAnalise
+     * @param opcaoDeObjeto
+     * @return
+     */
+    @RequestMapping(value = "opcaoDeObjeto/{id}", method = RequestMethod.POST)
+    public ResponseEntity<Void> createOpcaoDeObjetoToAnalise(@PathVariable("id") Integer idAnalise, @RequestBody OpcaoDeObjeto opcaoDeObjeto) {
+        System.out.println("Cadastrando a  Opção De Objeto "+ opcaoDeObjeto.getNome()+" na Análise com id " + idAnalise);
+
+        analiseService.addOpcaoDeObjetoToAnalise(idAnalise, opcaoDeObjeto);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 
 }

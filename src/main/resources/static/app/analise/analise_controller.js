@@ -2,8 +2,8 @@
 'use strict';
 
 controllers.controller('AnaliseController',
-    ['$rootScope', '$scope', '$window', 'Global', 'AnaliseService', 'PermissaoService', 'UsuarioService', 'VariavelTAMService', 'QuestaoService',
-        function($rootScope, $scope, $window, Global, AnaliseService, PermissaoService, UsuarioService, VariavelTAMService, QuestaoService) {
+    ['$rootScope', '$scope', '$window', 'Global', 'AnaliseService', 'PermissaoService', 'UsuarioService', 'OpcaoDeObjetoService', 'VariavelTAMService', 'QuestaoService',
+        function($rootScope, $scope, $window, Global, AnaliseService, PermissaoService, UsuarioService, OpcaoDeObjetoService, VariavelTAMService, QuestaoService) {
 
     var self = this;
 
@@ -15,15 +15,16 @@ controllers.controller('AnaliseController',
     self.permissao = {idPermissao: null,
         usuario: {idUsuario: null, nome: '', email: '', senha: ''},
         analise: {idAnalise: null, nome: '', objetoDeAnalise: '',
-            variaveis:[],
-             status: ''},
+            variaveis:[], opcoesDeObjeto:[], status: ''},
         testador: false, administrador: false};
 
     self.permissoes = [];
 
-    self.analiseForm = {criaAnalise: false, variavelExtra: false};
+    self.analiseForm = {criaAnalise: false, variavelExtra: false, opcaoDeObjetoNova: false};
 
-    self.analiseList = {variavelExtra: []};
+    self.analiseList = {variavelExtra: [], opcaoDeObjetoNova:[]};
+
+    self.opcaoDeObjeto = {idOpcaoDeObjeto: null, nome:'', resultadosOpcaoVariaveis:[]};
 
     self.variavel = {idVariavel: null, nomeVariavel: '', questoes: [], variavelPadrao: false, nota: ''};
 
@@ -38,11 +39,18 @@ controllers.controller('AnaliseController',
         PermissaoService.fetchAllPermissoesFromUsuario()
             .then(
                 function(d) {
+                    console.log(d);
                     self.permissoes = d;
                     self.analiseList.variavelExtra.length = self.permissoes.length;
+                    self.analiseList.opcaoDeObjetoNova.length = self.permissoes.length;
                     for(var i = 0; i < self.permissao.analise.variaveis.length; i++){
                         if(self.permissao.analise.variaveis[i].nomeVariavel === nomeVariavel) {
                             self.analiseList.variavelExtra[i] = false;
+                        }
+                    }
+                    for(var i = 0; i < self.permissao.analise.opcoesDeObjeto.length; i++){
+                        if(self.permissao.analise.opcoesDeObjeto[i].nome === nome) {
+                            self.analiseList.opcaoDeObjetoNova[i] = false;
                         }
                     }
 
@@ -108,12 +116,12 @@ controllers.controller('AnaliseController',
         self.permissao = {idPermissao: null,
             usuario: {idUsuario: null, nome: '', email: '', senha: ''},
             analise: {idAnalise: null, nome: '', objetoDeAnalise: '',
-                variaveis:[],
-                status: ''},
+                variaveis:[], opcoesDeObjeto:[], status: ''},
             testador: false, administrador: false};
             self.variavel = {idVariavel: null, nomeVariavel: '',variavelPadrao: false, questoes:[], nota: ''};
             self.analiseForm.criaAnalise = false;
             self.analiseForm.variavelExtra = false;
+            self.analiseForm.opcaoDeObjetoNova = false;
     };
 
     self.selectAnalise= function(analise){
@@ -179,7 +187,39 @@ controllers.controller('AnaliseController',
         self.variavel = {idVariavel: null, nomeVariavel: '', variavelPadrao: false, nota: ''};
     };
 
+    self.analiseFormAbreOpcaoDeObjetoNova = function(){
+        self.analiseForm.opcaoDeObjetoNova = true;
+    };
 
+    self.analiseFormFechaOpcaoDeObjetoNova = function(){
+        self.analiseForm.opcaoDeObjetoNova = false;
+        self.opcaoDeObjeto = {idOpcaoDeObjeto: null, nome:'', resultadosOpcaoVariaveis:[]};
+    };
+
+    self.analiseListRemoveOpcaoDeObjeto = function(nome){
+        console.log('Opcao de Objeto a ser removida: ' + nome);
+        for(var i = 0; i < self.permissao.analise.opcoesDeObjeto.length; i++){
+            if(self.permissao.analise.opcoesDeObjeto[i].nome === nome) {
+                self.permissao.analise.opcoesDeObjeto.splice(i, 1);
+                break;
+            }
+        }
+    };
+
+    self.analiseFormAdicionaOpcaoDeObjetoNova = function(){
+        self.permissao.analise.opcoesDeObjeto.push(self.opcaoDeObjeto);
+        self.analiseForm.opcaoDeObjetoNova = false;
+        self.opcaoDeObjeto = {idOpcaoDeObjeto: null, nome:'', resultadosOpcaoVariaveis:[]};
+    };
+
+    self.analiseListAbreOpcaoDeObjetoNova = function($index){
+        self.analiseList.opcaoDeObjetoNova[$index] = true;
+    };
+
+    self.analiseListFechaOpcaoDeObjetoNova = function($index) {
+        self.analiseList.opcaoDeObjetoNova[$index] = false;
+        self.opcaoDeObjeto = {idOpcaoDeObjeto: null, nome:'', resultadosOpcaoVariaveis:[]};
+    };
             /**
              * Funções de manipulação de Variável TAM
              *
@@ -189,6 +229,7 @@ controllers.controller('AnaliseController',
         VariavelTAMService.fetchAllVariaveisFromAnalise(idAnalise)
             .then(
                 function(d) {
+                    console.log(d);
                     self.permissoes[$index].analise.variaveis = d;
                 })
             .catch(
@@ -226,7 +267,7 @@ controllers.controller('AnaliseController',
                                     console.error('Erro ao carregar Questões ' + errResponse);
                                 }
                             );
-                        self.fetchAllVariaveisFromAnalise(idAnalise);
+                        self.fetchAllVariaveisFromAnalise(idAnalise, $index);
                         self.reset();
                         Global.fechaModal('#gerenciaVariavelModal');
                     },
@@ -249,8 +290,7 @@ controllers.controller('AnaliseController',
             .then(
                 function(d){
                     console.log(d);
-                    self.fetchAllVariaveisFromAnalise(idAnalise);
-                    self.fetchAllAnalises();
+                        self.fetchAllVariaveisFromAnalise(idAnalise, $index);
                     self.reset();
                     Global.fechaModal('#deleteVariavelModal');
                 },
@@ -299,6 +339,77 @@ controllers.controller('AnaliseController',
                 }
             );
     };
+
+            /**
+             * Funções de gerenciamento de Opção de Objeto
+             *
+             */
+
+    self.fetchAllOpcoesDeObjetoFromAnalise = function(idAnalise, $index){
+        OpcaoDeObjetoService.fetchAllOpcoesDeObjetoFromAnalise(idAnalise)
+            .then(
+                function(d) {
+                    self.permissoes[$index].analise.opcoesDeObjeto = d;
+                    })
+            .catch(
+                function(errResponse) {
+                    console.error('Erro ao encontrar Opções de Objeto da Análise' + errResponse);
+                });
+        };
+
+    self.opcaoDeObjetoToAnalise = function (idAnalise, opcaoDeObjeto, $index){
+        if(opcaoDeObjeto.idOpcaoDeObjeto===null) {
+            OpcaoDeObjetoService.addOpcaoDeObjetoToAnalise(idAnalise, opcaoDeObjeto)
+                .then(
+                    function (d) {
+                        console.log(d);
+                        self.fetchAllOpcoesDeObjetoFromAnalise(idAnalise, $index);
+                        self.reset();
+                        self.analiseListFechaOpcaoDeObjetoNova()
+                        },
+                    function (errResponse) {
+                        console.error('Erro ao adicionar Opções de Objeto a Análise:' + errResponse);
+                        })
+        }else{
+            OpcaoDeObjetoService.updateOpcaoDeObjetoFromAnalise(opcaoDeObjeto.idOpcaoDeObjeto, opcaoDeObjeto)
+                .then(
+                    function (d) {
+                        console.log(d);
+                        self.fetchAllOpcoesDeObjetoFromAnalise(idAnalise, $index);
+                        self.reset();
+                        self.analiseListFechaOpcaoDeObjetoNova()
+                        },
+                    function (errResponse) {
+                        console.error('Erro ao atualizar Opcao De Objeto ' + errResponse);
+                    })
+        }
+    };
+
+    self.selectOpcaoDeObjeto = function (opcaoDeObjeto, analise){
+        self.opcaoDeObjeto = angular.copy(opcaoDeObjeto);
+        self.permissao.analise = angular.copy(analise);
+    };
+
+    self.editOpcaoDeObjeto = function (opcaoDeObjeto, analise,$index) {
+        self.selectOpcaoDeObjeto(opcaoDeObjeto, analise)
+        self.analiseListAbreOpcaoDeObjetoNova($index);
+    }
+
+    self.deleteOpcaoDeObjeto = function (idOpcaoDeObjeto, idAnalise){
+        OpcaoDeObjetoService.deleteOpcaoDeObjeto(idOpcaoDeObjeto)
+            .then(
+                function(d){
+                    console.log(d);
+                    self.fetchAllOpcoesDeObjetoFromAnalise(idAnalise, $index);
+                    self.reset();
+                    Global.fechaModal('#deleteOpcaoDeObjetoModal');
+                    },
+                function(errResponse){
+                    console.error('Erro ao deletar Opcao de Objeto ' + errResponse);
+                    }
+                    );
+        };
+
             /**
              * Funções de gerenciamento de permissão
              *

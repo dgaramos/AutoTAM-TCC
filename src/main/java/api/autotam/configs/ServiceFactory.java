@@ -36,4 +36,7 @@ public class ServiceFactory {
 
     @Bean(name="questionarioService")
     public QuestionarioService questionarioService(){ return new QuestionarioServiceImpl();}
+
+    @Bean(name="opcaoDeObjetoService")
+    public OpcaoDeObjetoService opcaoDeObjetoService(){ return new OpcaoDeObjetoServiceImpl();}
 }
