@@ -5,33 +5,35 @@
                 title="Fechar" data-toggle="tooltip" data-placement="left" tooltip>&times;</button>
     </div>
     <div class="container analiseForm-container">
+        <div class="alert alert-warning" ng-show="(AnaliseCtrl.permissao.analise.idAnalise==null)">
+            <p>
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                Você poderá criar as questões para gerar os questionários das suas variáveis
+                após a criação da análise.
+            </p>
+        </div>
         <form name="salvaAnaliseForm"
               ng-submit="AnaliseCtrl.submit()">
             <input type="hidden" ng-model="AnaliseCtrl.permissao.analise.idAnalise" />
-            <div class="form-group">
-                <label>Nome</label>
-                <input type="text" name="nome" class="nome form-control" ng-model="AnaliseCtrl.permissao.analise.nome" placeholder="Nome da Análise" required ng-minlength="5"/>
-                <div ng-messages="salvaAnaliseForm.nome.$error">
-                    <div ng-messages-include="app/analise/mensagensCreateanalise.html"></div>
+            <div class ="row">
+                <div class="form-group col-sm-6">
+                    <label>Nome</label>
+                    <input type="text" name="nome" class="nome input-sm form-control" ng-model="AnaliseCtrl.permissao.analise.nome" placeholder="Nome da Análise" required ng-minlength="5"/>
+                    <div ng-messages="salvaAnaliseForm.nome.$error">
+                        <div ng-messages-include="app/analise/mensagensCreateanalise.html"></div>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label>Objeto de Análise</label>
-                <input type="text" name="objetoDeAnalise" class="nome form-control" ng-model="AnaliseCtrl.permissao.analise.objetoDeAnalise" placeholder="Objeto de Análise" required ng-minlength="5"/>
-                <div ng-messages="salvaAnaliseForm.objetoDeAnalise.$error">
-                    <div ng-messages-include="app/analise/mensagensCreateanalise.html"></div>
+                <div class="form-group col-sm-6">
+                    <label>Objeto de Análise</label>
+                    <input type="text" name="objetoDeAnalise" class="objetoDeAnalise input-sm form-control" ng-model="AnaliseCtrl.permissao.analise.objetoDeAnalise" placeholder="Objeto de Análise" required ng-minlength="5"/>
+                    <div ng-messages="salvaAnaliseForm.objetoDeAnalise.$error">
+                        <div ng-messages-include="app/analise/mensagensCreateanalise.html"></div>
+                    </div>
                 </div>
             </div>
             <div class="form-group" ng-show="(AnaliseCtrl.permissao.analise.idAnalise==null)">
-                <div class="alert alert-warning">
-                    <p>
-                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                        Você poderá criar as questões para gerar os questionários das suas variáveis
-                        após a criação da análise.
-                    </p>
-                </div>
                 <div class = "row">
-                    <div class="col-sm">
+                    <div class="col-sm-4">
                         <label>Variaveis TAM</label>
                         <ul class="container">
                             <li>Facilidade de Uso Percebida</li>
@@ -60,7 +62,7 @@
                         </ul>
                     </div>
 
-                    <div class="col-sm">
+                    <div class="col-sm-4">
                         <label>Opções de Objeto</label>
                         <ul class="container">
                             <li ng-repeat="odo in  AnaliseCtrl.permissao.analise.opcoesDeObjeto">

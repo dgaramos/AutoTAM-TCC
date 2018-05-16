@@ -9,7 +9,7 @@
             <label for="busca">Busca: </label>
             <input type="text" ng-model="search" id="busca" class="input-sm" placeholder="Filtro de Resultados"/>
 
-            <button type="button" class="btn btn-success pull-right" ng-click="AnaliseCtrl.criaAnalise()"
+            <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#criaAnaliseModal"
                     title="Criar nova análise" data-toggle="tooltip" data-placement="left" tooltip>
                 <span class="glyphicon glyphicon-plus" aria-hidden="true" ></span>
             </button>
@@ -101,7 +101,8 @@
 
                     <p><b>Status: </b>{{p.analise.status}}</p>
 
-                    <button type="button" ng-click="AnaliseCtrl.editAnalise(p.analise)" class="btn btn-primary" ng-show="p.administrador"
+                    <button type="button" data-toggle="modal" data-target="#criaAnaliseModal"
+                            ng-click="AnaliseCtrl.editAnalise(p.analise)" class="btn btn-primary" ng-show="p.administrador"
                             title="Editar Informações" data-toggle="tooltip" data-placement="left" tooltip>
                         <span class="glyphicon glyphicon-pencil" aria-hidden="true" ></span>
                     </button>

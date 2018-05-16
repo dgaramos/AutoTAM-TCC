@@ -1,4 +1,9 @@
 <div ng-show="authenticated">
+    <div class="modal fade" id="criaAnaliseModal" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div ng-include src="'app/analise/configs/criaanalisemodal.html'"></div>
+        </div>
+    </div>
     <div class="modal fade" id="gerenciaVariavelModal" role="dialog">
         <div class="modal-dialog modal-lg">
             <div ng-include src="'app/analise/configs/gerenciavariavel.html'"></div>
@@ -14,7 +19,7 @@
             <div ng-include src="'app/analise/configs/deleteanalise.html'"></div>
         </div>
     </div>
-    <div class="modal fade" id="deleteOpcaoDeObjetolModal" role="dialog">
+    <div class="modal fade" id="deleteOpcaoDeObjetoModal" role="dialog">
         <div class="modal-dialog">
             <div ng-include src="'app/analise/configs/deleteopcaodeobjeto.html'"></div>
         </div>

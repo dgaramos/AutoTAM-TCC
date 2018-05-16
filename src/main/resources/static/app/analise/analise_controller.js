@@ -39,7 +39,6 @@ controllers.controller('AnaliseController',
         PermissaoService.fetchAllPermissoesFromUsuario()
             .then(
                 function(d) {
-                    console.log(d);
                     self.permissoes = d;
                     self.analiseList.variavelExtra.length = self.permissoes.length;
                     self.analiseList.opcaoDeObjetoNova.length = self.permissoes.length;
@@ -70,7 +69,9 @@ controllers.controller('AnaliseController',
                 function (response) {
                     console.log('Salvando nova Analise: ' + self.permissao.analise);
                     console.log(response);
+                    Global.fechaModal('#criaAnaliseModal');
                     self.fetchAllAnalises();
+
                 })
             .catch(
                 function(errResponse){
@@ -85,6 +86,7 @@ controllers.controller('AnaliseController',
                 function (response) {
                     console.log('Analise a ser atualizada: '+ self.permissao.analise.nome);
                     console.log(response);
+                    Global.fechaModal('#criaAnaliseModal');
                     self.fetchAllAnalises();
             }).catch(
                 function(errResponse){
@@ -98,9 +100,9 @@ controllers.controller('AnaliseController',
             function(d){
                 console.log('Analise a ser apagada: ' + idAnalise);
                 console.log(d);
-                self.fetchAllAnalises();
                 self.reset();
                 Global.fechaModal('#deleteAnaliseModal');
+                self.fetchAllAnalises();
             },
             function(errResponse){
                 console.error('Erro ao apagar Análise ' + errResponse);
@@ -119,6 +121,7 @@ controllers.controller('AnaliseController',
                 variaveis:[], opcoesDeObjeto:[], status: ''},
             testador: false, administrador: false};
             self.variavel = {idVariavel: null, nomeVariavel: '',variavelPadrao: false, questoes:[], nota: ''};
+            self.opcaoDeObjeto ={idOpcaoDeObjeto: null, nome:'', resultadosOpcaoVariaveis:[]};
             self.analiseForm.criaAnalise = false;
             self.analiseForm.variavelExtra = false;
             self.analiseForm.opcaoDeObjetoNova = false;
@@ -140,8 +143,12 @@ controllers.controller('AnaliseController',
 
     self.editAnalise = function(analise){
         self.selectAnalise(analise);
-        self.criaAnalise();
+        //self.criaAnalise();
     };
+    self.cancelEditAnalise= function(){
+        self.reset();
+        Global.fechaModal('#criaAnaliseModal');
+    }
 
             /**
              * Funções de Janela
@@ -179,6 +186,7 @@ controllers.controller('AnaliseController',
     };
 
     self.analiseListAbreVariavelExtra = function($index){
+        self.variavel = {idVariavel: null, nomeVariavel: '', nota: ''};
         self.analiseList.variavelExtra[$index] = true;
     };
 
@@ -290,7 +298,7 @@ controllers.controller('AnaliseController',
             .then(
                 function(d){
                     console.log(d);
-                        self.fetchAllVariaveisFromAnalise(idAnalise, $index);
+                    self.fetchAllAnalises();
                     self.reset();
                     Global.fechaModal('#deleteVariavelModal');
                 },
@@ -299,6 +307,11 @@ controllers.controller('AnaliseController',
                 }
             );
     };
+
+    self.cancelDeleteVariavel = function(){
+        self.reset();
+        Global.fechaModal('#deleteVariavelModal');
+    }
             /**
              * Funções de gerenciamento das questões da variável TAM
              *
@@ -400,7 +413,7 @@ controllers.controller('AnaliseController',
             .then(
                 function(d){
                     console.log(d);
-                    self.fetchAllOpcoesDeObjetoFromAnalise(idAnalise, $index);
+                    self.fetchAllAnalises();
                     self.reset();
                     Global.fechaModal('#deleteOpcaoDeObjetoModal');
                     },
@@ -409,6 +422,10 @@ controllers.controller('AnaliseController',
                     }
                     );
         };
+    self.cancelDeleteOpcaoDeObjeto = function(){
+        self.reset();
+        Global.fechaModal('#deleteOpcaoDeObjetoModal');
+    }
 
             /**
              * Funções de gerenciamento de permissão

@@ -1,0 +1,100 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="AnaliseCtrl.cancelEditAnalise()" >&times;</button>
+        <h4 class="modal-title">Gerenciar Análise</h4>
+    </div>
+    <div class="modal-body clearfix">
+
+            <div class="alert alert-warning" ng-show="(AnaliseCtrl.permissao.analise.idAnalise==null)">
+                <p>
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                    Você poderá criar as questões para gerar os questionários das suas variáveis
+                    após a criação da análise.
+                </p>
+            </div>
+            <form name="salvaAnaliseForm"
+                  ng-submit="AnaliseCtrl.submit()">
+                <input type="hidden" ng-model="AnaliseCtrl.permissao.analise.idAnalise" />
+                <div class ="row">
+                    <div class="form-group col-sm-6">
+                        <label>Nome</label>
+                        <input type="text" name="nome" class="nome input-sm form-control" ng-model="AnaliseCtrl.permissao.analise.nome" placeholder="Nome da Análise" required ng-minlength="5"/>
+                        <div ng-messages="salvaAnaliseForm.nome.$error">
+                            <div ng-messages-include="app/analise/mensagensCreateanalise.html"></div>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label>Objeto de Análise</label>
+                        <input type="text" name="objetoDeAnalise" class="objetoDeAnalise input-sm form-control" ng-model="AnaliseCtrl.permissao.analise.objetoDeAnalise" placeholder="Objeto de Análise" required ng-minlength="5"/>
+                        <div ng-messages="salvaAnaliseForm.objetoDeAnalise.$error">
+                            <div ng-messages-include="app/analise/mensagensCreateanalise.html"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" ng-show="(AnaliseCtrl.permissao.analise.idAnalise==null)">
+                    <div class = "row">
+                        <div class="col-sm-4">
+                            <label>Variaveis TAM</label>
+                            <ul class="container">
+                                <li>Facilidade de Uso Percebida</li>
+                                <li>Utilidade Percebida</li>
+                                <li ng-repeat="v in  AnaliseCtrl.permissao.analise.variaveis">
+                                    <i class="glyphicon glyphicon-remove" ng-show="!v.variavelPadrao"
+                                       ng-click="AnaliseCtrl.analiseFormRemoveVariavel(v.nomeVariavel)" title="Remover Variavel"
+                                       data-toggle="tooltip" data-placement="right" tooltip></i>
+                                    {{v.nomeVariavel}}</li>
+                                <button type="button" class="btn btn-default btn-xs" ng-hide="AnaliseCtrl.analiseForm.variavelExtra" title="" ng-click="AnaliseCtrl.analiseFormAbreVariavelExtra()"
+                                        data-placement="right" tooltip="" data-original-title="Adicionar variável extra">
+                                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                                </button>
+                                <div class="well variavel-well well-sm clearfix col-sm-3" ng-show="AnaliseCtrl.analiseForm.variavelExtra">
+                                    <label>Nome da Variavel Extra</label>
+                                    <button type="button" class="btn btn-default btn-xs pull-right" ng-show="AnaliseCtrl.analiseForm.variavelExtra" title="" ng-click="AnaliseCtrl.analiseFormFechaVariavelExtra()"
+                                            data-placement="left" tooltip="" data-original-title="Cancelar">
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                    </button>
+                                    <input type="text" name="nomeVariavel" class="form-control input-sm" ng-model="AnaliseCtrl.variavel.nomeVariavel"/>
+                                    <button type="button" class="btn btn-primary pull-right" title="" ng-click="AnaliseCtrl.analiseFormAdicionaVariavelExtra()"
+                                            data-placement="right" tooltip="" data-original-title="Adicionar Variável">
+                                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                                    </button>
+                                </div>
+                            </ul>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label>Opções de Objeto</label>
+                            <ul class="container">
+                                <li ng-repeat="odo in  AnaliseCtrl.permissao.analise.opcoesDeObjeto">
+                                    <i class="glyphicon glyphicon-remove"
+                                       ng-click="" title="Remover Opção de Objeto"
+                                       data-toggle="tooltip" data-placement="right" tooltip></i>
+                                    {{odo.nome}}</li>
+                                <button type="button" class="btn btn-default btn-xs" ng-hide="AnaliseCtrl.analiseForm.opcaoDeObjetoNova" title="" ng-click="AnaliseCtrl.analiseFormAbreOpcaoDeObjetoNova()"
+                                        data-placement="right" tooltip="" data-original-title="Adicionar Objeto de Análise">
+                                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                                </button>
+                                <div class="well variavel-well well-sm clearfix col-sm-3" ng-show="AnaliseCtrl.analiseForm.opcaoDeObjetoNova">
+                                    <label>Nome da Opção de Objeto</label>
+                                    <button type="button" class="btn btn-default btn-xs pull-right" ng-show="AnaliseCtrl.analiseForm.opcaoDeObjetoNova" title="" ng-click="AnaliseCtrl.analiseFormFechaOpcaoDeObjetoNova()"
+                                            data-placement="left" tooltip="" data-original-title="Cancelar">
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                    </button>
+                                    <input type="text" name="nomeOpcaoDeObjeto" class="form-control input-sm" ng-model="AnaliseCtrl.opcaoDeObjeto.nome"/>
+                                    <button type="button" class="btn btn-primary pull-right" title="" ng-click="AnaliseCtrl.analiseFormAdicionaOpcaoDeObjetoNova()"
+                                            data-placement="right" tooltip="" data-original-title="Adicionar Opção De Objeto">
+                                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                                    </button>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="form-group clearfix">
+                    <input type="submit" value="{{!AnaliseCtrl.permissao.analise.idAnalise? 'Criar Análise' : 'Atualizar Análise'}}" class="btn btn-primary pull-right" ng-disabled="salvaAnaliseForm.$invalid"/>
+                </div>
+            </form>
+
+    </div>
+</div>
+
