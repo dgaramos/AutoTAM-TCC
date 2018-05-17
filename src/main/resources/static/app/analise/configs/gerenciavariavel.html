@@ -13,16 +13,16 @@
         </div>
         <hr>
              <div class="well variavel-well well-sm clearfix" ng-repeat="q in AnaliseCtrl.variavel.questoes">
-                 <div class="col-xs-9">
+                 <div class="col-sm-9">
                      <label>Questão nº:  <span class="label label-default">{{q.numero}}</span></label>
 
                      <input type="text" name="nomeQuestao" class="form-control input-sm" ng-model="q.enunciado"/>
                 </div>
-                 <div class="col-xs-2">
+                 <div class="col-sm-2 col-2">
                      <label>Peso: </label>
                      <input type="number" name="pesoQuestao" class="form-control input-sm" ng-model="q.peso"/>
                  </div>
-                 <div class="col-xs-1">
+                 <div class="col-sm-1 col-1 pull-right">
                      <button type="button" class="btn btn-danger btn-lg" ng-click="AnaliseCtrl.selectQuestao(q)"
                              data-dismiss="modal" data-toggle="modal" data-target="#deleteQuestaoModal"
                              title="Remover Questão"  data-toggle="tooltip" data-placement="left" tooltip>

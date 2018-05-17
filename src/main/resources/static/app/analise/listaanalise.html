@@ -80,10 +80,15 @@
 
                             {{opo.nome}}
 
+                            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#responderQuestionarioModal" ng-show="p.administrador || p.testador"
+                                    ng-click="AnaliseCtrl.initializeQuestionario(opo, p.analise)" title="Responder Questionário" data-toggle="tooltip" data-placement="right" tooltip>
+                                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                            </button>
                             <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteOpcaoDeObjetoModal" ng-show="p.administrador"
                                     ng-click="AnaliseCtrl.selectOpcaoDeObjeto(opo, p.analise)" title="Excluir Opção De Objeto" data-toggle="tooltip" data-placement="right" tooltip>
                                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                             </button>
+
                         </li>
                     </ul>
                     <div class="well variavel-well well-sm clearfix" ng-show="AnaliseCtrl.analiseList.opcaoDeObjetoNova[$index]">
@@ -97,6 +102,7 @@
                                 data-placement="right" tooltip="" data-original-title="Adicionar Opção de Objeto">
                             <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
                         </button>
+
                     </div>
 
                     <p><b>Status: </b>{{p.analise.status}}</p>

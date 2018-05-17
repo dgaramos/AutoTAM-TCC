@@ -28,7 +28,19 @@ controllers.controller('AnaliseController',
 
     self.variavel = {idVariavel: null, nomeVariavel: '', questoes: [], variavelPadrao: false, nota: ''};
 
-    self.questao = {idQuestao: null,  numero:'', enunciado: '', peso: '', resposta: ''};
+    self.questao = {idQuestao: null,  numero:'', enunciado: '', peso: '', respostas: []};
+
+    self.respostas = [];
+
+    self.resposta = {idResposta: null, resposta:'', usuario: {idUsuario: null, nome: '', email: '', senha: ''},
+            questionario: {idQuestionario: null, tipo:'', analise: {idAnalise: null, nome: '', objetoDeAnalise: '',
+            variaveis:[], opcoesDeObjeto:[], status: ''}}};
+
+    self.questionario = {idQuestionario: null, tipo: null,
+            analise: {idAnalise: null, nome: '', objetoDeAnalise: '',
+            opcaoDeObjeto: {idOpcaoDeObjeto: null, nome:'', resultadosOpcaoVariaveis:[]},
+            variaveis:[], opcoesDeObjeto:[], status: ''}};
+
 
             /**
              * Funções de requisição
@@ -425,6 +437,27 @@ controllers.controller('AnaliseController',
     self.cancelDeleteOpcaoDeObjeto = function(){
         self.reset();
         Global.fechaModal('#deleteOpcaoDeObjetoModal');
+    }
+            /**
+             * Funções de gerenciamento de respostas
+             *
+             */
+
+    self.initializeQuestionario = function(opcaoDeObjeto, analise){
+        self.selectOpcaoDeObjeto(opcaoDeObjeto, analise);
+        self.questionario.analise = analise;
+        self.questionario.tipo = 1;
+        self.questionario.opcaoDeObjeto = opcaoDeObjeto;
+        for (var i = 0; i < self.permissao.analise.variaveis.length; i++) {
+            self.respostas.push([]);
+            for (var j = 0; j < self.permissao.analise.variaveis.questoes.length; j++) {
+                self.respostas[i].push({idResposta: null, resposta:'', usuario: {idUsuario: null, nome: '', email: '', senha: ''},
+                    questionario: {idQuestionario: null, tipo:'', analise: {idAnalise: null, nome: '', objetoDeAnalise: '',
+                            variaveis:[], opcoesDeObjeto:[], status: ''}}});
+                self.respostas[i].usuario = $rootScope.loggedUsuario;
+                self.respostas.questionario = self.questionario;
+            }
+        }
     }
 
             /**

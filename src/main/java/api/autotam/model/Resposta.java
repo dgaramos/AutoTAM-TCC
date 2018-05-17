@@ -59,6 +59,14 @@ public class Resposta implements Serializable {
         this.questao = questao;
     }
 
+    public Questionario getQuestionario() {
+        return questionario;
+    }
+
+    public void setQuestionario(Questionario questionario) {
+        this.questionario = questionario;
+    }
+
     public Integer getResposta() {
         return resposta;
     }
@@ -67,6 +75,7 @@ public class Resposta implements Serializable {
         this.resposta = resposta;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -74,20 +83,22 @@ public class Resposta implements Serializable {
         Resposta resposta1 = (Resposta) o;
         return Objects.equals(getIdResposta(), resposta1.getIdResposta()) &&
                 Objects.equals(getQuestao(), resposta1.getQuestao()) &&
+                Objects.equals(getQuestionario(), resposta1.getQuestionario()) &&
                 Objects.equals(getResposta(), resposta1.getResposta());
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(getIdResposta(), getQuestao(), getResposta());
+        return Objects.hash(getIdResposta(), getQuestao(), getQuestionario(), getResposta());
     }
 
     @Override
     public String toString() {
-        return "RespostaDAO{" +
+        return "Resposta{" +
                 "idResposta=" + idResposta +
                 ", questao=" + questao +
+                ", questionario=" + questionario +
                 ", resposta=" + resposta +
                 '}';
     }

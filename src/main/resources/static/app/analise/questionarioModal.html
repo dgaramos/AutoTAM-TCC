@@ -1,0 +1,63 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" ng-click="AnaliseCtrl.reset()">&times;</button>
+        <h4 class="modal-title">Responder Questionário</h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <input type="hidden" ng-model="AnaliseCtrl.analise.idAnalise" />
+            <h4>Opção de Objeto: {{AnaliseCtrl.opcaoDeObjeto.nome}}</h4>
+            <div class="well variavel-well well-sm clearfix" ng-repeat="v in AnaliseCtrl.permissao.analise.variaveis">
+                <h4>{{v.nomeVariavel}}</h4>
+                <hr>
+                <div class="well variavel-well well-sm clearfix" ng-repeat="q in v.questoes">
+                    <div class="col-sm-12">
+                        <label><span class="label label-default">{{q.numero}}</span></label>
+                        <br>
+                        <h5>{{q.enunciado}}</h5>
+                        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                            <div class="btn-group mr-2" role="group" data-toggle="buttons" aria-label="First group">
+                                <label type="button" class="btn btn-danger"
+                                       title="Discordo Totalmente" data-toggle="tooltip"
+                                       data-placement="top" tooltip>
+                                    <input type="radio" name="likert" ng-model="self.respostas[$parent.index][$index].resposta" value="1">
+                                    1
+                                </label>
+                                <label type="button" class="btn btn-warning"
+                                       title="Discordo" data-toggle="tooltip"
+                                       data-placement="top" tooltip>
+                                    <input type="radio" name="likert" ng-model="self.respostas[$parent.index][$index].resposta" value="2">
+                                    2
+                                </label>
+                                <label type="button" class="btn btn-info"
+                                       title="Neutro" data-toggle="tooltip"
+                                       data-placement="top" tooltip>
+                                    <input type="radio" name="likert" ng-model="self.respostas[$parent.index][$index].resposta" value="3">
+                                    3
+                                </label>
+                                <label type="button" class="btn btn-primary"
+                                       title="Concordo" data-toggle="tooltip"
+                                       data-placement="top" tooltip>
+                                    <input type="radio" name="likert" ng-model="self.respostas[$parent.index][$index].resposta" value="4">
+                                    4
+                                </label>
+                                <label type="button" class="btn btn-success"
+                                       title="Concordo Totalmente" data-toggle="tooltip"
+                                       data-placement="top" tooltip>
+                                    <input type="radio" name="likert" ng-model="self.respostas[$parent.index][$index].resposta" value="5">
+                                    5
+                                </label>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group clearfix">
+        <button type="button" class="btn btn-primary pull-right" ng-click="AnaliseCtrl.responderQuestionario(AnaliseCtrl.permissao.analise, AnaliseCtrl.opcaoDeObjeto.idOpcaoDeObjeto)">
+            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Responder Questionário
+        </button>
+    </div>
+</div>

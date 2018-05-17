@@ -16,8 +16,9 @@ import java.util.Objects;
 public class Questionario implements Serializable {
 
     //Constantes
-    public static final int PESQUISA_DE_PUBLICO = 1;
-    public static final int AVALIACAO_DE_OBJETO = 2;
+    public static final int AVALIACAO_DE_OBJETO = 1;
+    public static final int PESQUISA_DE_PUBLICO = 2;
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,6 +29,15 @@ public class Questionario implements Serializable {
     @JoinColumn(name = "idAnalise")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Analise analise;
+
+    @ManyToOne(cascade = CascadeType.ALL )
+    @JoinColumn(name = "idOpcaoDeObjeto")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private OpcaoDeObjeto opcaoDeObjeto;
+
+    @OneToOne
+    @JoinColumn(name="idUsuario")
+    private Usuario usuario;
 
     @Column(name = "tipo")
     private Integer tipo;
@@ -48,6 +58,22 @@ public class Questionario implements Serializable {
         this.analise = analise;
     }
 
+    public OpcaoDeObjeto getOpcaoDeObjeto() {
+        return opcaoDeObjeto;
+    }
+
+    public void setOpcaoDeObjeto(OpcaoDeObjeto opcaoDeObjeto) {
+        this.opcaoDeObjeto = opcaoDeObjeto;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
     public Integer getTipo() {
         return tipo;
     }
@@ -63,13 +89,15 @@ public class Questionario implements Serializable {
         Questionario that = (Questionario) o;
         return Objects.equals(getIdQuestionario(), that.getIdQuestionario()) &&
                 Objects.equals(getAnalise(), that.getAnalise()) &&
+                Objects.equals(getOpcaoDeObjeto(), that.getOpcaoDeObjeto()) &&
+                Objects.equals(getUsuario(), that.getUsuario()) &&
                 Objects.equals(getTipo(), that.getTipo());
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(getIdQuestionario(), getAnalise(), getTipo());
+        return Objects.hash(getIdQuestionario(), getAnalise(), getOpcaoDeObjeto(), getUsuario(), getTipo());
     }
 
     @Override
@@ -77,8 +105,9 @@ public class Questionario implements Serializable {
         return "Questionario{" +
                 "idQuestionario=" + idQuestionario +
                 ", analise=" + analise +
+                ", opcaoDeObjeto=" + opcaoDeObjeto +
+                ", usuario=" + usuario +
                 ", tipo=" + tipo +
                 '}';
     }
-
 }
