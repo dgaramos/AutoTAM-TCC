@@ -32,7 +32,7 @@ controllers.controller('AnaliseController',
 
     self.respostas = [];
 
-    self.resposta = {idResposta: null, resposta:'', usuario: {idUsuario: null, nome: '', email: '', senha: ''},
+    self.resposta = {idResposta: null, resposta:0, usuario: {idUsuario: null, nome: '', email: '', senha: ''},
             questionario: {idQuestionario: null, tipo:'', analise: {idAnalise: null, nome: '', objetoDeAnalise: '',
             variaveis:[], opcoesDeObjeto:[], status: ''}}};
 
@@ -439,27 +439,48 @@ controllers.controller('AnaliseController',
         Global.fechaModal('#deleteOpcaoDeObjetoModal');
     }
             /**
-             * Funções de gerenciamento de respostas
+             * Funções de gerenciamento de questionario
              *
              */
 
+
+
+    self.resetQuestionario = function(){
+        self.respostas = [];
+        self.resposta = {idResposta: null, resposta:null, usuario: {idUsuario: null, nome: '', email: '', senha: ''},
+            questionario: {idQuestionario: null, tipo:'', analise: {idAnalise: null, nome: '', objetoDeAnalise: '',
+                    variaveis:[], opcoesDeObjeto:[], status: ''}}};
+
+        self.questionario = {idQuestionario: null, tipo: null,
+            analise: {idAnalise: null, nome: '', objetoDeAnalise: '',
+                opcaoDeObjeto: {idOpcaoDeObjeto: null, nome:'', resultadosOpcaoVariaveis:[]},
+                variaveis:[], opcoesDeObjeto:[], status: ''}};
+        }
+
     self.initializeQuestionario = function(opcaoDeObjeto, analise){
+        self.resetQuestionario();
         self.selectOpcaoDeObjeto(opcaoDeObjeto, analise);
         self.questionario.analise = analise;
         self.questionario.tipo = 1;
         self.questionario.opcaoDeObjeto = opcaoDeObjeto;
         for (var i = 0; i < self.permissao.analise.variaveis.length; i++) {
             self.respostas.push([]);
-            for (var j = 0; j < self.permissao.analise.variaveis.questoes.length; j++) {
-                self.respostas[i].push({idResposta: null, resposta:'', usuario: {idUsuario: null, nome: '', email: '', senha: ''},
-                    questionario: {idQuestionario: null, tipo:'', analise: {idAnalise: null, nome: '', objetoDeAnalise: '',
-                            variaveis:[], opcoesDeObjeto:[], status: ''}}});
-                self.respostas[i].usuario = $rootScope.loggedUsuario;
-                self.respostas.questionario = self.questionario;
+            for (var j = 0; j < self.permissao.analise.variaveis[i].questoes.length; j++) {
+                self.respostas[i].push({idResposta: null, resposta:0, usuario: $rootScope.loggedUsuario,
+                    questionario: self.questionario});
             }
         }
     }
 
+    self.responderQuestionario = function(){
+        for (var i = 0; i < self.questionario.analise.variaveis; i++) {
+            for (var j = 0; j < self.questionario.analise.variaveis[i].questoes.length; j++) {
+                self.questionario.analise.variaveis[i].questoes[j].respostas.push(
+                    self.respostas[i][j].resposta);
+            }
+        }
+
+    }
             /**
              * Funções de gerenciamento de permissão
              *

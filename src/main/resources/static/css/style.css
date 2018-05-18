@@ -161,7 +161,7 @@ body, .form-control{
 
 }
 
-.analise-col-container .row{
+.analise-col-container .row .container-row{
     background-color: #ececec;
 }
 .analise-col{
@@ -171,6 +171,7 @@ body, .form-control{
 
 .analise-col ul{
     list-style-type: none;
+    padding-left: 10px;
 }
 
 .analise-col h5{

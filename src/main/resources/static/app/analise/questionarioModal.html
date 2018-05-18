@@ -15,39 +15,33 @@
                         <label><span class="label label-default">{{q.numero}}</span></label>
                         <br>
                         <h5>{{q.enunciado}}</h5>
-                        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-                            <div class="btn-group mr-2" role="group" data-toggle="buttons" aria-label="First group">
+                        <div class="btn-toolbar" role="toolbar" >
+                            <div class="btn-group mr-2" role="group">
                                 <label type="button" class="btn btn-danger"
                                        title="Discordo Totalmente" data-toggle="tooltip"
                                        data-placement="top" tooltip>
-                                    <input type="radio" name="likert" ng-model="self.respostas[$parent.index][$index].resposta" value="1">
-                                    1
+                                    <input type="radio" ng-model="AnaliseCtrl.respostas[$parent.$index][$index].resposta" ng-value="1" required>
                                 </label>
                                 <label type="button" class="btn btn-warning"
                                        title="Discordo" data-toggle="tooltip"
                                        data-placement="top" tooltip>
-                                    <input type="radio" name="likert" ng-model="self.respostas[$parent.index][$index].resposta" value="2">
-                                    2
+                                    <input type="radio"  ng-model="AnaliseCtrl.respostas[$parent.$index][$index].resposta" ng-value="2" required>
                                 </label>
                                 <label type="button" class="btn btn-info"
                                        title="Neutro" data-toggle="tooltip"
                                        data-placement="top" tooltip>
-                                    <input type="radio" name="likert" ng-model="self.respostas[$parent.index][$index].resposta" value="3">
-                                    3
+                                    <input type="radio"  ng-model="AnaliseCtrl.respostas[$parent.$index][$index].resposta" ng-value="3" required>
                                 </label>
                                 <label type="button" class="btn btn-primary"
                                        title="Concordo" data-toggle="tooltip"
                                        data-placement="top" tooltip>
-                                    <input type="radio" name="likert" ng-model="self.respostas[$parent.index][$index].resposta" value="4">
-                                    4
+                                    <input type="radio" ng-model="AnaliseCtrl.respostas[$parent.$index][$index].resposta" ng-value="4" required>
                                 </label>
                                 <label type="button" class="btn btn-success"
                                        title="Concordo Totalmente" data-toggle="tooltip"
                                        data-placement="top" tooltip>
-                                    <input type="radio" name="likert" ng-model="self.respostas[$parent.index][$index].resposta" value="5">
-                                    5
+                                    <input type="radio"  ng-model="AnaliseCtrl.respostas[$parent.$index][$index].resposta" ng-value="5" required>
                                 </label>
-
                             </div>
                         </div>
                     </div>
@@ -56,7 +50,7 @@
         </div>
     </div>
     <div class="form-group clearfix">
-        <button type="button" class="btn btn-primary pull-right" ng-click="AnaliseCtrl.responderQuestionario(AnaliseCtrl.permissao.analise, AnaliseCtrl.opcaoDeObjeto.idOpcaoDeObjeto)">
+        <button type="button" class="btn btn-primary pull-right" ng-click="AnaliseCtrl.responderQuestionario()">
             <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Responder Questionário
         </button>
     </div>
