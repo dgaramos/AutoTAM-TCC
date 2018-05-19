@@ -17,7 +17,7 @@
         <hr>
         <div class="container-fluid analise-col-container">
             <div class="row container-row">
-                <div class = "col-xs-12 col-sm-4 col-md-3 analise-col" ng-repeat="p in AnaliseCtrl.permissoes | filter: search">
+                <div class = "col-xs-12 col-sm-6 col-md-4 col-lg-3 analise-col" ng-repeat="p in AnaliseCtrl.permissoes | filter: search">
                     <h5>
                         <span class="label label-default">{{p.analise.idAnalise}}</span>
                         <span class="glyphicon glyphicon-certificate pull-right" aria-hidden="true"  ng-show="p.administrador"
@@ -26,7 +26,7 @@
                               title="Usuario Testador" data-toggle="tooltip" data-placement="top" tooltip></span>
                     </h5>
                     <p><b>Nome: </b>{{p.analise.nome}}</p>
-                    <p><b>Objeto Da Análise: </b>{{p.analise.objetoDeAnalise}}</p>
+                    <p class="nomeObjetoAnalise"><b>Objeto Da Análise: </b>{{p.analise.objetoDeAnalise}}</p>
                     <b>
                         Variaveis:
                         <button type="button" class="btn btn-default btn-xs"
@@ -38,17 +38,17 @@
                     <ul>
                         <li ng-repeat="v in p.analise.variaveis">
                             <div class="row analise-row">
-                                <div class="col-sm-1">
+                                <div class="col-sm-1 col-xs-1 ">
                                     <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#gerenciaVariavelModal" ng-show="p.administrador"
                                             ng-click="AnaliseCtrl.selectVariavel(v, p.analise)" title="Editar Variavel" data-toggle="tooltip" data-placement="left" tooltip>
                                         <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                                     </button>
                                 </div>
-                                <div class="col-sm-6">
+                                <div class="col-xs-8 col-sm-8 col-md-7 col-lg-6 ">
                                     {{v.nomeVariavel}}
                                 </div>
-                                <div class="col-sm-1"></div>
-                                <div class="col-sm-1">
+                                <div class="col-sm-1 col-xs-1"></div>
+                                <div class="col-sm-1 col-xs-1">
                                     <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteVariavelModal" ng-show="!v.variavelPadrao && p.administrador"
                                             ng-click="AnaliseCtrl.selectVariavel(v, p.analise)" title="Excluir Variavel" data-toggle="tooltip" data-placement="right" tooltip>
                                         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
@@ -80,24 +80,24 @@
                     </b>
                     <ul>
                         <li ng-repeat="opo in p.analise.opcoesDeObjeto">
-                            <div class="row">4
-                                <div class="col-sm-1">
+                            <div class="row">
+                                <div class="col-sm-1 col-xs-1">
                                     <button type="button" class="btn btn-default btn-xs" ng-show="p.administrador"
                                             ng-click="AnaliseCtrl.editOpcaoDeObjeto(opo, p.analise, $parent.$index)" title="Editar Opção de Objeto" data-toggle="tooltip" data-placement="left" tooltip>
                                         <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                                     </button>
                                 </div>
-                                <div class="col-sm-6">
+                                <div class="col-xs-8 col-sm-8 col-md-7 col-lg-6 ">
                                     {{opo.nome}}
                                 </div>
 
-                                <div class="col-sm-1">
+                                <div class="col-sm-1 col-xs-1">
                                     <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#responderQuestionarioModal" ng-show="p.administrador || p.testador"
                                             ng-click="AnaliseCtrl.initializeQuestionario(opo, p.analise)" title="Responder Questionário" data-toggle="tooltip" data-placement="right" tooltip>
                                         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                     </button>
                                 </div>
-                                <div class="col-sm-1">
+                                <div class="col-sm-1 col-xs-1">
                                     <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteOpcaoDeObjetoModal" ng-show="p.administrador"
                                             ng-click="AnaliseCtrl.selectOpcaoDeObjeto(opo, p.analise)" title="Excluir Opção De Objeto" data-toggle="tooltip" data-placement="right" tooltip>
                                         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>

@@ -7,10 +7,10 @@
         <div class="form-group">
             <input type="hidden" ng-model="AnaliseCtrl.analise.idAnalise" />
             <h4>Opção de Objeto: {{AnaliseCtrl.opcaoDeObjeto.nome}}</h4>
-            <div class="well variavel-well well-sm clearfix" ng-repeat="v in AnaliseCtrl.permissao.analise.variaveis">
+            <div class="well questionario-variavel-well well-sm clearfix" ng-repeat="v in AnaliseCtrl.permissao.analise.variaveis">
                 <h4>{{v.nomeVariavel}}</h4>
                 <hr>
-                <div class="well variavel-well well-sm clearfix" ng-repeat="q in v.questoes">
+                <div class="well questionario-questao-well well-sm clearfix" ng-repeat="q in v.questoes">
                     <div class="col-sm-12">
                         <label><span class="label label-default">{{q.numero}}</span></label>
                         <br>
@@ -50,7 +50,8 @@
         </div>
     </div>
     <div class="form-group clearfix">
-        <button type="button" class="btn btn-primary pull-right" ng-click="AnaliseCtrl.responderQuestionario()">
+        <button type="button" class="btn btn-primary pull-right"
+                ng-click="AnaliseCtrl.saveQuestionario(AnaliseCtrl.questionario, AnaliseCtrl.respostas)">
             <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Responder Questionário
         </button>
     </div>

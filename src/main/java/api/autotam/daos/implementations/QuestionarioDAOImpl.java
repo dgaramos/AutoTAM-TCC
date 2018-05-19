@@ -4,12 +4,15 @@ import api.autotam.daos.interfaces.QuestionarioDAO;
 import api.autotam.model.Questionario;
 import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository("questionarioDAO")
+@Transactional
 public class QuestionarioDAOImpl extends AbstractDAO implements QuestionarioDAO {
+
     @Override
     public void saveQuestionario(Questionario questionario) {
-        persist(questionario);
+         merge(questionario);
     }
 
     @Override
@@ -32,5 +35,22 @@ public class QuestionarioDAOImpl extends AbstractDAO implements QuestionarioDAO 
                 "DELETE FROM questionario WHERE idQuestionario = :idQuestionario");
         query.setParameter("idQuestionario", idQuestionario);
         query.executeUpdate();
+    }
+
+    @Override
+    public boolean usuarioJaRespondeuOpcaoDeObjeto(int idUsuario, int idOpcaoDeObjeto, int idAnalise) {
+        Query query = getSession().createSQLQuery(
+                "SELECT COUNT(1) FROM questionario q WHERE q.idUsuario = :iidUsuario " +
+                        "AND q.idOpcaoDeObjeto = :idOpcaoDeObjeto " +
+                        "AND q.idAnalise = :idAnalise")
+                .addEntity(Questionario.class)
+                .setParameter("idUsuario", idUsuario)
+                .setParameter("idOpcaoDeObjeto", idOpcaoDeObjeto)
+                .setParameter("idAnalise", idAnalise);
+                 if((int) query.uniqueResult() == 1){
+                    return true;
+                 }
+                 return false;
+
     }
 }

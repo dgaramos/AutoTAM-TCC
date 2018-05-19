@@ -30,4 +30,9 @@ public class QuestionarioServiceImpl extends AbstractService implements Question
     public Questionario findById(int idQuestionario) {
         return questionarioDAO.findById(idQuestionario);
     }
+
+    @Override
+    public boolean usuarioJaRespondeuOpcaoDeObjeto(int idUsuario, int idOpcaoDeObjeto, int idAnalise) {
+        return questionarioDAO.usuarioJaRespondeuOpcaoDeObjeto(idUsuario,idOpcaoDeObjeto,idAnalise);
+    }
 }

@@ -142,7 +142,7 @@ public class VariavelTAM {
                 ", nomeVariavel='" + nomeVariavel + '\'' +
                 ", variavelPadrao=" + variavelPadrao +
                 ", analise=" + analise +
-                ", questoes=" + questoes +
+                ", questoes=" + questoes.size() +
                 ", nota=" + nota +
                 '}';
     }

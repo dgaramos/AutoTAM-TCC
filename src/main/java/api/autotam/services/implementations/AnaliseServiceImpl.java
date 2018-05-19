@@ -216,7 +216,6 @@ public class AnaliseServiceImpl extends AbstractService implements AnaliseServic
         if (usuarioLogadoIsAdministrador(idAnalise)){
 
             Analise analise = findById(idAnalise);
-            opcaoDeObjeto.setAnalise(analise);
 
             Set<OpcaoDeObjeto> opcoesDeObjeto = analise.getOpcoesDeObjeto();
             opcoesDeObjeto.add(opcaoDeObjeto);

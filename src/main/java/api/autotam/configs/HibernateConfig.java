@@ -84,6 +84,7 @@ public class HibernateConfig {
         properties.put("hibernate.format_sql", "true");
         properties.put("current_session_context_class", "thread");
         properties.put("hibernate.hbm2ddl.auto","update");
+        properties.put("hibernate.event.merge.entity_copy_observer","allow");
         return properties;
     }
 

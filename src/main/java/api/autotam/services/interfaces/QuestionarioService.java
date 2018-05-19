@@ -12,4 +12,6 @@ public interface QuestionarioService {
 
     Questionario findById(int idQuestionario);
 
+    boolean usuarioJaRespondeuOpcaoDeObjeto(int idUsuario, int idOpcaoDeObjeto, int idAnalise);
+
 }

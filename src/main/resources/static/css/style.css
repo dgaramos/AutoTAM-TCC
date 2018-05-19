@@ -20,6 +20,10 @@ body, .form-control{
     margin: 0px 2px 5px 0px;
 }
 
+.footer-col{
+    position: unset;
+}
+
 .variavel-well .btn{
     margin:5px 2px 5px 0px;
 }
@@ -166,12 +170,21 @@ body, .form-control{
 }
 .analise-col{
     padding: 20px;
-    min-height: 260px;
+    height: 450px;
+    overflow-y: scroll;
 }
 
 .analise-col ul{
     list-style-type: none;
     padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    min-height: 85px;
+
+}
+
+.nomeObjetoAnalise{
+    min-height: 35px;
 }
 
 .analise-col h5{
@@ -229,3 +242,15 @@ footer{
     padding: 20px 10px 0px 10px;
     text-align:center;
 }
+
+@media screen and (max-height: 577px){
+    .menu-container{
+        z-index: unset;
+    }
+}
+@media screen and (max-width: 768px) {
+    .analise-col {
+        height: unset;
+    }
+}
+

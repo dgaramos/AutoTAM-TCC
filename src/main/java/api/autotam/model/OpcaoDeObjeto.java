@@ -22,16 +22,16 @@ public class OpcaoDeObjeto {
     @Column(name = "nome")
     private String nome;
 
-    @ManyToOne(cascade = CascadeType.ALL )
-    @JoinColumn(name = "idAnalise")
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonBackReference
-    private Analise analise;
-
     @OneToMany(mappedBy = "opcaoDeObjeto",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonManagedReference
     private List<ResultadoOpcaoVariavel> resultadosOpcaoVariaveis;
+
+    @ManyToOne(cascade = CascadeType.MERGE )
+    @JoinColumn(name = "idAnalise")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonBackReference
+    private Analise analise;
 
     public Integer getIdOpcaoDeObjeto() {
         return idOpcaoDeObjeto;
@@ -72,14 +72,14 @@ public class OpcaoDeObjeto {
         OpcaoDeObjeto that = (OpcaoDeObjeto) o;
         return Objects.equals(getIdOpcaoDeObjeto(), that.getIdOpcaoDeObjeto()) &&
                 Objects.equals(getNome(), that.getNome()) &&
-                Objects.equals(getAnalise(), that.getAnalise()) &&
-                Objects.equals(resultadosOpcaoVariaveis, that.resultadosOpcaoVariaveis);
+                Objects.equals(resultadosOpcaoVariaveis, that.resultadosOpcaoVariaveis) &&
+                Objects.equals(getAnalise(), that.getAnalise());
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(getIdOpcaoDeObjeto(), getNome(), getAnalise(), resultadosOpcaoVariaveis);
+        return Objects.hash(getIdOpcaoDeObjeto(), getNome(), resultadosOpcaoVariaveis, getAnalise());
     }
 
     @Override
@@ -87,8 +87,8 @@ public class OpcaoDeObjeto {
         return "OpcaoDeObjeto{" +
                 "idOpcaoDeObjeto=" + idOpcaoDeObjeto +
                 ", nome='" + nome + '\'' +
-                ", analise=" + analise +
                 ", resultadosOpcaoVariaveis=" + resultadosOpcaoVariaveis +
+                ", analise=" + analise +
                 '}';
     }
 }

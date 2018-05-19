@@ -12,4 +12,6 @@ public interface QuestionarioDAO {
 
     void deleteQuestionario(int idQuestionario);
 
+    boolean usuarioJaRespondeuOpcaoDeObjeto(int idUsuario, int idOpcaoDeObjeto, int idAnalise);
+
 }

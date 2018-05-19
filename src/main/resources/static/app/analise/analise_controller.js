@@ -2,8 +2,8 @@
 'use strict';
 
 controllers.controller('AnaliseController',
-    ['$rootScope', '$scope', '$window', 'Global', 'AnaliseService', 'PermissaoService', 'UsuarioService', 'OpcaoDeObjetoService', 'VariavelTAMService', 'QuestaoService',
-        function($rootScope, $scope, $window, Global, AnaliseService, PermissaoService, UsuarioService, OpcaoDeObjetoService, VariavelTAMService, QuestaoService) {
+    ['$rootScope', '$scope', '$window', 'Global', 'AnaliseService', 'PermissaoService', 'UsuarioService', 'OpcaoDeObjetoService', 'VariavelTAMService', 'QuestaoService', 'QuestionarioService',
+        function($rootScope, $scope, $window, Global, AnaliseService, PermissaoService, UsuarioService, OpcaoDeObjetoService, VariavelTAMService, QuestaoService, QuestionarioService) {
 
     var self = this;
 
@@ -39,7 +39,7 @@ controllers.controller('AnaliseController',
     self.questionario = {idQuestionario: null, tipo: null,
             analise: {idAnalise: null, nome: '', objetoDeAnalise: '',
             opcaoDeObjeto: {idOpcaoDeObjeto: null, nome:'', resultadosOpcaoVariaveis:[]},
-            variaveis:[], opcoesDeObjeto:[], status: ''}};
+            usuario: {idUsuario: null, nome: '', email: '', senha: ''}}};
 
 
             /**
@@ -133,7 +133,7 @@ controllers.controller('AnaliseController',
                 variaveis:[], opcoesDeObjeto:[], status: ''},
             testador: false, administrador: false};
             self.variavel = {idVariavel: null, nomeVariavel: '',variavelPadrao: false, questoes:[], nota: ''};
-            self.opcaoDeObjeto ={idOpcaoDeObjeto: null, nome:'', resultadosOpcaoVariaveis:[]};
+            self.opcaoDeObjeto = {idOpcaoDeObjeto: null, nome:'', resultadosOpcaoVariaveis:[]};
             self.analiseForm.criaAnalise = false;
             self.analiseForm.variavelExtra = false;
             self.analiseForm.opcaoDeObjetoNova = false;
@@ -160,7 +160,7 @@ controllers.controller('AnaliseController',
     self.cancelEditAnalise= function(){
         self.reset();
         Global.fechaModal('#criaAnaliseModal');
-    }
+    };
 
             /**
              * Funções de Janela
@@ -213,7 +213,7 @@ controllers.controller('AnaliseController',
 
     self.analiseFormFechaOpcaoDeObjetoNova = function(){
         self.analiseForm.opcaoDeObjetoNova = false;
-        self.opcaoDeObjeto = {idOpcaoDeObjeto: null, nome:'', resultadosOpcaoVariaveis:[]};
+        self.opcaoDeObjeto = self.opcaoDeObjeto = {idOpcaoDeObjeto: null, nome:'', resultadosOpcaoVariaveis:[]};
     };
 
     self.analiseListRemoveOpcaoDeObjeto = function(nome){
@@ -229,7 +229,7 @@ controllers.controller('AnaliseController',
     self.analiseFormAdicionaOpcaoDeObjetoNova = function(){
         self.permissao.analise.opcoesDeObjeto.push(self.opcaoDeObjeto);
         self.analiseForm.opcaoDeObjetoNova = false;
-        self.opcaoDeObjeto = {idOpcaoDeObjeto: null, nome:'', resultadosOpcaoVariaveis:[]};
+        self.opcaoDeObjeto = self.opcaoDeObjeto = {idOpcaoDeObjeto: null, nome:'', resultadosOpcaoVariaveis:[]};
     };
 
     self.analiseListAbreOpcaoDeObjetoNova = function($index){
@@ -323,7 +323,7 @@ controllers.controller('AnaliseController',
     self.cancelDeleteVariavel = function(){
         self.reset();
         Global.fechaModal('#deleteVariavelModal');
-    }
+    };
             /**
              * Funções de gerenciamento das questões da variável TAM
              *
@@ -416,9 +416,9 @@ controllers.controller('AnaliseController',
     };
 
     self.editOpcaoDeObjeto = function (opcaoDeObjeto, analise,$index) {
-        self.selectOpcaoDeObjeto(opcaoDeObjeto, analise)
+        self.selectOpcaoDeObjeto(opcaoDeObjeto, analise);
         self.analiseListAbreOpcaoDeObjetoNova($index);
-    }
+    };
 
     self.deleteOpcaoDeObjeto = function (idOpcaoDeObjeto, idAnalise){
         OpcaoDeObjetoService.deleteOpcaoDeObjeto(idOpcaoDeObjeto)
@@ -437,7 +437,7 @@ controllers.controller('AnaliseController',
     self.cancelDeleteOpcaoDeObjeto = function(){
         self.reset();
         Global.fechaModal('#deleteOpcaoDeObjetoModal');
-    }
+    };
             /**
              * Funções de gerenciamento de questionario
              *
@@ -445,17 +445,23 @@ controllers.controller('AnaliseController',
 
 
 
-    self.resetQuestionario = function(){
+    self.resetQuestionario = function() {
         self.respostas = [];
-        self.resposta = {idResposta: null, resposta:null, usuario: {idUsuario: null, nome: '', email: '', senha: ''},
-            questionario: {idQuestionario: null, tipo:'', analise: {idAnalise: null, nome: '', objetoDeAnalise: '',
-                    variaveis:[], opcoesDeObjeto:[], status: ''}}};
-
-        self.questionario = {idQuestionario: null, tipo: null,
-            analise: {idAnalise: null, nome: '', objetoDeAnalise: '',
+        self.resposta = {
+            idResposta: null, resposta: null, usuario: {idUsuario: null, nome: '', email: '', senha: ''},
+            questionario: {
+                idQuestionario: null, tipo: null,
                 opcaoDeObjeto: {idOpcaoDeObjeto: null, nome:'', resultadosOpcaoVariaveis:[]},
-                variaveis:[], opcoesDeObjeto:[], status: ''}};
-        }
+                analise: {idAnalise: null, nome: '', objetoDeAnalise: '',
+                    variaveis: [], opcoesDeObjeto: [], status: ''}}};
+
+        self.questionario = {
+            idQuestionario: null, tipo: null,
+                opcaoDeObjeto: {idOpcaoDeObjeto: null, nome:'', resultadosOpcaoVariaveis:[]},
+            analise: {idAnalise: null, nome: '', objetoDeAnalise: '',
+                variaveis: [], opcoesDeObjeto: [], status: ''}};
+    };
+
 
     self.initializeQuestionario = function(opcaoDeObjeto, analise){
         self.resetQuestionario();
@@ -463,6 +469,7 @@ controllers.controller('AnaliseController',
         self.questionario.analise = analise;
         self.questionario.tipo = 1;
         self.questionario.opcaoDeObjeto = opcaoDeObjeto;
+        self.questionario.usuario = $rootScope.loggedUsuario;
         for (var i = 0; i < self.permissao.analise.variaveis.length; i++) {
             self.respostas.push([]);
             for (var j = 0; j < self.permissao.analise.variaveis[i].questoes.length; j++) {
@@ -470,17 +477,35 @@ controllers.controller('AnaliseController',
                     questionario: self.questionario});
             }
         }
-    }
+    };
+    self.atribuirRespostasAQuestoes = function(questionario, respostas){
+        for (var i = 0; i < questionario.analise.variaveis.length; i++) {
+            console.log("ENTROU1")
+            for (var j = 0; j < questionario.analise.variaveis[i].questoes.length; j++) {
+                console.log("ENTROU2")
+                console.log(questionario.analise.variaveis[i]);
+                console.log(questionario.analise.variaveis[i].questoes[j]);
+                questionario.analise.variaveis[i].questoes[j].respostas.push(
+                    respostas[i][j].resposta);
 
-    self.responderQuestionario = function(){
-        for (var i = 0; i < self.questionario.analise.variaveis; i++) {
-            for (var j = 0; j < self.questionario.analise.variaveis[i].questoes.length; j++) {
-                self.questionario.analise.variaveis[i].questoes[j].respostas.push(
-                    self.respostas[i][j].resposta);
             }
         }
 
-    }
+    };
+    self.saveQuestionario = function(questionario, respostas){
+        self.atribuirRespostasAQuestoes(questionario, respostas);
+        QuestionarioService.saveQuestionario(questionario)
+            .then(function(response){
+                console.log(response);
+                console.log(questionario);
+                self.resetQuestionario();
+        })
+            .catch(
+                function(errResponse){
+                    console.error('Error while creating Questionario.' + errResponse);
+                }
+            );
+    };
             /**
              * Funções de gerenciamento de permissão
              *
@@ -534,7 +559,7 @@ controllers.controller('AnaliseController',
 
     self.adicionaPermissao = function(analise){
         self.erroPermissao = false;
-        if(self.permissaoConvite.usuario.email == $rootScope.loggedUsuario.email){
+        if(self.permissaoConvite.usuario.email === $rootScope.loggedUsuario.email){
             console.error('Você está tentando adicionar o usuario logado');
             self.erroPermissao = true;
         } else{
@@ -611,5 +636,4 @@ controllers.controller('AnaliseController',
                 }
             );
     };
-
 }]);

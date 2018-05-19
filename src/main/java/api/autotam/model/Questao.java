@@ -109,17 +109,13 @@ public class Questao implements Serializable {
         this.media = media;
     }
 
-    @Override
-    public String toString() {
-        return "Questao{" +
-                "idQuestao=" + idQuestao +
-                ", numero=" + numero +
-                ", enunciado='" + enunciado + '\'' +
-                ", peso=" + peso +
-                ", media=" + media +
-                ", respostas=" + respostas +
-                ", variavelTAM=" + variavelTAM +
-                '}';
+    public List<Resposta> getRespostas() {
+
+        return respostas;
+    }
+
+    public void setRespostas(List<Resposta> respostas) {
+        this.respostas = respostas;
     }
 
     @Override
@@ -139,15 +135,20 @@ public class Questao implements Serializable {
     @Override
     public int hashCode() {
 
-        return Objects.hash(getIdQuestao(), getNumero(), getEnunciado(), getPeso(), getMedia(), getRespostas());
+        return Objects.hash(getIdQuestao(), getNumero(), getEnunciado(), getPeso(), getMedia(), getRespostas().size());
     }
 
-    public List<Resposta> getRespostas() {
-
-        return respostas;
+    @Override
+    public String toString() {
+        return "Questao{" +
+                "idQuestao=" + idQuestao +
+                ", numero=" + numero +
+                ", enunciado='" + enunciado + '\'' +
+                ", peso=" + peso +
+                ", media=" + media +
+                ", respostas=" + respostas.size() +
+                ", variavelTAM=" + variavelTAM +
+                '}';
     }
 
-    public void setRespostas(List<Resposta> respostas) {
-        this.respostas = respostas;
-    }
 }

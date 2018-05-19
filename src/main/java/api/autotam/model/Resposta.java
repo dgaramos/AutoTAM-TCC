@@ -43,6 +43,14 @@ public class Resposta implements Serializable {
     @Column(name = "resposta")
     private Integer resposta;
 
+    public Resposta(){
+
+    }
+
+    public Resposta(int resposta){
+        this.resposta = resposta;
+    }
+
     public Integer getIdResposta() {
         return idResposta;
     }

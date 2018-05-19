@@ -123,7 +123,6 @@ public class AnaliseController {
         System.out.println("Cadastrando a  Opção De Objeto "+ opcaoDeObjeto.getNome()+" na Análise com id " + idAnalise);
 
         analiseService.addOpcaoDeObjetoToAnalise(idAnalise, opcaoDeObjeto);
-
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

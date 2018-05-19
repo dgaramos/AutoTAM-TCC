@@ -130,8 +130,8 @@ public class Analise {
                 ", nome='" + nome + '\'' +
                 ", objetoDeAnalise='" + objetoDeAnalise + '\'' +
                 ", status='" + status + '\'' +
-                ", variaveis=" + variaveis +
-                ", opcoesDeObjeto=" + opcoesDeObjeto +
+                ", variaveis=" + variaveis.size() +
+                ", opcoesDeObjeto=" + opcoesDeObjeto.size() +
                 '}';
     }
 }
