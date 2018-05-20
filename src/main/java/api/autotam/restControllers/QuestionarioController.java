@@ -1,10 +1,11 @@
 package api.autotam.restControllers;
 
 
-import api.autotam.model.Questao;
-import api.autotam.model.Questionario;
-import api.autotam.model.VariavelTAM;
+import api.autotam.model.*;
+import api.autotam.services.interfaces.AnaliseService;
+import api.autotam.services.interfaces.OpcaoDeObjetoService;
 import api.autotam.services.interfaces.QuestionarioService;
+import api.autotam.services.interfaces.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -21,21 +22,43 @@ public class QuestionarioController {
     @Autowired
     private QuestionarioService questionarioService;
 
+    @Autowired
+    private AnaliseService analiseService;
+
+    @Autowired
+    private OpcaoDeObjetoService opcaoDeObjetoService;
+
+    @Autowired
+    private UsuarioService usuarioService;
+
     /**
-     * Método responsável por dar a resposta a requisição HTTP/POST referente a criação de novas Permissões vinculadas a
+     * Método responsável por dar a resposta a requisição HTTP/POST referente a criação de novos Questionarios vinculadas a
      * uma determinada Análise
      *
-     * @uri /questionario
-     * @param questionario
+     * @uri /questionario/{idOpcaoDeObjeto}
+     * @param idOpcaoDeObjeto
+     * @param analise
      * @return
      */
-    @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Void> createQuestionario(@RequestBody Questionario questionario, UriComponentsBuilder ucBuilder) {
+    @RequestMapping(value = "/{idOpcaoDeObjeto}",method = RequestMethod.POST)
+    public ResponseEntity<Void> createQuestionario(@PathVariable("idOpcaoDeObjeto") Integer idOpcaoDeObjeto, @RequestBody Analise analise) {
 
-        questionario.getOpcaoDeObjeto().setAnalise(questionario.getAnalise());
 
-        for (VariavelTAM variavel : questionario.getAnalise().getVariaveis()){
+        OpcaoDeObjeto opcaoDeObjeto = opcaoDeObjetoService.findById(idOpcaoDeObjeto);
+
+        Questionario questionario = new Questionario();
+        questionario.setAnalise(analise);
+        questionario.setOpcaoDeObjeto(opcaoDeObjeto);
+        questionario.setUsuario(usuarioService.getUsuarioLogado());
+
+        System.out.println(questionario.getOpcaoDeObjeto().getNome());
+        System.out.println(questionario.getOpcaoDeObjeto().getAnalise().getNome());
+
+        System.out.println(analise.getVariaveis().size());
+
+        for (VariavelTAM variavel : analise.getVariaveis()){
             for(Questao questao : variavel.getQuestoes()){
+                System.out.println(questao.getRespostas().size());
                 questao.getRespostas().get(questao.getRespostas().size()-1).setQuestionario(questionario);
             }
         }
@@ -47,8 +70,7 @@ public class QuestionarioController {
 
         questionarioService.saveQuestionario(questionario);
 
-        HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(ucBuilder.path("{id}").buildAndExpand(questionario.getIdQuestionario()).toUri());
+
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
@@ -78,16 +100,16 @@ public class QuestionarioController {
 
     /**
      *
-     * @uri /
-     * @param idUsuario
+     * @uri /questionario/{idAnalise}{idOpcaoDeObjeto}
      * @param idAnalise
      * @param idOpcaoDeObjeto
      * @return
      */
-    @RequestMapping(value = "/", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Boolean> usuarioJaRespondeuOpcaoDeObjeto(int idUsuario, int idAnalise, int idOpcaoDeObjeto) {
-        boolean status = questionarioService.usuarioJaRespondeuOpcaoDeObjeto(idUsuario, idAnalise, idOpcaoDeObjeto);
+    @RequestMapping(value = "/{idAnalise}/{idOpcaoDeObjeto}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Boolean> usuarioJaRespondeuOpcaoDeObjeto(@PathVariable("idAnalise") int idAnalise, @PathVariable("idOpcaoDeObjeto") int idOpcaoDeObjeto) {
+        boolean status = questionarioService.usuarioJaRespondeuOpcaoDeObjeto(usuarioService.getUsuarioLogado().getIdUsuario(), idAnalise, idOpcaoDeObjeto);
 
+        System.out.println(status);
         return new ResponseEntity<Boolean>(status, HttpStatus.OK);
     }
 }

@@ -122,6 +122,8 @@ public class AnaliseController {
     public ResponseEntity<Void> createOpcaoDeObjetoToAnalise(@PathVariable("id") Integer idAnalise, @RequestBody OpcaoDeObjeto opcaoDeObjeto) {
         System.out.println("Cadastrando a  Opção De Objeto "+ opcaoDeObjeto.getNome()+" na Análise com id " + idAnalise);
 
+        opcaoDeObjeto.setAnalise(analiseService.findById(idAnalise));
+
         analiseService.addOpcaoDeObjetoToAnalise(idAnalise, opcaoDeObjeto);
         return new ResponseEntity<>(HttpStatus.OK);
     }

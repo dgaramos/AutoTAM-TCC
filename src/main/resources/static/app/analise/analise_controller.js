@@ -466,10 +466,6 @@ controllers.controller('AnaliseController',
     self.initializeQuestionario = function(opcaoDeObjeto, analise){
         self.resetQuestionario();
         self.selectOpcaoDeObjeto(opcaoDeObjeto, analise);
-        self.questionario.analise = analise;
-        self.questionario.tipo = 1;
-        self.questionario.opcaoDeObjeto = opcaoDeObjeto;
-        self.questionario.usuario = $rootScope.loggedUsuario;
         for (var i = 0; i < self.permissao.analise.variaveis.length; i++) {
             self.respostas.push([]);
             for (var j = 0; j < self.permissao.analise.variaveis[i].questoes.length; j++) {
@@ -478,31 +474,43 @@ controllers.controller('AnaliseController',
             }
         }
     };
-    self.atribuirRespostasAQuestoes = function(questionario, respostas){
-        for (var i = 0; i < questionario.analise.variaveis.length; i++) {
-            console.log("ENTROU1")
-            for (var j = 0; j < questionario.analise.variaveis[i].questoes.length; j++) {
-                console.log("ENTROU2")
-                console.log(questionario.analise.variaveis[i]);
-                console.log(questionario.analise.variaveis[i].questoes[j]);
-                questionario.analise.variaveis[i].questoes[j].respostas.push(
+    self.atribuirRespostasAQuestoes = function(analise, respostas){
+        for (var i = 0; i < analise.variaveis.length; i++) {
+            for (var j = 0; j < analise.variaveis[i].questoes.length; j++) {
+                console.log(analise.variaveis[i]);
+                console.log(analise.variaveis[i].questoes[j]);
+                respostas[i][j].questao = analise.variaveis[i].questoes[j];
+                analise.variaveis[i].questoes[j].respostas.push(
                     respostas[i][j].resposta);
-
             }
         }
 
     };
-    self.saveQuestionario = function(questionario, respostas){
-        self.atribuirRespostasAQuestoes(questionario, respostas);
-        QuestionarioService.saveQuestionario(questionario)
+    self.saveQuestionario = function(analise,opcaoDeObjeto, respostas){
+        self.atribuirRespostasAQuestoes(analise, respostas);
+        console.log(analise);
+        QuestionarioService.saveQuestionario(opcaoDeObjeto.idOpcaoDeObjeto, analise)
             .then(function(response){
                 console.log(response);
-                console.log(questionario);
                 self.resetQuestionario();
+                Global.fechaModal('#responderQuestionarioModal');
         })
             .catch(
                 function(errResponse){
                     console.error('Error while creating Questionario.' + errResponse);
+                }
+            );
+    };
+
+    self.questionarioJaRespondido = function(idAnalise, opcaoDeObjeto){
+        QuestionarioService.questionarioJaRespondido(idAnalise, opcaoDeObjeto.idOpcaoDeObjeto)
+            .then(function(response){
+                opcaoDeObjeto.questionarioJaRespondido = response;
+                console.log(response);
+            })
+            .catch(
+                function(errResponse){
+                    console.error('Error' + errResponse);
                 }
             );
     };

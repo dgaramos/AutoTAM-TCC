@@ -116,7 +116,6 @@ public class VariavelTAM {
         if (Double.compare(that.nota, nota) != 0) return false;
         if (idVariavel != null ? !idVariavel.equals(that.idVariavel) : that.idVariavel != null) return false;
         if (nomeVariavel != null ? !nomeVariavel.equals(that.nomeVariavel) : that.nomeVariavel != null) return false;
-        if (analise != null ? !analise.equals(that.analise) : that.analise != null) return false;
         return questoes != null ? questoes.equals(that.questoes) : that.questoes == null;
 
     }
@@ -129,7 +128,6 @@ public class VariavelTAM {
         result = 31 * result + (nomeVariavel != null ? nomeVariavel.hashCode() : 0);
         result = 31 * result + (variavelPadrao ? 1 : 0);
         result = 31 * result + (analise != null ? analise.hashCode() : 0);
-        result = 31 * result + (questoes != null ? questoes.hashCode() : 0);
         temp = Double.doubleToLongBits(nota);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         return result;

@@ -120,7 +120,10 @@ public class Analise {
     @Override
     public int hashCode() {
 
-        return Objects.hash(getIdAnalise(), getNome(), getObjetoDeAnalise(), getStatus());
+        return Objects.hash(getIdAnalise(),
+                getNome(),
+                getObjetoDeAnalise(),
+                getStatus());
     }
 
     @Override

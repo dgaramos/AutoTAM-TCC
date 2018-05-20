@@ -35,6 +35,18 @@
                             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                         </button>
                     </b>
+                    <div class="well variavel-well well-sm clearfix" ng-show="AnaliseCtrl.analiseList.variavelExtra[$index]">
+                        <label>Nome da Variavel Extra</label>
+                        <button type="button" class="btn btn-default btn-xs pull-right" ng-show="AnaliseCtrl.analiseList.variavelExtra[$index]" title="" ng-click="AnaliseCtrl.analiseListFechaVariavelExtra($index)"
+                                data-placement="left" tooltip="" data-original-title="Cancelar">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        </button>
+                        <input type="text" name="nomeVariavel" class="form-control input-sm" ng-model="AnaliseCtrl.variavel.nomeVariavel"/>
+                        <button type="button" class="btn btn-primary pull-right"  title="" ng-click="AnaliseCtrl.variavelToAnalise(p.analise.idAnalise, AnaliseCtrl.variavel, $index)"
+                                data-placement="right" tooltip="" data-original-title="Adicionar Variável">
+                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                        </button>
+                    </div>
                     <ul>
                         <li ng-repeat="v in p.analise.variaveis">
                             <div class="row analise-row">
@@ -57,19 +69,6 @@
                             </div>
                         </li>
                     </ul>
-                    <div class="well variavel-well well-sm clearfix" ng-show="AnaliseCtrl.analiseList.variavelExtra[$index]">
-                        <label>Nome da Variavel Extra</label>
-                        <button type="button" class="btn btn-default btn-xs pull-right" ng-show="AnaliseCtrl.analiseList.variavelExtra[$index]" title="" ng-click="AnaliseCtrl.analiseListFechaVariavelExtra($index)"
-                                data-placement="left" tooltip="" data-original-title="Cancelar">
-                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                        </button>
-                        <input type="text" name="nomeVariavel" class="form-control input-sm" ng-model="AnaliseCtrl.variavel.nomeVariavel"/>
-                        <button type="button" class="btn btn-primary pull-right"  title="" ng-click="AnaliseCtrl.variavelToAnalise(p.analise.idAnalise, AnaliseCtrl.variavel, $index)"
-                                data-placement="right" tooltip="" data-original-title="Adicionar Variável">
-                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                        </button>
-                    </div>
-
                     <b>
                         Opções de Objeto:
                         <button type="button" class="btn btn-default btn-xs"
@@ -78,6 +77,18 @@
                             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                         </button>
                     </b>
+                    <div class="well variavel-well well-sm clearfix" ng-show="AnaliseCtrl.analiseList.opcaoDeObjetoNova[$index]">
+                        <label>Nome da Opção De Objeto</label>
+                        <button type="button" class="btn btn-default btn-xs pull-right" ng-show="AnaliseCtrl.analiseList.opcaoDeObjetoNova[$index]" title="" ng-click="AnaliseCtrl.analiseListFechaOpcaoDeObjetoNova($index)"
+                                data-placement="left" tooltip="" data-original-title="Cancelar">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        </button>
+                        <input type="text" name="nomeOpcaoDeObjeto" class="form-control input-sm" ng-model="AnaliseCtrl.opcaoDeObjeto.nome"/>
+                        <button type="button" class="btn btn-primary pull-right"  title="" ng-click="AnaliseCtrl.opcaoDeObjetoToAnalise(p.analise.idAnalise, AnaliseCtrl.opcaoDeObjeto, $index)"
+                                data-placement="right" tooltip="" data-original-title="Adicionar Opção de Objeto">
+                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                        </button>
+                    </div>
                     <ul>
                         <li ng-repeat="opo in p.analise.opcoesDeObjeto">
                             <div class="row">
@@ -92,7 +103,8 @@
                                 </div>
 
                                 <div class="col-sm-1 col-xs-1">
-                                    <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#responderQuestionarioModal" ng-show="p.administrador || p.testador"
+                                    <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#responderQuestionarioModal"
+                                            ng-show="(p.administrador || p.testador) && !opo.questionarioJaRespondido"
                                             ng-click="AnaliseCtrl.initializeQuestionario(opo, p.analise)" title="Responder Questionário" data-toggle="tooltip" data-placement="right" tooltip>
                                         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                     </button>
@@ -106,19 +118,6 @@
                             </div>
                         </li>
                     </ul>
-                    <div class="well variavel-well well-sm clearfix" ng-show="AnaliseCtrl.analiseList.opcaoDeObjetoNova[$index]">
-                        <label>Nome da Opção De Objeto</label>
-                        <button type="button" class="btn btn-default btn-xs pull-right" ng-show="AnaliseCtrl.analiseList.opcaoDeObjetoNova[$index]" title="" ng-click="AnaliseCtrl.analiseListFechaOpcaoDeObjetoNova($index)"
-                                data-placement="left" tooltip="" data-original-title="Cancelar">
-                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                        </button>
-                        <input type="text" name="nomeOpcaoDeObjeto" class="form-control input-sm" ng-model="AnaliseCtrl.opcaoDeObjeto.nome"/>
-                        <button type="button" class="btn btn-primary pull-right"  title="" ng-click="AnaliseCtrl.opcaoDeObjetoToAnalise(p.analise.idAnalise, AnaliseCtrl.opcaoDeObjeto, $index)"
-                                data-placement="right" tooltip="" data-original-title="Adicionar Opção de Objeto">
-                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                        </button>
-
-                    </div>
 
                     <p><b>Status: </b>{{p.analise.status}}</p>
 

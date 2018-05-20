@@ -2,6 +2,7 @@ package api.autotam.daos.implementations;
 
 import api.autotam.daos.interfaces.QuestionarioDAO;
 import api.autotam.model.Questionario;
+import org.aspectj.weaver.patterns.TypePatternQuestions;
 import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -40,17 +41,18 @@ public class QuestionarioDAOImpl extends AbstractDAO implements QuestionarioDAO 
     @Override
     public boolean usuarioJaRespondeuOpcaoDeObjeto(int idUsuario, int idOpcaoDeObjeto, int idAnalise) {
         Query query = getSession().createSQLQuery(
-                "SELECT COUNT(1) FROM questionario q WHERE q.idUsuario = :iidUsuario " +
+                "SELECT * FROM questionario q WHERE q.idUsuario = :idUsuario " +
                         "AND q.idOpcaoDeObjeto = :idOpcaoDeObjeto " +
                         "AND q.idAnalise = :idAnalise")
                 .addEntity(Questionario.class)
                 .setParameter("idUsuario", idUsuario)
                 .setParameter("idOpcaoDeObjeto", idOpcaoDeObjeto)
                 .setParameter("idAnalise", idAnalise);
-                 if((int) query.uniqueResult() == 1){
-                    return true;
+
+                 if(query.uniqueResult().equals(null)){
+                    return false;
                  }
-                 return false;
+                 return true;
 
     }
 }

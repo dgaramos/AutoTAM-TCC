@@ -1,5 +1,6 @@
 package api.autotam.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -25,7 +26,8 @@ public class Questionario implements Serializable {
     @Column(name = "idQuestionario")
     private Integer idQuestionario;
 
-    @ManyToOne(cascade = CascadeType.ALL )
+    @JsonIgnore
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idAnalise")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Analise analise;
