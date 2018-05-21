@@ -104,12 +104,13 @@ body, .form-control{
 
 @-moz-document url-prefix() {
 	.content-container-login{
-		min-height: 85%
+		height: 85%
 	}
 
 	.content-container{
 		min-height: 85.5%
 	}
+
 }
 
 .custom-width {
