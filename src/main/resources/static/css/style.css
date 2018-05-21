@@ -94,13 +94,18 @@ body, .form-control{
 
 .content-container-login{
     min-height: calc(100% - 145px);
+    height: -moz-calc(100% - 145px);
+	height: -webkit-calc(100% - 145px);
     margin-top:60px;
 }
 
 .content-container{
     min-height: calc(100% - 165px);
+    height: -moz-calc(100% - 165px);
+	height: -webkit-calc(100% - 165px);
     margin-top:60px;
 }
+
 .custom-width {
     width: 80px !important;
 }
@@ -208,6 +213,11 @@ body, .form-control{
 }
 
 .analise-col::-webkit-scrollbar { 
+    width:0 !important; 
+    height:0 !important; 
+}
+
+.analise-col::-moz-scrollbar { 
     width:0 !important; 
     height:0 !important; 
 }
