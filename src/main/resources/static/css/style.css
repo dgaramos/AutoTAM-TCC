@@ -94,16 +94,22 @@ body, .form-control{
 
 .content-container-login{
     min-height: calc(100% - 145px);
-    height: -moz-calc(100% - 145px);
-	height: -webkit-calc(100% - 145px);
     margin-top:60px;
 }
 
 .content-container{
     min-height: calc(100% - 165px);
-    height: -moz-calc(100% - 165px);
-	height: -webkit-calc(100% - 165px);
     margin-top:60px;
+}
+
+@-moz-document url-prefix() {
+	.content-container-login{
+		height: 85%
+	}
+
+	.content-container{
+		height: 100%
+	}
 }
 
 .custom-width {
