@@ -92,8 +92,13 @@ body, .form-control{
     margin-top:10px;
 }
 
-.content-container{
+.content-container .login{
     min-height: calc(100% - 145px);
+    margin-top:60px;
+}
+
+.content-container{
+    min-height: calc(100% - 165px);
     margin-top:60px;
 }
 .custom-width {
