@@ -201,6 +201,11 @@ body, .form-control{
 
 }
 
+.analise-col::-webkit-scrollbar { 
+    width:0 !important; 
+    height:0 !important; 
+}
+
 .analiseForm-container{
     padding-top: 20px;
 }
