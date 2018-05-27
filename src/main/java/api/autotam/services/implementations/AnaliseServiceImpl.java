@@ -69,8 +69,8 @@ public class AnaliseServiceImpl extends AbstractService implements AnaliseServic
                 nomeVariavel, true, analise);
 
         List<Questao> questoes = new ArrayList<Questao>();
-        Questao questao = new Questao(1, "", variavel);
-        questoes.add(questao);
+        //Questao questao = new Questao(1, "", variavel);
+        //questoes.add(questao);
 
         variavel.setQuestoes(questoes);
 
@@ -106,8 +106,8 @@ public class AnaliseServiceImpl extends AbstractService implements AnaliseServic
     private VariavelTAM inicializaQuestionarioVariavel(VariavelTAM variavel){
 
         List<Questao> questoes = new ArrayList<Questao>();
-        Questao questao = new Questao(1, "", variavel);
-        questoes.add(questao);
+        //Questao questao = new Questao(1, "", variavel);
+        //questoes.add(questao);
 
         variavel.setQuestoes(questoes);
         return variavel;

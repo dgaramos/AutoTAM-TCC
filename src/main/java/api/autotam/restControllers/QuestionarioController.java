@@ -44,6 +44,10 @@ public class QuestionarioController {
     public ResponseEntity<Void> createQuestionario(@PathVariable("idOpcaoDeObjeto") Integer idOpcaoDeObjeto, @RequestBody Analise analise) {
 
 
+        if(questionarioService.usuarioJaRespondeuOpcaoDeObjeto(usuarioService.getUsuarioLogado().getIdUsuario(),idOpcaoDeObjeto,analise.getIdAnalise())){
+            System.out.println("Questionario não pode ser criado pois o usuario já respondeu um questionario relacionado a essa análise " );
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
         OpcaoDeObjeto opcaoDeObjeto = opcaoDeObjetoService.findById(idOpcaoDeObjeto);
 
         Questionario questionario = new Questionario();

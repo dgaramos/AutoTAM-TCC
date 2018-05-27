@@ -48,11 +48,13 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="form-group clearfix">
-        <button type="button" class="btn btn-primary pull-right"
-                ng-click="AnaliseCtrl.saveQuestionario(AnaliseCtrl.permissao.analise, AnaliseCtrl.opcaoDeObjeto, AnaliseCtrl.respostas)">
-            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Responder Questionário
-        </button>
+        <hr>
+        <div class="form-group clearfix">
+            <button type="button" class="btn btn-primary pull-right"
+                    ng-click="AnaliseCtrl.saveQuestionario(AnaliseCtrl.permissao.analise, AnaliseCtrl.opcaoDeObjeto, AnaliseCtrl.respostas)"
+                    ng-show="AnaliseCtrl.questionarioAResponder(AnaliseCtrl.permissao.analise,AnaliseCtrl.opcaoDeObjeto)">
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Responder Questionário
+            </button>
+        </div>
     </div>
 </div>

@@ -20,7 +20,7 @@
                 </div>
                  <div class="col-sm-2 col-2">
                      <label>Peso: </label>
-                     <input type="number" name="pesoQuestao" class="form-control input-sm" ng-model="q.peso"/>
+                     <input type="number" name="pesoQuestao" class="form-control input-sm" ng-model="q.peso" disabled/>
                  </div>
                  <div class="col-sm-1 col-1 pull-right">
                      <button type="button" class="btn btn-danger btn-lg" ng-click="AnaliseCtrl.selectQuestao(q)"
@@ -34,6 +34,7 @@
                 title="Adicionar questão" data-toggle="tooltip" data-placement="right" tooltip>
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
         </button>
+        <hr>
         <div class="form-group clearfix">
             <button type="button" class="btn btn-primary pull-right" ng-click="AnaliseCtrl.variavelToAnalise(AnaliseCtrl.variavel.idVariavel, AnaliseCtrl.variavel)">
                 <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Atualizar Variável

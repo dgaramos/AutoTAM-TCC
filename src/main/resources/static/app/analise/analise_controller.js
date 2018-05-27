@@ -329,8 +329,17 @@ controllers.controller('AnaliseController',
              *
              */
     self.adicionaQuestaoToVariavel = function(){
-        self.questao.numero = self.variavel.questoes.length + 1;
-        self.variavel.questoes.push(self.questao);
+        if (self.variavel.questoes instanceof Array) {
+            self.questao.numero = self.variavel.questoes.length + 1;
+            self.questao.peso = 1;
+            self.variavel.questoes.push(self.questao);
+        } else{
+            self.variavel.questoes = [];
+            self.questao.numero = self.variavel.questoes.length + 1;
+            self.questao.peso = 1;
+            self.variavel.questoes.push(self.questao);
+        }
+
         self.questao = {idQuestao: null, numero:'', enunciado: '', peso: '', resposta: ''};
     };
 
@@ -488,7 +497,6 @@ controllers.controller('AnaliseController',
     };
     self.saveQuestionario = function(analise,opcaoDeObjeto, respostas){
         self.atribuirRespostasAQuestoes(analise, respostas);
-        console.log(analise);
         QuestionarioService.saveQuestionario(opcaoDeObjeto.idOpcaoDeObjeto, analise)
             .then(function(response){
                 console.log(response);
@@ -502,18 +510,30 @@ controllers.controller('AnaliseController',
             );
     };
 
+    self.questionarioAResponder = function(analise, opcaoDeObjeto){
+        var questionarioTemQuestoes = true;
+        for (var i = 0; i < analise.variaveis.length; i++) {
+            if(analise.variaveis[i].questoes.length === 0){
+                questionarioTemQuestoes = false;
+            }
+        }
+        var questionarioJaRespondido = false;
+
+        return questionarioTemQuestoes;
+    };
+
     self.questionarioJaRespondido = function(idAnalise, opcaoDeObjeto){
         QuestionarioService.questionarioJaRespondido(idAnalise, opcaoDeObjeto.idOpcaoDeObjeto)
             .then(function(response){
-                opcaoDeObjeto.questionarioJaRespondido = response;
                 console.log(response);
-            })
+                return response;
+                })
             .catch(
                 function(errResponse){
                     console.error('Error' + errResponse);
-                }
-            );
-    };
+                    }
+                    );
+        };
             /**
              * Funções de gerenciamento de permissão
              *

@@ -39,7 +39,7 @@ public class QuestionarioDAOImpl extends AbstractDAO implements QuestionarioDAO 
     }
 
     @Override
-    public boolean usuarioJaRespondeuOpcaoDeObjeto(int idUsuario, int idOpcaoDeObjeto, int idAnalise) {
+    public Questionario findByUsuarioOpcaoDeObjetoAnalise(int idUsuario, int idOpcaoDeObjeto, int idAnalise) {
         Query query = getSession().createSQLQuery(
                 "SELECT * FROM questionario q WHERE q.idUsuario = :idUsuario " +
                         "AND q.idOpcaoDeObjeto = :idOpcaoDeObjeto " +
@@ -49,10 +49,6 @@ public class QuestionarioDAOImpl extends AbstractDAO implements QuestionarioDAO 
                 .setParameter("idOpcaoDeObjeto", idOpcaoDeObjeto)
                 .setParameter("idAnalise", idAnalise);
 
-                 if(query.uniqueResult().equals(null)){
-                    return false;
-                 }
-                 return true;
-
+                 return (Questionario) query.uniqueResult();
     }
 }

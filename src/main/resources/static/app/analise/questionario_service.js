@@ -16,7 +16,7 @@ services.factory('QuestionarioService', ['$http', '$q', function($http, $q) {
                 );
         },
         questionarioJaRespondido: function(idAnalise, idOpcaoDeObjeto){
-            return $http.get(__env.apiUrl + '/questionario/'+ idAnalise+'/' + idOpcaoDeObjeto)
+            return $http.get(__env.apiUrl + '/questionario/' + idAnalise+ '/' + idOpcaoDeObjeto)
                 .then(
                     function (response) {
                         return response.data;

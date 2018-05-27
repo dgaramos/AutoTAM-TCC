@@ -104,7 +104,7 @@
 
                                 <div class="col-sm-1 col-xs-1">
                                     <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#responderQuestionarioModal"
-                                            ng-show="(p.administrador || p.testador) && !opo.questionarioJaRespondido"
+                                            ng-show="(p.administrador || p.testador) && AnaliseCtrl.questionarioAResponder(p.analise,opo)"
                                             ng-click="AnaliseCtrl.initializeQuestionario(opo, p.analise)" title="Responder Questionário" data-toggle="tooltip" data-placement="top" tooltip>
                                         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                     </button>
@@ -133,9 +133,15 @@
                         <span class="glyphicon glyphicon-user" aria-hidden="true" ></span>
                     </button>
 
+                    <button type="button" data-toggle="modal" data-target="#resultadosAnaliseModal" ng-show="p.administrador"
+                             class="btn btn-success"
+                            title="Calcular Resultados" data-toggle="tooltip" data-placement="top" tooltip>
+                        <span class="glyphicon glyphicon-stats" aria-hidden="true" ></span>
+                    </button>
+
                     <button type="button" data-toggle="modal" data-target="#deleteAnaliseModal" ng-show="p.administrador"
                             ng-click="AnaliseCtrl.selectAnalise(p.analise)" class="btn btn-danger"
-                            title="Apagar Análise" data-toggle="tooltip" data-placement="right" tooltip>
+                            title="Apagar Análise" data-toggle="tooltip" data-placement="left" tooltip>
                         <span class="glyphicon glyphicon-trash" aria-hidden="true" ></span>
                     </button>
                 </div>
