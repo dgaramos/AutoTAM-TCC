@@ -664,4 +664,54 @@ controllers.controller('AnaliseController',
                 }
             );
     };
+
+    self.variavelResultChart = {
+        options: {
+            scales: {
+                xAxes: [{
+                    stacked: false,
+                }],
+                yAxes: [{
+                    stacked: false
+                }]
+            }
+        },
+        labels: [],
+        series: [],
+        //colors: ['#ED402A', '#F0AB05', '#A0B421', '#00A39F'],
+        data: [
+            [3.5, 4.9, 5.0],
+            [2.8, 2.0, 4.5],
+            [3.6, 2.4, 4.2],
+            [4.7, 4.7, 5.0],
+            [2.1, 1.3, 3.0],
+            [2.6, 2.9, 4.0]
+        ]
+    };
+
+    self.resetVariavelChart = function(){
+        self.variavelResultChart.labels = [];
+        self.variavelResultChart.series = [];
+    };
+
+    self.populaVariavelLabels = function() {
+        for (var i = 0; self.permissao.analise.variaveis.length > i; i++) {
+            console.log(self.permissao.analise.variaveis[i].nomeVariavel);
+            self.variavelResultChart.labels.push(self.permissao.analise.variaveis[i].nomeVariavel);
+        }
+    };
+
+    self.populaVariavelSeries = function() {
+        for (var j = 0; self.permissao.analise.opcoesDeObjeto.length > j; j++) {
+            console.log(self.permissao.analise.opcoesDeObjeto[j].nome);
+            self.variavelResultChart.series.push(self.permissao.analise.opcoesDeObjeto[j].nome);
+        }
+    };
+
+    self.initializeResultados  = function (analise){
+        self.selectAnalise(analise);
+        self.resetVariavelChart();
+        self.populaVariavelLabels();
+        self.populaVariavelSeries();
+    };
 }]);

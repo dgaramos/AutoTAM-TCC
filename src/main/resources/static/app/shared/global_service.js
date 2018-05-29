@@ -6,7 +6,6 @@
 
 services.factory('Global', function(){
     return {
-
         fechaModal : function (modalName){
             $(modalName).modal('hide');
             $('body').removeClass('modal-open');

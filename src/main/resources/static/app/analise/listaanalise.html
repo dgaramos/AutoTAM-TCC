@@ -134,7 +134,7 @@
                     </button>
 
                     <button type="button" data-toggle="modal" data-target="#resultadosAnaliseModal" ng-show="p.administrador"
-                             class="btn btn-success"
+                            ng-click="AnaliseCtrl.initializeResultados(p.analise)" class="btn btn-success"
                             title="Calcular Resultados" data-toggle="tooltip" data-placement="top" tooltip>
                         <span class="glyphicon glyphicon-stats" aria-hidden="true" ></span>
                     </button>

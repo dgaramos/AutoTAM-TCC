@@ -11,7 +11,7 @@ if(window){
     Object.assign(env, window.__env);
 }
 
-var myApp = angular.module('clientAutoTAM', ['ngRoute', 'ngMessages', 'autoTAMControllers', 'autoTAMServices']);
+var myApp = angular.module('clientAutoTAM', ['ngRoute', 'ngMessages', 'chart.js', 'autoTAMControllers', 'autoTAMServices']);
 
 myApp.constant('__env', env);
 
