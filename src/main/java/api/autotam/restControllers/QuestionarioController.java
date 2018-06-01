@@ -2,17 +2,12 @@ package api.autotam.restControllers;
 
 
 import api.autotam.model.*;
-import api.autotam.services.interfaces.AnaliseService;
-import api.autotam.services.interfaces.OpcaoDeObjetoService;
-import api.autotam.services.interfaces.QuestionarioService;
-import api.autotam.services.interfaces.UsuarioService;
+import api.autotam.services.interfaces.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriComponentsBuilder;
 
 
 @RestController
@@ -23,13 +18,16 @@ public class QuestionarioController {
     private QuestionarioService questionarioService;
 
     @Autowired
-    private AnaliseService analiseService;
-
-    @Autowired
     private OpcaoDeObjetoService opcaoDeObjetoService;
 
     @Autowired
     private UsuarioService usuarioService;
+
+    @Autowired
+    private ResultadoOpcaoVariavelService resultadoOpcaoVariavelService;
+
+    @Autowired
+    private ResultadoOpcaoQuestaoService resultadoOpcaoQuestaoService;
 
     /**
      * Método responsável por dar a resposta a requisição HTTP/POST referente a criação de novos Questionarios vinculadas a
@@ -42,7 +40,6 @@ public class QuestionarioController {
      */
     @RequestMapping(value = "/{idOpcaoDeObjeto}",method = RequestMethod.POST)
     public ResponseEntity<Void> createQuestionario(@PathVariable("idOpcaoDeObjeto") Integer idOpcaoDeObjeto, @RequestBody Analise analise) {
-
 
         if(questionarioService.usuarioJaRespondeuOpcaoDeObjeto(usuarioService.getUsuarioLogado().getIdUsuario(),idOpcaoDeObjeto,analise.getIdAnalise())){
             System.out.println("Questionario não pode ser criado pois o usuario já respondeu um questionario relacionado a essa análise " );
@@ -74,6 +71,14 @@ public class QuestionarioController {
 
         questionarioService.saveQuestionario(questionario);
 
+        for (VariavelTAM variavel : analise.getVariaveis()){
+            for(Questao questao : variavel.getQuestoes()){
+                resultadoOpcaoQuestaoService.calcularResultadoQuestao(opcaoDeObjeto, questao);
+            }
+            resultadoOpcaoVariavelService.calcularResultadoVariavel(opcaoDeObjeto, variavel);
+        }
+
+        System.out.println("passou pae<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
 
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

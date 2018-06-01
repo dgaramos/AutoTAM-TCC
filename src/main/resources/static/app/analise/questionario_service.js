@@ -3,7 +3,6 @@
 services.factory('QuestionarioService', ['$http', '$q', function($http, $q) {
     return {
         saveQuestionario: function (idOpcaoDeObjeto, analise) {
-            console.log(__env.apiUrl + '/questionario/'+ idOpcaoDeObjeto , analise);
             return $http.post(__env.apiUrl + '/questionario/' + idOpcaoDeObjeto , analise)
                 .then(
                     function (response) {

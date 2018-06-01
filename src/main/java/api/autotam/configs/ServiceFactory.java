@@ -39,4 +39,10 @@ public class ServiceFactory {
 
     @Bean(name="opcaoDeObjetoService")
     public OpcaoDeObjetoService opcaoDeObjetoService(){ return new OpcaoDeObjetoServiceImpl();}
+
+    @Bean(name="resultadoOpcaoQuestaoService")
+    public ResultadoOpcaoQuestaoService resultadoOpcaoQuestaoService(){ return new ResultadoOpcaoQuestaoServiceImpl();}
+
+    @Bean(name="resultadoOpcaoVariavelService")
+    public ResultadoOpcaoVariavelService resultadoOpcaoVariavelService(){ return new ResultadoOpcaoVariavelServiceImpl();}
 }

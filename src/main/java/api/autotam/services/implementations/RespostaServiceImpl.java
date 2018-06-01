@@ -4,9 +4,12 @@ import api.autotam.daos.interfaces.RespostaDAO;
 import api.autotam.model.Resposta;
 import api.autotam.services.interfaces.RespostaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
-
+@Service("respostaService")
+@Transactional
 public class RespostaServiceImpl extends AbstractService implements RespostaService  {
 
 

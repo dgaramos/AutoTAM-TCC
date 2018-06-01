@@ -32,7 +32,7 @@ public class Resposta implements Serializable {
     @ManyToOne(cascade = CascadeType.MERGE  )
     @JoinColumn(name = "idQuestao",  nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonBackReference
+    @JsonBackReference(value="questaoToRespostas")
     private Questao questao;
 
     @ManyToOne(cascade = CascadeType.ALL )

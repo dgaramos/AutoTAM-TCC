@@ -32,6 +32,7 @@ public class Questionario implements Serializable {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Analise analise;
 
+    @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL )
     @JoinColumn(name = "idOpcaoDeObjeto")
     @OnDelete(action = OnDeleteAction.CASCADE)

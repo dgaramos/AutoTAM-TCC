@@ -266,6 +266,7 @@ controllers.controller('AnaliseController',
                     function (d) {
                         console.log(d);
                         self.fetchAllVariaveisFromAnalise(idAnalise, $index);
+                        self.fetchAllOpcoesDeObjetoFromAnalise(idAnalise, $index);
                         self.reset();
                         Global.fechaModal('#gerenciaVariavelModal');
                     },
@@ -278,6 +279,7 @@ controllers.controller('AnaliseController',
                 .then(
                     function (d) {
                         console.log(d);
+                        self.fetchAllAnalises();
                         QuestaoService.fetchAllQuestoesFromVariavel(variavel.idVariavel)
                             .then(
                                 function(q){
@@ -287,7 +289,6 @@ controllers.controller('AnaliseController',
                                     console.error('Erro ao carregar Questões ' + errResponse);
                                 }
                             );
-                        self.fetchAllVariaveisFromAnalise(idAnalise, $index);
                         self.reset();
                         Global.fechaModal('#gerenciaVariavelModal');
                     },
@@ -486,8 +487,6 @@ controllers.controller('AnaliseController',
     self.atribuirRespostasAQuestoes = function(analise, respostas){
         for (var i = 0; i < analise.variaveis.length; i++) {
             for (var j = 0; j < analise.variaveis[i].questoes.length; j++) {
-                console.log(analise.variaveis[i]);
-                console.log(analise.variaveis[i].questoes[j]);
                 respostas[i][j].questao = analise.variaveis[i].questoes[j];
                 analise.variaveis[i].questoes[j].respostas.push(
                     respostas[i][j].resposta);

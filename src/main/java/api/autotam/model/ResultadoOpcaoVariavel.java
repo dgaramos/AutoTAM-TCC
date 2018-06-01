@@ -1,10 +1,14 @@
 package api.autotam.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -24,11 +28,17 @@ public class ResultadoOpcaoVariavel {
     @ManyToOne(cascade = CascadeType.MERGE )
     @JoinColumn(name = "idOpcaoDeObjeto")
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonBackReference
+    @JsonBackReference(value="opcaoDeObjetoToResultadoOpcaoVariavel")
     private OpcaoDeObjeto opcaoDeObjeto;
 
-    @Column(name = "notaVariavelObjeto")
-    private Integer notaVariavelObjeto;
+    @Column(name = "notaOpcaoVariavel")
+    private Integer notaOpcaoVariavel;
+
+    @OneToMany(mappedBy = "resultadoOpcaoVariavel", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @Fetch(FetchMode.SELECT)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonManagedReference(value="resultadoOpcaoVariavelToResultadoOpcaoQuestao")
+    private List<ResultadoOpcaoQuestao> resultadosOpcaoQuestao;
 
     public Integer getIdResultadoOpcaoVariavel() {
         return idResultadoOpcaoVariavel;
@@ -54,12 +64,20 @@ public class ResultadoOpcaoVariavel {
         this.opcaoDeObjeto = opcaoDeObjeto;
     }
 
-    public Integer getNotaVariavelObjeto() {
-        return notaVariavelObjeto;
+    public Integer getNotaOpcaoVariavel() {
+        return notaOpcaoVariavel;
     }
 
-    public void setNotaVariavelObjeto(Integer notaVariavelObjeto) {
-        this.notaVariavelObjeto = notaVariavelObjeto;
+    public void setNotaOpcaoVariavel(Integer notaOpcaoVariavel) {
+        this.notaOpcaoVariavel = notaOpcaoVariavel;
+    }
+
+    public List<ResultadoOpcaoQuestao> getResultadosOpcaoQuestao() {
+        return resultadosOpcaoQuestao;
+    }
+
+    public void setResultadosOpcaoQuestao(List<ResultadoOpcaoQuestao> resultadosOpcaoQuestao) {
+        this.resultadosOpcaoQuestao = resultadosOpcaoQuestao;
     }
 
     @Override
@@ -70,13 +88,14 @@ public class ResultadoOpcaoVariavel {
         return Objects.equals(getIdResultadoOpcaoVariavel(), that.getIdResultadoOpcaoVariavel()) &&
                 Objects.equals(getVariavelTAM(), that.getVariavelTAM()) &&
                 Objects.equals(getOpcaoDeObjeto(), that.getOpcaoDeObjeto()) &&
-                Objects.equals(getNotaVariavelObjeto(), that.getNotaVariavelObjeto());
+                Objects.equals(getNotaOpcaoVariavel(), that.getNotaOpcaoVariavel()) &&
+                Objects.equals(getResultadosOpcaoQuestao(), that.getResultadosOpcaoQuestao());
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(getIdResultadoOpcaoVariavel(), getVariavelTAM(), getOpcaoDeObjeto(), getNotaVariavelObjeto());
+        return Objects.hash(getIdResultadoOpcaoVariavel(), getVariavelTAM(), getOpcaoDeObjeto(), getNotaOpcaoVariavel(), getResultadosOpcaoQuestao());
     }
 
     @Override
@@ -85,7 +104,8 @@ public class ResultadoOpcaoVariavel {
                 "idResultadoOpcaoVariavel=" + idResultadoOpcaoVariavel +
                 ", variavelTAM=" + variavelTAM +
                 ", opcaoDeObjeto=" + opcaoDeObjeto +
-                ", notaVariavelObjeto=" + notaVariavelObjeto +
+                ", notaOpcaoVariavel=" + notaOpcaoVariavel +
+                ", resultadosOpcaoQuestao=" + resultadosOpcaoQuestao +
                 '}';
     }
 }

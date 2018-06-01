@@ -24,13 +24,18 @@ public class OpcaoDeObjeto {
 
     @OneToMany(mappedBy = "opcaoDeObjeto",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonManagedReference
+    @JsonManagedReference(value="opcaoDeObjetoToResultadoOpcaoVariavel")
     private List<ResultadoOpcaoVariavel> resultadosOpcaoVariaveis;
+
+    @OneToMany(mappedBy = "opcaoDeObjeto",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonManagedReference(value="opcaoDeObjetoToResultadoOpcaoQuestao")
+    private List<ResultadoOpcaoQuestao> resultadosOpcaoQuestao;
 
     @ManyToOne(cascade = CascadeType.MERGE )
     @JoinColumn(name = "idAnalise")
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonBackReference
+    @JsonBackReference(value="analiseToOpcaoDeObjeto")
     private Analise analise;
 
     public Integer getIdOpcaoDeObjeto() {
@@ -49,20 +54,28 @@ public class OpcaoDeObjeto {
         this.nome = nome;
     }
 
+    public List<ResultadoOpcaoVariavel> getResultadosOpcaoVariaveis() {
+        return resultadosOpcaoVariaveis;
+    }
+
+    public void setResultadosOpcaoVariaveis(List<ResultadoOpcaoVariavel> resultadosOpcaoVariaveis) {
+        this.resultadosOpcaoVariaveis = resultadosOpcaoVariaveis;
+    }
+
+    public List<ResultadoOpcaoQuestao> getResultadosOpcaoQuestao() {
+        return resultadosOpcaoQuestao;
+    }
+
+    public void setResultadosOpcaoQuestao(List<ResultadoOpcaoQuestao> resultadosOpcaoQuestao) {
+        this.resultadosOpcaoQuestao = resultadosOpcaoQuestao;
+    }
+
     public Analise getAnalise() {
         return analise;
     }
 
     public void setAnalise(Analise analise) {
         this.analise = analise;
-    }
-
-    public List<ResultadoOpcaoVariavel> getResultadoOpcaoVariaveis() {
-        return resultadosOpcaoVariaveis;
-    }
-
-    public void setResultadoOpcaoVariaveis(List<ResultadoOpcaoVariavel> resultadosOpcaoVariaveis) {
-        this.resultadosOpcaoVariaveis = resultadosOpcaoVariaveis;
     }
 
     @Override
@@ -72,14 +85,15 @@ public class OpcaoDeObjeto {
         OpcaoDeObjeto that = (OpcaoDeObjeto) o;
         return Objects.equals(getIdOpcaoDeObjeto(), that.getIdOpcaoDeObjeto()) &&
                 Objects.equals(getNome(), that.getNome()) &&
-                Objects.equals(resultadosOpcaoVariaveis, that.resultadosOpcaoVariaveis) &&
+                Objects.equals(getResultadosOpcaoVariaveis(), that.getResultadosOpcaoVariaveis()) &&
+                Objects.equals(getResultadosOpcaoQuestao(), that.getResultadosOpcaoQuestao()) &&
                 Objects.equals(getAnalise(), that.getAnalise());
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(getIdOpcaoDeObjeto(), getNome(), resultadosOpcaoVariaveis, getAnalise());
+        return Objects.hash(getIdOpcaoDeObjeto(), getNome(), getResultadosOpcaoVariaveis(), getResultadosOpcaoQuestao(), getAnalise());
     }
 
     @Override
@@ -88,6 +102,7 @@ public class OpcaoDeObjeto {
                 "idOpcaoDeObjeto=" + idOpcaoDeObjeto +
                 ", nome='" + nome + '\'' +
                 ", resultadosOpcaoVariaveis=" + resultadosOpcaoVariaveis +
+                ", resultadosOpcaoQuestao=" + resultadosOpcaoQuestao +
                 ", analise=" + analise +
                 '}';
     }

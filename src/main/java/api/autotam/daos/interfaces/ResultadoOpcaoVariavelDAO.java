@@ -12,4 +12,7 @@ public interface ResultadoOpcaoVariavelDAO {
     void updateResultadoOpcaoVariavel(ResultadoOpcaoVariavel resultadoOpcaoVariavel);
 
     void deleteResultadoOpcaoVariavel(int idResultadoOpcaoVariavel);
+
+    ResultadoOpcaoVariavel findFromOpcaoVariavel (int idOpcaoDeObjeto, int idVariavel);
+
 }

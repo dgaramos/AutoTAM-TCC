@@ -42,13 +42,13 @@ public class Questao implements Serializable {
 
     @OneToMany(mappedBy = "questao",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonManagedReference
+    @JsonManagedReference(value="questaoToRespostas")
     private List<Resposta> respostas;
 
     @ManyToOne(cascade = CascadeType.MERGE )
     @JoinColumn(name = "idVariavel")
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonBackReference
+    @JsonBackReference(value="variavelToQuestoes")
     private VariavelTAM variavelTAM;
 
     public Questao(){}

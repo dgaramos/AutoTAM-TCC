@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface RespostaService {
 
-    void saveResposta(Resposta questionario);
+    void saveResposta(Resposta resposta);
 
-    void updateResposta(Resposta questionario);
+    void updateResposta(Resposta resposta);
 
     void deleteResposta (int idResposta);
 

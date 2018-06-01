@@ -38,13 +38,13 @@ public class Analise {
     @OneToMany(mappedBy = "analise",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @OrderBy
-    @JsonManagedReference
+    @JsonManagedReference(value="analiseToVariavel")
     private Set<VariavelTAM> variaveis;
 
     @OneToMany(mappedBy = "analise",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @OrderBy
-    @JsonManagedReference
+    @JsonManagedReference(value="analiseToOpcaoDeObjeto")
     private Set<OpcaoDeObjeto> opcoesDeObjeto;
 
     public Analise(){}

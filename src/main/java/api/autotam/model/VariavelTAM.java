@@ -39,13 +39,13 @@ public class VariavelTAM {
     @ManyToOne(cascade = CascadeType.ALL )
     @JoinColumn(name = "idAnalise")
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonBackReference
+    @JsonBackReference(value="analiseToVariavel")
     private Analise analise;
 
     @OneToMany(mappedBy = "variavelTAM", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @Fetch(FetchMode.SELECT)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonManagedReference
+    @JsonManagedReference(value="variavelToQuestoes")
     private List<Questao> questoes;
 
     public VariavelTAM(){}

@@ -4,7 +4,13 @@ import api.autotam.daos.interfaces.QuestionarioDAO;
 import api.autotam.model.Questionario;
 import api.autotam.services.interfaces.QuestionarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
+
+@Service("questionarioService")
+@Transactional
 public class QuestionarioServiceImpl extends AbstractService implements QuestionarioService {
 
     @Autowired
