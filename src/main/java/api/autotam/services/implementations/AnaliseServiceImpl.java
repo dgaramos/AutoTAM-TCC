@@ -36,13 +36,14 @@ public class AnaliseServiceImpl extends AbstractService implements AnaliseServic
     @Override
     public void saveAnalise(Analise analise) {
         Permissao administrador = new Permissao(getUsuarioLogado(), analise, true, true);
-        analise.setStatus("Avaliação das Questões");
+        analise.setStatus(1);
         administrador.setAnalise(analise);
 
-        Set<VariavelTAM> variaveis = new HashSet<VariavelTAM>();
+        Set<VariavelTAM> variaveis = new LinkedHashSet<VariavelTAM>();
 
-        variaveis.add(createVariavelPadrao("Utilidade Percebida", analise));
+
         variaveis.add(createVariavelPadrao("Facilidade de Uso Percebida", analise));
+        variaveis.add(createVariavelPadrao("Utilidade Percebida", analise));
 
         if(analise.getVariaveis().size() != 0) {
 

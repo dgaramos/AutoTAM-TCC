@@ -15,7 +15,7 @@ controllers.controller('AnaliseController',
     self.permissao = {idPermissao: null,
         usuario: {idUsuario: null, nome: '', email: '', senha: ''},
         analise: {idAnalise: null, nome: '', objetoDeAnalise: '',
-            variaveis:[], opcoesDeObjeto:[], status: ''},
+            variaveis:[], opcoesDeObjeto:[], status: 0},
         testador: false, administrador: false};
 
     self.permissoes = [];
@@ -52,19 +52,6 @@ controllers.controller('AnaliseController',
             .then(
                 function(d) {
                     self.permissoes = d;
-                    self.analiseList.variavelExtra.length = self.permissoes.length;
-                    self.analiseList.opcaoDeObjetoNova.length = self.permissoes.length;
-                    for(var i = 0; i < self.permissao.analise.variaveis.length; i++){
-                        if(self.permissao.analise.variaveis[i].nomeVariavel === nomeVariavel) {
-                            self.analiseList.variavelExtra[i] = false;
-                        }
-                    }
-                    for(var i = 0; i < self.permissao.analise.opcoesDeObjeto.length; i++){
-                        if(self.permissao.analise.opcoesDeObjeto[i].nome === nome) {
-                            self.analiseList.opcaoDeObjetoNova[i] = false;
-                        }
-                    }
-
                 })
             .catch(
                 function(errResponse){
@@ -122,6 +109,19 @@ controllers.controller('AnaliseController',
         );
     };
 
+    self.forwardStatus = function (analise){
+        AnaliseService.forwardStatus(analise, analise.idAnalise)
+            .then(
+                function (response) {
+                    console.log('Analise a ter status atualizado: '+ self.permissao.analise.nome);
+                    console.log(response);
+                    self.fetchAllAnalises();
+                    Global.fechaModal('#forwardAnaliseStatusModal');
+                }).catch(
+                    function(errResponse){
+                        console.error('Erro ao atualizar Análise. '+ errResponse);
+                    })
+    };
             /**
              * Funções de ação
              */
@@ -265,8 +265,7 @@ controllers.controller('AnaliseController',
                 .then(
                     function (d) {
                         console.log(d);
-                        self.fetchAllVariaveisFromAnalise(idAnalise, $index);
-                        self.fetchAllOpcoesDeObjetoFromAnalise(idAnalise, $index);
+                        self.fetchAllAnalises();
                         self.reset();
                         Global.fechaModal('#gerenciaVariavelModal');
                     },
@@ -509,14 +508,13 @@ controllers.controller('AnaliseController',
             );
     };
 
-    self.questionarioAResponder = function(analise, opcaoDeObjeto){
+    self.questionarioAResponder = function(analise){
         var questionarioTemQuestoes = true;
         for (var i = 0; i < analise.variaveis.length; i++) {
             if(analise.variaveis[i].questoes.length === 0){
                 questionarioTemQuestoes = false;
             }
         }
-        var questionarioJaRespondido = false;
 
         return questionarioTemQuestoes;
     };
@@ -701,9 +699,16 @@ controllers.controller('AnaliseController',
     };
 
     self.populaVariavelSeries = function() {
+        var resultsOpcao;
         for (var j = 0; self.permissao.analise.opcoesDeObjeto.length > j; j++) {
             console.log(self.permissao.analise.opcoesDeObjeto[j].nome);
             self.variavelResultChart.series.push(self.permissao.analise.opcoesDeObjeto[j].nome);
+            /*resultsOpcao = [];
+            for (var k = 0; self.permissao.analise.opcoesDeObjeto[j].resultadosOpcaoVariaveis.length > k; k++) {
+                resultsOpcao.push(self.permissao.analise.opcoesDeObjeto[j].resultadosOpcaoVariaveis[k].notaOpcaoVariavel);
+
+            }
+            self.variavelResultChart.data.push[resultsOpcao];*/
         }
     };
 

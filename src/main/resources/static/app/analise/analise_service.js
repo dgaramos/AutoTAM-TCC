@@ -31,6 +31,19 @@ services.factory('AnaliseService', ['$http', '$q', function($http, $q){
                 );
         },
 
+        forwardStatus: function (analise, idAnalise) {
+            return $http.put(__env.apiUrl + '/analise/forwardStatus/' + idAnalise, analise)
+                .then(
+                    function (response) {
+                        return response.data;
+                    },
+                    function (errResponse) {
+                        console.error('Erro ao atualizar Analise');
+                        return $q.reject(errResponse);
+                    }
+                );
+        },
+
         deleteAnalise: function (idAnalise) {
             return $http.delete(__env.apiUrl + '/analise/' + idAnalise)
                 .then(

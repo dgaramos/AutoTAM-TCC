@@ -21,6 +21,13 @@ import java.util.Set;
 @Table(name= "analise")
 public class Analise {
 
+
+    //Constantes de Status
+
+    public static final int CRIACAO = 1;
+    public static final int APLICACAO= 2;
+    public static final int FINAL = 3;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idAnalise")
@@ -33,7 +40,7 @@ public class Analise {
     private String objetoDeAnalise;
 
     @Column(name = "status")
-    private String status;
+    private Integer status;
 
     @OneToMany(mappedBy = "analise",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @OnDelete(action = OnDeleteAction.CASCADE)
@@ -49,10 +56,11 @@ public class Analise {
 
     public Analise(){}
 
-    public Analise( String nome, String objetoDeAnalise, Set<VariavelTAM> variaveis){
+    public Analise( String nome, String objetoDeAnalise, Set<VariavelTAM> variaveis, Integer status){
         this.nome = nome;
         this.objetoDeAnalise = objetoDeAnalise;
         this.variaveis = variaveis;
+        this.status = status;
     }
 
 
@@ -80,11 +88,11 @@ public class Analise {
         this.objetoDeAnalise = objetoDeAnalise;
     }
 
-    public String getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 

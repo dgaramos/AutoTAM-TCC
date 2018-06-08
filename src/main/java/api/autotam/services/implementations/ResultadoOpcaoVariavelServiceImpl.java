@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 
 @Service("resultadoOpcaoVariavelService")
@@ -52,5 +53,10 @@ public class ResultadoOpcaoVariavelServiceImpl extends AbstractService implement
         resultadoOpcaoVariavel.setNotaOpcaoVariavel(
                 somatorioRespostas/resultadoOpcaoVariavel.getResultadosOpcaoQuestao().size());
         resultadoOpcaoVariavelDAO.saveResultadoOpcaoVariavel(resultadoOpcaoVariavel);
+    }
+
+    @Override
+    public List<ResultadoOpcaoVariavel> findFromOpcao(int idOpcaoDeObjeto) {
+        return resultadoOpcaoVariavelDAO.findFromOpcao(idOpcaoDeObjeto);
     }
 }

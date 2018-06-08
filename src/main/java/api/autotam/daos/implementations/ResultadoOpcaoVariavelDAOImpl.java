@@ -5,6 +5,8 @@ import api.autotam.model.ResultadoOpcaoVariavel;
 import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository("resultadoOpcaoVariavelDAO")
 public class ResultadoOpcaoVariavelDAOImpl extends AbstractDAO implements ResultadoOpcaoVariavelDAO {
     @Override
@@ -46,5 +48,15 @@ public class ResultadoOpcaoVariavelDAOImpl extends AbstractDAO implements Result
                 .setParameter("idOpcaoDeObjeto", idOpcaoDeObjeto)
                 .setParameter("idVariavel", idVariavel);
         return (ResultadoOpcaoVariavel) query.uniqueResult() ;
+    }
+
+    @Override
+    public List<ResultadoOpcaoVariavel> findFromOpcao(int idOpcaoDeObjeto) {
+        Query query = getSession().createSQLQuery(
+                "SELECT * FROM resultadoOpcaoVariavel rov WHERE " +
+                        "rov.idOpcaoDeObjeto = :idOpcaoDeObjeto AND ")
+                .addEntity(ResultadoOpcaoVariavel.class)
+                .setParameter("idOpcaoDeObjeto", idOpcaoDeObjeto);
+        return (List<ResultadoOpcaoVariavel>) query.list() ;
     }
 }

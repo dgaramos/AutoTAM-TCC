@@ -1,0 +1,41 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" >&times;</button>
+        <h4 class="modal-title">Avançar Status da Análise</h4>
+    </div>
+    <div class="modal-body clearfix">
+        <div class="alert alert-warning">
+            <p>
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                Você realmente avançar o status da análise abaixo?
+            </p>
+        </div>
+        <div class="delete-container">
+            <h5><span class="label label-default">{{AnaliseCtrl.permissao.analise.idAnalise}}</span></h5>
+            <p><b>Nome: </b>{{AnaliseCtrl.permissao.analise.nome}}</p>
+            <p><b>Objeto Da Análise: </b>{{AnaliseCtrl.permissao.analise.objetoDeAnalise}}</p>
+            <b>Variáveis: </b>
+            <ul>
+                <li ng-repeat="v in AnaliseCtrl.permissao.analise.variaveis">
+                    {{v.nomeVariavel}}
+                </li>
+            </ul>
+            <b>Opções de Objeto: </b>
+            <ul>
+                <li ng-repeat="opo in AnaliseCtrl.permissao.analise.opcoesDeObjeto">
+                    {{opo.nomeOpcaoDeObjeto}}
+                </li>
+            </ul>
+            <div ng-if="(p.analise.status === 1)"><p><b>Status: </b>Criação da Análise</p></div>
+            <div ng-if="(p.analise.status === 2)"><p><b>Status: </b>Aplicação de Questionários</p></div>
+            <div ng-if="(p.analise.status === 3)"><p><b>Status: </b>Análise Concluída</p></div>
+        </div>
+
+        <hr>
+
+        <button type="submit" class="btn btn-warning pull-right" ng-click="AnaliseCtrl.forwardStatus(AnaliseCtrl.permissao.analise)">
+            <span class="glyphicon glyphicon-ok" aria-hidden="true" ></span>
+            Avançar Status
+        </button>
+    </div>
+</div>

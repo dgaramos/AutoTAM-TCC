@@ -74,6 +74,27 @@ public class AnaliseController {
         return new ResponseEntity<>(currentAnalise, HttpStatus.OK);
     }
 
+
+    @RequestMapping(value = "forwardStatus/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<Analise> forwardAnaliseStatus(@PathVariable("id") Integer idAnalise, @RequestBody Analise analise) {
+        System.out.println("Avançando status da analise " + idAnalise);
+
+        Analise currentAnalise = analiseService.findById(analise.getIdAnalise());
+
+        if (currentAnalise==null) {
+            System.out.println("Análise com id " + idAnalise + " não foi encontrada");
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        currentAnalise.setNome(analise.getNome());
+        currentAnalise.setObjetoDeAnalise(analise.getObjetoDeAnalise());
+        currentAnalise.setStatus(analise.getStatus() + 1);
+
+        analiseService.updateAnalise(currentAnalise);
+
+        return new ResponseEntity<>(currentAnalise, HttpStatus.OK);
+    }
+
     /**
      * Método responsável por dar a resposta a requisição HTTP/DELETE referente a remoção de uma determinada Análise
      * TAM existente utilizando seu id como parâmetro na URI
