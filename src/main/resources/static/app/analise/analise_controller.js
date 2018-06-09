@@ -669,21 +669,18 @@ controllers.controller('AnaliseController',
                     stacked: false,
                 }],
                 yAxes: [{
-                    stacked: false
+                    stacked: false,
+                    ticks: {
+                        min: 0,
+                        max: 5
+                    }
                 }]
             }
         },
         labels: [],
         series: [],
         //colors: ['#ED402A', '#F0AB05', '#A0B421', '#00A39F'],
-        data: [
-            [3.5, 4.9, 5.0],
-            [2.8, 2.0, 4.5],
-            [3.6, 2.4, 4.2],
-            [4.7, 4.7, 5.0],
-            [2.1, 1.3, 3.0],
-            [2.6, 2.9, 4.0]
-        ]
+        data: []
     };
 
     self.resetVariavelChart = function(){
@@ -698,17 +695,33 @@ controllers.controller('AnaliseController',
         }
     };
 
+    self.populaResultadosFromOpcao = function(opcaoDeObjeto,resultsOpcao ){
+        OpcaoDeObjetoService.fetchResultadosFromOpcao(opcaoDeObjeto.idOpcaoDeObjeto)
+            .then(
+                function(d) {
+                    console.log(d);
+                    for (var k = 0; d.length > k; k++) {
+                        console.log(d[k].notaOpcaoVariavel);
+                        resultsOpcao.push(d[k].notaOpcaoVariavel);
+                    }
+
+                    })
+            .catch(
+                function(errResponse) {
+                    console.error('Erro ao encontrar Resultados da Opção de Objeto' + errResponse);
+                    });
+        };
+
     self.populaVariavelSeries = function() {
         var resultsOpcao;
+        self.variavelResultChart.data = [];
         for (var j = 0; self.permissao.analise.opcoesDeObjeto.length > j; j++) {
             console.log(self.permissao.analise.opcoesDeObjeto[j].nome);
             self.variavelResultChart.series.push(self.permissao.analise.opcoesDeObjeto[j].nome);
-            /*resultsOpcao = [];
-            for (var k = 0; self.permissao.analise.opcoesDeObjeto[j].resultadosOpcaoVariaveis.length > k; k++) {
-                resultsOpcao.push(self.permissao.analise.opcoesDeObjeto[j].resultadosOpcaoVariaveis[k].notaOpcaoVariavel);
+            resultsOpcao = [];
+            self.populaResultadosFromOpcao(self.permissao.analise.opcoesDeObjeto[j], resultsOpcao);
 
-            }
-            self.variavelResultChart.data.push[resultsOpcao];*/
+            self.variavelResultChart.data.push(resultsOpcao);
         }
     };
 

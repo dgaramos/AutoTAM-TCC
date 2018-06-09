@@ -54,7 +54,8 @@ public class ResultadoOpcaoVariavelDAOImpl extends AbstractDAO implements Result
     public List<ResultadoOpcaoVariavel> findFromOpcao(int idOpcaoDeObjeto) {
         Query query = getSession().createSQLQuery(
                 "SELECT * FROM resultadoOpcaoVariavel rov WHERE " +
-                        "rov.idOpcaoDeObjeto = :idOpcaoDeObjeto AND ")
+                        "rov.idOpcaoDeObjeto = :idOpcaoDeObjeto " +
+                        "ORDER BY rov.idVariavel")
                 .addEntity(ResultadoOpcaoVariavel.class)
                 .setParameter("idOpcaoDeObjeto", idOpcaoDeObjeto);
         return (List<ResultadoOpcaoVariavel>) query.list() ;

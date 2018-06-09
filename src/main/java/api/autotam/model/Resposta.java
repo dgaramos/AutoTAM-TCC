@@ -41,13 +41,13 @@ public class Resposta implements Serializable {
     private Questionario questionario;
 
     @Column(name = "resposta")
-    private Integer resposta;
+    private Double resposta;
 
     public Resposta(){
 
     }
 
-    public Resposta(int resposta){
+    public Resposta(Double resposta){
         this.resposta = resposta;
     }
 
@@ -75,11 +75,11 @@ public class Resposta implements Serializable {
         this.questionario = questionario;
     }
 
-    public Integer getResposta() {
+    public Double getResposta() {
         return resposta;
     }
 
-    public void setResposta(Integer resposta) {
+    public void setResposta(Double resposta) {
         this.resposta = resposta;
     }
 

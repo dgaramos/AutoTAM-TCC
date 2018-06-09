@@ -2,14 +2,19 @@ package api.autotam.restControllers;
 
 import api.autotam.model.Analise;
 import api.autotam.model.OpcaoDeObjeto;
+import api.autotam.model.ResultadoOpcaoVariavel;
 import api.autotam.model.VariavelTAM;
 import api.autotam.services.interfaces.AnaliseService;
+import api.autotam.services.interfaces.ResultadoOpcaoVariavelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
+
+import java.util.List;
 
 /**
  * Classe responsável pelo mapeamento das URIs das requisições HTTP referentes a Classe Análise.

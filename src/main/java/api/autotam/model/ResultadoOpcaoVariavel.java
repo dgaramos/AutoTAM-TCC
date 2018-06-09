@@ -32,7 +32,7 @@ public class ResultadoOpcaoVariavel {
     private OpcaoDeObjeto opcaoDeObjeto;
 
     @Column(name = "notaOpcaoVariavel")
-    private Integer notaOpcaoVariavel;
+    private Double notaOpcaoVariavel;
 
     @OneToMany(mappedBy = "resultadoOpcaoVariavel", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @Fetch(FetchMode.SELECT)
@@ -64,11 +64,11 @@ public class ResultadoOpcaoVariavel {
         this.opcaoDeObjeto = opcaoDeObjeto;
     }
 
-    public Integer getNotaOpcaoVariavel() {
+    public Double getNotaOpcaoVariavel() {
         return notaOpcaoVariavel;
     }
 
-    public void setNotaOpcaoVariavel(Integer notaOpcaoVariavel) {
+    public void setNotaOpcaoVariavel(Double notaOpcaoVariavel) {
         this.notaOpcaoVariavel = notaOpcaoVariavel;
     }
 

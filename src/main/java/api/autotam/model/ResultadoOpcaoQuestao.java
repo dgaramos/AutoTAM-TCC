@@ -28,7 +28,7 @@ public class ResultadoOpcaoQuestao {
     private OpcaoDeObjeto opcaoDeObjeto;
 
     @Column(name = "notaOpcaoQuestao")
-    private Integer notaOpcaoQuestao;
+    private Double notaOpcaoQuestao;
 
     @ManyToOne(cascade = CascadeType.MERGE )
     @JoinColumn(name = "idResultadoOpcaoVariavel")
@@ -60,11 +60,11 @@ public class ResultadoOpcaoQuestao {
         this.opcaoDeObjeto = opcaoDeObjeto;
     }
 
-    public Integer getNotaOpcaoQuestao() {
+    public Double getNotaOpcaoQuestao() {
         return notaOpcaoQuestao;
     }
 
-    public void setNotaOpcaoQuestao(Integer notaOpcaoQuestao) {
+    public void setNotaOpcaoQuestao(Double notaOpcaoQuestao) {
         this.notaOpcaoQuestao = notaOpcaoQuestao;
     }
 

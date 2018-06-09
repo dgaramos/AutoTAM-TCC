@@ -38,7 +38,7 @@ public class Questao implements Serializable {
     private double peso;
 
     @Column(name ="media")
-    private double media;
+    private Double media;
 
     @OneToMany(mappedBy = "questao",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @OnDelete(action = OnDeleteAction.CASCADE)
@@ -57,7 +57,7 @@ public class Questao implements Serializable {
         this.numero = numero;
         this.enunciado = enunciado;
         this.variavelTAM = variavelTAM;
-        this.media = 0;
+        this.media = 0.0;
         this.peso = 0;
     }
 
@@ -101,11 +101,11 @@ public class Questao implements Serializable {
         this.peso = peso;
     }
 
-    public double getMedia() {
+    public Double getMedia() {
         return media;
     }
 
-    public void setMedia(double media) {
+    public void setMedia(Double media) {
         this.media = media;
     }
 

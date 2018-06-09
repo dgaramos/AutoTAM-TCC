@@ -46,7 +46,7 @@ public class ResultadoOpcaoVariavelServiceImpl extends AbstractService implement
                 resultadoOpcaoVariavelDAO.findFromOpcaoVariavel(
                         opcaoDeObjeto.getIdOpcaoDeObjeto(), variavel.getIdVariavel());
 
-        int somatorioRespostas = 0;
+        Double somatorioRespostas = 0.0;
         for(ResultadoOpcaoQuestao resultadoOpcaoQuestao : resultadoOpcaoVariavel.getResultadosOpcaoQuestao()){
             somatorioRespostas = somatorioRespostas + resultadoOpcaoQuestao.getNotaOpcaoQuestao();
         }

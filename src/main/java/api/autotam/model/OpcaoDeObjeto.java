@@ -85,15 +85,13 @@ public class OpcaoDeObjeto {
         OpcaoDeObjeto that = (OpcaoDeObjeto) o;
         return Objects.equals(getIdOpcaoDeObjeto(), that.getIdOpcaoDeObjeto()) &&
                 Objects.equals(getNome(), that.getNome()) &&
-                Objects.equals(getResultadosOpcaoVariaveis(), that.getResultadosOpcaoVariaveis()) &&
-                Objects.equals(getResultadosOpcaoQuestao(), that.getResultadosOpcaoQuestao()) &&
                 Objects.equals(getAnalise(), that.getAnalise());
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(getIdOpcaoDeObjeto(), getNome(), getResultadosOpcaoVariaveis(), getResultadosOpcaoQuestao(), getAnalise());
+        return Objects.hash(getIdOpcaoDeObjeto(), getNome(), getAnalise());
     }
 
     @Override

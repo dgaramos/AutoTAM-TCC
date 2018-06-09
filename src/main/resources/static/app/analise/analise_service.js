@@ -55,7 +55,7 @@ services.factory('AnaliseService', ['$http', '$q', function($http, $q){
                         return $q.reject(errResponse);
                     }
                 );
-        }
+        },
     }
 
 }]);

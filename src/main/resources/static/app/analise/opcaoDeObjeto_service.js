@@ -53,7 +53,19 @@ services.factory('OpcaoDeObjetoService', [ '$http', '$q', function($http, $q) {
                         return $q.reject(errResponse);
                     }
                 );
-        }
+        },
 
+        fetchResultadosFromOpcao: function (idOpcaoDeObjeto) {
+            return $http.get(__env.apiUrl + '/opcaoDeObjeto/resultado/' + idOpcaoDeObjeto)
+                .then(
+                    function (response) {
+                        return response.data;
+                    },
+                    function (errResponse) {
+                        console.error('Erro ao listar todos os Resultados de uma Opção de Objeto');
+                        return $q.reject(errResponse);
+                    }
+                );
+        }
     }
 }]);

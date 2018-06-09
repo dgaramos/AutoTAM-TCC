@@ -1,7 +1,9 @@
 package api.autotam.restControllers;
 
 import api.autotam.model.OpcaoDeObjeto;
+import api.autotam.model.ResultadoOpcaoVariavel;
 import api.autotam.services.interfaces.OpcaoDeObjetoService;
+import api.autotam.services.interfaces.ResultadoOpcaoVariavelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -17,6 +19,9 @@ public class OpcaoDeObjetoController {
 
     @Autowired
     private OpcaoDeObjetoService opcaoDeObjetoService;
+
+    @Autowired
+    private ResultadoOpcaoVariavelService resultadoOpcaoVariavelService;
 
     /**
      * Método responsável por dar a resposta a requisição HTTP/PUT referente a atualização do registro de uma
@@ -82,5 +87,26 @@ public class OpcaoDeObjetoController {
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+    /**
+     *
+     * @uri /opcaoDeObjeto/resultado/{id}
+     * @param idOpcaoDeObjeto
+     * @return
+     */
+    @RequestMapping(value = "/resultado/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<ResultadoOpcaoVariavel>> listAllResultadosFromOpcao(@PathVariable("id") Integer idOpcaoDeObjeto) {
+        System.out.println("Buscando todos os resultados vinculados a Opcao de Objeto " + idOpcaoDeObjeto +".");
+
+        List<ResultadoOpcaoVariavel> permissoes = resultadoOpcaoVariavelService.findFromOpcao(idOpcaoDeObjeto);
+
+
+        if(permissoes.isEmpty()){
+            return new ResponseEntity<List<ResultadoOpcaoVariavel>>(HttpStatus.NO_CONTENT);
+        }
+
+        return new ResponseEntity<List<ResultadoOpcaoVariavel>>(permissoes, HttpStatus.OK);
+    }
+
 
 }
