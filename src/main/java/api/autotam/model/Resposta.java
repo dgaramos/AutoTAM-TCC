@@ -48,7 +48,7 @@ public class Resposta implements Serializable {
     }
 
     public Resposta(int resposta){
-        this.resposta = (Double) resposta;
+        this.resposta = (double) resposta;
     }
 
     public Integer getIdResposta() {
