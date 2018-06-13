@@ -3,7 +3,7 @@
         <button type="button" class="close" data-dismiss="modal" ng-click="AnaliseCtrl.reset()">&times;</button>
         <h4 class="modal-title">Responder Questionário</h4>
     </div>
-    <div class="modal-body">
+    <div class="modal-body" ng-hide = "AnaliseCtrl.verificaQuestionarioRespondido">
         <div class="form-group">
             <input type="hidden" ng-model="AnaliseCtrl.analise.idAnalise" />
             <h4>Opção de Objeto: {{AnaliseCtrl.opcaoDeObjeto.nome}}</h4>
@@ -54,6 +54,22 @@
                     ng-click="AnaliseCtrl.saveQuestionario(AnaliseCtrl.permissao.analise, AnaliseCtrl.opcaoDeObjeto, AnaliseCtrl.respostas)"
                     ng-show="AnaliseCtrl.questionarioAResponder(AnaliseCtrl.permissao.analise,AnaliseCtrl.opcaoDeObjeto)">
                 <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Responder Questionário
+            </button>
+        </div>
+    </div>
+    <div class="modal-body" ng-show= "AnaliseCtrl.verificaQuestionarioRespondido">
+        <div class="alert alert-warning">
+            <p>
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                Esse questionário já foi respondido
+            </p>
+        </div>
+        <hr>
+        <div class="form-group clearfix">
+            <button class="btn btn-primary pull-right" class="close"
+                    data-dismiss="modal" ng-click="AnaliseCtrl.reset()">
+                <span class="glyphicon glyphicon-ok" aria-hidden="true" ></span>
+                Sair
             </button>
         </div>
     </div>

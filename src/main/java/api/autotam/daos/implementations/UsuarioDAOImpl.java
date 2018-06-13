@@ -83,5 +83,4 @@ public class UsuarioDAOImpl extends AbstractDAO implements UsuarioDAO {
                 .addEntity(Usuario.class);
         return (List<Usuario>) query.list();
     }
-
 }

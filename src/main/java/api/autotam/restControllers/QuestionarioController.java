@@ -116,7 +116,7 @@ public class QuestionarioController {
      */
     @RequestMapping(value = "/{idAnalise}/{idOpcaoDeObjeto}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Boolean> usuarioJaRespondeuOpcaoDeObjeto(@PathVariable("idAnalise") int idAnalise, @PathVariable("idOpcaoDeObjeto") int idOpcaoDeObjeto) {
-        boolean status = questionarioService.usuarioJaRespondeuOpcaoDeObjeto(usuarioService.getUsuarioLogado().getIdUsuario(), idAnalise, idOpcaoDeObjeto);
+        boolean status = questionarioService.usuarioJaRespondeuOpcaoDeObjeto(usuarioService.getUsuarioLogado().getIdUsuario(),idOpcaoDeObjeto, idAnalise );
 
         System.out.println(status);
         return new ResponseEntity<Boolean>(status, HttpStatus.OK);

@@ -55,6 +55,10 @@
                                             ng-click="AnaliseCtrl.selectVariavel(v, p.analise)" title="Editar Variavel" data-toggle="tooltip" data-placement="right" tooltip>
                                         <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                                     </button>
+                                    <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#gerenciaVariavelModal" ng-show="p.administrador && (p.analise.status > 1)"
+                                            ng-click="AnaliseCtrl.selectVariavel(v, p.analise)" title="Visualizar Questões" data-toggle="tooltip" data-placement="right" tooltip>
+                                        <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+                                    </button>
                                 </div>
                                 <div class="col-xs-8 col-sm-8 col-md-7 col-lg-6 ">
                                     {{v.nomeVariavel}}
@@ -106,7 +110,7 @@
                                     <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#responderQuestionarioModal"
                                             ng-show="(p.administrador || p.testador) && AnaliseCtrl.questionarioAResponder(p.analise) && (p.analise.status === 2)"
                                             ng-click="AnaliseCtrl.initializeQuestionario(opo, p.analise)" title="Responder Questionário" data-toggle="tooltip" data-placement="top" tooltip>
-                                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                        <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
                                     </button>
                                 </div>
                                 <div class="col-sm-1 col-xs-1">
@@ -130,7 +134,7 @@
 
                     <button type="button" data-toggle="modal" data-target="#gerenciaPermissoesModal" ng-show="p.administrador && (p.analise.status <= 2)"
                             ng-click="AnaliseCtrl.fetchAllPermissoesFromAnalise(p.analise)" class="btn btn-primary"
-                            title="Gerenciar Permissões" data-toggle="tooltip" data-placement="top" tooltip>
+                            title="Gerenciar Permissões" data-toggle="tooltip" data-placement="right" tooltip>
                         <span class="glyphicon glyphicon-user" aria-hidden="true" ></span>
                     </button>
 

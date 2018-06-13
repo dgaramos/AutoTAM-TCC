@@ -40,6 +40,7 @@ public class QuestionarioServiceImpl extends AbstractService implements Question
     @Override
     public boolean usuarioJaRespondeuOpcaoDeObjeto(int idUsuario, int idOpcaoDeObjeto, int idAnalise) {
         if(questionarioDAO.findByUsuarioOpcaoDeObjetoAnalise(idUsuario,idOpcaoDeObjeto,idAnalise)== null){
+            System.out.println(idUsuario + " " + idOpcaoDeObjeto + " " + idAnalise);
             return false;
         }
         return true;

@@ -7,36 +7,39 @@
         <div class="form-group">
             <input type="hidden" ng-model="AnaliseCtrl.variavel.idVariavel" />
             <label>Nome da Variavel</label>
-            <h4 ng-show="AnaliseCtrl.variavel.variavelPadrao">{{AnaliseCtrl.variavel.nomeVariavel}}</h4>
+            <h4 ng-show="AnaliseCtrl.variavel.variavelPadrao || (AnaliseCtrl.permissao.analise.status > 1)">{{AnaliseCtrl.variavel.nomeVariavel}}</h4>
             <input type="text" name="nomeVariavel" class="nome form-control" ng-model="AnaliseCtrl.variavel.nomeVariavel"
-                   ng-show="!AnaliseCtrl.variavel.variavelPadrao" required />
+                   ng-show="!AnaliseCtrl.variavel.variavelPadrao && (AnaliseCtrl.permissao.analise.status === 1)" required />
         </div>
         <hr>
              <div class="well variavel-well well-sm clearfix" ng-repeat="q in AnaliseCtrl.variavel.questoes">
                  <div class="col-sm-9">
                      <label>Questão nº:  <span class="label label-default">{{q.numero}}</span></label>
 
-                     <input type="text" name="nomeQuestao" class="form-control input-sm" ng-model="q.enunciado"/>
+                     <input type="text" name="nomeQuestao" class="form-control input-sm" ng-model="q.enunciado" ng-show = "AnaliseCtrl.permissao.analise.status === 1"/>
+                     <h5 ng-show = "AnaliseCtrl.permissao.analise.status > 1">{{q.enunciado}}</h5>
                 </div>
-                 <div class="col-sm-2 col-2">
+                 <div class="col-sm-2 col-2" ng-show = "p.analise.status === 1">
                      <label>Peso: </label>
-                     <input type="number" name="pesoQuestao" class="form-control input-sm" ng-model="q.peso" disabled/>
+                     <input type="number" name="pesoQuestao" class="form-control input-sm" ng-model="q.peso" disabled />
                  </div>
                  <div class="col-sm-1 col-1 pull-right">
                      <button type="button" class="btn btn-danger btn-lg" ng-click="AnaliseCtrl.selectQuestao(q)"
+                             ng-show = "AnaliseCtrl.permissao.analise.status === 1"
                              data-dismiss="modal" data-toggle="modal" data-target="#deleteQuestaoModal"
                              title="Remover Questão"  data-toggle="tooltip" data-placement="left" tooltip>
                          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                      </button>
                  </div>
              </div>
-        <button type="button" class="btn btn-default" ng-click="AnaliseCtrl.adicionaQuestaoToVariavel()"
+        <button type="button" class="btn btn-default" ng-click="AnaliseCtrl.adicionaQuestaoToVariavel()" ng-show = "AnaliseCtrl.permissao.analise.status === 1"
                 title="Adicionar questão" data-toggle="tooltip" data-placement="right" tooltip>
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
         </button>
         <hr>
         <div class="form-group clearfix">
-            <button type="button" class="btn btn-primary pull-right" ng-click="AnaliseCtrl.variavelToAnalise(AnaliseCtrl.variavel.idVariavel, AnaliseCtrl.variavel, $parent.$index)">
+            <button type="button" class="btn btn-primary pull-right" ng-click="AnaliseCtrl.variavelToAnalise(AnaliseCtrl.variavel.idVariavel, AnaliseCtrl.variavel, $parent.$index)"
+                    ng-show = "AnaliseCtrl.permissao.analise.status === 1">
                 <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Atualizar Variável
             </button>
         </div>

@@ -41,7 +41,8 @@ public class QuestionarioDAOImpl extends AbstractDAO implements QuestionarioDAO 
     @Override
     public Questionario findByUsuarioOpcaoDeObjetoAnalise(int idUsuario, int idOpcaoDeObjeto, int idAnalise) {
         Query query = getSession().createSQLQuery(
-                "SELECT * FROM questionario q WHERE q.idUsuario = :idUsuario " +
+                "SELECT * FROM questionario q " +
+                        "WHERE q.idUsuario = :idUsuario " +
                         "AND q.idOpcaoDeObjeto = :idOpcaoDeObjeto " +
                         "AND q.idAnalise = :idAnalise")
                 .addEntity(Questionario.class)

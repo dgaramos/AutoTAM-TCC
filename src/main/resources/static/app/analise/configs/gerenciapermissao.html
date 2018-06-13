@@ -6,8 +6,10 @@
     <div class="modal-body clearfix">
         <div class="alert alert-danger" ng-show="AnaliseCtrl.erroPermissao">
             <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-            Esse email é do usuario que está em sessão ou não está cadastrado na nossa base de dados,
-            para convidar outro usuário é necessário que o email do mesmo esteja em nossa base de dados.
+            Esse email é do usuario que está em sessão, ou é de um usuário já cadastrado,
+            ou não está cadastrado na nossa base de dados, para convidar outro usuário é necessário
+            que o usuário não esteja cadastrado na análise e que o email do mesmo esteja em nossa
+            base de dados.
         </div>
         <div>
             <form class="row" name="salvaAnaliseForm">
@@ -79,6 +81,45 @@
             </table>
         </div>
     </div>
+
     <hr>
+    <div class="modal-header">
+        <h4 class="modal-title">Usuários Cadastrados no sistema</h4>
     </div>
+    <hr>
+    <div class="modal-body">
+        <div class="table-responsive">
+            <form id="search">
+                <label for="busca">Busca: </label>
+                <input type="text" ng-model="search" id="busca" class="input-sm" placeholder="Filtro de Resultados"/>
+            </form>
+            <table class="table table-condensed table-hover">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="u in  AnaliseCtrl.usuarios | filter: search">
+                    <th>
+                        <button type="button" class="btn btn-default btn-xs" ng-click="AnaliseCtrl.selectUsuario(u)"
+                                title="Selecionar Usuario" data-toggle="tooltip" data-placement="right" tooltip>
+                            <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
+                        </button>
+                    </th>
+                    <th>
+                        {{u.nome}}
+                    </th>
+                    <th>
+                        {{u.email}}
+                    </th>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <hr>
 </div>

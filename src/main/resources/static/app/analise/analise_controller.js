@@ -41,7 +41,7 @@ controllers.controller('AnaliseController',
             opcaoDeObjeto: {idOpcaoDeObjeto: null, nome:'', resultadosOpcaoVariaveis:[]},
             usuario: {idUsuario: null, nome: '', email: '', senha: ''}}};
 
-
+    self.verificaQuestionarioRespondido = false;
             /**
              * Funções de requisição
              *
@@ -474,6 +474,7 @@ controllers.controller('AnaliseController',
 
     self.initializeQuestionario = function(opcaoDeObjeto, analise){
         self.resetQuestionario();
+        self.questionarioJaRespondido(analise.idAnalise, opcaoDeObjeto);
         self.selectOpcaoDeObjeto(opcaoDeObjeto, analise);
         for (var i = 0; i < self.permissao.analise.variaveis.length; i++) {
             self.respostas.push([]);
@@ -523,7 +524,7 @@ controllers.controller('AnaliseController',
         QuestionarioService.questionarioJaRespondido(idAnalise, opcaoDeObjeto.idOpcaoDeObjeto)
             .then(function(response){
                 console.log(response);
-                return response;
+                self.verificaQuestionarioRespondido = response;
                 })
             .catch(
                 function(errResponse){
@@ -536,12 +537,15 @@ controllers.controller('AnaliseController',
              *
              */
 
+
     self.permissaoConvite = {idPermissao: null,
         usuario: {idUsuario: null, nome: '', email: '', senha: ''},
         analise: self.permissao.analise ,
         testador: false, administrador: false};
     self.permissoesConvite = [];
     self.erroPermissao = false;
+
+    self.usuarios = [];
 
     self.resetPermissao = function(){
         self.permissaoConvite = {idPermissao: null,
@@ -553,6 +557,14 @@ controllers.controller('AnaliseController',
 
     self.fetchAllPermissoesFromAnalise = function(analise){
         self.permissaoConvite.analise = analise;
+        UsuarioService.fetchAllUsuarios()
+            .then(
+                function(d) {
+                    self.usuarios = d;
+                },
+                function(errResponse){
+                    console.error('Error ao listar Usuários' + errResponse);
+                });
         PermissaoService.fetchAllPermissoesFromAnalise(analise.idAnalise)
             .then(
                 function(p){
@@ -623,6 +635,10 @@ controllers.controller('AnaliseController',
     self.selectPermissao = function(permissao){
         self.permissaoConvite = angular.copy(permissao);
     };
+
+    self.selectUsuario = function (usuario){
+        self.permissaoConvite.usuario = angular.copy(usuario);
+    }
 
     self.updatePermissao = function(permissao, analise){
         PermissaoService.updatePermissao(permissao, permissao.idPermissao)
