@@ -611,16 +611,8 @@ controllers.controller('AnaliseController',
                         }
                         if(self.erroPermissao === false){
                             self.permissaoConvite.usuario = u;
-                            self.savePermissao(self.permissaoConvite)
-                                .then(
-                                    function(p){
-                                        console.log(p);
-                                        self.fetchAllPermissoesFromAnalise(analise);
-                                    },
-                                    function (errResponse) {
-                                        console.log(errResponse);
-                                    }
-                                )
+                            self.savePermissao(self.permissaoConvite);
+                            self.fetchAllPermissoesFromAnalise(analise);
                         }
                     },
                     function(errResponse){
