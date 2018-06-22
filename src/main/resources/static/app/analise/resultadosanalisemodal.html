@@ -4,8 +4,29 @@
         <h4 class="modal-title">Resultados Analise</h4>
     </div>
     <div class="modal-body" >
-        <h2>{{AnaliseCtrl.permissao.analise.nome}}</h2>
+
+        <h3>{{AnaliseCtrl.permissao.analise.nome}}</h3>
+
+        <hr>
+
+        <h4>Tabela de resultados das variáveis</h4>
+
+        <table class="table table-condensed table-hover" ng-repeat="tR in AnaliseCtrl.tabelaResultados">
+            <thead>
+            <tr>
+                <th>{{tR.opcao.nome}}</th>
+            </tr>
+            </thead>
+            <tbody ng-repeat="rov in tR.notas ">
+            <tr>
+                <td>{{rov.variavelTAM.nomeVariavel}}</td>
+                <td>{{rov.notaOpcaoVariavel}}</td>
+            </tr>
+            </tbody>
+        </table>
+        <hr>
         <div class="chart-container">
+            <h4> Gráfico de médias das variáveis TAM</h4>
             <canvas id="variavel" class="chart chart-bar"
                     chart-labels="AnaliseCtrl.variavelResultChart.labels"
                     chart-data="AnaliseCtrl.variavelResultChart.data"
@@ -14,9 +35,49 @@
                     chart-options="AnaliseCtrl.variavelResultChart.options"></canvas>
         </div>
 
+
+        <h4>Resultados Detalhados</h4>
+
+        <div ng-show="AnaliseCtrl.showResultadosDetalhados" ng-repeat="tR in AnaliseCtrl.tabelaResultados ">
+            <hr>
+            <h4>{{tR.opcao.nome}}</h4>
+            <h5>Qntd de Questionários: {{tR.qntdQuestionarios}}</h5>
+            <hr>
+            <div  ng-repeat="rov in tR.notas ">
+                <h4>     {{rov.variavelTAM.nomeVariavel}}: {{rov.notaOpcaoVariavel}}</h4>
+                <br>
+                <table class="table table-condensed table-hover">
+                    <thead>
+                    <tr>
+                        <th>Enunciado da Questao</th>
+                        <th>Média</th>
+                    </tr>
+                    </thead>
+                    <tbody ng-repeat="roq in rov.resultadosOpcaoQuestao">
+                    <tr>
+                        <td>{{roq.questao.enunciado}}</td>
+                        <td>{{roq.notaOpcaoQuestao}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
         <hr>
         <div class="form-group clearfix">
-            <button type="button" class="btn btn-primary pull-right">
+            <button type="button" class="btn btn-primary pull-right"
+                    ng-hide="AnaliseCtrl.showResultadosDetalhados" ng-click="AnaliseCtrl.populaQntdQuestionarios()">
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Mostrar mais detalhes
+            </button>
+            <button type="button" class="btn btn-primary pull-right"
+                    ng-show="AnaliseCtrl.showResultadosDetalhados" ng-click="AnaliseCtrl.hideResultados()">
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Esconder detalhes
+            </button>
+            <button type="button" class="btn btn-primary pull-right"
+                    data-toggle="modal" data-target="#forwardAnaliseStatusModal"
+                    ng-show="(AnaliseCtrl.permissao.analise.status === 2)"
+                    ng-click="AnaliseCtrl.selectAnalise(AnaliseCtrl.permissao.analise)">
                 <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Finalizar Análise
             </button>
         </div>

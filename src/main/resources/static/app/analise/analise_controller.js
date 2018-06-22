@@ -117,6 +117,7 @@ controllers.controller('AnaliseController',
                     console.log(response);
                     self.fetchAllAnalises();
                     Global.fechaModal('#forwardAnaliseStatusModal');
+                    Global.fechaModal('#resultadosAnaliseModal');
                 }).catch(
                     function(errResponse){
                         console.error('Erro ao atualizar Análise. '+ errResponse);
@@ -672,9 +673,11 @@ controllers.controller('AnaliseController',
 
     self.variavelResultChart = {
         options: {
+
             scales: {
                 xAxes: [{
                     stacked: false,
+                    display: false
                 }],
                 yAxes: [{
                     stacked: false,
@@ -691,9 +694,14 @@ controllers.controller('AnaliseController',
         data: []
     };
 
+    self.tabelaResultados = [];
+
+    self.showResultadosDetalhados = false;
+
     self.resetVariavelChart = function(){
         self.variavelResultChart.labels = [];
         self.variavelResultChart.series = [];
+
     };
 
     self.populaVariavelLabels = function() {
@@ -703,20 +711,19 @@ controllers.controller('AnaliseController',
         }
     };
 
-    self.populaResultadosFromOpcao = function(opcaoDeObjeto,resultsOpcao ){
-        OpcaoDeObjetoService.fetchResultadosFromOpcao(opcaoDeObjeto.idOpcaoDeObjeto)
+    self.qntdQuestionarios = 0;
+
+    self.quantidadeQuestionariosOpcaoDeObjeto = function(idOpcaoDeObjeto, idAnalise){
+        QuestionarioService.quantidadeQuestionariosOpcaoDeObjeto(idOpcaoDeObjeto, idAnalise)
             .then(
                 function(d) {
                     console.log(d);
-                    for (var k = 0; d.length > k; k++) {
-                        console.log(d[k].notaOpcaoVariavel);
-                        resultsOpcao.push(d[k].notaOpcaoVariavel);
-                    }
+                    self.qntdQuestionarios = d;
 
-                    })
+                })
             .catch(
                 function(errResponse) {
-                    console.error('Erro ao encontrar Resultados da Opção de Objeto' + errResponse);
+                    console.error('Erro ao encontrar quantidade de Questionarios' + errResponse);
                     });
         };
 
@@ -726,17 +733,43 @@ controllers.controller('AnaliseController',
         for (var j = 0; self.permissao.analise.opcoesDeObjeto.length > j; j++) {
             console.log(self.permissao.analise.opcoesDeObjeto[j].nome);
             self.variavelResultChart.series.push(self.permissao.analise.opcoesDeObjeto[j].nome);
+
+            self.tabelaResultados.push({ opcao: self.permissao.analise.opcoesDeObjeto[j],
+                qntdQuestionarios: 0,
+                notas: self.permissao.analise.opcoesDeObjeto[j].resultadosOpcaoVariaveis});
+
             resultsOpcao = [];
-            self.populaResultadosFromOpcao(self.permissao.analise.opcoesDeObjeto[j], resultsOpcao);
+            for (var k = 0; self.permissao.analise.opcoesDeObjeto[j].resultadosOpcaoVariaveis.length > k; k++) {
+                resultsOpcao.push(self.permissao.analise.opcoesDeObjeto[j].resultadosOpcaoVariaveis[k].notaOpcaoVariavel);
+            }
 
             self.variavelResultChart.data.push(resultsOpcao);
         }
     };
 
+    self.populaQntdQuestionarios = function (){
+
+        for (var j = 0; self.tabelaResultados.length > j; j++) {
+            console.log(self.tabelaResultados[j].opcao.nome);
+            self.quantidadeQuestionariosOpcaoDeObjeto(
+                self.tabelaResultados[j].opcao.idOpcaoDeObjeto,
+                self.permissao.analise.idAnalise);
+            self.tabelaResultados[j].qntdQuestionarios = angular.copy(self.qntdQuestionarios);
+        }
+        self.showResultadosDetalhados = true;
+    };
+
     self.initializeResultados  = function (analise){
         self.selectAnalise(analise);
+        self.hideResultados();
+        self.tabelaResultados = [];
         self.resetVariavelChart();
         self.populaVariavelLabels();
         self.populaVariavelSeries();
+        console.log(self.tabelaResultados);
     };
+
+    self.hideResultados = function(){
+        self.showResultadosDetalhados = false
+    }
 }]);

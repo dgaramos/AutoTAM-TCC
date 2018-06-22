@@ -108,6 +108,8 @@ public class QuestionarioController {
     }
 
     /**
+     * Método responsável por retornar se o Usuário logado já respondeu o questionario relacionado
+     * a análise e a opção de objeto em questão
      *
      * @uri /questionario/{idAnalise}{idOpcaoDeObjeto}
      * @param idAnalise
@@ -120,5 +122,22 @@ public class QuestionarioController {
 
         System.out.println(status);
         return new ResponseEntity<Boolean>(status, HttpStatus.OK);
+    }
+
+    /**
+     * Método responsável por retornar quantos questionarios em relação a uma determinada opção de objeto
+     * foram respondidos
+     *
+     * @uri /questionario/{idAnalise}{idOpcaoDeObjeto}
+     * @param idAnalise
+     * @param idOpcaoDeObjeto
+     * @return
+     */
+    @RequestMapping(value = "/qntd/{idOpcaoDeObjeto}/{idAnalise}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Integer> quantidadeQuestionariosByOpcaoDeObjeto(@PathVariable("idOpcaoDeObjeto") int idOpcaoDeObjeto, @PathVariable("idAnalise") int idAnalise) {
+        Integer quantidade = questionarioService.quantidadeQuestionariosByOpcaoDeObjeto(idOpcaoDeObjeto, idAnalise );
+
+        System.out.println(quantidade);
+        return new ResponseEntity<Integer>(quantidade, HttpStatus.OK);
     }
 }

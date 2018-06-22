@@ -84,8 +84,7 @@ public class ResultadoOpcaoQuestao {
         return Objects.equals(getIdResultadoOpcaoQuestao(), that.getIdResultadoOpcaoQuestao()) &&
                 Objects.equals(getQuestao(), that.getQuestao()) &&
                 Objects.equals(getOpcaoDeObjeto(), that.getOpcaoDeObjeto()) &&
-                Objects.equals(getNotaOpcaoQuestao(), that.getNotaOpcaoQuestao()) &&
-                Objects.equals(getResultadoOpcaoVariavel(), that.getResultadoOpcaoVariavel());
+                Objects.equals(getNotaOpcaoQuestao(), that.getNotaOpcaoQuestao()) ;
     }
 
     @Override

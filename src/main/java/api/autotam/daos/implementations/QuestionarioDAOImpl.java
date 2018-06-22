@@ -7,6 +7,8 @@ import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Repository("questionarioDAO")
 @Transactional
 public class QuestionarioDAOImpl extends AbstractDAO implements QuestionarioDAO {
@@ -51,5 +53,18 @@ public class QuestionarioDAOImpl extends AbstractDAO implements QuestionarioDAO 
                 .setParameter("idAnalise", idAnalise);
 
                  return (Questionario) query.uniqueResult();
+    }
+
+    @Override
+    public List<Questionario> findByOpcaoDeObjetoAnalise(int idOpcaoDeObjeto, int idAnalise) {
+        Query query = getSession().createSQLQuery(
+                "SELECT * FROM questionario q " +
+                        "WHERE q.idOpcaoDeObjeto = :idOpcaoDeObjeto " +
+                        "AND q.idAnalise = :idAnalise")
+                .addEntity(Questionario.class)
+                .setParameter("idOpcaoDeObjeto", idOpcaoDeObjeto)
+                .setParameter("idAnalise", idAnalise);
+
+        return (List<Questionario>) query.list();
     }
 }

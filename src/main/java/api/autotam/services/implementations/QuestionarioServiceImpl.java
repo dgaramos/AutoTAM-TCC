@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 
 @Service("questionarioService")
@@ -44,5 +45,15 @@ public class QuestionarioServiceImpl extends AbstractService implements Question
             return false;
         }
         return true;
+    }
+
+    @Override
+    public Integer quantidadeQuestionariosByOpcaoDeObjeto(int idOpcaoDeObjeto, int idAnalise) {
+        return questionarioDAO.findByOpcaoDeObjetoAnalise(idOpcaoDeObjeto, idAnalise).size();
+    }
+
+    @Override
+    public List<Questionario> questionariosByOpcaoDeObjeto(int idOpcaoDeObjeto, int idAnalise) {
+        return questionarioDAO.findByOpcaoDeObjetoAnalise(idOpcaoDeObjeto, idAnalise);
     }
 }

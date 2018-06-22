@@ -95,7 +95,7 @@ public class ResultadoOpcaoVariavel {
     @Override
     public int hashCode() {
 
-        return Objects.hash(getIdResultadoOpcaoVariavel(), getVariavelTAM(), getOpcaoDeObjeto(), getNotaOpcaoVariavel(), getResultadosOpcaoQuestao());
+        return Objects.hash(getIdResultadoOpcaoVariavel(), getVariavelTAM(), getOpcaoDeObjeto(), getNotaOpcaoVariavel());
     }
 
     @Override

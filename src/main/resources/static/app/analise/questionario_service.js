@@ -25,6 +25,18 @@ services.factory('QuestionarioService', ['$http', '$q', function($http, $q) {
                         return $q.reject(errResponse);
                     }
                 );
+        },
+        quantidadeQuestionariosOpcaoDeObjeto: function(idOpcaoDeObjeto, idAnalise){
+            return $http.get(__env.apiUrl + '/questionario/qntd/' + idOpcaoDeObjeto+ '/' + idAnalise)
+                .then(
+                    function (response) {
+                        return response.data;
+                    },
+                    function (errResponse) {
+                        console.error('Error');
+                        return $q.reject(errResponse);
+                    }
+                );
         }
     }
 }]);

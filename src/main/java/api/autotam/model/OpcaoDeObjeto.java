@@ -8,6 +8,7 @@ import org.hibernate.annotations.OnDeleteAction;
 import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 
 @Entity
@@ -24,13 +25,15 @@ public class OpcaoDeObjeto {
 
     @OneToMany(mappedBy = "opcaoDeObjeto",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @OnDelete(action = OnDeleteAction.CASCADE)
+    @OrderBy (value="idVariavel")
     @JsonManagedReference(value="opcaoDeObjetoToResultadoOpcaoVariavel")
-    private List<ResultadoOpcaoVariavel> resultadosOpcaoVariaveis;
+    private Set<ResultadoOpcaoVariavel> resultadosOpcaoVariaveis;
 
     @OneToMany(mappedBy = "opcaoDeObjeto",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @OnDelete(action = OnDeleteAction.CASCADE)
+    @OrderBy (value="idQuestao")
     @JsonManagedReference(value="opcaoDeObjetoToResultadoOpcaoQuestao")
-    private List<ResultadoOpcaoQuestao> resultadosOpcaoQuestao;
+    private Set<ResultadoOpcaoQuestao> resultadosOpcaoQuestao;
 
     @ManyToOne(cascade = CascadeType.MERGE )
     @JoinColumn(name = "idAnalise")
@@ -54,19 +57,19 @@ public class OpcaoDeObjeto {
         this.nome = nome;
     }
 
-    public List<ResultadoOpcaoVariavel> getResultadosOpcaoVariaveis() {
+    public Set<ResultadoOpcaoVariavel> getResultadosOpcaoVariaveis() {
         return resultadosOpcaoVariaveis;
     }
 
-    public void setResultadosOpcaoVariaveis(List<ResultadoOpcaoVariavel> resultadosOpcaoVariaveis) {
+    public void setResultadosOpcaoVariaveis(Set<ResultadoOpcaoVariavel> resultadosOpcaoVariaveis) {
         this.resultadosOpcaoVariaveis = resultadosOpcaoVariaveis;
     }
 
-    public List<ResultadoOpcaoQuestao> getResultadosOpcaoQuestao() {
+    public Set<ResultadoOpcaoQuestao> getResultadosOpcaoQuestao() {
         return resultadosOpcaoQuestao;
     }
 
-    public void setResultadosOpcaoQuestao(List<ResultadoOpcaoQuestao> resultadosOpcaoQuestao) {
+    public void setResultadosOpcaoQuestao(Set<ResultadoOpcaoQuestao> resultadosOpcaoQuestao) {
         this.resultadosOpcaoQuestao = resultadosOpcaoQuestao;
     }
 

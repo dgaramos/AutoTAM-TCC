@@ -80,7 +80,7 @@ public class HibernateConfig {
     private Properties getHibernateProperties() {
         Properties properties = new Properties();
         properties.put("hibernate.dialect", env.getProperty("jdbc.dialect"));
-        properties.put("hibernate.show_sql", "true");
+        properties.put("hibernate.show_sql", "false");
         properties.put("hibernate.format_sql", "true");
         properties.put("current_session_context_class", "thread");
         properties.put("hibernate.hbm2ddl.auto","update");

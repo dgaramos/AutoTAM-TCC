@@ -2,6 +2,8 @@ package api.autotam.services.interfaces;
 
 import api.autotam.model.Questionario;
 
+import java.util.List;
+
 public interface QuestionarioService {
 
     void saveQuestionario(Questionario questionario);
@@ -13,5 +15,9 @@ public interface QuestionarioService {
     Questionario findById(int idQuestionario);
 
     boolean usuarioJaRespondeuOpcaoDeObjeto(int idUsuario, int idOpcaoDeObjeto, int idAnalise);
+
+    Integer quantidadeQuestionariosByOpcaoDeObjeto(int idOpcaoDeObjeto, int idAnalise);
+
+    List<Questionario> questionariosByOpcaoDeObjeto(int idOpcaoDeObjeto, int idAnalise);
 
 }
