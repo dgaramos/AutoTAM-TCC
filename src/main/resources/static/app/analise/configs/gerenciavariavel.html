@@ -25,7 +25,7 @@
                  </div>
                  <div class="col-sm-1 col-1 pull-right">
                      <button type="button" class="btn btn-danger btn-lg" ng-click="AnaliseCtrl.selectQuestao(q)"
-                             
+                             ng-show = "AnaliseCtrl.permissao.analise.status === 1"
                              data-dismiss="modal" data-toggle="modal" data-target="#deleteQuestaoModal"
                              title="Remover Questão"  data-toggle="tooltip" data-placement="left" tooltip>
                          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
