@@ -28,7 +28,7 @@ controllers.controller('AnaliseController',
 
     self.variavel = {idVariavel: null, nomeVariavel: '', questoes: [], variavelPadrao: false, nota: ''};
 
-    self.questao = {idQuestao: null,  numero:'', enunciado: '', peso: '', respostas: []};
+    self.questao = {idQuestao: null, média:0, numero:'', enunciado: '', peso: '', respostas: []};
 
     self.respostas = [];
 
@@ -341,7 +341,7 @@ controllers.controller('AnaliseController',
             self.variavel.questoes.push(self.questao);
         }
 
-        self.questao = {idQuestao: null, numero:'', enunciado: '', peso: '', resposta: ''};
+        self.questao = {idQuestao: null, média:0, numero:'', enunciado: '', peso: '', resposta: ''};
     };
 
     self.selectQuestao = function (questao){
@@ -366,7 +366,7 @@ controllers.controller('AnaliseController',
             .then(
                 function(d){
                     console.log(d);
-                    self.questao = {idQuestao: null, numero:'', enunciado: '', peso: '', resposta: ''};
+                    self.questao = {idQuestao: null, média:0, numero:'', enunciado: '', peso: '', resposta: ''};
                     self.fetchAllQuestoesFromVariavel(idVariavel);
                 },
                 function(errResponse){
