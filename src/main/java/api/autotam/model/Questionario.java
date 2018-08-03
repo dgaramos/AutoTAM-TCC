@@ -42,9 +42,6 @@ public class Questionario implements Serializable {
     @JoinColumn(name="idUsuario")
     private Usuario usuario;
 
-    @Column(name = "tipo")
-    private Integer tipo;
-
     public Integer getIdQuestionario() {
         return idQuestionario;
     }
@@ -77,14 +74,6 @@ public class Questionario implements Serializable {
         this.usuario = usuario;
     }
 
-    public Integer getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(Integer tipo) {
-        this.tipo = tipo;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -93,14 +82,13 @@ public class Questionario implements Serializable {
         return Objects.equals(getIdQuestionario(), that.getIdQuestionario()) &&
                 Objects.equals(getAnalise(), that.getAnalise()) &&
                 Objects.equals(getOpcaoDeObjeto(), that.getOpcaoDeObjeto()) &&
-                Objects.equals(getUsuario(), that.getUsuario()) &&
-                Objects.equals(getTipo(), that.getTipo());
+                Objects.equals(getUsuario(), that.getUsuario());
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(getIdQuestionario(), getAnalise(), getOpcaoDeObjeto(), getUsuario(), getTipo());
+        return Objects.hash(getIdQuestionario(), getAnalise(), getOpcaoDeObjeto(), getUsuario());
     }
 
     @Override
@@ -110,7 +98,6 @@ public class Questionario implements Serializable {
                 ", analise=" + analise +
                 ", opcaoDeObjeto=" + opcaoDeObjeto +
                 ", usuario=" + usuario +
-                ", tipo=" + tipo +
                 '}';
     }
 }

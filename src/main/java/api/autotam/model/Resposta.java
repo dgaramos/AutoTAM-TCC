@@ -14,7 +14,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name= "resposta")
-public class Resposta implements Serializable {
+public class Resposta implements Serializable, Comparable<Resposta>{
 
     //Constantes Likert
 
@@ -90,7 +90,6 @@ public class Resposta implements Serializable {
         if (!(o instanceof Resposta)) return false;
         Resposta resposta1 = (Resposta) o;
         return Objects.equals(getIdResposta(), resposta1.getIdResposta()) &&
-                Objects.equals(getQuestao(), resposta1.getQuestao()) &&
                 Objects.equals(getQuestionario(), resposta1.getQuestionario()) &&
                 Objects.equals(getResposta(), resposta1.getResposta());
     }
@@ -98,7 +97,7 @@ public class Resposta implements Serializable {
     @Override
     public int hashCode() {
 
-        return Objects.hash(getIdResposta(), getQuestao(), getQuestionario(), getResposta());
+        return Objects.hash(getIdResposta(), getQuestionario(), getResposta());
     }
 
     @Override
@@ -109,5 +108,14 @@ public class Resposta implements Serializable {
                 ", questionario=" + questionario +
                 ", resposta=" + resposta +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Resposta resposta) {
+        if(resposta.getIdResposta() == idResposta){
+            return 1;
+        }else{
+            return 0;
+        }
     }
 }

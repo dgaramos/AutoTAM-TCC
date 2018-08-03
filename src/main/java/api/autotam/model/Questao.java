@@ -11,6 +11,8 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
+import java.util.SortedSet;
 
 /**
  * Classe modelo referente as Questões.
@@ -128,7 +130,6 @@ public class Questao implements Serializable {
                 Objects.equals(getIdQuestao(), questao.getIdQuestao()) &&
                 Objects.equals(getNumero(), questao.getNumero()) &&
                 Objects.equals(getEnunciado(), questao.getEnunciado()) &&
-                Objects.equals(getRespostas(), questao.getRespostas()) &&
                 Objects.equals(getVariavelTAM(), questao.getVariavelTAM());
     }
 

@@ -33,10 +33,10 @@ controllers.controller('AnaliseController',
     self.respostas = [];
 
     self.resposta = {idResposta: null, resposta:0, usuario: {idUsuario: null, nome: '', email: '', senha: ''},
-            questionario: {idQuestionario: null, tipo:'', analise: {idAnalise: null, nome: '', objetoDeAnalise: '',
+            questionario: {idQuestionario: null, analise: {idAnalise: null, nome: '', objetoDeAnalise: '',
             variaveis:[], opcoesDeObjeto:[], status: ''}}};
 
-    self.questionario = {idQuestionario: null, tipo: null,
+    self.questionario = {idQuestionario: null,
             analise: {idAnalise: null, nome: '', objetoDeAnalise: '',
             opcaoDeObjeto: {idOpcaoDeObjeto: null, nome:'', resultadosOpcaoVariaveis:[]},
             usuario: {idUsuario: null, nome: '', email: '', senha: ''}}};
@@ -460,13 +460,13 @@ controllers.controller('AnaliseController',
         self.resposta = {
             idResposta: null, resposta: null, usuario: {idUsuario: null, nome: '', email: '', senha: ''},
             questionario: {
-                idQuestionario: null, tipo: null,
+                idQuestionario: null,
                 opcaoDeObjeto: {idOpcaoDeObjeto: null, nome:'', resultadosOpcaoVariaveis:[]},
                 analise: {idAnalise: null, nome: '', objetoDeAnalise: '',
                     variaveis: [], opcoesDeObjeto: [], status: ''}}};
 
         self.questionario = {
-            idQuestionario: null, tipo: null,
+            idQuestionario: null,
                 opcaoDeObjeto: {idOpcaoDeObjeto: null, nome:'', resultadosOpcaoVariaveis:[]},
             analise: {idAnalise: null, nome: '', objetoDeAnalise: '',
                 variaveis: [], opcoesDeObjeto: [], status: ''}};

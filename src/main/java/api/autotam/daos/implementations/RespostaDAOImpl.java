@@ -62,4 +62,30 @@ public class RespostaDAOImpl extends AbstractDAO implements RespostaDAO {
                 .setParameter("idUsuario", idUsuario);
         return (List<Resposta>) query.list();
     }
+
+    @Override
+    public List<Resposta> findAllRespostasFromOpcaoDeObjeto(int idOpcaoDeObjeto) {
+        Query query = getSession().createSQLQuery(
+                "SELECT r.idResposta, r.resposta, r.idQuestao, r.idQuestionario " +
+                            "FROM resposta r " +
+                            "join questionario q USING (idQuestionario) " +
+                            "WHERE idOpcaoDeObjeto = :idOpcaoDeObjeto")
+                .addEntity(Resposta.class)
+                .setParameter("idOpcaoDeObjeto", idOpcaoDeObjeto);
+        return (List<Resposta>) query.list();
+    }
+
+    @Override
+    public List<Resposta> findAllRespostasFromOpcaoDeObjetoAndQuestao(int idOpcaoDeObjeto, int idQuestao) {
+        Query query = getSession().createSQLQuery(
+                "SELECT r.idResposta, r.resposta, r.idQuestao, r.idQuestionario " +
+                        "FROM resposta r " +
+                        "join questionario q USING (idQuestionario) " +
+                        "WHERE idOpcaoDeObjeto = :idOpcaoDeObjeto " +
+                        "AND idQuestao = :idQuestao")
+                .addEntity(Resposta.class)
+                .setParameter("idOpcaoDeObjeto", idOpcaoDeObjeto)
+                .setParameter("idQuestao", idQuestao);
+        return (List<Resposta>) query.list();
+    }
 }

@@ -19,4 +19,8 @@ public interface RespostaDAO {
 
     List<Resposta> findAllRespostasFromUsuario(int idUsuario);
 
+    List<Resposta> findAllRespostasFromOpcaoDeObjeto(int idOpcaoDeObjeto);
+
+    List<Resposta> findAllRespostasFromOpcaoDeObjetoAndQuestao(int idOpcaoDeObjeto, int idQuestao);
+
 }

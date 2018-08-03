@@ -1,6 +1,7 @@
 package api.autotam.services.implementations;
 
 import api.autotam.daos.interfaces.QuestaoDAO;
+import api.autotam.daos.interfaces.RespostaDAO;
 import api.autotam.daos.interfaces.ResultadoOpcaoQuestaoDAO;
 import api.autotam.daos.interfaces.ResultadoOpcaoVariavelDAO;
 import api.autotam.model.*;
@@ -26,6 +27,9 @@ public class ResultadoOpcaoQuestaoServiceImpl extends AbstractService implements
 
     @Autowired
     private QuestaoDAO questaoDAO;
+
+    @Autowired
+    private RespostaDAO respostaDAO;
 
     @Override
     public void saveResultadoOpcaoQuestao(ResultadoOpcaoQuestao resultadoOpcaoQuestao) {
@@ -55,6 +59,8 @@ public class ResultadoOpcaoQuestaoServiceImpl extends AbstractService implements
     @Override
     public void calcularResultadoQuestao(OpcaoDeObjeto opcaoDeObjeto, Questao questao) {
 
+        List<Resposta> listaRespostas = respostaDAO.findAllRespostasFromOpcaoDeObjetoAndQuestao(opcaoDeObjeto.getIdOpcaoDeObjeto(), questao.getIdQuestao());
+
         ResultadoOpcaoQuestao resultadoOpcaoQuestao =
                 resultadoOpcaoQuestaoDAO.findFromOpcaoQuestao(
                         opcaoDeObjeto.getIdOpcaoDeObjeto(), questao.getIdQuestao());
@@ -78,10 +84,20 @@ public class ResultadoOpcaoQuestaoServiceImpl extends AbstractService implements
             }
             resultadoOpcaoQuestao.setResultadoOpcaoVariavel(resultadoOpcaoVariavel);
         }
-        for(Resposta resposta : questao.getRespostas()){
-            somatorioRespostas = somatorioRespostas + resposta.getResposta();
+        int idUltimaResposta = 0;
+        int count = 0;
+        for(Resposta resposta : listaRespostas){
+            if(idUltimaResposta != resposta.getIdResposta()){
+                somatorioRespostas = somatorioRespostas + resposta.getResposta();
+                idUltimaResposta = resposta.getIdResposta();
+                count++;
+            }
+            System.out.println(
+                            "Somatório: " + somatorioRespostas.toString() +
+                            " Resposta: " + resposta.getResposta().toString());
         }
-        resultadoOpcaoQuestao.setNotaOpcaoQuestao(somatorioRespostas/questao.getRespostas().size());
+        System.out.println("N Respostas: " + count);
+        resultadoOpcaoQuestao.setNotaOpcaoQuestao(somatorioRespostas/count);
         listaResultados = resultadoOpcaoVariavel.getResultadosOpcaoQuestao();
         listaResultados.add(resultadoOpcaoQuestao);
         resultadoOpcaoVariavel.setResultadosOpcaoQuestao(listaResultados);
