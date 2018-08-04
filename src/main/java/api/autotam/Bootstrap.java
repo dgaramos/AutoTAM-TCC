@@ -55,10 +55,6 @@ public class Bootstrap {
                 List<Usuario> listaUsuarios = usuarioService.findAllUsuarios();
                 if (listaUsuarios.isEmpty()) {
                     usuarioService.saveUsuario(new Usuario("autotamtcc@gmail.com", "autotam", "admin"));
-                }else{
-                    for (Usuario usuario : listaUsuarios) {
-                        usuarioService.updateUsuario(usuario);
-                    }
                 }
             }
 
