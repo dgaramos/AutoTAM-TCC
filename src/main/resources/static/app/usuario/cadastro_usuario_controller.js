@@ -16,8 +16,6 @@ controllers.controller("CadastroUsuarioController", ['UsuarioService', '$locatio
         confirmaSenha: ""
     };
 
-    self.senhaAtual = "";
-
     self.reset = function(){
         self.message = { box: false, message:""};
         self.usuario = {
@@ -26,7 +24,6 @@ controllers.controller("CadastroUsuarioController", ['UsuarioService', '$locatio
             senha: "",
             confirmaSenha: ""
         };
-        self.senhaAtual = "";
     };
 
     self.submit = function(isValid) {
@@ -76,22 +73,12 @@ controllers.controller("CadastroUsuarioController", ['UsuarioService', '$locatio
 
     self.changePassword = function(isValid){
         if(isValid){
-            if(self.senhaAtual == self.usuario.senha){
-                $scope.errorBox = 'alert alert-warning';
-                self.message.box = true;
-                self.message.message = "Sua nova senha não pode ser a mesma da senha atual!";
-            }else if($rootScope.loggedUsuario.senha == self.senhaAtual){
-                $rootScope.loggedUsuario.senha = self.usuario.senha;
-                UsuarioService.updateUsuario($rootScope.loggedUsuario, $rootScope.loggedUsuario.idUsuario);
-                $scope.errorBox = 'alert alert-success';
-                self.message.box = true;
-                self.message.message = "Sua senha foi alterada com sucesso!";
-            }else{
-                $scope.errorBox = 'alert alert-danger';
-                self.message.box = true;
-                self.message.message = "A essa não é sua senha atual";
-            }
-        }else {
+            $rootScope.loggedUsuario.senha = self.usuario.senha;
+            UsuarioService.updateUsuario($rootScope.loggedUsuario, $rootScope.loggedUsuario.idUsuario);
+            $scope.errorBox = 'alert alert-success';
+            self.message.box = true;
+            self.message.message = "Sua senha foi alterada com sucesso!";
+        } else {
             $scope.errorBox = 'alert alert-warning';
             self.message.box = true;
             self.message.message = "Ainda existem campos inválidos no formulário, preencha-os e tente novamente";
