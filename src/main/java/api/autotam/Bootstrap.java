@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
+import java.util.List;
 
 /**
  * Classe responsável por inicializar a aplicação.
@@ -30,9 +31,7 @@ public class Bootstrap {
      * @return
      */
     @RequestMapping("/userLogin")
-    public Principal user(Principal user) {
-        return user;
-    }
+    public Principal user(Principal user) { return user; }
 
 
     public static void main(String[] args) {
@@ -52,8 +51,14 @@ public class Bootstrap {
                   quando o programa é iniciado, e caso não exista, ele gera um usuário
                   com login admin e senha admin.
                 */
-                if (usuarioService.findAllUsuarios().isEmpty()) {
-                    usuarioService.saveUsuario(new Usuario("admin", "admin", "admin"));
+
+                List<Usuario> listaUsuarios = usuarioService.findAllUsuarios();
+                if (listaUsuarios.isEmpty()) {
+                    usuarioService.saveUsuario(new Usuario("autotamtcc@gmail.com", "autotam", "admin"));
+                }else{
+                    for (Usuario usuario : listaUsuarios) {
+                        usuarioService.updateUsuario(usuario);
+                    }
                 }
             }
 

@@ -36,12 +36,6 @@ public class Questao implements Serializable {
     @Column(name = "enunciado")
     private String enunciado;
 
-    @Column(name ="peso")
-    private double peso;
-
-    @Column(name ="media")
-    private Double media;
-
     @OneToMany(mappedBy = "questao",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonManagedReference(value="questaoToRespostas")
@@ -59,8 +53,6 @@ public class Questao implements Serializable {
         this.numero = numero;
         this.enunciado = enunciado;
         this.variavelTAM = variavelTAM;
-        this.media = 0.0;
-        this.peso = 0;
     }
 
     public Integer getIdQuestao() {
@@ -95,22 +87,6 @@ public class Questao implements Serializable {
         this.variavelTAM = variavelTAM;
     }
 
-    public double getPeso() {
-        return peso;
-    }
-
-    public void setPeso(double peso) {
-        this.peso = peso;
-    }
-
-    public Double getMedia() {
-        return media;
-    }
-
-    public void setMedia(Double media) {
-        this.media = media;
-    }
-
     public List<Resposta> getRespostas() {
 
         return respostas;
@@ -125,9 +101,7 @@ public class Questao implements Serializable {
         if (this == o) return true;
         if (!(o instanceof Questao)) return false;
         Questao questao = (Questao) o;
-        return Double.compare(questao.getPeso(), getPeso()) == 0 &&
-                Double.compare(questao.getMedia(), getMedia()) == 0 &&
-                Objects.equals(getIdQuestao(), questao.getIdQuestao()) &&
+        return Objects.equals(getIdQuestao(), questao.getIdQuestao()) &&
                 Objects.equals(getNumero(), questao.getNumero()) &&
                 Objects.equals(getEnunciado(), questao.getEnunciado()) &&
                 Objects.equals(getVariavelTAM(), questao.getVariavelTAM());
@@ -136,7 +110,7 @@ public class Questao implements Serializable {
     @Override
     public int hashCode() {
 
-        return Objects.hash(getIdQuestao(), getNumero(), getEnunciado(), getPeso(), getMedia());
+        return Objects.hash(getIdQuestao(), getNumero(), getEnunciado());
     }
 
     @Override
@@ -145,8 +119,6 @@ public class Questao implements Serializable {
                 "idQuestao=" + idQuestao +
                 ", numero=" + numero +
                 ", enunciado='" + enunciado + '\'' +
-                ", peso=" + peso +
-                ", media=" + media +
                 ", respostas=" + respostas.size() +
                 ", variavelTAM=" + variavelTAM +
                 '}';

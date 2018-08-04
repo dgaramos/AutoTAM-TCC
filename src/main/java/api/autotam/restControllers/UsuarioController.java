@@ -13,6 +13,7 @@ import api.autotam.model.Usuario;
 import api.autotam.services.interfaces.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.security.SecureRandom;
 import java.util.List;
 
 /**
@@ -147,10 +148,10 @@ public class UsuarioController {
     public ResponseEntity<Usuario> updateUsuario(@PathVariable("id") Integer idUsuario, @RequestBody Usuario usuario) {
         System.out.println("Atualizando Usuário com id " + idUsuario);
 
-        Usuario currentUsuario = usuarioService.findById(usuario.getIdUsuario());
+        Usuario currentUsuario = usuarioService.getUsuarioLogado();
 
-        if (currentUsuario==null) {
-            System.out.println("Usuário com id " + idUsuario + " não foi encontrado");
+        if (currentUsuario.getIdUsuario() != idUsuario) {
+            System.out.println("Você não pode atualizar um usuário que não seja você mesmo.");
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
@@ -197,15 +198,32 @@ public class UsuarioController {
      */
     @RequestMapping(value = "noauth/password/{email:.+}", method = RequestMethod.GET)
     public ResponseEntity<Void> recoverPassword(@PathVariable("email") String email) {
+
+        SecureRandom random = new SecureRandom();
+
+        String dic = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*_=+-/";
+
+        String newPassword = "";
+
+        for (int i = 0; i < 8; i++) {
+            int index = random.nextInt(dic.length());
+            newPassword += dic.charAt(index);
+        }
+
+
         System.out.println("Enviando senha de Usuário para o email " + email);
 
         Usuario usuario = usuarioService.findByEmail(email);
+
+        usuario.setSenha(newPassword);
+
+        usuarioService.updateUsuario(usuario);
 
         if (usuario == null) {
             System.out.println("Usuário com email " + email + " não foi encontrado");
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        emailService.recoverPassword(usuario);
+        emailService.recoverPassword(usuario, newPassword);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

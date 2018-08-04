@@ -5,6 +5,7 @@ import javax.transaction.Transactional;
 import api.autotam.daos.interfaces.UsuarioDAO;
 import api.autotam.services.interfaces.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import api.autotam.model.Usuario;
 
@@ -23,6 +24,9 @@ public class UsuarioServiceImpl extends AbstractService implements UsuarioServic
     @Autowired
     private UsuarioDAO usuarioDAO;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     /**
      * Método responsável pela operação de cadastro de um Usuário no banco de dados.
      *
@@ -30,7 +34,13 @@ public class UsuarioServiceImpl extends AbstractService implements UsuarioServic
      */
     @Override
     public void saveUsuario(Usuario usuario) {
-        usuarioDAO.saveUsuario(usuario);
+
+        Usuario novoUsuario = new Usuario();
+        novoUsuario.setEmail(usuario.getEmail());
+        novoUsuario.setNome(usuario.getNome());
+        novoUsuario.setSenha(passwordEncoder.encode(usuario.getSenha()));
+
+        usuarioDAO.saveUsuario(novoUsuario);
     }
 
     /**
@@ -73,7 +83,13 @@ public class UsuarioServiceImpl extends AbstractService implements UsuarioServic
      */
     @Override
     public void updateUsuario(Usuario usuario){
-            usuarioDAO.updateUsuario(usuario);
+
+        Usuario novosDados = usuarioDAO.findById(usuario.getIdUsuario());
+        novosDados.setEmail(usuario.getEmail());
+        novosDados.setNome(usuario.getNome());
+        novosDados.setSenha(passwordEncoder.encode(usuario.getSenha()));
+
+        usuarioDAO.updateUsuario(novosDados);
     }
 
     /**

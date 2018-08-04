@@ -19,10 +19,6 @@
                      <input type="text" name="nomeQuestao" class="form-control input-sm" ng-model="q.enunciado" ng-show = "AnaliseCtrl.permissao.analise.status === 1"/>
                      <h5 ng-show = "AnaliseCtrl.permissao.analise.status > 1">{{q.enunciado}}</h5>
                 </div>
-                 <div class="col-sm-2 col-2" ng-show = "p.analise.status === 1">
-                     <label>Peso: </label>
-                     <input type="number" name="pesoQuestao" class="form-control input-sm" ng-model="q.peso" disabled />
-                 </div>
                  <div class="col-sm-1 col-1 pull-right">
                      <button type="button" class="btn btn-danger btn-lg" ng-click="AnaliseCtrl.selectQuestao(q)"
                              ng-show = "AnaliseCtrl.permissao.analise.status === 1"

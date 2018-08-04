@@ -59,15 +59,17 @@ public class EmailService{
      *
      * @param usuario
      */
-    public void recoverPassword(Usuario usuario) {
+    public void recoverPassword(Usuario usuario, String newPassword) {
         String emailContent =
-                "<p>As informações da sua conta no AutoTAM estão impressas no final desta mensagem.</p>" +
+                "<p>Olá "+usuario.getNome()+"!</p>"+
+                        "<p>Foi informado ao sistema que você teria esquecido a sua senha.</p>" +
+                        "<p>As informações da sua conta no AutoTAM estão impressas no final desta mensagem.</p>" +
                         "<p>Esta senha permite o acesso a o sistema e a todas as análises as quais sua conta for vinculada,</p>" +
                         "<p>não é recomendado que sua senha seja compartilhada com terceiros, essa senha é pessoal e intransferível!</p>"+
                         "<br>"+
                         "<p>Informações do usuário</p>" +
                         "<p>Seu email é: " + usuario.getEmail() + "</p>" +
-                        "<p>Sua senha é: " + usuario.getSenha() + "</p>" +
+                        "<p>Sua senha nova é: " + newPassword + "</p>" +
                         "<br>" +
                         "<p>Atenciosamente,</p>" +
                         "<p>Danilo Gonçalves Alves Ramos, Desenvolvedor do AutoTAM</p>";

@@ -28,7 +28,7 @@ controllers.controller('AnaliseController',
 
     self.variavel = {idVariavel: null, nomeVariavel: '', questoes: [], variavelPadrao: false, nota: ''};
 
-    self.questao = {idQuestao: null, média:0, numero:'', enunciado: '', peso: '', respostas: []};
+    self.questao = {idQuestao: null, numero:'', enunciado: '', respostas: []};
 
     self.respostas = [];
 
@@ -332,16 +332,14 @@ controllers.controller('AnaliseController',
     self.adicionaQuestaoToVariavel = function(){
         if (self.variavel.questoes instanceof Array) {
             self.questao.numero = self.variavel.questoes.length + 1;
-            self.questao.peso = 1;
             self.variavel.questoes.push(self.questao);
         } else{
             self.variavel.questoes = [];
             self.questao.numero = self.variavel.questoes.length + 1;
-            self.questao.peso = 1;
             self.variavel.questoes.push(self.questao);
         }
 
-        self.questao = {idQuestao: null, média:0, numero:'', enunciado: '', peso: '', resposta: ''};
+        self.questao = {idQuestao: null, numero:'', enunciado: '', resposta: ''};
     };
 
     self.selectQuestao = function (questao){
@@ -366,7 +364,7 @@ controllers.controller('AnaliseController',
             .then(
                 function(d){
                     console.log(d);
-                    self.questao = {idQuestao: null, média:0, numero:'', enunciado: '', peso: '', resposta: ''};
+                    self.questao = {idQuestao: null, numero:'', enunciado: '', resposta: ''};
                     self.fetchAllQuestoesFromVariavel(idVariavel);
                 },
                 function(errResponse){

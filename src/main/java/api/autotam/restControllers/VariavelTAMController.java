@@ -44,10 +44,6 @@ public class VariavelTAMController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
-        for(Questao questao : variavel.getQuestoes()){
-            questao.setMedia(0.0);
-        }
-
         currentVariavel.setNomeVariavel(variavel.getNomeVariavel());
         currentVariavel.setQuestoes(variavel.getQuestoes());
 
